@@ -14,5 +14,9 @@
   "tailwindCSS.validate": true,
   "files.associations": {
     "*.css": "tailwindcss"
-  }
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.suggest.autoImports": true,
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.suggest.autoImports": true
 }
