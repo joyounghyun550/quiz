@@ -13,7 +13,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@itandsy/react-common": "^1.6.0",
+    "@itandsy/react-common": "^1.6.1",
     "axios": "^1.13.2",
     "next": "14.2.35",
     "react": "^18",
