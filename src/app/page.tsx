@@ -1,3 +1,7 @@
+"use client";
+
+import { SolidPrimary } from "@itandsy/react-common";
+
 export default function Home() {
   return (
     <div>
@@ -27,8 +31,8 @@ export default function Home() {
         >
           Learn
         </a>
-        {/* <SolidPrimary size="medium" label="텍스트" />
-        <LoginButton
+        <SolidPrimary size="medium" label="텍스트" />
+        {/* <LoginButton
           size="large"
           loginType="google"
           onClick={() => console.log("login")}
