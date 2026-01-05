@@ -1,0 +1,6 @@
+# Widgets Layer
+# 위젯을 여기에 작성하세요
+# 여러 features나 entities를 조합한 복합 컴포넌트
+# 예: header/, sidebar/, product-list/ 등
+# 각 위젯은 ui/, lib/, model/ 구조를 가질 수 있습니다
+
