@@ -1,5 +1,6 @@
 
 import axios, { type AxiosError, type AxiosInstance, type AxiosResponse, type InternalAxiosRequestConfig } from "axios";
+
 import { ApiError } from "@/shared/types";
 
 /**

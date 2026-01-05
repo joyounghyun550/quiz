@@ -239,6 +239,7 @@ module.exports = {
     // ========================================
     {
       files: ["src/app/**/*.tsx", "src/**/ui/**/*.tsx", "src/**/components/**/*.tsx", "src/widgets/**/*.tsx"],
+      excludedFiles: ["src/app/**/layout.tsx", "src/app/**/page.tsx", "src/shared/ui/Providers.tsx"],
       rules: {
         "prefer-arrow-callback": [
           "error",
@@ -263,12 +264,32 @@ module.exports = {
         ],
       },
     },
+    // ========================================
+    // 📁 Next.js 특수 파일 예외 처리
+    // ========================================
+    {
+      files: ["src/app/**/layout.tsx", "src/app/**/page.tsx"],
+      rules: {
+        "react/function-component-definition": "off", // Next.js는 function 키워드 사용
+        "no-restricted-syntax": "off", // metadata export 허용
+      },
+    },
+    // ========================================
+    // 📁 공유 컴포넌트 예외 처리
+    // ========================================
+    {
+      files: ["src/shared/ui/Providers.tsx"],
+      rules: {
+        "no-restricted-syntax": "off", // named export 허용 (재사용 컴포넌트)
+      },
+    },
 
     // ========================================
     // 📁 Export 규칙: 컴포넌트는 default export만 허용
     // ========================================
     {
       files: ["src/app/**/page.tsx", "src/app/**/layout.tsx", "src/**/ui/**/*.tsx", "src/widgets/**/*.tsx"],
+      excludedFiles: ["src/app/**/layout.tsx", "src/shared/ui/Providers.tsx"],
       rules: {
         "no-restricted-syntax": [
           "error",

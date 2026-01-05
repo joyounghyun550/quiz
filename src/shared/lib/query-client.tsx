@@ -1,7 +1,8 @@
 "use client";
 
-import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode } from "react";
+
+import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 declare global {
   interface Window {

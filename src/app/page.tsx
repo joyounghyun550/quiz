@@ -1,7 +1,9 @@
 "use client";
 
-import { useMediaQuery } from "@/shared/hooks/use-media-query";
+
 import { SolidPrimary } from "@itandsy/react-common";
+
+import { useMediaQuery } from "@/shared/hooks/use-media-query";
 
 const Home = () => {
   const { currentBreakpoint } = useMediaQuery();
