@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Pre-commit 훅: 커밋 전 코드 품질 검사
+# - staged 파일만 검사하여 빠른 피드백 제공
+# - Prettier 포맷팅 자동 적용
+# - ESLint 자동 수정 (경고 1개 이상 시 실패)
+npx lint-staged

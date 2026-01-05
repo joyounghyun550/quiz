@@ -1,0 +1,13 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🔍 Running pre-push checks..."
+echo "📝 Type checking new files only..."
+./scripts/type-check-new-files.sh
+if [ $? -ne 0 ]; then
+  echo "❌ Type check failed for new files!"
+  exit 1
+fi
+
+echo "✅ Pre-push checks passed!"
+echo "💡 Build test will be performed in CI pipeline"
