@@ -1,7 +1,6 @@
 "use client";
 
-
-import { SolidPrimary } from "@itandsy/react-common";
+import { SolidPrimary, Toast } from "@itandsy/react-common";
 
 import { useMediaQuery } from "@/shared/hooks/use-media-query";
 
@@ -36,7 +35,17 @@ const Home = () => {
         >
           Learn
         </a>
-        <SolidPrimary size="medium" label="텍스트" />
+        <SolidPrimary
+          size="medium"
+          label="텍스트"
+          onClick={() =>
+            Toast({
+              label: "성공했습니다!",
+              position: "bottom-right",
+            })
+          }
+        />
+
         {/* <LoginButton
           size="large"
           loginType="google"
@@ -53,7 +62,7 @@ const Home = () => {
         <a
           href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
-          className="text-color-alias-status-positive text-heading1-bold"
+          className="text-heading1-bold text-color-alias-status-positive"
           rel="noopener noreferrer"
         >
           Go to nextjs.org →
