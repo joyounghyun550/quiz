@@ -3,6 +3,7 @@
 import { ThemeProvider } from "@itandsy/react-common";
 import { ReactNode } from "react";
 import { customThemeTokens } from "@/shared/config/theme";
+import { QueryProvider } from "@/shared/lib/query-client";
 
 interface ProvidersProps {
   children: ReactNode;
@@ -10,6 +11,8 @@ interface ProvidersProps {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <ThemeProvider customTokens={customThemeTokens}>{children}</ThemeProvider>
+    <QueryProvider>
+      <ThemeProvider customTokens={customThemeTokens}>{children}</ThemeProvider>
+    </QueryProvider>
   );
 }
