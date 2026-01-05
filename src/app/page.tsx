@@ -44,7 +44,7 @@ export default function Home() {
         <a
           href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
-          className="text-color-alias-status-positive"
+          className="text-color-alias-status-positive text-heading1-bold"
           rel="noopener noreferrer"
         >
           Go to nextjs.org →
