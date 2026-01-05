@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Providers } from "@/shared/ui/Providers";
 import "@/shared/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -14,9 +15,11 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="bg-white text-black">
-        <header>Header</header>
-        <main>{children}</main>
-        <footer>Footer</footer>
+        <Providers>
+          <header>Header</header>
+          <main>{children}</main>
+          <footer>Footer</footer>
+        </Providers>
       </body>
     </html>
   );
