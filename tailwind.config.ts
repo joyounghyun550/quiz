@@ -1,7 +1,7 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from "tailwindcss";
 import preset from "@itandsy/react-common/preset";
 
-const config = {
+const config: Config = {
   presets: [preset],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -16,3 +16,4 @@ const config = {
 };
 
 export default config;
+
