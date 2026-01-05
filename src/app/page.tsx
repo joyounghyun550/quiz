@@ -1,8 +1,10 @@
 "use client";
 
+import { useMediaQuery } from "@/shared/hooks/use-media-query";
 import { SolidPrimary } from "@itandsy/react-common";
 
 const Home = () => {
+  const { currentBreakpoint } = useMediaQuery();
   return (
     <div>
       <main>
@@ -22,6 +24,7 @@ const Home = () => {
             Read our docs
           </a>
         </div>
+        <p>현재 브레이크포인트: {currentBreakpoint}</p>
       </main>
       <footer>
         <a
