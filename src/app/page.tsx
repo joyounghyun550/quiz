@@ -2,7 +2,7 @@
 
 import { SolidPrimary } from "@itandsy/react-common";
 
-export default function Home() {
+const Home = () => {
   return (
     <div>
       <main>
@@ -56,4 +56,6 @@ export default function Home() {
       </footer>
     </div>
   );
-}
+};
+
+export default Home;
