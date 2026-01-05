@@ -36,3 +36,14 @@ yarn-error.log*
 next-env.d.ts
 
 .npmrc
+
+# env files
+.production.env
+.staging.env
+.env.development
+
+# History files
+.history/
+
+# Cursor rules
+.cursor/
