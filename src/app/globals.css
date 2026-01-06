@@ -4,3 +4,10 @@
 
 @import "@itandsy/react-common/fonts";
 @import "@itandsy/react-common/styles";
+
+@layer base {
+  html,
+  body {
+    font-family: "Pretendard", sans-serif;
+  }
+}
