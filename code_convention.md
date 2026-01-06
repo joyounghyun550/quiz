@@ -173,11 +173,23 @@ src/
 │   ├── axios.ts
 │   └── index.ts
 │
+├── assets/                       # 컴포넌트에서 import하여 사용하는 리소스
+│   ├── icons/                    # 아이콘 (SVG, PNG 등)
+│   │   ├── normal/
+│   │   └── hover/
+│   ├── images/                   # 이미지 (컴포넌트에서 사용)
+│   └── fonts/                    # 폰트 파일 (필요시)
+│
 └── stores/                       # 글로벌 Zustand 스토어
     ├── ui.store.ts
     ├── theme.store.ts
     └── index.ts
 ```
+
+**참고**: `public/` 폴더는 Next.js 기본 정적 파일 폴더입니다.
+
+- `public/`: 정적 파일 (favicon.ico, robots.txt, sitemap.xml 등) 또는 직접 URL로 접근하는 파일
+- `src/assets/`: 컴포넌트에서 import하여 사용하는 리소스 (Next.js가 최적화/번들링)
 
 ---
 
@@ -619,6 +631,69 @@ import { MainLayout } from "@/layouts/main-layout";
 import catIcon from "@/assets/icons/normal/cat.svg";
 import bannerImage from "@/assets/image/banner/home-banner.svg";
 ```
+
+---
+
+## 📦 Assets vs Public 폴더 사용 기준
+
+### `src/assets/` 사용 (권장)
+
+**언제 사용?**
+
+- 컴포넌트에서 `import`하여 사용하는 이미지, 아이콘, 폰트
+- Next.js가 최적화하고 번들링하는 리소스
+- TypeScript 타입 체크가 필요한 리소스
+
+**장점:**
+
+- ✅ Next.js가 자동으로 최적화 (이미지 최적화, 코드 스플리팅)
+- ✅ 빌드 타임에 존재 여부 검증 가능
+- ✅ TypeScript 지원
+- ✅ 절대경로 import (`@/assets/...`)
+
+**사용 예시:**
+
+```tsx
+import catIcon from "@/assets/icons/normal/cat.svg";
+import bannerImage from "@/assets/images/banner/home-banner.svg";
+
+<img src={catIcon} alt="cat" />
+<Image src={bannerImage} alt="banner" />
+```
+
+### `public/` 사용
+
+**언제 사용?**
+
+- 정적 파일 (favicon.ico, robots.txt, sitemap.xml)
+- 직접 URL로 접근해야 하는 파일
+- 외부에서 직접 링크해야 하는 파일
+- 동적으로 경로를 구성해야 하는 파일
+
+**특징:**
+
+- ❌ Next.js 최적화 없음
+- ❌ 빌드 타임 검증 없음
+- ✅ 루트 경로(`/`)에서 직접 접근 가능
+- ✅ URL 문자열로 접근 (`/images/logo.png`)
+
+**사용 예시:**
+
+```tsx
+// public/images/logo.png → /images/logo.png
+<img src="/images/logo.png" alt="logo" />
+
+// public/favicon.ico → /favicon.ico
+<link rel="icon" href="/favicon.ico" />
+```
+
+### 권장 사항
+
+1. **대부분의 경우 `src/assets/` 사용**: 컴포넌트에서 사용하는 모든 이미지, 아이콘은 `src/assets/`에 배치
+2. **`public/`은 최소한으로**: favicon, robots.txt, sitemap.xml 등 정적 파일만 사용
+3. **일관성 유지**: 프로젝트 전체에서 한 가지 방식으로 통일
+
+---
 
 ---
 

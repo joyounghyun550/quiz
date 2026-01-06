@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
-import { Providers } from "@/shared/ui/Providers";
-
-import "@/shared/styles/globals.css";
+import "@/app/globals.css";
+import { Providers } from "@/providers/Providers";
 
 export const metadata: Metadata = {
   title: "Buildin Web Front",
