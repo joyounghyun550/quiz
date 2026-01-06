@@ -2,4 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "@itandsy/react-common/dist/fonts.css";
 @import "@itandsy/react-common/styles";
