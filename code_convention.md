@@ -12,6 +12,16 @@ src/
 │   ├── layout.tsx               # 전역 루트 레이아웃
 │   ├── page.tsx                 # 홈페이지 (/)
 │   ├── globals.css              # 전역 스타일
+│   ├── error.tsx                # 전역 에러 페이지
+│   ├── loading.tsx              # 전역 로딩 페이지
+│   ├── not-found.tsx            # 404 페이지
+│   │
+│   ├── (auth)/                  # 라우트 그룹 - 인증 관련
+│   │   ├── layout.tsx           # 인증 레이아웃 (선택적)
+│   │   ├── login/
+│   │   │   └── page.tsx         # /login
+│   │   └── register/
+│   │       └── page.tsx         # /register (예시)
 │   │
 │   ├── (main)/                  # 라우트 그룹 - 헤더/푸터 포함
 │   │   ├── layout.tsx           # 메인 레이아웃 (헤더/푸터)
@@ -142,6 +152,10 @@ src/
 │   │   ├── query-keys.constant.ts  # 모든 Query Keys는 여기에 통합 관리
 │   │   └── index.ts
 │   │
+│   ├── config/                    # 공통 설정
+│   │   ├── theme.ts               # 테마 설정 (customThemeTokens)
+│   │   └── index.ts
+│   │
 │   │   ⚠️ **주의**: features 내 constants는 중복되는 경우 shared/constants에 작성
 │   │   (리팩토링 시 shared로 이동 예정)
 │   │
@@ -163,15 +177,15 @@ src/
 │       └── index.ts
 │
 ├── providers/                    # React Context Providers
-│   ├── AppProviders.tsx         # 모든 Provider 통합
-│   ├── QueryProvider.tsx        # TanStack Query Provider
-│   ├── ThemeProvider.tsx        # 테마 Provider (선택적)
+│   ├── Providers.tsx             # 모든 Provider 통합
 │   └── index.ts
 │
 ├── lib/                          # 외부 라이브러리 설정
-│   ├── query-client.ts
-│   ├── axios.ts
+│   ├── query-client.tsx          # TanStack Query 클라이언트 설정
+│   ├── axios.ts                  # Axios 인스턴스 설정
 │   └── index.ts
+│
+├── middleware.ts                 # Next.js 미들웨어 (인증, 리다이렉트 등)
 │
 ├── assets/                       # 컴포넌트에서 import하여 사용하는 리소스
 │   ├── icons/                    # 아이콘 (SVG, PNG 등)
@@ -200,19 +214,26 @@ src/
 ```tsx
 // app/layout.tsx
 import type { Metadata } from "next";
-import { AppProviders } from "@/providers/AppProviders";
+
 import "@/app/globals.css";
+import { Providers } from "@/providers/Providers";
 
 export const metadata: Metadata = {
-  title: "My App",
-  description: "My Next.js App",
+  title: "Buildin Web Front",
+  description: "Buildin Web Front",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="ko">
       <body>
-        <AppProviders>{children}</AppProviders>
+        <Providers>
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );
@@ -264,7 +285,28 @@ export const FullscreenLayout = ({ children }: { children: React.ReactNode }) =>
 };
 ```
 
-### 4. 페이지 예시
+### 4. 인증 레이아웃 예시 (app/(auth)/layout.tsx)
+
+```tsx
+// app/(auth)/layout.tsx (선택적)
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
+  return <div className="flex min-h-screen items-center justify-center">{children}</div>;
+}
+```
+
+```tsx
+// app/(auth)/login/page.tsx
+export default function LoginPage() {
+  return (
+    <div className="w-full max-w-md">
+      <h1 className="mb-6 text-3xl font-bold">로그인</h1>
+      {/* 로그인 폼 */}
+    </div>
+  );
+}
+```
+
+### 5. 페이지 예시
 
 ```tsx
 // app/(main)/community/page.tsx
@@ -286,6 +328,40 @@ import { Calendar } from "@/features/calendar/components";
 
 export default function CalendarPage() {
   return <Calendar />;
+}
+```
+
+### 6. 에러 및 로딩 페이지
+
+```tsx
+// app/error.tsx
+"use client";
+
+export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+  return (
+    <div>
+      <h2>에러가 발생했습니다</h2>
+      <button onClick={() => reset()}>다시 시도</button>
+    </div>
+  );
+}
+```
+
+```tsx
+// app/loading.tsx
+export default function Loading() {
+  return <div>로딩 중...</div>;
+}
+```
+
+```tsx
+// app/not-found.tsx
+export default function NotFound() {
+  return (
+    <div>
+      <h2>페이지를 찾을 수 없습니다</h2>
+    </div>
+  );
 }
 ```
 
@@ -828,6 +904,8 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
 }
 ```
 
+**참고**: 전역 `error.tsx`, `loading.tsx`, `not-found.tsx`는 `app/` 루트에 위치하며, 특정 라우트의 에러/로딩은 해당 라우트 폴더에 별도로 생성할 수 있습니다.
+
 ### 4. 라우트 그룹 활용
 
 ```
@@ -857,41 +935,119 @@ export default function PostDetailPage({ params, searchParams }: Props) {
 
 ---
 
-## 🔧 Providers 설정
+## 🔧 미들웨어 설정
 
-### AppProviders 통합
+### middleware.ts
+
+Next.js 미들웨어는 요청이 완료되기 전에 코드를 실행할 수 있게 해줍니다. 인증, 리다이렉트, 헤더 수정 등에 사용됩니다.
 
 ```tsx
-// providers/AppProviders.tsx
+// src/middleware.ts
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+export function middleware(request: NextRequest) {
+  // 인증 체크, 리다이렉트 등의 로직
+  return NextResponse.next();
+}
+
+// 특정 경로에만 미들웨어 적용
+export const config = {
+  matcher: ["/dashboard/:path*", "/admin/:path*"],
+};
+```
+
+**사용 사례:**
+
+- 인증 토큰 검증 및 리다이렉트
+- 지역 설정 (i18n)
+- A/B 테스팅
+- 요청 헤더 수정
+
+---
+
+## 🔧 Providers 설정
+
+```tsx
+// providers/Providers.tsx
 "use client";
 
-import { QueryProvider } from "@/providers/QueryProvider";
-import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ReactNode } from "react";
 
-export const AppProviders = ({ children }: { children: React.ReactNode }) => {
+import { ThemeProvider } from "@itandsy/react-common";
+import { Toaster } from "sonner";
+
+import { customThemeTokens } from "@/shared/config/theme";
+
+import { QueryProvider } from "@/lib/query-client";
+
+interface ProvidersProps {
+  children: ReactNode;
+}
+
+export const Providers = ({ children }: ProvidersProps) => {
   return (
     <QueryProvider>
-      <ThemeProvider>{children}</ThemeProvider>
+      <ThemeProvider customTokens={customThemeTokens}>
+        {children}
+        <Toaster />
+      </ThemeProvider>
     </QueryProvider>
   );
 };
 ```
 
 ```tsx
-// providers/QueryProvider.tsx
+// lib/query-client.tsx
 "use client";
 
-import { QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { queryClient } from "@/lib/query-client";
+import { ReactNode } from "react";
 
-export const QueryProvider = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      {children}
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  );
+import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+declare global {
+  interface Window {
+    queryClient?: QueryClient;
+  }
+}
+
+const makeQueryClient = () => {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5, // 5분
+        refetchOnWindowFocus: false, // 창 포커스 시 재요청 비활성화
+        retry: false, // 실패 시 재시도 하지 않음
+      },
+    },
+  });
+};
+
+let browserQueryClient: QueryClient | undefined = undefined;
+
+export const getQueryClient = () => {
+  if (isServer) {
+    return makeQueryClient();
+  } else {
+    if (!browserQueryClient) browserQueryClient = makeQueryClient();
+
+    // 전역에서 접근 가능하도록 window 객체에 추가
+    if (typeof window !== "undefined") {
+      window.queryClient = browserQueryClient;
+    }
+
+    return browserQueryClient;
+  }
+};
+
+interface QueryProviderProps {
+  children: ReactNode;
+}
+
+export const QueryProvider = ({ children }: QueryProviderProps) => {
+  const queryClient = getQueryClient();
+
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 };
 ```
 
@@ -1044,6 +1200,105 @@ export default async function Page() {
 - 실제 라우팅 레이아웃은 `app/**/layout.tsx`에서 정의
 - `layouts/` 컴포넌트를 `app/**/layout.tsx`에서 import해서 사용
 
+### 4. shared/config 사용 예시
+
+```tsx
+// shared/config/theme.ts
+export const customThemeTokens = {
+  colors: {
+    "color-alias-primary-normal": "#0066FF", // 프라이머리 색상
+    "color-alias-primary-strong": "#005EEB",
+    "color-alias-primary-heavy": "#0054D1",
+  },
+};
+
+// shared/config/index.ts
+export * from "@/shared/config/theme";
+
+// 사용 예시
+import { customThemeTokens } from "@/shared/config/theme";
+```
+
+---
+
+## 📦 주요 라이브러리
+
+### @itandsy/react-common
+
+공통 컴포넌트 라이브러리로, 다양한 UI 컴포넌트와 테마 시스템을 제공합니다.
+
+**주요 컴포넌트:**
+
+- `SolidPrimary`, `OutlinedPrimary`, `TextPrimary` - 버튼 컴포넌트
+- `Badge` - 배지 컴포넌트
+- `Dialog` - 다이얼로그 컴포넌트
+- `ThemeProvider`, `useTheme` - 테마 관리
+
+**사용 예시:**
+
+```tsx
+import { SolidPrimary, Badge, useTheme } from "@itandsy/react-common";
+
+const MyComponent = () => {
+  const { theme } = useTheme();
+
+  return (
+    <div>
+      <SolidPrimary size="medium" label="클릭하세요" />
+      <Badge variant="number" number={10} />
+    </div>
+  );
+};
+```
+
+**스타일 import:**
+
+```css
+/* app/globals.css */
+@import "@itandsy/react-common/fonts";
+@import "@itandsy/react-common/styles";
+```
+
+### @tanstack/react-query
+
+서버 상태 관리 및 데이터 페칭을 위한 라이브러리입니다.
+
+**사용 예시:**
+
+```tsx
+import { useQuery } from "@tanstack/react-query";
+import { axiosInstance } from "@/lib/axios";
+
+const usePostsQuery = () => {
+  return useQuery({
+    queryKey: ["posts"],
+    queryFn: async () => {
+      const response = await axiosInstance.get("/posts");
+      return response.data;
+    },
+  });
+};
+```
+
+### sonner
+
+토스트 알림 라이브러리입니다.
+
+**사용 예시:**
+
+```tsx
+import { toast } from "sonner";
+
+toast.success("성공했습니다!");
+toast.error("에러가 발생했습니다.");
+```
+
+### axios
+
+HTTP 클라이언트 라이브러리입니다.
+
+**설정 위치:** `src/lib/axios.ts`
+
 ---
 
 ## 📚 추가 리소스
@@ -1052,3 +1307,4 @@ export default async function Page() {
 - [TanStack Query 공식 문서](https://tanstack.com/query/latest)
 - [Zustand 공식 문서](https://zustand-demo.pmnd.rs/)
 - [Tailwind CSS 공식 문서](https://tailwindcss.com/docs)
+- [Sonner 공식 문서](https://sonner.emilkowal.ski/)
