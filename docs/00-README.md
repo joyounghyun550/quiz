@@ -1,10 +1,14 @@
-# ITSY 프론트엔드 프로젝트 코드 컨벤션 문서
+# React + Next.js Boilerplate 코드 컨벤션 문서
 
-> 📖 이 문서는 주제별로 분리된 문서입니다.  
+> 📖 이 문서는 주제별로 분리된 문서입니다.
 > **각 문서는 150-600줄 이하로 IDE에서 빠르게 로딩됩니다.**
 
 **최종 업데이트**: 2026년 2월 4일
 **기술 스택**: Next.js 14 + TypeScript + TanStack Query + Zustand + Tailwind CSS
+
+> 💡 **이 문서에 대하여**
+> 이 문서는 범용 React + Next.js Boilerplate를 위한 코드 컨벤션입니다.
+> 새로운 프로젝트를 시작할 때 이 boilerplate를 복사하여 사용하고, 프로젝트에 맞게 커스터마이징하세요.
 
 ---
 
@@ -83,8 +87,9 @@
 
 ### 09. 라이브러리
 
-- [@itandsy/react-common 가이드](./09-libraries/itandsy-react-common.md) ⭐ - 사내 공통 컴포넌트 필수 가이드
+- [라이브러리 가이드](./09-libraries/00-README.md) ⭐ - 필수 vs 선택적 라이브러리 구분
 - [주요 라이브러리 개요](./09-libraries/주요-라이브러리.md) - TanStack Query, sonner, axios
+- [선택적 라이브러리](./09-libraries/optional/) - 프로젝트 필요에 따라 추가 가능
 
 ### 10. 개발 도구
 
@@ -105,16 +110,16 @@
 
 ## 🔍 상황별 문서 찾기
 
-| 하고 싶은 일               | 참고 문서                                                                                                                     |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **새 컴포넌트 만들기**     | [복사용 템플릿](./01-onboarding/복사용-템플릿.md) → [컴포넌트 구조](./06-code-style/컴포넌트-구조.md)                         |
-| **새 API 훅 만들기**       | [복사용 템플릿](./01-onboarding/복사용-템플릿.md) → [TanStack Query 네이밍](./03-naming-conventions/TanStack-Query-네이밍.md) |
-| **파일명 짓기**            | [네이밍 규칙 총정리](./03-naming-conventions/네이밍-규칙-총정리.md)                                                           |
-| **TSDoc 작성하기**         | [TSDoc 작성 규칙](./05-documentation/TSDoc-작성-규칙.md)                                                                      |
-| **Server/Client 결정**     | [Server vs Client Component](./07-nextjs-specific/Server-vs-Client-Component.md)                                              |
-| **전역 상태 관리**         | [Zustand 스토어 규칙](./08-state-management/Zustand-스토어-규칙.md)                                                           |
-| **@itandsy 컴포넌트 사용** | [@itandsy/react-common 가이드](./09-libraries/itandsy-react-common.md)                                                        |
-| **PR 전 체크**             | [코드 작성 체크리스트](./12-checklists/코드-작성-체크리스트.md)                                                               |
+| 하고 싶은 일           | 참고 문서                                                                                                                     |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **새 컴포넌트 만들기** | [복사용 템플릿](./01-onboarding/복사용-템플릿.md) → [컴포넌트 구조](./06-code-style/컴포넌트-구조.md)                         |
+| **새 API 훅 만들기**   | [복사용 템플릿](./01-onboarding/복사용-템플릿.md) → [TanStack Query 네이밍](./03-naming-conventions/TanStack-Query-네이밍.md) |
+| **파일명 짓기**        | [네이밍 규칙 총정리](./03-naming-conventions/네이밍-규칙-총정리.md)                                                           |
+| **TSDoc 작성하기**     | [TSDoc 작성 규칙](./05-documentation/TSDoc-작성-규칙.md)                                                                      |
+| **Server/Client 결정** | [Server vs Client Component](./07-nextjs-specific/Server-vs-Client-Component.md)                                              |
+| **전역 상태 관리**     | [Zustand 스토어 규칙](./08-state-management/Zustand-스토어-규칙.md)                                                           |
+| **라이브러리 선택**    | [라이브러리 가이드](./09-libraries/00-README.md)                                                                              |
+| **PR 전 체크**         | [코드 작성 체크리스트](./12-checklists/코드-작성-체크리스트.md)                                                               |
 
 ---
 
@@ -150,7 +155,11 @@ VS Code의 **Ctrl+P** 또는 **Cmd+P**로 파일명을 검색하여 빠르게 �
 
 ## 🔄 문서 업데이트 이력
 
-- **2026년 2월 4일**: 4,684줄 단일 파일을 34개 문서로 분할
+- **2026년 2월 4일 (v2)**: Boilerplate 범용화
+  - 프로젝트 특정 예시를 generic 패턴으로 변경
+  - 선택적 라이브러리 분리 (09-libraries/optional/)
+  - "참고용 예시" 섹션으로 실제 프로젝트 구현 사례 분리
+- **2026년 2월 4일 (v1)**: 4,684줄 단일 파일을 34개 문서로 분할
   - IDE 성능 문제 해결 (Loading... 및 렉 제거)
   - 주제별 명확한 구분으로 검색 및 탐색 용이
   - 신입 개발자 온보딩 가이드 추가
@@ -158,5 +167,4 @@ VS Code의 **Ctrl+P** 또는 **Cmd+P**로 파일명을 검색하여 빠르게 �
 
 ---
 
-**작성자**: 조영현  
 **메인 README**: [../README.md](../README.md)

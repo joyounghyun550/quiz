@@ -1,12 +1,15 @@
 # @itandsy/react-common 가이드
 
-📍 **위치**: [홈](../00-README.md) > [라이브러리](../09-libraries/) > @itandsy/react-common
+📍 **위치**: [홈](../../00-README.md) > [라이브러리](../../09-libraries/) > [선택적 라이브러리](../optional/) > @itandsy/react-common
+
+> ⚠️ **선택적 라이브러리**: 이 라이브러리는 프로젝트 필요에 따라 선택적으로 사용합니다.
+> 사내 공통 UI 컴포넌트가 필요한 프로젝트에만 설치하세요.
 
 ---
 
 ## 개요
 
-모든 프로젝트에서 사용하는 사내 공통 UI 컴포넌트 라이브러리입니다.
+사내 공통 UI 컴포넌트 라이브러리입니다.
 
 ### 설치
 
@@ -117,8 +120,9 @@ const LoginForm = () => {
 
 **관련 문서**:
 
-- [Quick Start](../01-onboarding/Quick-Start.md)
-- [컴포넌트 구조](../06-code-style/컴포넌트-구조.md)
-- [주요 라이브러리](./주요-라이브러리.md)
+- [라이브러리 가이드](../00-README.md)
+- [주요 라이브러리](../주요-라이브러리.md)
+- [Quick Start](../../01-onboarding/Quick-Start.md)
+- [컴포넌트 구조](../../06-code-style/컴포넌트-구조.md)
 
 **최종 업데이트**: 2026년 2월 4일

@@ -2,6 +2,9 @@
 
 📍 **위치**: [홈](../00-README.md) > [아키텍처](../02-architecture/) > App Router 구조
 
+> 📌 **Note**: 이 문서의 라우트 예시는 참고용입니다.
+> 실제 프로젝트에 맞춰 경로와 페이지 구조를 수정하세요.
+
 ---
 
 ## 1. 전역 루트 레이아웃 (app/layout.tsx)
@@ -110,7 +113,7 @@ export default function ConditionalLayout({ children }: ConditionalLayoutProps) 
 
 ---
 
-## 3. 인증 페이지 예시 (app/(auth)/login/page.tsx)
+## 3. 특수 페이지 예시 (인증 페이지)
 
 ```tsx
 // app/(auth)/login/page.tsx
@@ -128,12 +131,43 @@ export default function LoginPage() {
 
 ---
 
-## 4. 페이지 예시
+## 4. 일반 페이지 예시
 
-### 게시글 목록 페이지
+### 패턴 1: 목록 페이지
 
 ```tsx
-// app/posts/page.tsx
+// app/items/page.tsx
+import { ItemList } from "@/features/feature-a/components";
+
+export default function ItemsPage() {
+  return (
+    <div className="container mx-auto py-8">
+      <h1 className="mb-6 text-3xl font-bold">아이템 목록</h1>
+      <ItemList />
+    </div>
+  );
+}
+```
+
+### 패턴 2: 상세 페이지
+
+```tsx
+// app/items/[id]/page.tsx
+import { ItemDetail } from "@/features/feature-a/components";
+
+export default function ItemDetailPage({ params }: { params: { id: string } }) {
+  return (
+    <div className="container mx-auto py-8">
+      <ItemDetail id={params.id} />
+    </div>
+  );
+}
+```
+
+### 📌 실제 프로젝트 예시 (buildin-web-front)
+
+```tsx
+// app/posts/page.tsx - 게시글 목록
 import { PostList } from "@/features/post/components";
 
 export default function PostsPage() {
@@ -144,12 +178,8 @@ export default function PostsPage() {
     </div>
   );
 }
-```
 
-### 채팅 페이지
-
-```tsx
-// app/chat/page.tsx
+// app/chat/page.tsx - 채팅 페이지
 import { ChatContainer } from "@/features/chat/components";
 
 export default function ChatPage() {
