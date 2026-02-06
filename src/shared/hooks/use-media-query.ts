@@ -1,5 +1,3 @@
-"use client";
-
 // use-media-query.ts
 import { useEffect, useState } from "react";
 
@@ -38,13 +36,21 @@ interface MediaQueryState {
   currentBreakpoint: BreakpointKey | null;
 }
 
-/**
- * 초기 미디어 쿼리 상태를 계산하는 함수
- * 클라이언트에서는 window.innerWidth로 즉시 계산하여 레이아웃 시프트 방지
- * SSR에서는 안전한 기본값 반환
- */
-const getInitialMediaQueryState = (): MediaQueryState => {
-  // SSR 안전성 체크
+// 미디어 쿼리 문자열 생성 함수 (훅 외부로 이동하여 초기값 계산에서도 사용)
+const createMediaQueryString = (range: BreakpointRange): string => {
+  const minQuery = range.min ? `(min-width: ${range.min})` : "";
+  const maxQuery = range.max ? `(max-width: ${range.max})` : "";
+
+  if (minQuery && maxQuery) {
+    return `${minQuery} and ${maxQuery}`;
+  }
+
+  return minQuery || maxQuery;
+};
+
+// 초기 상태 계산 함수 (첫 렌더링 시 레이아웃 시프트 방지)
+const getInitialState = (): MediaQueryState => {
+  // SSR 환경 체크
   if (typeof window === "undefined") {
     return {
       isDetailMobile: false,
@@ -58,19 +64,18 @@ const getInitialMediaQueryState = (): MediaQueryState => {
     };
   }
 
-  // 클라이언트에서는 window.innerWidth로 즉시 계산
-  const width = window.innerWidth;
-
-  const isDetailMobile = width >= 0 && width <= 1365;
-  const isDetailDesktop = width >= 600;
-  const isXs = width >= 0 && width <= 599;
-  const isSm = width >= 600 && width <= 991;
-  const isMd = width >= 992 && width <= 1199;
-  const isLg = width >= 1200;
-  const isEvent = width >= 600 && width <= 715;
+  // CSR: window.matchMedia로 즉시 계산
+  const isDetailMobile = window.matchMedia(createMediaQueryString(breakpoints["detail-mobile"])).matches;
+  const isDetailDesktop = window.matchMedia(createMediaQueryString(breakpoints["detail-desktop"])).matches;
+  const isXs = window.matchMedia(createMediaQueryString(breakpoints["xs"])).matches;
+  const isSm = window.matchMedia(createMediaQueryString(breakpoints["sm"])).matches;
+  const isMd = window.matchMedia(createMediaQueryString(breakpoints["md"])).matches;
+  const isLg = window.matchMedia(createMediaQueryString(breakpoints["lg"])).matches;
+  const isEvent = window.matchMedia(createMediaQueryString(breakpoints["event"])).matches;
 
   // 현재 브레이크포인트 결정
   let currentBreakpoint: BreakpointKey | null = null;
+
   if (isDetailMobile) currentBreakpoint = "detail-mobile";
   else if (isDetailDesktop) currentBreakpoint = "detail-desktop";
   else if (isXs) currentBreakpoint = "xs";
@@ -92,31 +97,13 @@ const getInitialMediaQueryState = (): MediaQueryState => {
 
 /**
  * 커스텀 미디어 쿼리 훅
- * 초기 렌더링 시 window.innerWidth로 즉시 계산하여 레이아웃 시프트를 방지합니다.
  * @returns 현재 활성화된 미디어 쿼리 상태
  */
 export function useMediaQuery(): MediaQueryState {
-  // 미디어 쿼리 상태 관리 - 초기값을 함수로 설정하여 클라이언트에서 즉시 계산
-  const [mediaQueryState, setMediaQueryState] = useState<MediaQueryState>(getInitialMediaQueryState);
+  // 미디어 쿼리 상태 관리 (초기값을 동기적으로 계산하여 레이아웃 시프트 방지)
+  const [mediaQueryState, setMediaQueryState] = useState<MediaQueryState>(getInitialState);
 
   useEffect(() => {
-    // SSR 안전성 체크
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    // 미디어 쿼리 매처 생성
-    const createMediaQueryString = (range: BreakpointRange): string => {
-      const minQuery = range.min ? `(min-width: ${range.min})` : "";
-      const maxQuery = range.max ? `(max-width: ${range.max})` : "";
-
-      if (minQuery && maxQuery) {
-        return `${minQuery} and ${maxQuery}`;
-      }
-
-      return minQuery || maxQuery;
-    };
-
     // 미디어 쿼리 객체 생성
     const detailMobileQuery = window.matchMedia(createMediaQueryString(breakpoints["detail-mobile"]));
     const detailDesktopQuery = window.matchMedia(createMediaQueryString(breakpoints["detail-desktop"]));
@@ -155,9 +142,6 @@ export function useMediaQuery(): MediaQueryState {
         currentBreakpoint,
       });
     };
-
-    // 초기 상태 설정
-    updateMediaQueries();
 
     // 미디어 쿼리 리스너 등록
     const queries = [detailMobileQuery, detailDesktopQuery, xsQuery, smQuery, mdQuery, lgQuery, eventQuery];

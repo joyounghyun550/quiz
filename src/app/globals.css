@@ -5,9 +5,48 @@
 @import "@itandsy/react-common/fonts";
 @import "@itandsy/react-common/styles";
 
+/* @font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-5Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-7Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+} */
+
 @layer base {
-  html,
+  html {
+    font-family: "Pretendard", sans-serif;
+    width: 100%;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
   body {
     font-family: "Pretendard", sans-serif;
+    width: 100%;
+    min-height: 100dvh;
   }
+}
+
+/* 다이얼로그가 열릴 때 레이아웃 시프트 방지 (레이어 밖에서 선언하여 최고 우선순위) */
+body.side-menu-open {
+  overflow: hidden !important;
+  padding-right: var(--scrollbar-width, 0px) !important;
+}
+
+/* 다이얼로그가 열릴 때 레이아웃 시프트 방지 (레이어 밖에서 선언하여 최고 우선순위) */
+body.dialog-open {
+  overflow: hidden !important;
+  padding-right: var(--scrollbar-width, 0px) !important;
+}
+
+/* Header는 fixed 포지션이므로 별도로 padding-right 적용 */
+body.dialog-open .header-container,
+body.side-menu-open .header-container {
+  padding-right: var(--scrollbar-width, 0px) !important;
 }
