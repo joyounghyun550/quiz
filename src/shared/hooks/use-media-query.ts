@@ -1,3 +1,5 @@
+"use client";
+
 // use-media-query.ts
 import { useEffect, useState } from "react";
 
@@ -37,21 +39,65 @@ interface MediaQueryState {
 }
 
 /**
+ * 초기 미디어 쿼리 상태를 계산하는 함수
+ * 클라이언트에서는 window.innerWidth로 즉시 계산하여 레이아웃 시프트 방지
+ * SSR에서는 안전한 기본값 반환
+ */
+const getInitialMediaQueryState = (): MediaQueryState => {
+  // SSR 안전성 체크
+  if (typeof window === "undefined") {
+    return {
+      isDetailMobile: false,
+      isDetailDesktop: false,
+      isXs: false,
+      isSm: false,
+      isMd: false,
+      isLg: false,
+      isEvent: false,
+      currentBreakpoint: null,
+    };
+  }
+
+  // 클라이언트에서는 window.innerWidth로 즉시 계산
+  const width = window.innerWidth;
+
+  const isDetailMobile = width >= 0 && width <= 1365;
+  const isDetailDesktop = width >= 600;
+  const isXs = width >= 0 && width <= 599;
+  const isSm = width >= 600 && width <= 991;
+  const isMd = width >= 992 && width <= 1199;
+  const isLg = width >= 1200;
+  const isEvent = width >= 600 && width <= 715;
+
+  // 현재 브레이크포인트 결정
+  let currentBreakpoint: BreakpointKey | null = null;
+  if (isDetailMobile) currentBreakpoint = "detail-mobile";
+  else if (isDetailDesktop) currentBreakpoint = "detail-desktop";
+  else if (isXs) currentBreakpoint = "xs";
+  else if (isSm) currentBreakpoint = "sm";
+  else if (isMd) currentBreakpoint = "md";
+  else if (isLg) currentBreakpoint = "lg";
+
+  return {
+    isDetailMobile,
+    isDetailDesktop,
+    isXs,
+    isSm,
+    isMd,
+    isLg,
+    isEvent,
+    currentBreakpoint,
+  };
+};
+
+/**
  * 커스텀 미디어 쿼리 훅
+ * 초기 렌더링 시 window.innerWidth로 즉시 계산하여 레이아웃 시프트를 방지합니다.
  * @returns 현재 활성화된 미디어 쿼리 상태
  */
 export function useMediaQuery(): MediaQueryState {
-  // 미디어 쿼리 상태 관리
-  const [mediaQueryState, setMediaQueryState] = useState<MediaQueryState>({
-    isDetailMobile: false,
-    isDetailDesktop: false,
-    isXs: false,
-    isSm: false,
-    isMd: false,
-    isLg: false,
-    isEvent: false,
-    currentBreakpoint: null,
-  });
+  // 미디어 쿼리 상태 관리 - 초기값을 함수로 설정하여 클라이언트에서 즉시 계산
+  const [mediaQueryState, setMediaQueryState] = useState<MediaQueryState>(getInitialMediaQueryState);
 
   useEffect(() => {
     // SSR 안전성 체크
