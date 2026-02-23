@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "@itandsy/react-common/fonts";
-@import "@itandsy/react-common/styles";
-
 /* @font-face {
   font-family: "Paperlogy";
   src: url("/fonts/Paperlogy-5Medium.ttf") format("truetype");
