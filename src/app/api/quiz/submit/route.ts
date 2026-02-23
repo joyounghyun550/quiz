@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { LP_CONFIG } from "@/shared/constants/tier.constant";
 import type { CategoryStatRow, QuestionRow, QuizSessionRow, TierName, UserRow } from "@/shared/types/database.type";
 
 import { applyLpChange, calculateLpChange } from "@/entities/user/lib/lp.util";
@@ -83,16 +84,20 @@ export async function POST(request: Request) {
 
     const hintLevel = answer.hint2Used ? 2 : answer.hint1Used ? 1 : 0;
 
-    const lpChange =
+    const baseLpChange =
       session.session_type === "placement"
         ? 0
         : calculateLpChange({
-          isCorrect,
-          questionDifficulty: question.difficulty,
-          userTierDifficulty,
-          currentStreak: profile.current_streak,
-          hintLevel: hintLevel as 0 | 1 | 2,
-        });
+            isCorrect,
+            questionDifficulty: question.difficulty,
+            userTierDifficulty,
+            currentStreak: profile.current_streak,
+            hintLevel: hintLevel as 0 | 1 | 2,
+          });
+
+    // 일일 퀴즈는 LP 2배
+    const lpChange =
+      session.session_type === "daily" ? Math.round(baseLpChange * LP_CONFIG.DAILY_QUIZ_MULTIPLIER) : baseLpChange;
 
     totalLpChange += lpChange;
 
@@ -204,8 +209,7 @@ export async function POST(request: Request) {
 
     const newLongestStreak = Math.max(profile.longest_streak, newStreak);
     const newHighestLp = Math.max(profile.highest_lp, result.newLp);
-    const newHighestTier =
-      result.newLp > profile.highest_lp ? result.newTier : (profile.highest_tier as TierName);
+    const newHighestTier = result.newLp > profile.highest_lp ? result.newTier : (profile.highest_tier as TierName);
 
     // 유저 프로필 업데이트
     await supabase
@@ -227,11 +231,7 @@ export async function POST(request: Request) {
       .eq("id", user.id);
 
     // daily_quiz_log 완료 처리
-    await supabase
-      .from("daily_quiz_log")
-      .update({ is_completed: true })
-      .eq("user_id", user.id)
-      .eq("quiz_date", today);
+    await supabase.from("daily_quiz_log").update({ is_completed: true }).eq("user_id", user.id).eq("quiz_date", today);
 
     newTierInfo = getTierInfo(result.newLp);
     tierChanged = result.tierChanged;

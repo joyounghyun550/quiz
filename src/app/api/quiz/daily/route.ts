@@ -7,7 +7,6 @@ import type {
   DailyQuizLogRow,
   QuestionCategory,
   QuestionRow,
-  QuizSessionRow,
   UserRow,
 } from "@/shared/types/database.type";
 
@@ -35,7 +34,7 @@ export async function GET() {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  // 오늘 이미 퀴즈를 완료했는지 확인
+  // daily_quiz_log 조회 (통계용, 차단하지 않음)
   const today = new Date().toISOString().split("T")[0];
   const { data: todayLog } = (await supabase
     .from("daily_quiz_log")
@@ -44,39 +43,12 @@ export async function GET() {
     .eq("quiz_date", today)
     .single()) as { data: DailyQuizLogRow | null };
 
-  if (todayLog?.is_completed) {
-    return NextResponse.json({ error: "Already completed today", completed: true }, { status: 400 });
-  }
-
-  // 기존 미완성 세션이 있으면 해당 세션의 문제를 다시 반환
-  if (todayLog?.session_id) {
-    const { data: existingSession } = (await supabase
-      .from("quiz_sessions")
-      .select("*")
-      .eq("id", todayLog.session_id)
-      .single()) as { data: QuizSessionRow | null };
-
-    if (existingSession && existingSession.status === "in_progress") {
-      // 기존 세션의 문제들 반환
-      const { data: answers } = (await supabase
-        .from("answer_history")
-        .select("question_id")
-        .eq("session_id", existingSession.id)) as {
-        data: Pick<AnswerHistoryRow, "question_id">[] | null;
-      };
-
-      // 기존 세션의 답변된 문제는 무시하고 새로운 문제를 생성
-      void answers;
-    }
-  }
-
   const tierDifficulty = getTierDifficulty(profile.current_tier as Parameters<typeof getTierDifficulty>[0]);
 
   // 카테고리 통계 가져오기
-  const { data: categoryStats } = (await supabase
-    .from("category_stats")
-    .select("*")
-    .eq("user_id", user.id)) as { data: CategoryStatRow[] | null };
+  const { data: categoryStats } = (await supabase.from("category_stats").select("*").eq("user_id", user.id)) as {
+    data: CategoryStatRow[] | null;
+  };
 
   // 약점/강점 카테고리 계산
   const categories: QuestionCategory[] = ["javascript", "typescript", "react", "nextjs", "css", "web_fundamentals"];
@@ -120,7 +92,11 @@ export async function GET() {
     .eq("is_active", true)
     .gte("difficulty", Math.max(1, tierDifficulty - 1))
     .lte("difficulty", Math.min(8, tierDifficulty + 1))
-    .not("id", "in", `(${recentQuestionIds.length > 0 ? recentQuestionIds.join(",") : "00000000-0000-0000-0000-000000000000"})`)
+    .not(
+      "id",
+      "in",
+      `(${recentQuestionIds.length > 0 ? recentQuestionIds.join(",") : "00000000-0000-0000-0000-000000000000"})`
+    )
     .limit(5)) as { data: QuestionRow[] | null };
 
   if (weakQuestions && weakQuestions.length > 0) {
@@ -135,7 +111,11 @@ export async function GET() {
     .eq("is_active", true)
     .gte("difficulty", Math.max(1, tierDifficulty - 1))
     .lte("difficulty", Math.min(8, tierDifficulty + 1))
-    .not("id", "in", `(${[...recentQuestionIds, ...selectedQuestions.map((q) => q.id)].join(",") || "00000000-0000-0000-0000-000000000000"})`)
+    .not(
+      "id",
+      "in",
+      `(${[...recentQuestionIds, ...selectedQuestions.map((q) => q.id)].join(",") || "00000000-0000-0000-0000-000000000000"})`
+    )
     .limit(5)) as { data: QuestionRow[] | null };
 
   if (strongQuestions && strongQuestions.length > 0) {
@@ -186,7 +166,7 @@ export async function GET() {
       total_questions: selectedQuestions.length,
     })
     .select("id")
-    .single()) as { data: Pick<QuizSessionRow, "id"> | null };
+    .single()) as { data: { id: string } | null };
 
   // 오늘의 퀴즈 로그 생성/업데이트
   if (!todayLog) {

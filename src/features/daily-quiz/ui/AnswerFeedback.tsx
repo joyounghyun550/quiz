@@ -9,22 +9,29 @@ type AnswerFeedbackProps = {
   lpChange: number;
   explanation: string;
   explanationCode?: string | null;
+  correctOptionText?: string | null;
+  correctAnswer?: string;
   onNext: () => void;
   isLast: boolean;
 };
 
-const AnswerFeedback = ({ isCorrect, lpChange, explanation, explanationCode, onNext, isLast }: AnswerFeedbackProps) => {
+const AnswerFeedback = ({
+  isCorrect,
+  lpChange,
+  explanation,
+  explanationCode,
+  correctOptionText,
+  correctAnswer,
+  onNext,
+  isLast,
+}: AnswerFeedbackProps) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="flex flex-col gap-4"
-    >
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-4">
       {/* Result Banner */}
       <div
         className={cn(
           "flex items-center justify-between rounded-xl p-4",
-          isCorrect ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-red-500/10 border border-red-500/30"
+          isCorrect ? "border border-emerald-500/30 bg-emerald-500/10" : "border border-red-500/30 bg-red-500/10"
         )}
       >
         <div className="flex items-center gap-3">
@@ -43,6 +50,14 @@ const AnswerFeedback = ({ isCorrect, lpChange, explanation, explanationCode, onN
           {lpChange} LP
         </span>
       </div>
+
+      {/* 오답 시 정답 표시 */}
+      {!isCorrect && (correctOptionText ?? correctAnswer) && (
+        <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4">
+          <p className="mb-1 text-xs font-semibold text-emerald-500">정답</p>
+          <p className="text-sm font-medium text-emerald-300">{correctOptionText ?? correctAnswer}</p>
+        </div>
+      )}
 
       {/* Explanation */}
       <div className="rounded-xl border border-gray-700 bg-gray-800/50 p-4">

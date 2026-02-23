@@ -41,6 +41,8 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
     lpChange: number;
     explanation: string;
     explanationCode?: string | null;
+    correctOptionText?: string | null;
+    correctAnswer?: string;
   } | null>(null);
 
   const currentQuestion = questions[currentIndex];
@@ -76,6 +78,8 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
       lpChange,
       explanation: currentQuestion.explanation,
       explanationCode: currentQuestion.explanation_code,
+      correctOptionText: result.correctOptionText,
+      correctAnswer: result.correctAnswer,
     });
     setShowFeedback(true);
   }, [currentQuestion, userTier, userStreak, sessionType]);
@@ -120,29 +124,47 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
 
       {/* Question */}
       <div className="mt-6 flex flex-1 flex-col gap-6">
-        <QuestionCard
-          question={currentQuestion}
-          questionNumber={currentIndex + 1}
-          totalQuestions={questions.length}
-        />
+        <QuestionCard question={currentQuestion} questionNumber={currentIndex + 1} totalQuestions={questions.length} />
 
         {/* Options */}
-        {!showFeedback && currentQuestion.options && (
+        {!showFeedback && (
           <>
-            <OptionList
-              options={currentQuestion.options}
-              selectedId={currentQuestion.selectedAnswer ?? null}
-              onSelect={handleSelect}
-            />
+            {currentQuestion.options ? (
+              <OptionList
+                options={currentQuestion.options}
+                selectedId={currentQuestion.selectedAnswer ?? null}
+                onSelect={handleSelect}
+              />
+            ) : (
+              /* True / False 버튼 */
+              <div className="flex gap-3">
+                {(["true", "false"] as const).map((val) => (
+                  <button
+                    key={val}
+                    type="button"
+                    onClick={() => handleSelect(val)}
+                    className={`flex h-14 flex-1 items-center justify-center rounded-xl border-2 text-base font-semibold transition-all ${
+                      currentQuestion.selectedAnswer === val
+                        ? "border-cyan-500 bg-cyan-500/10 text-cyan-300"
+                        : "border-gray-700 bg-gray-800/50 text-gray-300 hover:border-gray-500"
+                    }`}
+                  >
+                    {val === "true" ? "참 (True)" : "거짓 (False)"}
+                  </button>
+                ))}
+              </div>
+            )}
 
-            {/* Hints */}
-            <HintRevealer
-              hint1={currentQuestion.hint_1}
-              hint2={currentQuestion.hint_2}
-              hint1Used={!!currentQuestion.hint1Used}
-              hint2Used={!!currentQuestion.hint2Used}
-              onRevealHint={handleHintReveal}
-            />
+            {/* Hints: 배치 테스트에서는 힌트 사용 불가 */}
+            {sessionType !== "placement" && (
+              <HintRevealer
+                hint1={currentQuestion.hint_1}
+                hint2={currentQuestion.hint_2}
+                hint1Used={!!currentQuestion.hint1Used}
+                hint2Used={!!currentQuestion.hint2Used}
+                onRevealHint={handleHintReveal}
+              />
+            )}
 
             {/* Submit Button */}
             <button
@@ -174,6 +196,8 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
               lpChange={currentResult.lpChange}
               explanation={currentResult.explanation}
               explanationCode={currentResult.explanationCode}
+              correctOptionText={currentResult.correctOptionText}
+              correctAnswer={currentResult.correctAnswer}
               onNext={handleNext}
               isLast={currentIndex >= questions.length - 1}
             />

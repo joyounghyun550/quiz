@@ -47,12 +47,6 @@ export default function DailyQuizPage() {
         const res = await fetch("/api/quiz/daily");
         const data = await res.json();
 
-        if (data.completed) {
-          setError("오늘의 퀴즈를 이미 완료했습니다!");
-          setIsLoading(false);
-          return;
-        }
-
         if (data.questions && data.sessionId) {
           startSession(data.questions, data.sessionId, "daily");
         }

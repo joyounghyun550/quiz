@@ -7,12 +7,18 @@ type AnswerResult = {
 };
 
 export const checkAnswer = (question: QuizQuestion, selectedAnswer: string): AnswerResult => {
-  const isCorrect = question.correct_answer === selectedAnswer;
-
+  let isCorrect: boolean;
   let correctOptionText: string | null = null;
-  if (question.options) {
-    const correctOption = (question.options as QuestionOption[]).find((o) => o.id === question.correct_answer);
+
+  if (question.options && (question.options as QuestionOption[]).length > 0) {
+    // 객관식/코드출력: options의 isCorrect 필드로 판단 (correct_answer 문자열 비교보다 신뢰성 높음)
+    const selectedOption = (question.options as QuestionOption[]).find((o) => o.id === selectedAnswer);
+    isCorrect = selectedOption?.isCorrect ?? false;
+    const correctOption = (question.options as QuestionOption[]).find((o) => o.isCorrect);
     correctOptionText = correctOption?.text ?? null;
+  } else {
+    // true_false: "true" | "false" 문자열 비교
+    isCorrect = question.correct_answer === selectedAnswer;
   }
 
   return {
