@@ -123,13 +123,17 @@ export async function GET() {
 
   if (selectedQuestions.length < DAILY_QUIZ_CONFIG.QUESTIONS_PER_DAY) {
     const moreNeeded = DAILY_QUIZ_CONFIG.QUESTIONS_PER_DAY - selectedQuestions.length;
-    const currentIds = selectedQuestions.map((q) => q.id);
+    const fallbackExcludeIds = [...selectedQuestions.map((q) => q.id), ...recentQuestionIds];
 
     const { data: fallbackQuestions } = (await supabase
       .from("questions")
       .select("*")
       .eq("is_active", true)
-      .not("id", "in", `(${currentIds.length > 0 ? currentIds.join(",") : "00000000-0000-0000-0000-000000000000"})`)
+      .not(
+        "id",
+        "in",
+        `(${fallbackExcludeIds.length > 0 ? fallbackExcludeIds.join(",") : "00000000-0000-0000-0000-000000000000"})`
+      )
       .limit(moreNeeded)) as { data: QuestionRow[] | null };
 
     if (fallbackQuestions) {

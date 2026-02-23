@@ -9,7 +9,9 @@
       "Bash(/c/Users/UserPC/Desktop/quiz/src/widgets/bottom-nav/ui/BottomNav.tsx:*)",
       "Bash(/c/Users/UserPC/Desktop/quiz/src/widgets/home-dashboard/ui/DashboardHeader.tsx:*)",
       "Bash(node -e:*)",
-      "Bash(/c/Users/UserPC/Desktop/quiz/src/widgets/home-dashboard/ui/DailyQuizCard.tsx:*)"
+      "Bash(/c/Users/UserPC/Desktop/quiz/src/widgets/home-dashboard/ui/DailyQuizCard.tsx:*)",
+      "Bash(python3 -c \" import json, sys data = json.load\\(sys.stdin\\) deps = data.get\\(''packages'', {}\\) for key, val in deps.items\\(\\): if ''supabase'' in key.lower\\(\\): print\\(f''{key}: {val.get\\(\"\"version\"\", \"\"?\"\"\\)}''\\) \")",
+      "Bash(node scripts/seed-questions.mjs:*)"
     ]
   }
 }

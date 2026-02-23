@@ -14,15 +14,13 @@ type CategoryBreakdownProps = {
 };
 
 const CategoryBreakdown = ({ stats }: CategoryBreakdownProps) => {
-  const maxAnswered = Math.max(...stats.map((s) => s.totalAnswered), 1);
-
   return (
     <div className="flex flex-col gap-3 rounded-xl border border-gray-800 bg-gray-900/50 p-4">
       <h3 className="text-sm font-semibold text-white">카테고리별 정확도</h3>
       <div className="flex flex-col gap-3">
         {stats.map((stat) => {
           const accuracy = stat.totalAnswered > 0 ? Math.round((stat.totalCorrect / stat.totalAnswered) * 100) : 0;
-          const barWidth = stat.totalAnswered > 0 ? (stat.totalAnswered / maxAnswered) * 100 : 0;
+          const barWidth = accuracy;
 
           return (
             <div key={stat.category} className="flex flex-col gap-1">

@@ -55,8 +55,11 @@ const part1 = JSON.parse(
 const part2 = JSON.parse(
   readFileSync(join(__dirname, "../data/questions/questions-part2.json"), "utf-8")
 );
+const nextjsPart1 = JSON.parse(
+  readFileSync(join(__dirname, "../data/questions/nextjs-quiz-part1.json"), "utf-8")
+);
 
-const allQuestions = [...part1, ...part2];
+const allQuestions = [...part1, ...part2, ...nextjsPart1];
 console.log(`Found ${allQuestions.length} questions to seed.`);
 
 // Validate required fields

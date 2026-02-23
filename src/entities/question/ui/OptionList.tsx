@@ -13,19 +13,31 @@ type OptionListProps = {
   onSelect: (optionId: string) => void;
 };
 
-const OptionList = ({ options, selectedId, correctId, showResult = false, disabled = false, onSelect }: OptionListProps) => {
-  const getOptionStyle = (optionId: string) => {
+const OptionList = ({
+  options,
+  selectedId,
+  correctId,
+  showResult = false,
+  disabled = false,
+  onSelect,
+}: OptionListProps) => {
+  const isCorrectOption = (option: QuestionOption) => {
+    if (correctId != null) return option.id === correctId;
+    return option.isCorrect === true;
+  };
+
+  const getOptionStyle = (option: QuestionOption) => {
     if (!showResult) {
-      if (selectedId === optionId) {
+      if (selectedId === option.id) {
         return "border-cyan-500 bg-cyan-500/10 text-cyan-300";
       }
       return "border-gray-700 bg-gray-800/50 text-gray-300 hover:border-gray-500";
     }
 
-    if (optionId === correctId) {
+    if (isCorrectOption(option)) {
       return "border-emerald-500 bg-emerald-500/10 text-emerald-300";
     }
-    if (selectedId === optionId && optionId !== correctId) {
+    if (selectedId === option.id && !isCorrectOption(option)) {
       return "border-red-500 bg-red-500/10 text-red-300";
     }
     return "border-gray-700/50 bg-gray-800/30 text-gray-500";
@@ -45,7 +57,7 @@ const OptionList = ({ options, selectedId, correctId, showResult = false, disabl
           onClick={() => onSelect(option.id)}
           className={cn(
             "flex items-start gap-3 rounded-xl border-2 p-4 text-left transition-all",
-            getOptionStyle(option.id),
+            getOptionStyle(option),
             !disabled && !showResult && "active:scale-[0.98]"
           )}
         >

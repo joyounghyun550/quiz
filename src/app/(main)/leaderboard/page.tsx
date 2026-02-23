@@ -145,16 +145,28 @@ export default function LeaderboardPage() {
                   {user.current_streak > 0 && (
                     <span className="text-[10px] text-orange-400">🔥 {user.current_streak}일</span>
                   )}
-                  <span className="text-[10px] text-gray-500">{accuracy}%</span>
                 </div>
               </div>
 
-              {/* LP */}
-              <div className="flex flex-col items-end">
+              {/* LP + 정답률 */}
+              <div className="flex flex-col items-end gap-0.5">
                 <span className="text-base font-bold" style={{ color: tierInfo.color }}>
                   {user.current_lp.toLocaleString()}
                 </span>
                 <span className="text-[10px] text-gray-500">LP</span>
+                <span
+                  className={`text-xs font-semibold ${
+                    user.total_answered === 0
+                      ? "text-gray-600"
+                      : accuracy >= 80
+                        ? "text-emerald-400"
+                        : accuracy >= 50
+                          ? "text-amber-400"
+                          : "text-red-400"
+                  }`}
+                >
+                  {user.total_answered > 0 ? `${accuracy}%` : "-"}
+                </span>
               </div>
             </div>
           );
@@ -181,6 +193,7 @@ type PodiumCardProps = {
 function PodiumCard({ user, rank, isCurrentUser, large = false }: PodiumCardProps) {
   const tierInfo = getTierInfo(user.current_lp);
   const medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : "🥉";
+  const accuracy = user.total_answered > 0 ? Math.round((user.total_correct / user.total_answered) * 100) : null;
 
   return (
     <div className={`flex flex-col items-center gap-1 ${large ? "mb-0" : "mb-0 mt-4"}`}>
@@ -212,6 +225,13 @@ function PodiumCard({ user, rank, isCurrentUser, large = false }: PodiumCardProp
         {user.current_lp.toLocaleString()} LP
       </span>
       <TierBadge tierInfo={tierInfo} size="sm" showDivision={false} />
+      {accuracy !== null && (
+        <span
+          className={`text-[10px] font-semibold ${accuracy >= 80 ? "text-emerald-400" : accuracy >= 50 ? "text-amber-400" : "text-red-400"}`}
+        >
+          정답 {accuracy}%
+        </span>
+      )}
     </div>
   );
 }
