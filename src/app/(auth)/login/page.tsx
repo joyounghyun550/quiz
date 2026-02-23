@@ -5,20 +5,20 @@ import { useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase-client";
 
 export default function LoginPage() {
-  const [isLoading, setIsLoading] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const supabase = createSupabaseBrowserClient();
 
-  const handleSocialLogin = async (provider: "kakao" | "google") => {
-    setIsLoading(provider);
+  const handleGoogleLogin = async () => {
+    setIsLoading(true);
     try {
       await supabase.auth.signInWithOAuth({
-        provider,
+        provider: "google",
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
         },
       });
     } catch {
-      setIsLoading(null);
+      setIsLoading(false);
     }
   };
 
@@ -53,32 +53,11 @@ export default function LoginPage() {
         <div className="flex w-full flex-col gap-3">
           <button
             type="button"
-            disabled={isLoading !== null}
-            onClick={() => handleSocialLogin("kakao")}
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#FEE500] font-medium text-[#191919] transition-opacity hover:opacity-90 disabled:opacity-50"
-          >
-            {isLoading === "kakao" ? (
-              <span className="h-5 w-5 animate-spin rounded-full border-2 border-gray-800 border-t-transparent" />
-            ) : (
-              <>
-                <svg width="18" height="18" viewBox="0 0 18 18">
-                  <path
-                    fill="#191919"
-                    d="M9 1C4.582 1 1 3.87 1 7.404c0 2.196 1.403 4.13 3.543 5.283l-.905 3.396c-.08.3.262.54.52.366l3.964-2.64c.284.026.573.04.878.04 4.418 0 8-2.87 8-6.404C17 3.87 13.418 1 9 1"
-                  />
-                </svg>
-                <span>카카오로 시작하기</span>
-              </>
-            )}
-          </button>
-
-          <button
-            type="button"
-            disabled={isLoading !== null}
-            onClick={() => handleSocialLogin("google")}
+            disabled={isLoading}
+            onClick={handleGoogleLogin}
             className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white font-medium text-gray-800 transition-opacity hover:opacity-90 disabled:opacity-50"
           >
-            {isLoading === "google" ? (
+            {isLoading ? (
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-gray-800 border-t-transparent" />
             ) : (
               <>
@@ -107,9 +86,7 @@ export default function LoginPage() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-xs text-gray-600">
-          로그인 시 서비스 이용약관에 동의하는 것으로 간주됩니다
-        </p>
+        <p className="text-center text-xs text-gray-600">로그인 시 서비스 이용약관에 동의하는 것으로 간주됩니다</p>
       </div>
     </div>
   );
