@@ -36,6 +36,7 @@ export const getTierInfo = (lp: number): TierInfo => {
   return {
     name: tierName,
     label: tier.label,
+    icon: tier.icon,
     division,
     divisionLabel: DIVISION_LABELS[division - 1],
     lp,

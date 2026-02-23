@@ -230,8 +230,14 @@ export async function POST(request: Request) {
       })
       .eq("id", user.id);
 
-    // daily_quiz_log 완료 처리
-    await supabase.from("daily_quiz_log").update({ is_completed: true }).eq("user_id", user.id).eq("quiz_date", today);
+    // daily_quiz_log 완료 처리 (오늘의 퀴즈만)
+    if (session.session_type === "daily") {
+      await supabase
+        .from("daily_quiz_log")
+        .update({ is_completed: true })
+        .eq("user_id", user.id)
+        .eq("quiz_date", today);
+    }
 
     newTierInfo = getTierInfo(result.newLp);
     tierChanged = result.tierChanged;

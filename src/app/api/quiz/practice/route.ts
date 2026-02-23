@@ -4,7 +4,6 @@ import { DAILY_QUIZ_CONFIG } from "@/shared/constants/tier.constant";
 import type {
   AnswerHistoryRow,
   CategoryStatRow,
-  DailyQuizLogRow,
   QuestionCategory,
   QuestionRow,
   UserRow,
@@ -25,7 +24,6 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // 유저 프로필 가져오기
   const { data: profile } = (await supabase.from("users").select("*").eq("id", user.id).single()) as {
     data: UserRow | null;
   };
@@ -34,28 +32,12 @@ export async function GET() {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  // daily_quiz_log 조회 (통계용, 차단하지 않음)
-  const today = new Date().toISOString().split("T")[0];
-  const { data: todayLog } = (await supabase
-    .from("daily_quiz_log")
-    .select("*")
-    .eq("user_id", user.id)
-    .eq("quiz_date", today)
-    .single()) as { data: DailyQuizLogRow | null };
-
-  // 오늘의 퀴즈는 하루 1번만 (2x LP)
-  if (todayLog?.is_completed) {
-    return NextResponse.json({ completed: true }, { status: 200 });
-  }
-
   const tierDifficulty = getTierDifficulty(profile.current_tier as Parameters<typeof getTierDifficulty>[0]);
 
-  // 카테고리 통계 가져오기
   const { data: categoryStats } = (await supabase.from("category_stats").select("*").eq("user_id", user.id)) as {
     data: CategoryStatRow[] | null;
   };
 
-  // 약점/강점 카테고리 계산
   const categories: QuestionCategory[] = ["javascript", "typescript", "react", "nextjs", "css", "web_fundamentals"];
   const categoryAccuracy = categories.map((cat) => {
     const stats = categoryStats?.filter((s) => s.category === cat) ?? [];
@@ -72,7 +54,6 @@ export async function GET() {
   const weakCategory = sorted[0]?.category ?? "javascript";
   const strongCategory = sorted[sorted.length - 1]?.category ?? "react";
 
-  // 최근 30일 내 출제된 문제 ID 가져오기
   const thirtyDaysAgo = new Date();
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - DAILY_QUIZ_CONFIG.RECENT_HISTORY_DAYS);
 
@@ -85,11 +66,8 @@ export async function GET() {
   };
 
   const recentQuestionIds = recentAnswers?.map((a) => a.question_id) ?? [];
-
-  // 문제 선택
   const selectedQuestions: QuestionRow[] = [];
 
-  // 1. 약점 카테고리 1문제
   const { data: weakQuestions } = (await supabase
     .from("questions")
     .select("*")
@@ -108,7 +86,6 @@ export async function GET() {
     selectedQuestions.push(weakQuestions[Math.floor(Math.random() * weakQuestions.length)]);
   }
 
-  // 2. 강점 카테고리 1문제
   const { data: strongQuestions } = (await supabase
     .from("questions")
     .select("*")
@@ -127,7 +104,6 @@ export async function GET() {
     selectedQuestions.push(strongQuestions[Math.floor(Math.random() * strongQuestions.length)]);
   }
 
-  // 3. 나머지 문제들 (티어 난이도)
   const remaining = DAILY_QUIZ_CONFIG.QUESTIONS_PER_DAY - selectedQuestions.length;
   const excludeIds = [...recentQuestionIds, ...selectedQuestions.map((q) => q.id)];
 
@@ -145,7 +121,6 @@ export async function GET() {
     selectedQuestions.push(...shuffled.slice(0, remaining));
   }
 
-  // 문제가 부족한 경우 난이도 제한 없이 추가
   if (selectedQuestions.length < DAILY_QUIZ_CONFIG.QUESTIONS_PER_DAY) {
     const moreNeeded = DAILY_QUIZ_CONFIG.QUESTIONS_PER_DAY - selectedQuestions.length;
     const currentIds = selectedQuestions.map((q) => q.id);
@@ -162,27 +137,15 @@ export async function GET() {
     }
   }
 
-  // 세션 생성
   const { data: session } = (await supabase
     .from("quiz_sessions")
     .insert({
       user_id: user.id,
-      session_type: "daily" as const,
+      session_type: "practice" as const,
       total_questions: selectedQuestions.length,
     })
     .select("id")
     .single()) as { data: { id: string } | null };
-
-  // 오늘의 퀴즈 로그 생성/업데이트
-  if (!todayLog) {
-    await supabase.from("daily_quiz_log").insert({
-      user_id: user.id,
-      quiz_date: today,
-      session_id: session?.id,
-    });
-  } else {
-    await supabase.from("daily_quiz_log").update({ session_id: session?.id }).eq("id", todayLog.id);
-  }
 
   return NextResponse.json({
     sessionId: session?.id,

@@ -34,6 +34,7 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
     completeSession,
     sessionId,
     sessionType,
+    resetSession,
   } = useQuizStore();
   const [showFeedback, setShowFeedback] = useState(false);
   const [currentResult, setCurrentResult] = useState<{
@@ -104,6 +105,11 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
     [currentQuestion, applyHint]
   );
 
+  const handleQuit = useCallback(() => {
+    resetSession();
+    router.replace("/quiz");
+  }, [resetSession, router]);
+
   if (!currentQuestion) {
     return (
       <div className="flex min-h-dvh items-center justify-center">
@@ -117,13 +123,46 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
     return q.correct_answer === q.selectedAnswer;
   });
 
+  const isDaily = sessionType === "daily";
+  const isPractice = sessionType === "practice";
+
   return (
-    <div className="flex min-h-dvh flex-col bg-gray-950 px-5 pb-8 pt-4">
+    <div className="flex min-h-dvh flex-col bg-gray-950">
+      {/* Header */}
+      <div className="flex items-center gap-3 border-b border-gray-800/50 px-5 py-3">
+        <button
+          type="button"
+          onClick={handleQuit}
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </button>
+        <div className="flex flex-1 flex-col items-center">
+          <span className="text-xs font-semibold text-gray-300">
+            {sessionType === "placement" ? "배치 테스트" : sessionType === "practice" ? "티어 올리기" : "오늘의 퀴즈"}
+          </span>
+          <span className="text-[10px] text-gray-600">
+            {currentIndex + 1} / {questions.length}
+          </span>
+        </div>
+        {isDaily ? (
+          <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold text-amber-400">2× LP</span>
+        ) : isPractice ? (
+          <span className="rounded-full bg-purple-500/10 px-2 py-0.5 text-[10px] font-bold text-purple-400">연습</span>
+        ) : (
+          <div className="h-8 w-8" />
+        )}
+      </div>
+
       {/* Progress */}
-      <QuizProgress current={currentIndex} total={questions.length} answers={answerStates} />
+      <div className="px-5 pt-3">
+        <QuizProgress current={currentIndex} total={questions.length} answers={answerStates} />
+      </div>
 
       {/* Question */}
-      <div className="mt-6 flex flex-1 flex-col gap-6">
+      <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-5 pb-8 pt-4">
         <QuestionCard question={currentQuestion} questionNumber={currentIndex + 1} totalQuestions={questions.length} />
 
         {/* Options */}

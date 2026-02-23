@@ -13,7 +13,7 @@ export type QuestionFormat = "multiple_choice" | "code_output" | "true_false";
 
 export type QuestionCategory = "javascript" | "typescript" | "react" | "nextjs" | "css" | "web_fundamentals";
 
-export type SessionType = "daily" | "placement";
+export type SessionType = "daily" | "placement" | "practice";
 
 export type SessionStatus = "in_progress" | "completed" | "abandoned";
 

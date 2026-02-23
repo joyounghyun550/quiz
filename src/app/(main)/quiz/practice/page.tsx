@@ -11,7 +11,7 @@ import QuizFlow from "@/features/daily-quiz/ui/QuizFlow";
 import { createSupabaseBrowserClient } from "@/lib/supabase-client";
 import { useQuizStore } from "@/stores/use-quiz-store";
 
-export default function DailyQuizPage() {
+export default function PracticePage() {
   const router = useRouter();
   const supabase = createSupabaseBrowserClient();
   const { startSession, questions } = useQuizStore();
@@ -44,16 +44,11 @@ export default function DailyQuizPage() {
         setUserTier(profile.current_tier);
         setUserStreak(profile.current_streak);
 
-        const res = await fetch("/api/quiz/daily");
+        const res = await fetch("/api/quiz/practice");
         const data = await res.json();
 
-        if (data.completed) {
-          router.replace("/quiz");
-          return;
-        }
-
         if (data.questions && data.sessionId) {
-          startSession(data.questions, data.sessionId, "daily");
+          startSession(data.questions, data.sessionId, "practice");
         }
       } catch {
         setError("퀴즈를 불러올 수 없습니다.");
@@ -69,8 +64,8 @@ export default function DailyQuizPage() {
     return (
       <div className="flex min-h-dvh items-center justify-center bg-gray-950">
         <div className="flex flex-col items-center gap-4">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-cyan-400 border-t-transparent" />
-          <p className="text-sm text-gray-400">오늘의 퀴즈를 준비 중...</p>
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-purple-400 border-t-transparent" />
+          <p className="text-sm text-gray-400">퀴즈를 준비 중...</p>
         </div>
       </div>
     );
@@ -82,10 +77,10 @@ export default function DailyQuizPage() {
         <p className="text-gray-400">{error}</p>
         <button
           type="button"
-          onClick={() => router.push("/")}
+          onClick={() => router.push("/quiz")}
           className="rounded-xl bg-gray-800 px-6 py-3 text-sm text-white"
         >
-          홈으로 돌아가기
+          돌아가기
         </button>
       </div>
     );

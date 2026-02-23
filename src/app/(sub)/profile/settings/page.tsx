@@ -78,8 +78,16 @@ export default function SettingsPage() {
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-5 px-5 pt-6">
       <div className="flex items-center gap-3">
-        <button type="button" onClick={() => router.back()} className="text-gray-400">
-          ←
+        <button type="button" onClick={() => router.back()} className="rounded-lg p-1 text-gray-400 hover:bg-gray-800">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M19 12H5M5 12l7 7M5 12l7-7"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
         <h1 className="text-xl font-bold text-white">알림 설정</h1>
       </div>
@@ -97,7 +105,8 @@ export default function SettingsPage() {
             className={`relative h-6 w-11 rounded-full transition-colors ${notificationEnabled ? "bg-cyan-500" : "bg-gray-700"}`}
           >
             <span
-              className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${notificationEnabled ? "translate-x-[22px]" : "translate-x-0.5"}`}
+              className="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all duration-200"
+              style={{ left: notificationEnabled ? "22px" : "2px" }}
             />
           </button>
         </div>
@@ -105,7 +114,10 @@ export default function SettingsPage() {
         {/* Time Picker */}
         {notificationEnabled && (
           <div className="flex items-center justify-between border-t border-gray-800 pt-4">
-            <span className="text-sm text-gray-300">알림 시간</span>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-sm text-gray-300">알림 시간</span>
+              <span className="text-xs text-gray-500">매일 이 시간에 알림을 보냅니다</span>
+            </div>
             <input
               type="time"
               value={notificationTime}

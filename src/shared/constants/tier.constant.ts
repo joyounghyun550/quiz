@@ -3,6 +3,7 @@ import type { TierName } from "@/shared/types/database.type";
 export type TierConfig = {
   name: TierName;
   label: string;
+  icon: string;
   lpMin: number;
   lpMax: number;
   difficulty: number;
@@ -11,31 +12,70 @@ export type TierConfig = {
 };
 
 export const TIERS: TierConfig[] = [
-  { name: "inline", label: "Inline", lpMin: 0, lpMax: 99, difficulty: 1, color: "#9CA3AF", bgColor: "#1F2937" },
-  { name: "element", label: "Element", lpMin: 100, lpMax: 299, difficulty: 2, color: "#6EE7B7", bgColor: "#064E3B" },
+  {
+    name: "inline",
+    label: "인라인",
+    icon: "🧱",
+    lpMin: 0,
+    lpMax: 99,
+    difficulty: 1,
+    color: "#9CA3AF",
+    bgColor: "#1F2937",
+  },
+  {
+    name: "element",
+    label: "엘리먼트",
+    icon: "🌱",
+    lpMin: 100,
+    lpMax: 299,
+    difficulty: 2,
+    color: "#6EE7B7",
+    bgColor: "#064E3B",
+  },
   {
     name: "selector",
-    label: "Selector",
+    label: "셀렉터",
+    icon: "🎯",
     lpMin: 300,
     lpMax: 599,
     difficulty: 3,
     color: "#60A5FA",
     bgColor: "#1E3A5F",
   },
-  { name: "script", label: "Script", lpMin: 600, lpMax: 999, difficulty: 4, color: "#FBBF24", bgColor: "#78350F" },
+  {
+    name: "script",
+    label: "스크립트",
+    icon: "⚡",
+    lpMin: 600,
+    lpMax: 999,
+    difficulty: 4,
+    color: "#FBBF24",
+    bgColor: "#78350F",
+  },
   {
     name: "component",
-    label: "Component",
+    label: "컴포넌트",
+    icon: "🔷",
     lpMin: 1000,
     lpMax: 1499,
     difficulty: 5,
     color: "#A78BFA",
     bgColor: "#4C1D95",
   },
-  { name: "hook", label: "Hook", lpMin: 1500, lpMax: 2099, difficulty: 6, color: "#F472B6", bgColor: "#831843" },
+  {
+    name: "hook",
+    label: "훅",
+    icon: "🎣",
+    lpMin: 1500,
+    lpMax: 2099,
+    difficulty: 6,
+    color: "#F472B6",
+    bgColor: "#831843",
+  },
   {
     name: "architect",
-    label: "Architect",
+    label: "아키텍트",
+    icon: "🏗️",
     lpMin: 2100,
     lpMax: 2799,
     difficulty: 7,
@@ -44,7 +84,8 @@ export const TIERS: TierConfig[] = [
   },
   {
     name: "deployer",
-    label: "Deployer",
+    label: "디플로이어",
+    icon: "🚀",
     lpMin: 2800,
     lpMax: Infinity,
     difficulty: 8,

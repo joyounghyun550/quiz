@@ -5,6 +5,7 @@ export type UserProfile = Database["public"]["Tables"]["users"]["Row"];
 export type TierInfo = {
   name: TierName;
   label: string;
+  icon: string;
   division: number;
   divisionLabel: string;
   lp: number;
