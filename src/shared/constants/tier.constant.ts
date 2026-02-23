@@ -115,8 +115,8 @@ export const TIERS: TierConfig[] = [
 export const TIER_MAP = Object.fromEntries(TIERS.map((tier) => [tier.name, tier])) as Record<TierName, TierConfig>;
 
 export const LP_CONFIG = {
-  BASE_REWARD: 15,
-  BASE_PENALTY: 10,
+  BASE_REWARD: 10,
+  BASE_PENALTY: 16,
   DAILY_QUIZ_MULTIPLIER: 2,
   DIFFICULTY_MULTIPLIER: {
     BELOW: 0.8,

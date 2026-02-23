@@ -13,7 +13,13 @@
       "Bash(python3 -c \" import json, sys data = json.load\\(sys.stdin\\) deps = data.get\\(''packages'', {}\\) for key, val in deps.items\\(\\): if ''supabase'' in key.lower\\(\\): print\\(f''{key}: {val.get\\(\"\"version\"\", \"\"?\"\"\\)}''\\) \")",
       "Bash(node scripts/seed-questions.mjs:*)",
       "Bash(cat:*)",
-      "Bash(npx tsc:*)"
-    ]
+      "Bash(npx tsc:*)",
+      "Bash(\"C:/Users/UserPC/Desktop/quiz/data/questions/javascript-quiz-part2.json\":*)",
+      "Bash(node --version:*)",
+      "Bash(cmd /c \"node -e \"\"console.log\\(''hello''\\)\"\"\")",
+      "Bash(node.exe:*)",
+      "Bash(node:*)"
+    ],
+    "additionalDirectories": ["C:\\Users\\UserPC\\AppData\\Local\\Temp"]
   }
 }

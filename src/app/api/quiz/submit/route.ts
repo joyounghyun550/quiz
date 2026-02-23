@@ -160,6 +160,17 @@ export async function POST(request: Request) {
       .eq("id", question.id);
   }
 
+  // 4/5(80%) 이상 맞춰야 LP 증가 보장 — 스트릭·난이도 보너스로 역전되는 경우 방어
+  if (session.session_type !== "placement") {
+    const passMark = Math.ceil(answers.length * 0.8);
+    if (correctCount < passMark && totalLpChange > 0) {
+      const wrongCount = answers.length - correctCount;
+      const penalty = wrongCount * LP_CONFIG.BASE_PENALTY;
+      totalLpChange =
+        session.session_type === "daily" ? -Math.round(penalty * LP_CONFIG.DAILY_QUIZ_MULTIPLIER) : -penalty;
+    }
+  }
+
   // 세션 완료 처리
   await supabase
     .from("quiz_sessions")
