@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 import type { TierName } from "@/shared/types/database.type";
@@ -45,6 +46,8 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
     correctOptionText?: string | null;
     correctAnswer?: string;
   } | null>(null);
+  const [comboCount, setComboCount] = useState(0);
+  const [showCombo, setShowCombo] = useState(false);
 
   const currentQuestion = questions[currentIndex];
 
@@ -82,8 +85,25 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
       correctOptionText: result.correctOptionText,
       correctAnswer: result.correctAnswer,
     });
+
+    if (result.isCorrect) {
+      setComboCount((prev) => {
+        const next = prev + 1;
+        if (next >= 2) setShowCombo(true);
+        return next;
+      });
+    } else {
+      setComboCount(0);
+    }
+
     setShowFeedback(true);
   }, [currentQuestion, userTier, userStreak, sessionType]);
+
+  useEffect(() => {
+    if (!showCombo) return;
+    const timer = setTimeout(() => setShowCombo(false), 1500);
+    return () => clearTimeout(timer);
+  }, [showCombo]);
 
   const handleNext = useCallback(() => {
     setShowFeedback(false);
@@ -125,9 +145,35 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
 
   const isDaily = sessionType === "daily";
   const isPractice = sessionType === "practice";
+  const isRetry = sessionType === "retry";
+
+  const comboEmoji = comboCount >= 5 ? "🔥" : comboCount >= 4 ? "⚡" : comboCount >= 3 ? "✨" : "🎯";
+  const comboLabel =
+    comboCount >= 5 ? "대단해요!" : comboCount >= 4 ? "엄청난 집중력!" : comboCount >= 3 ? "훌륭해요!" : "연속 정답!";
 
   return (
     <div className="flex min-h-dvh flex-col bg-gray-950">
+      {/* 콤보 알림 */}
+      <AnimatePresence>
+        {showCombo && (
+          <motion.div
+            key={comboCount}
+            initial={{ opacity: 0, scale: 0.7, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: -10 }}
+            className="pointer-events-none fixed inset-x-0 top-20 z-50 flex justify-center"
+          >
+            <div className="flex items-center gap-2 rounded-2xl border border-amber-500/30 bg-gray-900/95 px-5 py-3 shadow-xl backdrop-blur-sm">
+              <span className="text-2xl">{comboEmoji}</span>
+              <div className="flex flex-col">
+                <span className="text-xs font-bold text-amber-400">{comboCount}콤보!</span>
+                <span className="text-[10px] text-gray-400">{comboLabel}</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-gray-800/50 px-5 py-3">
         <button
@@ -141,7 +187,13 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
         </button>
         <div className="flex flex-1 flex-col items-center">
           <span className="text-xs font-semibold text-gray-300">
-            {sessionType === "placement" ? "배치 테스트" : sessionType === "practice" ? "티어 올리기" : "오늘의 퀴즈"}
+            {sessionType === "placement"
+              ? "배치 테스트"
+              : sessionType === "retry"
+                ? "오답 노트"
+                : sessionType === "practice"
+                  ? "티어 올리기"
+                  : "오늘의 퀴즈"}
           </span>
           <span className="text-[10px] text-gray-600">
             {currentIndex + 1} / {questions.length}
@@ -149,6 +201,8 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
         </div>
         {isDaily ? (
           <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold text-amber-400">2× LP</span>
+        ) : isRetry ? (
+          <span className="rounded-full bg-orange-500/10 px-2 py-0.5 text-[10px] font-bold text-orange-400">오답</span>
         ) : isPractice ? (
           <span className="rounded-full bg-purple-500/10 px-2 py-0.5 text-[10px] font-bold text-purple-400">연습</span>
         ) : (

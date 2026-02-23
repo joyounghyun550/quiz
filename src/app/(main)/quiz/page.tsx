@@ -179,6 +179,43 @@ export default function QuizHubPage() {
         </div>
       </div>
 
+      {/* 오답 노트 */}
+      <div className="overflow-hidden rounded-2xl border border-gray-800 bg-gradient-to-br from-orange-500/10 via-transparent to-red-500/10">
+        <div className="p-5">
+          <div className="mb-1 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500/15">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#f97316"
+                  strokeWidth="2"
+                />
+                <path d="M12 8v4M12 16h.01" stroke="#f97316" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-base font-semibold text-white">오답 노트</h3>
+              <p className="text-[10px] text-gray-500">틀린 문제 다시 풀기</p>
+            </div>
+            <span className="ml-auto rounded-full bg-orange-500/15 px-2.5 py-1 text-xs font-semibold text-orange-400">
+              복습
+            </span>
+          </div>
+
+          <div className="my-4 h-px bg-gray-800" />
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm text-gray-400">최근에 틀린 문제를 다시 풀고 약점을 극복하세요</p>
+            <Link
+              href="/quiz/retry"
+              className="flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-orange-600 to-red-600 font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              오답 풀기
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* 배치 테스트 카드 (완료 안됐을 때만) */}
       <div className="flex items-center gap-3 rounded-xl border border-gray-800 bg-gray-900/30 p-4">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-800">

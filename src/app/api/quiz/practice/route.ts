@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { DAILY_QUIZ_CONFIG } from "@/shared/constants/tier.constant";
 import type {
@@ -13,7 +13,9 @@ import { getTierDifficulty } from "@/entities/user/lib/tier.util";
 
 import { createSupabaseServerClient } from "@/lib/supabase-server";
 
-export async function GET() {
+const VALID_CATEGORIES: QuestionCategory[] = ["javascript", "typescript", "react", "nextjs", "css", "web_fundamentals"];
+
+export async function GET(request: NextRequest) {
   const supabase = createSupabaseServerClient();
 
   const {
@@ -32,13 +34,18 @@ export async function GET() {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
+  // 카테고리 집중 모드: ?category=javascript
+  const { searchParams } = new URL(request.url);
+  const categoryParam = searchParams.get("category") as QuestionCategory | null;
+  const focusCategory = categoryParam && VALID_CATEGORIES.includes(categoryParam) ? categoryParam : null;
+
   const tierDifficulty = getTierDifficulty(profile.current_tier as Parameters<typeof getTierDifficulty>[0]);
 
   const { data: categoryStats } = (await supabase.from("category_stats").select("*").eq("user_id", user.id)) as {
     data: CategoryStatRow[] | null;
   };
 
-  const categories: QuestionCategory[] = ["javascript", "typescript", "react", "nextjs", "css", "web_fundamentals"];
+  const categories: QuestionCategory[] = VALID_CATEGORIES;
   const categoryAccuracy = categories.map((cat) => {
     const stats = categoryStats?.filter((s) => s.category === cat) ?? [];
     const totalAnswered = stats.reduce((sum, s) => sum + s.total_answered, 0);
@@ -51,8 +58,8 @@ export async function GET() {
   });
 
   const sorted = [...categoryAccuracy].sort((a, b) => a.accuracy - b.accuracy);
-  const weakCategory = sorted[0]?.category ?? "javascript";
-  const strongCategory = sorted[sorted.length - 1]?.category ?? "react";
+  const weakCategory = focusCategory ?? sorted[0]?.category ?? "javascript";
+  const strongCategory = focusCategory ?? sorted[sorted.length - 1]?.category ?? "react";
 
   const thirtyDaysAgo = new Date();
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - DAILY_QUIZ_CONFIG.RECENT_HISTORY_DAYS);
@@ -107,14 +114,18 @@ export async function GET() {
   const remaining = DAILY_QUIZ_CONFIG.QUESTIONS_PER_DAY - selectedQuestions.length;
   const excludeIds = [...recentQuestionIds, ...selectedQuestions.map((q) => q.id)];
 
-  const { data: tierQuestions } = (await supabase
+  const tierQuery = supabase
     .from("questions")
     .select("*")
     .eq("is_active", true)
     .gte("difficulty", Math.max(1, tierDifficulty - 1))
     .lte("difficulty", Math.min(8, tierDifficulty + 1))
     .not("id", "in", `(${excludeIds.length > 0 ? excludeIds.join(",") : "00000000-0000-0000-0000-000000000000"})`)
-    .limit(remaining * 3)) as { data: QuestionRow[] | null };
+    .limit(remaining * 3);
+
+  if (focusCategory) tierQuery.eq("category", focusCategory);
+
+  const { data: tierQuestions } = (await tierQuery) as { data: QuestionRow[] | null };
 
   if (tierQuestions) {
     const shuffled = tierQuestions.sort(() => Math.random() - 0.5);

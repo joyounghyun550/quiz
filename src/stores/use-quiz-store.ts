@@ -6,13 +6,17 @@ type QuizState = {
   questions: QuizQuestion[];
   currentIndex: number;
   sessionId: string | null;
-  sessionType: "daily" | "placement" | "practice";
+  sessionType: "daily" | "placement" | "practice" | "retry";
   isCompleted: boolean;
   startTime: number | null;
   questionStartTime: number | null;
 
   // Actions
-  startSession: (questions: QuizQuestion[], sessionId: string, sessionType: "daily" | "placement" | "practice") => void;
+  startSession: (
+    questions: QuizQuestion[],
+    sessionId: string,
+    sessionType: "daily" | "placement" | "practice" | "retry"
+  ) => void;
   selectAnswer: (questionId: string, answerId: string) => void;
   useHint: (questionId: string, level: 1 | 2) => void;
   nextQuestion: () => void;
