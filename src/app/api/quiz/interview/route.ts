@@ -76,7 +76,7 @@ export async function GET() {
   // 세션 생성
   const { data: session } = (await supabase
     .from("quiz_sessions")
-    .insert({ user_id: user.id, session_type: "practice" as const, total_questions: selectedQuestions.length })
+    .insert({ user_id: user.id, session_type: "interview" as const, total_questions: selectedQuestions.length })
     .select("id")
     .single()) as { data: { id: string } | null };
 

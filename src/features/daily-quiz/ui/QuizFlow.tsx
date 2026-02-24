@@ -247,7 +247,11 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
                 ? "오답 노트"
                 : sessionType === "practice"
                   ? "티어 올리기"
-                  : "오늘의 퀴즈"}
+                  : sessionType === "interview"
+                    ? "면접 대비"
+                    : sessionType === "certification"
+                      ? "정보처리기사"
+                      : "오늘의 퀴즈"}
           </span>
           <span className="text-[10px] text-gray-600">
             {currentIndex + 1} / {questions.length}

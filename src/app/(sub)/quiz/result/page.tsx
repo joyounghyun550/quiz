@@ -45,6 +45,8 @@ const SESSION_TITLES: Record<string, string> = {
   daily: "오늘의 퀴즈 결과",
   timeattack: "타임어택 결과",
   weekly: "위클리 챌린지 결과",
+  interview: "면접 대비 결과",
+  certification: "정보처리기사 결과",
 };
 
 export default function QuizResultPage() {

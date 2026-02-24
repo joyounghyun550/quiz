@@ -23,7 +23,7 @@ export type QuestionCategory =
   | "interview"
   | "certification";
 
-export type SessionType = "daily" | "placement" | "practice" | "timeattack" | "weekly";
+export type SessionType = "daily" | "placement" | "practice" | "timeattack" | "weekly" | "interview" | "certification";
 
 export type SessionStatus = "in_progress" | "completed" | "abandoned";
 

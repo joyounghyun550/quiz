@@ -20,7 +20,7 @@ export default function CertificationQuizPage() {
   const [userStreak, setUserStreak] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
-  const hasActiveSession = sessionType === "practice" && questions.length > 0 && !isCompleted;
+  const hasActiveSession = sessionType === "certification" && questions.length > 0 && !isCompleted;
 
   useEffect(() => {
     const init = async () => {
@@ -56,7 +56,7 @@ export default function CertificationQuizPage() {
         const data = await res.json();
 
         if (data.questions?.length > 0 && data.sessionId) {
-          startSession(data.questions, data.sessionId, "practice");
+          startSession(data.questions, data.sessionId, "certification");
         } else {
           setError("정보처리기사 퀴즈 문제가 없습니다. 문제를 추가해주세요.");
         }
