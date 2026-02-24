@@ -6,6 +6,7 @@ export type QuestionRow = Database["public"]["Tables"]["questions"]["Row"];
 export type QuizSessionRow = Database["public"]["Tables"]["quiz_sessions"]["Row"];
 export type AnswerHistoryRow = Database["public"]["Tables"]["answer_history"]["Row"];
 export type CategoryStatRow = Database["public"]["Tables"]["category_stats"]["Row"];
+export type CategoryLpRow = Database["public"]["Tables"]["category_lp"]["Row"];
 export type LpHistoryRow = Database["public"]["Tables"]["lp_history"]["Row"];
 export type DailyQuizLogRow = Database["public"]["Tables"]["daily_quiz_log"]["Row"];
 
@@ -391,6 +392,47 @@ export type Database = {
             columns: ["session_id"];
             isOneToOne: false;
             referencedRelation: "quiz_sessions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      category_lp: {
+        Row: {
+          id: string;
+          user_id: string;
+          category: string;
+          lp: number;
+          total_answered: number;
+          total_correct: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          category: string;
+          lp?: number;
+          total_answered?: number;
+          total_correct?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          category?: string;
+          lp?: number;
+          total_answered?: number;
+          total_correct?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "category_lp_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
             referencedColumns: ["id"];
           },
         ];

@@ -75,6 +75,9 @@ export async function POST(request: Request) {
   let correctCount = 0;
   const answerResults = [];
 
+  // 카테고리별 LP 변화 누적
+  const categoryLpMap: Record<string, { lpDelta: number; answered: number; correct: number }> = {};
+
   for (const answer of answers) {
     const question = questionMap.get(answer.questionId);
     if (!question) continue;
@@ -100,6 +103,13 @@ export async function POST(request: Request) {
       session.session_type === "daily" ? Math.round(baseLpChange * LP_CONFIG.DAILY_QUIZ_MULTIPLIER) : baseLpChange;
 
     totalLpChange += lpChange;
+
+    // 카테고리별 LP 누적
+    const cat = question.category;
+    if (!categoryLpMap[cat]) categoryLpMap[cat] = { lpDelta: 0, answered: 0, correct: 0 };
+    categoryLpMap[cat].lpDelta += lpChange;
+    categoryLpMap[cat].answered += 1;
+    categoryLpMap[cat].correct += isCorrect ? 1 : 0;
 
     answerResults.push({
       questionId: answer.questionId,
@@ -253,6 +263,36 @@ export async function POST(request: Request) {
     newTierInfo = getTierInfo(result.newLp);
     tierChanged = result.tierChanged;
     promoted = result.promoted;
+
+    // 카테고리별 LP 업데이트
+    for (const [category, { lpDelta, answered, correct }] of Object.entries(categoryLpMap)) {
+      const { data: catLp } = await supabase
+        .from("category_lp")
+        .select("id, lp, total_answered, total_correct")
+        .eq("user_id", user.id)
+        .eq("category", category)
+        .single();
+
+      if (catLp) {
+        await supabase
+          .from("category_lp")
+          .update({
+            lp: Math.max(0, catLp.lp + lpDelta),
+            total_answered: catLp.total_answered + answered,
+            total_correct: catLp.total_correct + correct,
+            updated_at: new Date().toISOString(),
+          })
+          .eq("id", catLp.id);
+      } else {
+        await supabase.from("category_lp").insert({
+          user_id: user.id,
+          category,
+          lp: Math.max(0, lpDelta),
+          total_answered: answered,
+          total_correct: correct,
+        });
+      }
+    }
   }
 
   return NextResponse.json({

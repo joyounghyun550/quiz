@@ -1,0 +1,1142 @@
+[
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "types",
+    "difficulty": 1,
+    "title": "TypeScript 기본 타입 - string과 number 구분",
+    "body": "TypeScript에서 변수에 숫자 타입을 명시적으로 지정하는 올바른 방법은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "let age: Number = 25;",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "let age: number = 25;",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "let age: int = 25;",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "let age: integer = 25;",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "TypeScript의 원시 타입은 소문자로 시작합니다.",
+    "hint_2": "JavaScript의 숫자는 모두 부동소수점 형태입니다.",
+    "explanation": "TypeScript에서 기본 원시 타입(number, string, boolean)은 소문자로 표기합니다. `Number`(대문자)는 래퍼 객체 타입이며, `int`나 `integer`는 TypeScript에 존재하지 않습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "types",
+    "difficulty": 1,
+    "title": "TypeScript any vs unknown 기본 차이",
+    "body": "`any` 타입과 `unknown` 타입에 대한 설명으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "`unknown`은 어떤 타입의 변수에도 바로 할당할 수 있다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "`any`는 타입 검사를 완전히 비활성화하고, `unknown`은 사용 전 타입 확인이 필요하다.",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "`any`와 `unknown`은 동일한 타입이다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "`unknown`은 `any`의 하위 타입이다.",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "`unknown`은 타입 안전성을 위해 도입된 타입입니다.",
+    "hint_2": "`unknown` 타입의 값을 사용하려면 먼저 타입을 좁혀야 합니다.",
+    "explanation": "`any`는 TypeScript의 타입 검사를 완전히 우회하여 어떤 연산도 허용합니다. 반면 `unknown`은 타입을 알 수 없음을 나타내며, 실제 사용 전에 `typeof`, `instanceof` 등으로 타입을 확인해야 합니다. `unknown`이 더 안전한 선택입니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "types",
+    "difficulty": 1,
+    "title": "never 타입의 용도",
+    "body": "TypeScript에서 `never` 타입이 사용되는 적절한 상황은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "함수가 undefined를 반환할 때",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "변수에 어떤 값도 할당하지 않을 때",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "함수가 항상 예외를 던지거나 무한 루프에 빠져 절대 반환되지 않을 때",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "함수의 반환값이 없을 때 (return 문이 없을 때)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "`void`는 반환값이 없는 함수에 사용됩니다.",
+    "hint_2": "`never`는 도달 불가능한 코드를 표현합니다.",
+    "explanation": "`never` 타입은 절대 발생하지 않는 값의 타입입니다. 항상 예외를 던지는 함수나 무한 루프 함수의 반환 타입으로 사용됩니다. `void`는 단순히 반환값이 없는 함수에 사용되는 것과 구별됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "interfaces",
+    "difficulty": 1,
+    "title": "interface와 type alias의 확장 방법 차이",
+    "body": "TypeScript에서 `interface`와 `type` 별칭의 차이점으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "`type`은 클래스에서 `implements`로 구현할 수 없다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "`interface`는 동일한 이름으로 여러 번 선언하여 자동 병합이 가능하다.",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "`interface`는 유니온 타입을 정의할 수 있다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "`type`은 메서드를 정의할 수 없다.",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "Declaration Merging(선언 병합)은 어떤 키워드에서만 가능한가요?",
+    "hint_2": "`type`으로 같은 이름을 두 번 선언하면 어떻게 될까요?",
+    "explanation": "`interface`는 선언 병합(Declaration Merging)을 지원하여 동일한 이름으로 여러 번 선언하면 자동으로 합쳐집니다. `type` 별칭은 같은 이름으로 재선언할 수 없습니다. `type`도 클래스에서 `implements`로 구현할 수 있으며 메서드도 정의 가능합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "interfaces",
+    "difficulty": 2,
+    "title": "interface vs type - 유니온과 교차 타입 정의",
+    "body": "다음 중 `type` 별칭으로만 가능하고 `interface`로는 직접 표현할 수 없는 것은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "선택적 프로퍼티(?) 정의",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "읽기 전용 프로퍼티(readonly) 정의",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "유니온 타입 (A | B) 정의",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "인덱스 시그니처 정의",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "`interface`는 객체의 형태를 나타내는 데 특화되어 있습니다.",
+    "hint_2": "유니온 타입은 'A 또는 B'를 의미합니다.",
+    "explanation": "`interface`는 유니온 타입(A | B)을 직접 정의할 수 없습니다. 유니온 타입은 `type` 별칭에서만 직접 정의 가능합니다. 선택적 프로퍼티, readonly, 인덱스 시그니처는 모두 `interface`와 `type` 양쪽에서 사용 가능합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "generics",
+    "difficulty": 1,
+    "title": "제네릭 기본 문법",
+    "body": "다음 중 제네릭 함수의 올바른 선언 방법은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "function identity(arg: T): T { return arg; }",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "function identity<T>(arg: T): T { return arg; }",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "function identity[T](arg: T): T { return arg; }",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "function identity(arg: any): any { return arg; }",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "제네릭 타입 파라미터는 꺾쇠괄호로 감쌉니다.",
+    "hint_2": "타입 파라미터는 함수 이름 뒤에 선언합니다.",
+    "explanation": "제네릭 함수는 `function 함수명<T>(파라미터: T): T` 형태로 선언합니다. `<T>`가 타입 파라미터를 선언하는 부분입니다. `any`를 사용하면 타입 안전성이 사라지므로 제네릭의 목적과 다릅니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "generics",
+    "difficulty": 2,
+    "title": "제네릭 제약 조건 (extends)",
+    "body": "다음 코드에서 제네릭 제약 조건을 추가하여 `arg.length`에 접근할 수 있도록 하는 올바른 방법은?",
+    "code_snippet": "function getLength<T>(arg: T): number {\n  return arg.length; // 오류 발생!\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "function getLength<T: string>(arg: T): number",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "function getLength<T extends { length: number }>(arg: T): number",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "function getLength<T implements { length: number }>(arg: T): number",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "function getLength<T where length>(arg: T): number",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "제네릭 제약 조건은 `extends` 키워드를 사용합니다.",
+    "hint_2": "`length` 프로퍼티를 가진 구조를 인라인으로 표현할 수 있습니다.",
+    "explanation": "제네릭 제약 조건은 `<T extends 조건>` 형태로 작성합니다. `{ length: number }`는 `length` 속성을 가진 모든 타입을 허용하는 구조적 타입입니다. 이렇게 하면 배열, 문자열 등 `length`를 가진 타입만 허용됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "code_output",
+    "category": "typescript",
+    "subcategory": "generics",
+    "difficulty": 2,
+    "title": "제네릭 타입 추론 코드 분석",
+    "body": "다음 TypeScript 코드에서 `result`의 타입으로 올바른 것은?",
+    "code_snippet": "function first<T>(arr: T[]): T {\n  return arr[0];\n}\n\nconst result = first([1, 2, 3]);",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "any",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "number[]",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "number",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "T",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "TypeScript는 전달된 배열 요소의 타입을 보고 T를 추론합니다.",
+    "hint_2": "`[1, 2, 3]`의 타입은 `number[]`입니다.",
+    "explanation": "TypeScript의 타입 추론에 의해 `first([1, 2, 3])`를 호출하면 `T`가 `number`로 추론됩니다. 따라서 반환 타입도 `number`가 됩니다. 명시적으로 `first<number>([1, 2, 3])`으로 작성한 것과 동일합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "generics",
+    "difficulty": 3,
+    "title": "제네릭 기본값(Default Type Parameter)",
+    "body": "다음 중 제네릭 타입 파라미터에 기본값을 설정하는 올바른 방법은?",
+    "code_snippet": "interface Container<T = string> {\n  value: T;\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "위 코드는 잘못된 문법이며 컴파일 오류가 발생한다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "`Container`를 타입 인수 없이 사용하면 `T`는 `string`이 된다.",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "`Container<number>`로 사용하면 컴파일 오류가 발생한다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "기본값이 있으면 타입 인수를 항상 명시해야 한다.",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "제네릭 기본값은 함수 파라미터의 기본값과 유사하게 동작합니다.",
+    "hint_2": "`Container`를 `Container<string>`과 동일하게 사용할 수 있습니다.",
+    "explanation": "`interface Container<T = string>`처럼 `= string`으로 제네릭 타입의 기본값을 설정할 수 있습니다. 타입 인수 없이 `Container`를 사용하면 `T`는 `string`으로 설정됩니다. `Container<number>`처럼 명시적으로 다른 타입을 지정할 수도 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "utility-types",
+    "difficulty": 1,
+    "title": "Partial 유틸리티 타입",
+    "body": "`Partial<T>` 유틸리티 타입에 대한 올바른 설명은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "T의 모든 프로퍼티를 필수로 만든다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "T의 모든 프로퍼티를 읽기 전용으로 만든다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "T의 모든 프로퍼티를 선택적(optional)으로 만든다.",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "T에서 일부 프로퍼티만 선택하여 새 타입을 만든다.",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "`Partial`의 사전적 의미는 '부분적인'입니다.",
+    "hint_2": "업데이트(patch) 요청 타입을 만들 때 자주 사용됩니다.",
+    "explanation": "`Partial<T>`는 타입 `T`의 모든 프로퍼티를 선택적(`?`)으로 만드는 유틸리티 타입입니다. 예를 들어 `interface User { name: string; age: number }`에 `Partial<User>`를 적용하면 `{ name?: string; age?: number }`가 됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "utility-types",
+    "difficulty": 2,
+    "title": "Pick과 Omit 유틸리티 타입 비교",
+    "body": "`interface User { id: number; name: string; email: string; password: string; }`에서 `id`와 `name`만 포함하는 타입을 만드는 가장 적절한 방법은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "type UserBasic = Omit<User, 'id' | 'name'>;",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "type UserBasic = Pick<User, 'id' | 'name'>;",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "type UserBasic = Partial<User, 'id' | 'name'>;",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "type UserBasic = Required<User, 'id' | 'name'>;",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "`Pick`은 원하는 프로퍼티를 '선택'합니다.",
+    "hint_2": "`Omit`은 원하지 않는 프로퍼티를 '제외'합니다.",
+    "explanation": "`Pick<T, K>`는 타입 `T`에서 키 `K`에 해당하는 프로퍼티만 선택하여 새로운 타입을 만듭니다. `Pick<User, 'id' | 'name'>`은 `{ id: number; name: string }` 타입을 생성합니다. 반대로 `Omit`을 사용하려면 `Omit<User, 'email' | 'password'>`로 작성해야 합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "utility-types",
+    "difficulty": 2,
+    "title": "Record 유틸리티 타입 활용",
+    "body": "`Record<string, number>` 타입에 대한 올바른 설명은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "문자열 값과 숫자 키를 가진 객체 타입이다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "문자열 키와 숫자 값을 가진 객체 타입이다.",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "문자열과 숫자로 이루어진 배열 타입이다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "string 또는 number 타입의 값을 가진 변수를 선언할 때 사용한다.",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "`Record<K, V>`에서 K는 키 타입, V는 값 타입입니다.",
+    "hint_2": "인덱스 시그니처 `{ [key: string]: number }`와 유사합니다.",
+    "explanation": "`Record<K, V>`는 키 타입이 `K`이고 값 타입이 `V`인 객체 타입을 만듭니다. `Record<string, number>`는 문자열 키와 숫자 값을 가진 객체로, `{ [key: string]: number }`와 동일합니다. 예: `const scores: Record<string, number> = { math: 95, english: 88 }`",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "utility-types",
+    "difficulty": 3,
+    "title": "ReturnType 유틸리티 타입",
+    "body": "다음 코드에서 `MyReturn` 타입은 무엇인가?",
+    "code_snippet": "function fetchUser() {\n  return { id: 1, name: 'Alice', age: 30 };\n}\n\ntype MyReturn = ReturnType<typeof fetchUser>;",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "() => { id: number; name: string; age: number }",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "typeof fetchUser",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "{ id: number; name: string; age: number }",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "Promise<{ id: number; name: string; age: number }>",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "`ReturnType<T>`는 함수 타입 `T`의 반환 타입을 추출합니다.",
+    "hint_2": "`typeof fetchUser`는 함수 자체의 타입입니다.",
+    "explanation": "`ReturnType<T>`는 함수 타입 `T`의 반환 타입을 추출하는 유틸리티 타입입니다. `typeof fetchUser`는 `() => { id: number; name: string; age: number }` 타입이며, 이것의 `ReturnType`은 반환값인 `{ id: number; name: string; age: number }`입니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "type-guards",
+    "difficulty": 1,
+    "title": "typeof 타입 가드",
+    "body": "다음 코드에서 `typeof` 타입 가드가 올바르게 사용된 것은?",
+    "code_snippet": "function process(value: string | number) {\n  // 여기에 타입 가드 추가\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "if (value instanceof string) { ... }",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "if (typeof value === 'string') { ... }",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "if (value is string) { ... }",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "if (value.type === 'string') { ... }",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "`typeof` 연산자는 값의 타입을 문자열로 반환합니다.",
+    "hint_2": "`instanceof`는 클래스 인스턴스 확인에 사용됩니다.",
+    "explanation": "`typeof` 타입 가드는 `typeof 변수 === '타입문자열'` 형태로 사용합니다. 원시 타입(string, number, boolean, symbol, bigint, undefined, function)을 확인할 때 사용합니다. `instanceof`는 클래스 인스턴스 확인에 적합하며, `string`은 클래스가 아니므로 `instanceof string`은 동작하지 않습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "type-guards",
+    "difficulty": 2,
+    "title": "사용자 정의 타입 가드 (is 키워드)",
+    "body": "다음 중 사용자 정의 타입 가드 함수의 올바른 반환 타입 표현은?",
+    "code_snippet": "interface Cat { meow(): void; }\ninterface Dog { bark(): void; }\n\nfunction isCat(animal: Cat | Dog): ??? {\n  return (animal as Cat).meow !== undefined;\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "boolean",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "Cat | false",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "animal is Cat",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "typeof Cat",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "타입 서술어(type predicate)는 `파라미터 is 타입` 형태입니다.",
+    "hint_2": "이 패턴을 사용하면 TypeScript가 if 블록 내에서 타입을 좁혀줍니다.",
+    "explanation": "사용자 정의 타입 가드는 반환 타입을 `파라미터명 is 타입` 형태의 타입 서술어(type predicate)로 지정합니다. `animal is Cat`으로 지정하면 함수가 `true`를 반환하는 블록에서 TypeScript가 `animal`을 `Cat` 타입으로 좁혀줍니다. 단순 `boolean`을 반환하면 이 타입 좁히기가 동작하지 않습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "type-guards",
+    "difficulty": 3,
+    "title": "in 연산자 타입 가드",
+    "body": "다음 코드에서 `in` 연산자를 활용한 타입 가드가 올바르게 사용된 것은?",
+    "code_snippet": "interface Admin { role: 'admin'; permissions: string[]; }\ninterface User { role: 'user'; name: string; }\n\nfunction handleUser(person: Admin | User) {\n  // ???\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "if (person.permissions !== undefined) { /* Admin */ }",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "if ('permissions' in person) { /* Admin */ }",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "if (person has 'permissions') { /* Admin */ }",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "if (typeof person.permissions === 'object') { /* Admin */ }",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "`in` 연산자는 객체에 특정 프로퍼티가 존재하는지 확인합니다.",
+    "hint_2": "TypeScript는 `in` 검사 후 해당 블록에서 타입을 자동으로 좁혀줍니다.",
+    "explanation": "`'프로퍼티명' in 객체` 형태의 `in` 연산자 타입 가드는 객체에 해당 프로퍼티가 존재하는지 확인하고, TypeScript는 이를 통해 타입을 좁혀줍니다. `'permissions' in person`이 `true`이면 TypeScript는 `person`을 `Admin` 타입으로 추론합니다. 옵션 A는 컴파일 오류가 발생할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "types",
+    "difficulty": 2,
+    "title": "Union 타입 기본 개념",
+    "body": "다음 Union 타입 사용 중 올바른 것은?",
+    "code_snippet": "type StringOrNumber = string | number;\n\nfunction format(value: StringOrNumber): string {\n  return value.toString();\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "컴파일 오류: Union 타입에는 메서드를 호출할 수 없다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "정상 동작: `string`과 `number` 모두 `toString()` 메서드를 가지므로 오류 없음.",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "런타임 오류: Union 타입은 런타임에서 지원되지 않는다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "컴파일 오류: Union 타입 변수에는 타입 가드 없이 메서드를 호출할 수 없다.",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "Union 타입에서는 모든 가능한 타입이 공통으로 가진 멤버만 타입 가드 없이 사용 가능합니다.",
+    "hint_2": "`string`과 `number` 모두 `toString()` 메서드를 가지고 있습니다.",
+    "explanation": "Union 타입에서는 타입 가드 없이 모든 구성 타입이 공통으로 가진 프로퍼티나 메서드만 사용할 수 있습니다. `string`과 `number`는 모두 `toString()` 메서드를 가지므로 타입 가드 없이 호출 가능합니다. Union 타입은 완전히 유효한 TypeScript 기능입니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "types",
+    "difficulty": 2,
+    "title": "Intersection 타입 이해",
+    "body": "다음 코드에서 `Staff` 타입의 구조로 올바른 것은?",
+    "code_snippet": "interface Employee { name: string; department: string; }\ninterface Manager { reports: Employee[]; level: number; }\n\ntype Staff = Employee & Manager;",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "{ name: string } | { reports: Employee[] }",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "{ name: string; department: string } 또는 { reports: Employee[]; level: number }",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "{ name: string; department: string; reports: Employee[]; level: number }",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "Employee와 Manager 중 하나의 타입",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "Intersection 타입은 `&` 연산자로 만들며 두 타입의 '교집합'이 아닌 '합집합'입니다.",
+    "hint_2": "Intersection 타입의 값은 모든 구성 타입의 멤버를 모두 가져야 합니다.",
+    "explanation": "Intersection 타입(`&`)은 두 타입의 모든 프로퍼티를 합친 새로운 타입을 만듭니다. `Staff` 타입은 `Employee`와 `Manager`의 모든 프로퍼티를 모두 가져야 합니다. 이름이 '교차'이지만 실제로는 두 타입의 모든 특성을 가진 타입을 의미합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "types",
+    "difficulty": 3,
+    "title": "Discriminated Union (판별 유니온)",
+    "body": "다음 코드에서 `switch` 문으로 모든 케이스를 처리한 후 `default` 브랜치에서 `never` 타입을 활용하는 패턴의 목적은?",
+    "code_snippet": "type Shape = { kind: 'circle'; radius: number } | { kind: 'rect'; width: number; height: number };\n\nfunction area(shape: Shape): number {\n  switch (shape.kind) {\n    case 'circle': return Math.PI * shape.radius ** 2;\n    case 'rect': return shape.width * shape.height;\n    default:\n      const _exhaustive: never = shape;\n      throw new Error('Unknown shape');\n  }\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "런타임 성능을 향상시키기 위해서",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "모든 유니온 케이스가 처리되었는지 컴파일 타임에 검증하기 위해서",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "JavaScript로 트랜스파일 시 코드 크기를 줄이기 위해서",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "런타임 타입 오류를 자동으로 처리하기 위해서",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "모든 케이스가 처리되었다면 `default`에서 `shape`의 타입은 무엇일까요?",
+    "hint_2": "`never` 타입에 다른 타입을 할당하면 컴파일 오류가 발생합니다.",
+    "explanation": "Exhaustiveness Check 패턴입니다. `switch`에서 모든 케이스를 처리하면 `default`에서 `shape`는 `never` 타입이 됩니다. `never` 타입 변수에 실제 값을 할당하는 것은 불가능하므로, 나중에 새로운 `Shape` 케이스(`kind: 'triangle'` 등)를 추가하면 `default`에서 컴파일 오류가 발생하여 처리 누락을 방지합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "enums",
+    "difficulty": 1,
+    "title": "enum 기본 사용법",
+    "body": "다음 TypeScript `enum`에서 `Direction.Up`의 기본값은?",
+    "code_snippet": "enum Direction {\n  Up,\n  Down,\n  Left,\n  Right\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "'Up'",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "undefined",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "1",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "0",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "opt_d",
+    "hint_1": "숫자형 enum은 첫 번째 멤버부터 자동으로 값이 할당됩니다.",
+    "hint_2": "배열 인덱스처럼 0부터 시작합니다.",
+    "explanation": "TypeScript의 숫자형 `enum`은 명시적 초기화 없이 선언하면 첫 번째 멤버가 `0`부터 시작하여 1씩 증가합니다. 따라서 `Direction.Up = 0`, `Direction.Down = 1`, `Direction.Left = 2`, `Direction.Right = 3`입니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "enums",
+    "difficulty": 3,
+    "title": "enum vs const enum 차이",
+    "body": "`enum`과 `const enum`의 가장 중요한 차이점은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "`const enum`은 문자열 값만 사용할 수 있다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "`const enum`은 컴파일 시 인라인으로 대체되어 런타임에 객체가 생성되지 않는다.",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "`const enum`은 숫자 값만 사용할 수 있다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "`const enum`은 외부 모듈에서 사용할 수 없다.",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "`const enum`을 사용하면 JavaScript 출력 코드가 달라집니다.",
+    "hint_2": "인라인 대체란 변수명 대신 실제 값이 코드에 삽입된다는 의미입니다.",
+    "explanation": "일반 `enum`은 JavaScript로 컴파일되면 런타임에 객체를 생성하는 코드가 포함됩니다. 반면 `const enum`은 컴파일 시 각 참조가 실제 값으로 인라인 대체되어 런타임 객체가 생성되지 않습니다. 이로 인해 번들 크기가 줄고 성능이 향상되지만, `const enum`은 선언 파일(`.d.ts`)에서 일부 제한이 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "types",
+    "difficulty": 2,
+    "title": "타입 추론 - 함수 반환 타입",
+    "body": "다음 함수의 반환 타입으로 TypeScript가 추론하는 것은?",
+    "code_snippet": "function add(a: number, b: number) {\n  return a + b;\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "any",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "void",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "number | string",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "number",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "opt_d",
+    "hint_1": "TypeScript는 `return` 문의 표현식 타입을 분석합니다.",
+    "hint_2": "`number + number`의 결과 타입은 무엇인가요?",
+    "explanation": "TypeScript는 함수의 반환 타입을 명시하지 않아도 `return` 문의 표현식으로부터 타입을 추론합니다. `a + b`에서 `a`와 `b` 모두 `number`이므로 결과도 `number`가 되어, 반환 타입이 `number`로 추론됩니다. 반환 타입을 명시적으로 선언하면 코드 의도를 명확히 할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "types",
+    "difficulty": 3,
+    "title": "조건부 타입 기본 개념",
+    "body": "다음 조건부 타입에서 `IsString<number>`의 결과 타입은?",
+    "code_snippet": "type IsString<T> = T extends string ? 'yes' : 'no';",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "string",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "'yes'",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "'no'",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "boolean",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "조건부 타입은 `T extends U ? X : Y` 형태입니다.",
+    "hint_2": "`number`는 `string`을 확장(extend)하지 않습니다.",
+    "explanation": "조건부 타입 `T extends U ? X : Y`는 `T`가 `U`에 할당 가능하면 `X`, 아니면 `Y` 타입이 됩니다. `number`는 `string`에 할당 불가능하므로 `IsString<number>`는 `'no'` 타입이 됩니다. 반대로 `IsString<string>`은 `'yes'`, `IsString<'hello'>`도 `'yes'`가 됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "types",
+    "difficulty": 4,
+    "title": "분산 조건부 타입 (Distributive Conditional Types)",
+    "body": "다음 코드에서 `Result` 타입은 무엇인가?",
+    "code_snippet": "type ToArray<T> = T extends any ? T[] : never;\n\ntype Result = ToArray<string | number>;",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "(string | number)[]",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "string[] | number[]",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "never",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "any[]",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "조건부 타입은 유니온 타입에 분산적으로 적용됩니다.",
+    "hint_2": "`ToArray<string | number>`는 `ToArray<string> | ToArray<number>`와 같습니다.",
+    "explanation": "제네릭 타입 파라미터에 유니온 타입을 전달하면 조건부 타입이 분산적으로 적용됩니다. `ToArray<string | number>`는 `ToArray<string> | ToArray<number>` = `string[] | number[]`가 됩니다. 분산을 막으려면 `[T] extends [any] ? T[] : never`처럼 튜플로 감싸면 됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "decorators",
+    "difficulty": 2,
+    "title": "데코레이터 기본 개념",
+    "body": "TypeScript 데코레이터(@)에 대한 설명으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "데코레이터는 ECMAScript 표준에 포함된 완성된 기능이다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "데코레이터는 클래스, 메서드, 프로퍼티, 파라미터에 적용할 수 있는 특수한 선언이다.",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "데코레이터는 런타임이 아닌 컴파일 타임에만 동작한다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "데코레이터는 함수에는 적용할 수 없다.",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "데코레이터는 `experimentalDecorators` 옵션을 활성화해야 사용 가능합니다.",
+    "hint_2": "Python의 데코레이터와 유사한 개념입니다.",
+    "explanation": "TypeScript 데코레이터는 클래스 선언, 메서드, 접근자, 프로퍼티, 파라미터에 적용할 수 있는 특수한 종류의 선언입니다. `@표현식` 형태로 사용하며, 런타임에 동작합니다. `tsconfig.json`에서 `experimentalDecorators: true`를 설정해야 사용할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "decorators",
+    "difficulty": 3,
+    "title": "클래스 데코레이터 시그니처",
+    "body": "클래스 데코레이터 함수의 올바른 시그니처는?",
+    "code_snippet": "function sealed(target: ???) {\n  Object.seal(target);\n  Object.seal(target.prototype);\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "target: object",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "target: Class",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "target: Function",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "target: typeof Object",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "클래스 데코레이터는 클래스의 생성자 함수를 받습니다.",
+    "hint_2": "클래스는 JavaScript에서 결국 함수입니다.",
+    "explanation": "클래스 데코레이터는 클래스의 생성자(constructor)를 유일한 인수로 받습니다. TypeScript에서는 이를 `Function` 타입으로 표현하거나, 더 구체적으로 `new (...args: any[]) => any` 형태의 생성자 타입으로 표현할 수 있습니다. 클래스 데코레이터는 클래스 정의를 관찰하거나 수정하는 데 사용됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "modules",
+    "difficulty": 2,
+    "title": "타입 전용 import (import type)",
+    "body": "`import type`과 일반 `import`의 차이점은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "`import type`은 값과 타입 모두 가져올 수 있다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "`import type`으로 가져온 것은 런타임 JavaScript 코드에 포함되지 않는다.",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "`import type`은 TypeScript 5.0 이상에서만 사용 가능하다.",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "`import type`은 성능에 영향을 주지 않는다.",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "타입은 컴파일 후 JavaScript에서 사라집니다.",
+    "hint_2": "번들 크기와 순환 참조 문제와 관련이 있습니다.",
+    "explanation": "`import type`은 타입 정보만 가져오는 명시적인 방법입니다. TypeScript 컴파일러는 `import type`으로 가져온 것들이 런타임 JavaScript 코드에 포함되지 않도록 보장합니다. 이는 번들 크기를 줄이고, 순환 의존성 문제를 방지하며, 번들러가 불필요한 임포트를 안전하게 제거할 수 있게 합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "modules",
+    "difficulty": 2,
+    "title": "export type과 타입 재내보내기",
+    "body": "다음 중 타입만 재내보내기(re-export)하는 올바른 방법은?",
+    "code_snippet": null,
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "export { UserType } from './types';",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "export type { UserType } from './types';",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "re-export type { UserType } from './types';",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "export interface { UserType } from './types';",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "`import type`과 쌍을 이루는 `export` 구문이 있습니다.",
+    "hint_2": "`isolatedModules` 컴파일러 옵션과 관련이 있습니다.",
+    "explanation": "`export type { ... } from '...'` 구문은 타입만 명시적으로 재내보내기합니다. 이는 `isolatedModules` 옵션 사용 시 필요하며, 번들러가 런타임에서 불필요한 임포트를 안전하게 제거할 수 있게 합니다. 일반 `export { ... }`로도 타입을 재내보낼 수 있지만, `export type`이 더 명확한 의도를 전달합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "utility-types",
+    "difficulty": 4,
+    "title": "infer 키워드와 조건부 타입",
+    "body": "다음 유틸리티 타입에서 `UnpackPromise<Promise<string>>`의 결과는?",
+    "code_snippet": "type UnpackPromise<T> = T extends Promise<infer U> ? U : T;",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "Promise<string>",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "never",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "string",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "infer string",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "`infer U`는 조건부 타입 내에서 타입을 캡처합니다.",
+    "hint_2": "`Promise<string>`은 `Promise<infer U>`를 만족하며, 이 때 `U`는 무엇으로 추론될까요?",
+    "explanation": "`infer` 키워드는 조건부 타입의 `extends` 절 내에서 추론할 타입 변수를 선언합니다. `Promise<string>`은 `Promise<infer U>` 패턴과 일치하며 `U`가 `string`으로 추론됩니다. 따라서 `UnpackPromise<Promise<string>>`은 `string`이 됩니다. `UnpackPromise<number>`는 `Promise`가 아니므로 `number`가 그대로 반환됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "typescript",
+    "subcategory": "generics",
+    "difficulty": 4,
+    "title": "제네릭 조건부 타입과 infer를 활용한 함수 파라미터 타입 추출",
+    "body": "다음 코드에서 `FirstParam<typeof greet>`의 결과 타입은?",
+    "code_snippet": "type FirstParam<T extends (...args: any) => any> =\n  T extends (first: infer F, ...rest: any) => any ? F : never;\n\nfunction greet(name: string, age: number): string {\n  return `Hello, ${name}!`;\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "[string, number]",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "string | number",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "string",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "never",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "`infer F`는 첫 번째 파라미터의 타입을 캡처합니다.",
+    "hint_2": "`greet` 함수의 첫 번째 파라미터 타입은 무엇인가요?",
+    "explanation": "`FirstParam<T>` 타입은 `infer`를 사용하여 함수의 첫 번째 파라미터 타입을 추출합니다. `greet` 함수의 타입은 `(name: string, age: number) => string`이며, 이를 `(first: infer F, ...rest: any) => any` 패턴과 매칭하면 `F`는 `string`으로 추론됩니다. 따라서 결과는 `string`입니다.",
+    "explanation_code": null,
+    "reference_url": null
+  }
+]

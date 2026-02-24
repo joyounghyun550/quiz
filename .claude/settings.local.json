@@ -18,7 +18,9 @@
       "Bash(node --version:*)",
       "Bash(cmd /c \"node -e \"\"console.log\\(''hello''\\)\"\"\")",
       "Bash(node.exe:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(ls:*)",
+      "Bash(python3:*)"
     ],
     "additionalDirectories": ["C:\\Users\\UserPC\\AppData\\Local\\Temp"]
   }
