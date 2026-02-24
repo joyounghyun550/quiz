@@ -14,9 +14,12 @@ import { useQuizStore } from "@/stores/use-quiz-store";
 export default function PlacementPage() {
   const router = useRouter();
   const supabase = createSupabaseBrowserClient();
-  const { startSession, questions } = useQuizStore();
+  const { startSession, questions, sessionType, isCompleted } = useQuizStore();
   const [isLoading, setIsLoading] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
+
+  // 이어서 풀기: 기존 배치 세션이 있으면 바로 퀴즈로
+  const hasActiveSession = sessionType === "placement" && questions.length > 0 && !isCompleted;
 
   const handleStart = async () => {
     setShowIntro(false);
@@ -58,11 +61,16 @@ export default function PlacementPage() {
         return;
       }
 
+      // 기존 배치 세션이 있으면 인트로 스킵
+      if (hasActiveSession) {
+        setShowIntro(false);
+      }
+
       setIsLoading(false);
     };
 
     checkPlacement();
-  }, [router, supabase]);
+  }, [router, supabase, hasActiveSession]);
 
   if (isLoading) {
     return (

@@ -21,16 +21,29 @@ const CATEGORY_OPTIONS: { value: QuestionCategory | "all"; label: string; emoji:
   { value: "web_fundamentals", label: "웹 기초", emoji: "🌐", color: "from-emerald-600 to-teal-600" },
 ];
 
+const CATEGORY_LABEL: Record<string, string> = {
+  all: "전체 랜덤",
+  javascript: "JavaScript",
+  typescript: "TypeScript",
+  react: "React",
+  nextjs: "Next.js",
+  css: "CSS",
+  web_fundamentals: "웹 기초",
+};
+
 export default function PracticePage() {
   const router = useRouter();
   const supabase = createSupabaseBrowserClient();
-  const { startSession, questions } = useQuizStore();
+  const { startSession, resetSession, questions, sessionType, isCompleted } = useQuizStore();
   const [isLoading, setIsLoading] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
   const [userTier, setUserTier] = useState<TierName>("inline");
   const [userStreak, setUserStreak] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [quizStarted, setQuizStarted] = useState(false);
+
+  // 이어서 풀기: 기존 practice 세션이 있으면 바로 QuizFlow 표시
+  const hasActiveSession = sessionType === "practice" && questions.length > 0 && !isCompleted;
 
   useEffect(() => {
     const init = async () => {
@@ -55,6 +68,11 @@ export default function PracticePage() {
 
         setUserTier(profile.current_tier);
         setUserStreak(profile.current_streak);
+
+        // 기존 practice 세션이 있으면 바로 퀴즈 진행
+        if (hasActiveSession) {
+          setQuizStarted(true);
+        }
       } catch {
         router.push("/quiz");
       } finally {
@@ -63,7 +81,7 @@ export default function PracticePage() {
     };
 
     init();
-  }, [router, supabase]);
+  }, [router, supabase, hasActiveSession]);
 
   const handleStart = async (category: QuestionCategory | "all") => {
     setIsLoading(true);
@@ -82,6 +100,12 @@ export default function PracticePage() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleNewStart = async (category: QuestionCategory | "all") => {
+    resetSession();
+    setQuizStarted(false);
+    await handleStart(category);
   };
 
   if (isInitializing) {
@@ -122,6 +146,12 @@ export default function PracticePage() {
     return <QuizFlow userTier={userTier} userStreak={userStreak} />;
   }
 
+  // 저장된 세션의 카테고리 정보 (questions[0]의 category로 유추)
+  const savedCategory = hasActiveSession && questions[0] ? (questions[0].category as string) : null;
+  const savedProgress = hasActiveSession
+    ? `${questions.filter((q) => q.selectedAnswer).length} / ${questions.length} 완료`
+    : null;
+
   return (
     <div className="mx-auto flex min-h-dvh max-w-lg flex-col gap-6 px-5 pb-24 pt-6">
       <div className="flex items-center gap-3">
@@ -146,20 +176,47 @@ export default function PracticePage() {
         </div>
       </div>
 
+      {/* 이어서 풀기 배너 */}
+      {hasActiveSession && savedCategory && (
+        <div className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-4">
+          <div className="mb-3 flex items-center justify-between">
+            <div>
+              <p className="text-sm font-semibold text-cyan-300">이어서 풀기</p>
+              <p className="text-xs text-gray-400">
+                {CATEGORY_LABEL[savedCategory] ?? savedCategory} · {savedProgress}
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setQuizStarted(true)}
+            className="h-10 w-full rounded-xl bg-cyan-500 text-sm font-semibold text-white transition-colors hover:bg-cyan-600"
+          >
+            이어서 풀기
+          </button>
+        </div>
+      )}
+
       <div className="grid grid-cols-2 gap-3">
         {CATEGORY_OPTIONS.map((cat) => (
           <button
             key={cat.value}
             type="button"
-            onClick={() => handleStart(cat.value)}
+            onClick={() => (hasActiveSession ? handleNewStart(cat.value) : handleStart(cat.value))}
             className={`flex flex-col items-start gap-2 rounded-2xl bg-gradient-to-br ${cat.color} p-4 text-left transition-all hover:opacity-90 active:scale-[0.97] ${cat.value === "all" ? "col-span-2" : ""}`}
           >
             <span className="text-2xl">{cat.emoji}</span>
             <span className="text-sm font-semibold text-white">{cat.label}</span>
-            {cat.value === "all" && <span className="text-xs text-white/70">약점·강점 카테고리 자동 배분</span>}
+            {cat.value === "all" && (
+              <span className="text-xs text-white/70">
+                {hasActiveSession ? "새로 시작" : "약점·강점 카테고리 자동 배분"}
+              </span>
+            )}
           </button>
         ))}
       </div>
+
+      {hasActiveSession && <p className="text-center text-xs text-gray-600">카테고리를 선택하면 새로 시작합니다</p>}
     </div>
   );
 }

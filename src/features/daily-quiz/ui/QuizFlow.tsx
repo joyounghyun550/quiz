@@ -48,6 +48,7 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
   } | null>(null);
   const [comboCount, setComboCount] = useState(0);
   const [showCombo, setShowCombo] = useState(false);
+  const [showQuitConfirm, setShowQuitConfirm] = useState(false);
 
   const currentQuestion = questions[currentIndex];
 
@@ -126,6 +127,15 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
   );
 
   const handleQuit = useCallback(() => {
+    setShowQuitConfirm(true);
+  }, []);
+
+  const handleConfirmQuit = useCallback(() => {
+    // 세션을 리셋하지 않고 나가기 → localStorage에 자동 저장됨
+    router.replace("/quiz");
+  }, [router]);
+
+  const handleAbandonQuit = useCallback(() => {
     resetSession();
     router.replace("/quiz");
   }, [resetSession, router]);
@@ -155,6 +165,43 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
 
   return (
     <div className="flex min-h-dvh flex-col bg-gray-950">
+      {/* 나가기 확인 모달 */}
+      {showQuitConfirm && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-sm sm:items-center">
+          <div className="w-full max-w-sm rounded-t-2xl border border-gray-700 bg-gray-900 p-6 sm:rounded-2xl">
+            <h3 className="mb-1 text-base font-bold text-white">퀴즈를 나가시겠어요?</h3>
+            <p className="mb-5 text-sm text-gray-400">
+              {sessionType === "placement"
+                ? "배치 테스트는 나갔다 돌아오면 이어서 풀 수 있어요."
+                : "진행 상황이 저장됩니다. 나중에 이어서 풀 수 있어요."}
+            </p>
+            <div className="flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={() => setShowQuitConfirm(false)}
+                className="h-12 w-full rounded-xl bg-cyan-500 font-semibold text-white transition-colors hover:bg-cyan-600"
+              >
+                계속 풀기
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmQuit}
+                className="h-12 w-full rounded-xl border border-gray-700 bg-gray-800 font-semibold text-gray-300 transition-colors hover:bg-gray-700"
+              >
+                저장하고 나가기
+              </button>
+              <button
+                type="button"
+                onClick={handleAbandonQuit}
+                className="h-10 w-full rounded-xl text-sm text-gray-500 transition-colors hover:text-red-400"
+              >
+                처음부터 다시 시작
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* 콤보 알림 */}
       <AnimatePresence>
         {showCombo && (

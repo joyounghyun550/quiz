@@ -1,0 +1,5936 @@
+{
+  "exportedAt": "2026-02-24T11:44:31.789Z",
+  "totalQuestions": 1128,
+  "categories": {
+    "css": {
+      "animations": [
+        {
+          "title": "animation-iteration-count: infinite의 의미는?",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "animation 단축 속성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "여러 애니메이션을 동시에 적용할 때 animation 속성 표기법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "transform 2D 변환 함수",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "@keyframes 애니메이션 정의",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "animation-timing-function: steps()의 동작 방식은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "animation 단축 속성에서 두 시간 값의 순서는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "transition 속성 기본 사용",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "will-change 속성의 올바른 사용 목적은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 CSS 애니메이션이 실행되면 요소의 최종 상태는 어떻게 되나요?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "animation-fill-mode: forwards의 동작은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "@keyframes 내 !important 사용 가능 여부는?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "다음 CSS 코드에서 transition이 적용되지 않는 경우는 무엇인가요?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "animation-play-state: paused를 사용하면 애니메이션을 일시 정지할 수 있다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "CSS View Transitions API를 사용하여 페이지 전환 애니메이션을 구현할 때, 올바른 접근 방식은?",
+          "difficulty": 8,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "@keyframes에서 from과 to 키워드의 동등한 표현은?",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "animation-direction: alternate 설정 시 3번 반복 결과는?",
+          "difficulty": 3,
+          "format": "code_output"
+        }
+      ],
+      "box-model": [
+        {
+          "title": "CSS 박스 모델 구성 요소",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "box-sizing: border-box",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "마진 상쇄(Margin Collapsing)",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "css_functions": [
+        {
+          "title": "calc() 함수 내 곱셈 규칙",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "color-mix() 함수로 색상 혼합",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "attr() 함수로 HTML 속성 값 CSS에 활용",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "radial-gradient에서 ellipse와 circle의 차이",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "clamp()를 이용한 유체 간격(fluid spacing) 시스템",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "env() 함수로 안전 영역 인셋 적용",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "fit-content() 함수의 동작 원리",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "linear-gradient vs radial-gradient 방향 인자",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "CSS counter() 함수로 자동 번호 매기기",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS var() 함수의 폴백 값 동작",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "min()과 max() 함수 결과 예측",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "calc()에서 다른 단위 혼합 사용",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "css_in_js": [
+        {
+          "title": "다음 Tailwind CSS 클래스가 적용된 요소의 레이아웃은 어떻게 되나요?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "다음 CSS 레이어(@layer) 코드에서 최종적으로 적용되는 스타일은 무엇인가요?",
+          "difficulty": 8,
+          "format": "code_output"
+        },
+        {
+          "title": "CSS-in-JS 라이브러리(styled-components, emotion)는 Next.js App Router의 서버 컴포넌트에서 기본적으로 사용할 수 없다.",
+          "difficulty": 7,
+          "format": "true_false"
+        }
+      ],
+      "css_variables": [
+        {
+          "title": "JavaScript로 CSS 변수 업데이트",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "CSS 변수의 상속(Inheritance) 동작",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 변수의 스코프와 컴포넌트 테마",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 변수는 미디어 쿼리 조건 값으로 직접 사용 불가",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "CSS 변수는 media query 내에서 재정의 가능",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "@property를 사용한 타입이 있는 커스텀 속성",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 변수 순환 참조 결과",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "CSS 변수 var() 폴백 값 사용법",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "flexbox": [
+        {
+          "title": "flex-basis: auto는 항상 아이템의 width 값과 동일하다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "flex-grow 속성의 기본값은 무엇인가?",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "flex-direction: column 설정 시 주축(main axis)의 방향은?",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "align-items와 align-content는 항상 동일하게 동작한다",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "flex-shrink 값에 따른 아이템 축소 결과",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "flex 단축 속성 해석",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "justify-content 중앙 정렬",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Flexbox 컨테이너 활성화",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "flex-wrap 속성",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "align-items와 align-content 차이",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "align-self 속성이 override하는 상위 속성은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "gap 속성을 플렉스박스에서 사용할 때의 동작은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "flex 단축 속성 flex: 2 1 100px의 의미는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "order 속성의 기본값과 동작 방식은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "flex-wrap: wrap-reverse의 동작 방식은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "flexbox_grid": [
+        {
+          "title": "CSS Flexbox에서 flex-direction의 기본값은 'row'이다.",
+          "difficulty": 1,
+          "format": "true_false"
+        },
+        {
+          "title": "CSS Grid의 subgrid 기능을 사용하면 자식 그리드가 부모 그리드의 트랙 정의를 상속받을 수 있다.",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "CSS Grid에서 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))는 컨테이너 너비에 따라 자동으로 열 수를 조절한다.",
+          "difficulty": 3,
+          "format": "true_false"
+        }
+      ],
+      "grid": [
+        {
+          "title": "grid-template-areas에서 named area를 사용한 아이템 배치 방법은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS Grid에서 fr 단위는 padding과 border를 포함한 크기를 기준으로 계산된다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "암시적 그리드(implicit grid)가 생성되는 경우는?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "grid-column: 1 / span 3의 의미는?",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "auto-fill과 auto-fit의 차이점은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "repeat()과 minmax() 함수",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "minmax() 함수의 역할은?",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "grid-template-columns fr 단위",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "grid-area 속성 사용",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "grid-template-areas에서 빈 셀을 표시하는 방법은?",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "dense 키워드를 grid-auto-flow에 사용하면 어떤 효과가 있나요?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "grid-template-columns: repeat(3, 1fr 2fr)의 결과는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "place-items 단축 속성의 두 값이 나타내는 것은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS Grid 암시적 그리드(Implicit Grid)",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "layout_advanced": [
+        {
+          "title": "다중 컬럼에서 column-span: all 동작",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "CSS 그리드 자동 배치 알고리즘 dense 옵션",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "isolation: isolate의 사용 목적",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 그리드 minmax() 함수의 역할",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 다중 컬럼 레이아웃 column-count",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS contain 속성과 렌더링 최적화",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "sticky 포지셔닝이 작동하지 않는 조건",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "overflow: clip과 overflow: hidden의 차이",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 마소니리(Masonry) 레이아웃 실험적 기능",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        }
+      ],
+      "modern_css": [
+        {
+          "title": "@supports로 기능 감지",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "accent-color로 폼 요소 색상 변경",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "scroll-snap-type으로 스크롤 스냅 동작",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "CSS 서브그리드(subgrid)와 그리드 트랙 상속",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "@layer 캐스케이드 레이어 우선순위",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": ":has() 선택자로 부모 요소 선택",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 네스팅(Nesting) 기본 문법",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": ":has() 선택자와 성능 영향",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "CSS 네스팅에서 & 앰퍼샌드의 역할",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "color-scheme 속성과 다크 모드 지원",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        }
+      ],
+      "positioning": [
+        {
+          "title": "position: relative의 특성",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "position: sticky 동작",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "position: absolute 기준점",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "pseudo_classes": [
+        {
+          "title": ":nth-child() 함수식 계산",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": ":first-child와 :first-of-type의 동일성",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": ":valid와 :invalid 의사 클래스 적용 시점",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": ":checked 의사 클래스 동작 확인",
+          "difficulty": 2,
+          "format": "code_output"
+        },
+        {
+          "title": ":focus-visible과 :focus의 차이",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": ":has() 선택자로 부모 요소 스타일링 가능 여부",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": ":not() 선택자의 복합 인수 사용",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": ":nth-child()와 :nth-of-type()의 차이점",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": ":is()와 :where()의 특이성(Specificity) 차이",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": ":where() 선택자의 특이성과 활용",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "pseudo_elements": [
+        {
+          "title": "::first-line과 ::first-letter의 차이",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "::before content에서 attr() 함수 사용",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "::backdrop 의사 요소의 용도",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "::before와 ::after의 content 속성 필수 여부",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "의사 요소 이중 콜론(::) 표기의 필수 여부",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "::marker 의사 요소로 목록 마커 스타일링",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "::selection 의사 요소의 제한된 속성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "::placeholder 스타일링 우선순위",
+          "difficulty": 3,
+          "format": "code_output"
+        }
+      ],
+      "responsive": [
+        {
+          "title": "뷰포트 단위 vw와 vh",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 CSS Container Query 코드의 동작 결과는 무엇인가요?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "CSS에서 뷰포트 너비의 100%를 나타내는 단위는 무엇인가요?",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "clamp() 함수를 이용한 반응형 폰트",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 미디어 쿼리에서 모바일 퍼스트 접근 방식에 적합한 것은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "미디어 쿼리 기본 문법",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        }
+      ],
+      "responsive_design": [
+        {
+          "title": "뷰포트 단위 dvh와 vh의 차이",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "미디어 쿼리 브레이크포인트 - 모바일 우선 기본값",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "컨테이너 쿼리 style() 조건 사용",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "vw 단위와 스크롤바 너비 문제",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "미디어 쿼리 논리 연산자 and와 or",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "컨테이너 쿼리 단위 cqi 동작 이해",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "aspect-ratio 속성과 이미지 레이아웃 제어",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "min()과 max()를 조합한 반응형 너비 설계",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "컨테이너 쿼리 @container 사용 조건",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "clamp() 함수로 유동적 타이포그래피 결과 예측",
+          "difficulty": 4,
+          "format": "code_output"
+        }
+      ],
+      "selectors": [
+        {
+          "title": "CSS :has() 선택자의 기능과 올바른 사용 예시는 무엇인가요?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 특이도 계산 - 심화",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 특이도(Specificity) 계산 - 기본",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "nth-child vs nth-of-type",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "속성 선택자",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "가상 요소 선택자",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "가상 클래스 선택자 hover",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 CSS 선택자가 적용되는 요소는 무엇인가요?",
+          "difficulty": 2,
+          "format": "code_output"
+        },
+        {
+          "title": "CSS 선택자 특이성(Specificity)이 가장 높은 것은 무엇인가요?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 CSS에서 :nth-child(2n)이 선택하는 요소들은?",
+          "difficulty": 2,
+          "format": "code_output"
+        },
+        {
+          "title": "브라우저의 Critical Rendering Path에서 렌더 트리(Render Tree) 생성 단계에 포함되지 않는 CSS 속성이 적용된 요소는?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        }
+      ],
+      "specificity_cascade": [
+        {
+          "title": "CSS 상속과 특이성의 관계",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "CSS 특이성(Specificity) 계산 방법",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "!important와 특이성의 관계",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "소스 순서가 특이성보다 우선하는 경우",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "CSS 캐스케이드 우선순위 전체 순서",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "전체 선택자(*)의 특이성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "레이어와 !important의 우선순위 역전",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "@layer 캐스케이드 레이어의 우선순위",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "transforms": [
+        {
+          "title": "perspective 속성과 3D 변환",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "transform 함수의 적용 순서",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "transform-origin의 기본값과 동작",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "scale() 변환과 레이아웃 공간",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "CSS 3D 변환의 backface-visibility 속성",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "transform-style: preserve-3d의 동작 범위",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "translate와 margin/position의 차이",
+          "difficulty": 3,
+          "format": "code_output"
+        }
+      ],
+      "transitions": [
+        {
+          "title": "color: currentColor 값의 transition 동작은?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "트랜지션 중에 새로운 트랜지션이 트리거되면 어떻게 되나요?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "transition-property: all 사용 시 포함되지 않는 속성은?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "height: auto로의 트랜지션이 동작하지 않는 이유는?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "cubic-bezier() 함수의 4개 매개변수가 나타내는 것은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "transition: all 0.3s와 특정 속성 transition의 우선순위는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "transform과 transition을 함께 사용할 때 주의할 점은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "display: none에서 display: block으로의 변경은 transition으로 애니메이션할 수 있다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "여러 속성에 서로 다른 트랜지션을 적용하는 방법은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "transition-delay가 음수일 때 어떻게 동작하나요?",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "transition-timing-function의 ease 값과 linear의 차이는?",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "variables": [
+        {
+          "title": "var() 함수 폴백(fallback) 값",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 변수(Custom Properties) 선언",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        }
+      ]
+    },
+    "javascript": {
+      "array-methods": [
+        {
+          "title": "map 메서드 사용",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "filter 메서드 사용",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "reduce 메서드",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "async": [
+        {
+          "title": "Promise.allSettled와 Promise.all의 차이",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 코드의 콘솔 출력 순서는?",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "마이크로태스크와 매크로태스크",
+          "difficulty": 8,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise.all 동작",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "async/await 실행 순서",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise.all()은 전달된 프로미스 중 하나라도 reject되면 나머지 프로미스의 실행을 즉시 중단(cancel)한다.",
+          "difficulty": 6,
+          "format": "true_false"
+        }
+      ],
+      "async_await": [
+        {
+          "title": "for...of와 async/await를 사용한 비동기 반복",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "async 함수의 최상위 await 사용",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "await와 Promise.all 중첩 사용",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "async/await는 Promise를 대체한다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "async 제너레이터와 for await...of",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "async 함수에서 예외 던지기",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "여러 await를 순차적으로 사용하면 항상 효율적이다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "async/await에서 오류 처리",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "async/await와 동기 코드 실행 순서",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "await 키워드 사용 위치",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "async 함수의 반환값",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "참/거짓: async 함수는 항상 Promise를 반환합니다.",
+          "difficulty": 3,
+          "format": "true_false"
+        }
+      ],
+      "closures": [
+        {
+          "title": "클로저와 프라이빗 상태",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 코드의 출력 결과는 무엇인가요?",
+          "difficulty": 1,
+          "format": "code_output"
+        },
+        {
+          "title": "즉시 실행 함수(IIFE)",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "고급 클로저 - 메모이제이션",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클로저 기본 개념",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "커링(Currying) 패턴",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        }
+      ],
+      "design_patterns": [
+        {
+          "title": "싱글톤 패턴 구현 결과는 무엇인가요?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "팩토리 패턴을 사용하는 주된 이유는 무엇인가요?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "옵저버 패턴의 핵심 구성 요소는 무엇인가요?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "데코레이터 패턴과 가장 유사한 JavaScript 기능은 무엇인가요?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "팩토리 함수는 반드시 new 키워드와 함께 사용해야 한다.",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "커맨드 패턴의 실행 취소(undo) 결과는?",
+          "difficulty": 7,
+          "format": "code_output"
+        },
+        {
+          "title": "메모이제이션 패턴의 주요 트레이드오프는 무엇인가요?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Pub/Sub 패턴에서 구독 취소 후 이벤트 수신 여부는?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "모듈 패턴에서 IIFE를 사용하는 이유는 무엇인가요?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "옵저버 패턴과 Pub/Sub 패턴의 핵심 차이점은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "destructuring": [
+        {
+          "title": "배열 구조 분해 할당",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "객체 구조 분해 할당",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "dom": [
+        {
+          "title": "이벤트 위임(Event Delegation)의 원리에 대해 올바른 설명은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "DOM 요소 선택",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "error_handling": [
+        {
+          "title": "오류 타입 확인과 instanceof",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "try/catch/finally 실행 순서",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Error 객체의 기본 속성",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "TypeError vs ReferenceError",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "커스텀 에러 클래스 생성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "finally와 return 값 충돌",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "처리되지 않은 Promise 거부 감지",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "catch 블록에서 throw를 다시 사용할 수 있다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "RangeError가 발생하는 상황",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Error.cause 속성",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "SyntaxError는 런타임에 발생할 수 있다",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "try/catch와 비동기 오류",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "오류 객체 없이 throw하기",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "es6": [
+        {
+          "title": "화살표 함수(Arrow Function)는 자체적인 this 바인딩을 가진다.",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "화살표 함수의 특성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Symbol.iterator를 이용한 커스텀 이터러블",
+          "difficulty": 8,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클래스 정적 메서드",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Symbol의 고유성",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        }
+      ],
+      "event_loop": [
+        {
+          "title": "마이크로태스크 체이닝과 starvation",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "requestAnimationFrame과 이벤트 루프",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "setInterval은 정확한 시간 간격을 보장한다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "queueMicrotask() 함수",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "중첩된 Promise와 setTimeout 순서",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "콜 스택(Call Stack)의 특성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "setTimeout(0)과 Promise의 실행 순서",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "마이크로태스크와 매크로태스크 실행 순서",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "이벤트 루프의 역할",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "콜백 큐와 Promise의 기본 순서",
+          "difficulty": 2,
+          "format": "code_output"
+        },
+        {
+          "title": "다음 코드의 출력 순서는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "setTimeout의 최소 지연 시간",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Web Workers와 이벤트 루프",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "events": [
+        {
+          "title": "이벤트 버블링",
+          "difficulty": 2,
+          "format": "true_false"
+        }
+      ],
+      "generators": [
+        {
+          "title": "Generator 함수의 기본 문법",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "제너레이터 함수 기본",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 코드의 실행 결과로 올바른 것은?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Generator next() 반환값 구조",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "Generator return() 메서드",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Generator next()에 인수 전달",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "yield* 위임(delegation) 동작",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Generator 함수는 일반 함수처럼 즉시 실행됩니다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "무한 Generator 구현",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Generator throw() 메서드 동작",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "Generator를 이용한 상태 머신 구현",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "yield*로 배열 위임",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "Generator와 for...of 루프",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "hoisting": [
+        {
+          "title": "let 호이스팅 여부",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "변수 호이스팅 기본",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "함수 호이스팅",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "iterators": [
+        {
+          "title": "이터레이터 프로토콜 필수 메서드",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "String 이터레이터와 유니코드",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "for...of와 for...in의 이터러블 지원",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "이터레이터 체이닝과 지연 평가",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "Map과 이터레이터 메서드",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "커스텀 이터레이터 done 처리",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "이터러블 구조 분해 할당",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "배열은 이터러블이자 이터레이터입니다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "스프레드 연산자와 이터러블",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "Symbol.iterator로 커스텀 이터러블 만들기",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "memory_management": [
+        {
+          "title": "참/거짓: WeakMap의 키(key)는 가비지 컬렉션의 대상이 될 수 있어, 키 객체가 다른 참조를 잃으면 엔트리가 자동으로 제거됩니다.",
+          "difficulty": 7,
+          "format": "true_false"
+        }
+      ],
+      "modules": [
+        {
+          "title": "ES 모듈의 순환 의존성(Circular Dependency) 처리",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "ES 모듈은 항상 strict 모드로 실행됩니다",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "import.meta 객체",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "모듈 네임스페이스 import (* as)",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "import 별칭(alias) 사용",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "ES 모듈 동적 import",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "동적 import()의 반환값",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "동적 import()는 최상위 레벨에서만 사용 가능합니다",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "ES 모듈과 CommonJS의 차이점",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "export * from 재내보내기(re-export)",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "ES 모듈의 named export와 default export",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "performance_memory": [
+        {
+          "title": "requestAnimationFrame 콜백 호출 시점은?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "WeakMap이 일반 Map과 다른 점은 무엇인가요?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "가비지 컬렉션을 방지하는 가장 흔한 실수는?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "SharedArrayBuffer를 사용하기 위해 필요한 HTTP 헤더는?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Object.freeze 후 중첩 객체 수정 시 결과는?",
+          "difficulty": 7,
+          "format": "code_output"
+        },
+        {
+          "title": "WeakSet을 사용하기에 적합한 시나리오는?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "requestAnimationFrame은 탭이 비활성화될 때 자동으로 일시 중지된다.",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "Web Worker는 DOM에 직접 접근할 수 있다.",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "다음 중 JavaScript에서 메모리 누수가 발생하는 흔한 원인은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "디바운스(debounce)와 스로틀(throttle)의 차이점은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "promises": [
+        {
+          "title": "Promise는 동기적으로 실행된다",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "Promise.race()의 동작",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise 체이닝에서 값 전달",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "Promise.allSettled()와 Promise.all() 차이",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise.all()의 동작 방식",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise.resolve() 메서드 동작",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise 체이닝",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise의 세 가지 상태",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise 메모리 누수 방지",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise 기본 상태",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise 생성자에서 동기 오류 처리",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise.any()의 동작",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Promise 체이닝에서 오류 복구",
+          "difficulty": 4,
+          "format": "code_output"
+        }
+      ],
+      "prototype": [
+        {
+          "title": "Object.create()를 이용한 상속",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "참/거짓: 모든 JavaScript 함수는 prototype 프로퍼티를 가집니다.",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "다음 중 프로토타입 체인에 대한 설명으로 올바른 것은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "instanceof와 프로토타입 체인",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Reflect API와 Proxy 트랩",
+          "difficulty": 8,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "프로토타입 체인 기본",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "prototypes": [
+        {
+          "title": "다음 코드의 출력 결과는?",
+          "difficulty": 3,
+          "format": "code_output"
+        }
+      ],
+      "proxy": [
+        {
+          "title": "다음 Proxy 코드의 출력 결과는?",
+          "difficulty": 8,
+          "format": "code_output"
+        }
+      ],
+      "proxy_reflect": [
+        {
+          "title": "Proxy deleteProperty 트랩",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Reflect.ownKeys()와 Object.keys()의 차이",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Proxy 객체 생성 문법",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Proxy get 트랩 동작",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "Proxy set 트랩을 이용한 유효성 검사",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Proxy has 트랩과 in 연산자",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Proxy.revocable()로 Proxy를 취소할 수 있습니다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "Reflect.apply() 사용법",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Reflect와 Proxy 트랩 내 사용",
+          "difficulty": 5,
+          "format": "code_output"
+        }
+      ],
+      "regex": [
+        {
+          "title": "정규식 u 플래그를 사용하면 이모지와 같은 유니코드 문자를 올바르게 처리할 수 있다.",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "명명된 캡처 그룹(named capture group)의 사용 결과는?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "긍정 전방탐색(positive lookahead)의 올바른 문법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "정규식 /^hello/의 의미는 무엇인가요?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "캡처 그룹을 사용한 match 결과는?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "String.replace에서 정규식 캡처 그룹 참조 방법은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "정규식 플래그 g를 사용하면 match()가 모든 매칭 결과를 배열로 반환한다.",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "후방탐색(lookbehind)을 사용한 정규식 결과는?",
+          "difficulty": 7,
+          "format": "code_output"
+        },
+        {
+          "title": "정규식 s 플래그(dotAll)의 역할은 무엇인가요?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "비캡처 그룹 (?:...)의 장점은 무엇인가요?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "정규식 replace와 함수 조합 결과는?",
+          "difficulty": 6,
+          "format": "code_output"
+        }
+      ],
+      "scope": [
+        {
+          "title": "루프와 클로저 문제",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "전역 스코프와 지역 스코프",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "JavaScript에서 'let'과 'var'의 가장 큰 차이점은 무엇인가요?",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "렉시컬 스코프",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "spread": [
+        {
+          "title": "스프레드 연산자 - 배열 복사",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "symbol": [
+        {
+          "title": "Symbol.hasInstance를 이용한 instanceof 커스터마이징",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Symbol.iterator와 제너레이터 함수",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "Symbol.species의 역할",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Well-known Symbol: Symbol.iterator 커스터마이징",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "Symbol.for()와 전역 레지스트리",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "Symbol.toPrimitive를 이용한 변환",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Symbol.keyFor() 동작",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Symbol 속성은 JSON.stringify()에 포함됩니다",
+          "difficulty": 5,
+          "format": "true_false"
+        }
+      ],
+      "this": [
+        {
+          "title": "this 바인딩 - call 메서드",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "메서드와 화살표 함수의 this 차이",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "bind 메서드와 this",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        }
+      ],
+      "variables": [
+        {
+          "title": "NaN 비교",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "const 기본 특성",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "typeof null의 결과",
+          "difficulty": 1,
+          "format": "true_false"
+        },
+        {
+          "title": "기본 데이터 타입",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "var와 let의 기본 차이",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "동등 연산자 비교",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        }
+      ],
+      "weakmap": [
+        {
+          "title": "WeakMap과 가비지 컬렉션",
+          "difficulty": 8,
+          "format": "multiple_choice"
+        }
+      ],
+      "web_apis": [
+        {
+          "title": "Intersection Observer API의 주요 사용 목적은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Broadcast Channel API로 메시지를 보내는 올바른 코드는?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "MutationObserver의 observe 메서드에서 childList 옵션의 역할은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "MutationObserver가 감지할 수 있는 DOM 변화가 아닌 것은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Intersection Observer의 threshold 옵션에서 [0, 0.5, 1]의 의미는?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "History API pushState 호출 후 URL 변화는?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "ResizeObserver와 window.resize 이벤트의 차이점은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Clipboard API로 클립보드에 텍스트를 쓰는 올바른 방법은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Broadcast Channel API는 같은 출처(origin)의 다른 탭 간에 통신할 수 있다.",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "Geolocation API 호출 시 콜백 실행 순서는?",
+          "difficulty": 7,
+          "format": "code_output"
+        }
+      ]
+    },
+    "nextjs": {
+      "api-routes": [
+        {
+          "title": "Route Handler에서 쿠키 설정",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Route Handler에서 동적 경로 파라미터",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "app_router": [
+        {
+          "title": "서버 컴포넌트에서 redirect 함수 호출 결과는?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "App Router에서 레이아웃 파일의 역할은 무엇인가?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "App Router에서 동적 라우트 세그먼트를 정의하는 방법은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "App Router의 page.tsx 파일은 기본적으로 서버 컴포넌트이다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "App Router에서 not-found.tsx 파일의 동작 방식은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "generateStaticParams를 사용한 동적 라우트의 출력 결과는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "App Router에서 Parallel Routes를 구현하는 방법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Intercepting Routes는 소프트 네비게이션 시에만 인터셉트된다",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "Route Groups의 주요 목적은 무엇인가?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useRouter와 redirect의 차이점을 코드로 확인하기",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "middleware.ts에서 Next.js App Router의 요청 처리 순서는?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "generateStaticParams를 사용한 동적 라우트의 정적 생성 경로는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "middleware.ts에서 요청 처리 순서는 어떻게 되는가?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        }
+      ],
+      "app-router": [
+        {
+          "title": "서버 컴포넌트 패턴 - 데이터 전달",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "App Router 기본 렌더링 방식",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "template.tsx vs layout.tsx",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 컴포넌트에서 Context API 사용 제한",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "중첩 레이아웃 렌더링 순서",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "PPR - Partial Prerendering",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "layout.tsx의 역할",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "not-found.tsx 파일",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "App Router 페이지 파일 규칙",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js 14 폴더 구조 - private 폴더",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "로딩 UI 특수 파일",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js App Router 폴더 구조",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Parallel Routes 정의",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "에러 처리 특수 파일",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "authentication": [
+        {
+          "title": "NextAuth.js와 App Router 통합",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "미들웨어를 이용한 인증",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "caching": [
+        {
+          "title": "unstable_noStore로 캐싱 비활성화",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Request Memoization 이해",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "Data Cache와 Full Route Cache의 차이점은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "revalidateTag를 사용하기 위한 fetch 설정은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js App Router에서 fetch 요청은 기본적으로 캐시된다.",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "Next.js 14에서 fetch의 기본 캐시 동작은 force-cache이다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "Next.js 14 캐싱 계층",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "On-demand Revalidation",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "동적 함수와 동적 렌더링",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "Next.js App Router에서 revalidatePath와 revalidateTag의 차이점은 무엇인가요?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "동적 함수(cookies, headers)를 사용하면 Full Route Cache가 비활성화된다",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "Router Cache 동작 방식",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 Next.js 코드에서 unstable_cache와 일반 fetch 캐시의 동작 차이는 무엇인가요?",
+          "difficulty": 8,
+          "format": "code_output"
+        },
+        {
+          "title": "unstable_cache 함수의 올바른 사용법은?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "revalidate 옵션을 사용한 fetch의 동작은?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "Next.js의 Router Cache는 어디에 저장되나요?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "fetch 캐시 옵션 - 정적 데이터",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "generateStaticParams와 dynamicParams의 캐시 동작은?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "Segment-level 캐시 구성 옵션 revalidate의 올바른 사용법은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "fetch 요청에서 캐시를 완전히 비활성화하는 옵션은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "revalidatePath 함수의 역할은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "ISR - 시간 기반 재검증",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "client_components": [
+        {
+          "title": "클라이언트 컴포넌트 내부에서 서버 컴포넌트를 직접 import하여 사용할 수 있다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "'use client' 지시어를 파일에 추가하면 어떤 효과가 있나요?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클라이언트 컴포넌트에서 사용 가능한 기능은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클라이언트 컴포넌트에서 useRouter로 프로그래매틱 네비게이션 결과는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "클라이언트 컴포넌트에서 URL 검색 파라미터를 읽는 올바른 방법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클라이언트 컴포넌트에서 서버 데이터를 효율적으로 관리하는 패턴은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useTransition을 사용한 상태 업데이트 우선순위 처리 결과는?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "클라이언트 컴포넌트에서 Context Provider를 사용할 때 모범 사례는?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클라이언트 컴포넌트는 서버에서 렌더링되지 않는다",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "클라이언트 컴포넌트에서 dynamic import와 SSR 비활성화 결과는?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "useRouter로 프로그래매틱 네비게이션을 수행하면?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "useTransition으로 상태 업데이트 우선순위를 조절하면?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "Context Provider를 서버 레이아웃에서 사용하는 올바른 방법은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "dynamic import에서 ssr: false 옵션을 사용하면?",
+          "difficulty": 6,
+          "format": "code_output"
+        }
+      ],
+      "client-components": [
+        {
+          "title": "클라이언트 컴포넌트에서 사용 가능한 기능",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클라이언트 컴포넌트 번들 최적화",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "data_fetching": [
+        {
+          "title": "다음 Next.js 코드에서 generateStaticParams의 역할과 동작 결과는 무엇인가요?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js App Router에서 'use client' 지시문의 역할은 무엇인가요?",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 Next.js 코드에서 컴포넌트는 어디에서 렌더링되나요?",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "다음 Next.js Server Action 코드에서 발생할 수 있는 문제는 무엇인가요?",
+          "difficulty": 7,
+          "format": "code_output"
+        }
+      ],
+      "data-fetching": [
+        {
+          "title": "서버 컴포넌트의 fetch 자동 중복 제거",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "서버 컴포넌트에서 병렬 데이터 페칭",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "fetch 태그 기반 캐시 관리",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 컴포넌트와 클라이언트 컴포넌트 조합 패턴",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "deployment": [
+        {
+          "title": "Next.js의 output: 'standalone' 설정의 목적은 무엇인가요?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js Edge Runtime vs Node.js Runtime",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js Standalone 출력 모드",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next build 명령어",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "환경 변수 접근 방법",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js 정적 사이트 생성 설정",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js에서 ISR(Incremental Static Regeneration)의 동작 원리로 올바른 것은?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js의 Partial Prerendering(PPR)은 하나의 라우트에서 정적 셸과 동적 컨텐츠를 동시에 제공할 수 있다.",
+          "difficulty": 8,
+          "format": "true_false"
+        }
+      ],
+      "deployment_config": [
+        {
+          "title": "next.config.js에서 번들 분석기 설정은?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "next.config.js의 rewrites와 redirects의 차이점은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "output: 'standalone' 모드의 특징은?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "next.config.js에서 헤더를 전역으로 설정하는 방법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "환경 변수 우선순위 순서는?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "next.config.js의 experimental.serverComponentsExternalPackages 옵션은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Vercel에 배포 시 next.config.js의 rewrites 설정이 자동으로 적용된다",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "next.config.js에서 리다이렉트를 설정하는 방법은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클라이언트 컴포넌트에서 환경 변수를 사용하려면?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": ".env.local 파일은 Git에 커밋되어야 한다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "Next.js 정적 내보내기(Static Export)를 위한 설정은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "error-handling": [
+        {
+          "title": "서버 액션 에러 처리",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "global-error.tsx 파일",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "image_font_optimization": [
+        {
+          "title": "next/image의 priority prop의 역할은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next/image 컴포넌트의 필수 props는?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next/image의 sizes prop을 사용하는 이유는?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next/image unoptimized prop의 효과는?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "next/image의 loader prop 커스터마이징 방법은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next/image placeholder 옵션의 동작은?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "next/font의 variable 옵션 사용법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next/font를 사용하면 폰트가 빌드 시점에 다운로드되어 자체 호스팅된다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "next/image에서 외부 도메인 이미지를 허용하는 설정은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next/font 로컬 폰트 사용법의 올바른 코드는?",
+          "difficulty": 4,
+          "format": "code_output"
+        }
+      ],
+      "image-optimization": [
+        {
+          "title": "next/image 필수 속성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next/image의 sizes 속성",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "외부 이미지 도메인 허용",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next/image의 priority 속성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "intercepting-routes": [
+        {
+          "title": "Intercepting Routes 기호",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "loading-ui": [
+        {
+          "title": "loading.tsx와 Suspense 관계",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "metadata": [
+        {
+          "title": "viewport 메타데이터 설정",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Open Graph 메타데이터 설정",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "robots.txt와 sitemap.xml 생성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "메타데이터 상속과 병합",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "동적 메타데이터 생성",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "정적 메타데이터 정의",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "middleware": [
+        {
+          "title": "미들웨어 실행 환경",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "미들웨어 파일 위치",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "미들웨어에서 NextResponse.rewrite의 동작은?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "미들웨어에서 쿠키를 읽는 올바른 방법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "미들웨어 matcher의 negative lookahead 패턴 동작은?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "미들웨어에서 geo 위치 정보를 사용하는 방법은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "미들웨어에서 응답 헤더를 설정하는 방법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js Middleware에서 사용할 수 없는 Node.js API는 무엇인가요?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "미들웨어에서 prisma나 mongoose 같은 Node.js ORM을 직접 사용할 수 있다",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "미들웨어 matcher 설정",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js 미들웨어는 Edge Runtime에서 실행된다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "미들웨어에서 요청 헤더를 수정하는 방법은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "미들웨어에서 리다이렉트하는 코드의 출력은?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "Next.js Middleware 파일은 프로젝트 어디에 위치해야 하나요?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "미들웨어에서 특정 경로만 매칭하는 방법은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js 미들웨어 파일의 올바른 위치는?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "pages-router": [
+        {
+          "title": "Pages Router에서 _app.tsx 역할",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Pages Router의 _document.tsx 역할",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "getStaticProps와 getServerSideProps 차이",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "parallel-routes": [
+        {
+          "title": "Parallel Routes의 default.tsx",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "routing": [
+        {
+          "title": "next/link의 prefetch 동작",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "미들웨어에서 응답 헤더 설정",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "라우트 그룹 사용법",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useSearchParams 훅",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next/navigation의 redirect 함수",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "캐치올 라우트 세그먼트",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js App Router에서 Parallel Routes와 Intercepting Routes를 함께 사용하는 대표적인 패턴은?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useParams 훅",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js App Router에서 공유 레이아웃을 정의하는 파일은 무엇인가요?",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js App Router에서 페이지를 생성하기 위해 사용하는 파일 이름은 무엇인가요?",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "next/navigation의 useRouter push vs replace",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js 고급 라우팅 - 조건부 렌더링",
+          "difficulty": 8,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Route Handler 정의",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Intercepting Routes와 모달 패턴",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useRouter vs usePathname",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "동적 라우트 세그먼트 정의",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 Next.js 폴더 구조에서 /dashboard 경로 접근 시 렌더링 순서는?",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "Next.js App Router에서 동적 라우트 세그먼트를 만들기 위한 올바른 폴더 명명 규칙은?",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "server_actions": [
+        {
+          "title": "서버 액션에서 Zod로 입력값을 검증하는 패턴은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션에서 파일 업로드를 처리하는 올바른 방법은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션을 정의하는 올바른 방법은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션은 클라이언트 컴포넌트 파일 내에서 인라인으로 정의할 수 없다",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "서버 액션에서 try-catch 내부의 redirect 호출 결과는?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 액션은 클라이언트 컴포넌트에서 직접 정의할 수 없다",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "서버 액션에서 보안 취약점을 방지하기 위한 모범 사례는?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션에서 HttpOnly 쿠키를 설정하면 어떤 결과가 나타나는가?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 액션에서 useOptimistic을 활용한 낙관적 업데이트 패턴은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션에서 cookies를 사용하여 인증 처리하는 결과는?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 액션의 보안 취약점을 방지하는 방법은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "revalidatePath를 사용한 캐시 갱신의 올바른 사용법은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션에서 optimistic update를 구현하는 방법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션에서 Zod를 사용한 입력값 검증 방법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션에서 revalidateTag를 사용하는 시나리오는?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useFormState를 사용한 서버 액션 응답 처리 결과는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 액션에서 redirect를 사용할 때의 동작은?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "revalidateTag로 태그된 캐시를 무효화하면 어떤 결과가 나타나는가?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 액션에서 폼 데이터를 처리하는 기본 방법은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "server_components": [
+        {
+          "title": "서버 컴포넌트에서 cache() 함수 사용의 이점은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 컴포넌트에서 할 수 없는 작업은 무엇인가?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 컴포넌트에서 fetch를 사용한 데이터 요청의 기본 캐싱 동작은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Suspense를 활용한 스트리밍 컴포넌트의 렌더링 순서는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 컴포넌트에서 클라이언트 컴포넌트로 props 전달 제한사항은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 컴포넌트는 클라이언트 컴포넌트를 children으로 받아 렌더링할 수 있다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "서버 컴포넌트에서 fetch 중복 요청 처리 방식은?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 컴포넌트에서 보안 민감한 데이터를 안전하게 처리하는 방법은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "generateMetadata 함수에서 동적 메타데이터 생성 시 데이터 페칭 결과는?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 컴포넌트에서 third-party 라이브러리 사용 시 'use client' 경계 처리 방법은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Next.js 15에서 fetch의 기본 캐싱 동작 변경 사항은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Suspense를 활용한 스트리밍 렌더링 순서는?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 컴포넌트에서 클라이언트 컴포넌트로 props 전달 시 제한사항은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "동일한 URL로 여러 번 fetch할 때 네트워크 요청 횟수는?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 컴포넌트에서 React cache() 함수 사용의 이점은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "generateMetadata와 Page 컴포넌트의 fetch 중복 요청 처리는?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "'use client' 선언 없는 서드파티 컴포넌트를 서버 컴포넌트에서 사용하는 방법은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        }
+      ],
+      "server-actions": [
+        {
+          "title": "서버 액션에서 캐시 재검증",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션에서 파일 업로드",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션 바인딩",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useFormStatus 훅의 역할",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션 보안",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션과 useOptimistic",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 액션 기본 정의",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "server-components": [
+        {
+          "title": "서버 컴포넌트에서 데이터베이스 직접 접근",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "서버 컴포넌트에서 useState 사용 가능 여부",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "서버 컴포넌트와 third-party 라이브러리",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "서버/클라이언트 컴포넌트 데이터 전달 제약",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "서버 컴포넌트에서 데이터 페칭",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 컴포넌트와 클라이언트 컴포넌트 구분",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "streaming": [
+        {
+          "title": "generateStaticParams와 동적 라우트",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Suspense를 활용한 스트리밍",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "suspense": [
+        {
+          "title": "스트리밍 HTML과 Suspense 경계",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ]
+    },
+    "react": {
+      "accessibility": [
+        {
+          "title": "React에서 동적 폼 오류 메시지의 접근성 구현",
+          "difficulty": 7,
+          "format": "code_output"
+        },
+        {
+          "title": "React에서 커스텀 드롭다운 컴포넌트의 ARIA 역할 올바른 구현",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React 이미지 컴포넌트에서 장식용 이미지 처리 방법",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "aria-label과 aria-labelledby의 올바른 사용 구분",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React에서 onClick 핸들러를 div 요소에 추가하면 키보드 접근성이 자동으로 보장된다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "aria-live 속성의 값과 스크린 리더 동작 방식",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "모달 열릴 때 올바른 포커스 관리 구현",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "스크린 리더 전용 텍스트를 React에서 구현하는 올바른 방법",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "키보드 탐색을 위한 포커스 트랩(Focus Trap) 구현 시나리오",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "aria-hidden='true'로 설정된 요소는 키보드 포커스도 받지 않는다",
+          "difficulty": 5,
+          "format": "true_false"
+        }
+      ],
+      "components": [
+        {
+          "title": "함수형 컴포넌트와 클래스 컴포넌트",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "에러 경계(Error Boundary)",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Suspense fallback 동작",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "React.lazy와 Suspense",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React Portal 사용 사례",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "concurrent_features": [
+        {
+          "title": "React 18의 useTransition 훅의 주요 목적은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        }
+      ],
+      "context": [
+        {
+          "title": "다음 React Context 코드에서 Child 컴포넌트가 표시하는 값은?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "createContext 기본값",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useContext 사용법",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Context API 성능 문제",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "custom_hooks": [
+        {
+          "title": "다음 커스텀 훅 코드에서 발생하는 문제점은?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        }
+      ],
+      "error_boundaries": [
+        {
+          "title": "중첩된 Error Boundary의 에러 처리 순서",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "getDerivedStateFromError와 componentDidCatch의 차이점",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "함수형 컴포넌트로 Error Boundary 직접 구현 가능 여부",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "Error Boundary가 캐치할 수 있는 에러는?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Error Boundary는 이벤트 핸들러의 에러를 캐치한다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "Error Boundary에서 비동기 에러 처리하기",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Error Boundary의 key prop을 이용한 강제 리마운트",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "Error Boundary 리셋 패턴 구현",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "hooks": [
+        {
+          "title": "useEffect 의존성 배열 심화",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useRef와 useState 차이",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useReducer 사용 시나리오",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useState 비동기 특성",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "useRef 기본 사용법",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo와 useCallback 차이",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useState 함수형 업데이트",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback 메모이제이션",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useState 초기값 설정",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useEffect 기본 사용법",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useEffect 클린업 함수",
+          "difficulty": 2,
+          "format": "code_output"
+        },
+        {
+          "title": "다음 커스텀 훅을 사용하는 두 컴포넌트에서, A에서 increment를 호출하면 B의 count는?",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "useEffect의 클린업 함수는 컴포넌트가 언마운트될 때만 실행된다.",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "버튼 클릭 시 handleClick이 실행되면 화면에 표시되는 count 값은?",
+          "difficulty": 2,
+          "format": "code_output"
+        },
+        {
+          "title": "커스텀 훅 규칙",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "커스텀 훅 재사용성",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "jsx": [
+        {
+          "title": "React에서 key prop이 중요한 이유로 가장 적절한 것은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "JSX 표현식 평가",
+          "difficulty": 1,
+          "format": "true_false"
+        },
+        {
+          "title": "합성 이벤트(Synthetic Event)",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "이벤트 핸들링 기본",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        }
+      ],
+      "lifecycle": [
+        {
+          "title": "key prop의 역할",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React Fiber 아키텍처",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React 재조정(Reconciliation)",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "memoization": [
+        {
+          "title": "React.memo와 useMemo의 차이점을 올바르게 설명한 것은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "patterns": [
+        {
+          "title": "복합 컴포넌트 패턴",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HOC(고차 컴포넌트) 개념",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Render Props 패턴",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React에서 Compound Component 패턴의 주요 이점은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "performance": [
+        {
+          "title": "React.memo 사용법",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React 성능 최적화 전략",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 중 React에서 불필요한 리렌더링을 일으킬 수 있는 안티패턴은?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React.memo의 동작 방식으로 올바른 것은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "performance_optimization": [
+        {
+          "title": "React.memo와 객체 props의 리렌더링",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "React.memo의 커스텀 비교 함수 사용",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo와 useCallback의 차이점",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "startTransition을 사용한 긴급하지 않은 업데이트",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "useDeferredValue의 활용",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React Profiler를 이용한 성능 측정",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback을 사용한 함수 메모이제이션",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "가상 DOM 재조정 알고리즘의 동작",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "useMemo는 항상 성능을 향상시킨다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "key prop이 리스트 렌더링 성능에 미치는 영향",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React Concurrent 렌더링의 인터럽트 가능성",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "컴포넌트 구성으로 리렌더링 최소화",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React.memo의 기본 동작 원리",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "react_patterns": [
+        {
+          "title": "HOC와 Custom Hook 중 항상 HOC가 더 선호된다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "children prop을 이용한 슬롯 패턴",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "State Initializer 패턴으로 컴포넌트 유연성 향상",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useImperativeHandle로 ref 인터페이스 커스터마이징",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Forwarding Ref를 이용한 DOM 접근",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "Provider 패턴과 Context 최적화",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React Portal을 이용한 모달 렌더링",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "제어 컴포넌트 vs 비제어 컴포넌트",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Context + Reducer 패턴으로 전역 상태 관리",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Custom Hook을 이용한 로직 재사용",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "Higher-Order Component(HOC) 패턴",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Compound Components 패턴 구현",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Render Props 패턴의 기본 개념",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "react_server_components": [
+        {
+          "title": "RSC에서 렌더링된 결과는 JSON이 아닌 특수한 RSC 페이로드 형식으로 클라이언트에 전달된다",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "RSC에서 Suspense와 Streaming을 활용한 점진적 로딩",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클라이언트 컴포넌트는 'use client' 선언이 있는 파일의 모든 import도 클라이언트 컴포넌트가 된다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "RSC 직렬화(Serialization) 규칙: 서버에서 클라이언트로 전달 가능한 데이터",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서버 컴포넌트가 클라이언트 컴포넌트에 children으로 전달될 때",
+          "difficulty": 7,
+          "format": "code_output"
+        },
+        {
+          "title": "RSC와 SSR(Server-Side Rendering)의 차이점",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "RSC에서 직접 데이터베이스 쿼리를 통한 데이터 페칭",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "React Server Components(RSC)에서 사용할 수 없는 기능",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "RSC에서 민감한 환경 변수를 안전하게 사용하는 방법",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클라이언트 컴포넌트에서 서버 컴포넌트를 직접 import할 수 없는 이유",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "'use server' 지시어의 올바른 사용 목적",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        }
+      ],
+      "react18_features": [
+        {
+          "title": "동시성 렌더링(Concurrent Rendering)에서 렌더링이 중단될 수 있는 조건",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useId 훅이 생성하는 ID의 특성",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "React 18 Streaming SSR에서 모든 컴포넌트가 준비될 때까지 HTML 전송이 지연된다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "useDeferredValue를 사용한 리스트 필터링의 최적화 원리",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "createRoot API와 기존 ReactDOM.render의 차이점",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React 18 자동 배칭(Automatic Batching) 동작 결과",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "useDeferredValue와 useTransition의 차이점은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useTransition 훅의 주요 목적은 무엇인가?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useTransition의 isPending 상태를 활용한 로딩 UI 패턴",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React 18에서 flushSync를 사용하면 자동 배칭을 우회할 수 있다",
+          "difficulty": 5,
+          "format": "true_false"
+        }
+      ],
+      "reconciliation": [
+        {
+          "title": "다음 React 코드에서 useMemo가 메모이제이션을 재사용하는 경우는?",
+          "difficulty": 8,
+          "format": "code_output"
+        },
+        {
+          "title": "참/거짓: React에서 리스트 렌더링 시 key prop으로 배열 인덱스를 사용하면 항상 안전합니다.",
+          "difficulty": 5,
+          "format": "true_false"
+        }
+      ],
+      "state_management": [
+        {
+          "title": "React의 useState는 비동기적으로 상태를 업데이트하므로, setState 직후 변경된 상태값을 읽을 수 있다.",
+          "difficulty": 4,
+          "format": "true_false"
+        }
+      ],
+      "state_management_patterns": [
+        {
+          "title": "Zustand 스토어 기본 사용법과 상태 업데이트",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "상태 끌어올리기(Lifting State Up)가 필요한 상황",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Redux Toolkit의 createSlice와 기존 Redux 패턴 비교",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Context API에서 불필요한 리렌더링을 줄이는 패턴",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "컴포넌트 합성(Composition)으로 Prop Drilling 해결하기",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Prop Drilling 문제를 해결하는 방법들 중 Context API의 적합한 사용 사례",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Jotai/Recoil의 원자적 상태(Atomic State) 모델의 핵심 개념",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Redux와 Context API의 성능 측면 트레이드오프",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "상태 코로케이션(State Colocation)은 항상 상태를 컴포넌트 트리 최상위에 배치해야 한다는 원칙이다",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "URL 상태 관리: useSearchParams를 활용한 필터 상태",
+          "difficulty": 6,
+          "format": "code_output"
+        }
+      ],
+      "suspense": [
+        {
+          "title": "Suspense와 Error Boundary의 협업",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Suspense fallback의 최소 표시 시간",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "use() 훅과 Suspense 통합",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "Suspense는 데이터 페칭을 직접 처리한다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "startTransition과 Suspense의 관계",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "중첩된 Suspense 경계의 렌더링 순서",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "React.lazy와 Suspense를 이용한 코드 스플리팅",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React.Suspense의 fallback prop 동작",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "testing": [
+        {
+          "title": "컴포넌트 모킹 with jest.mock()",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "waitFor 사용 목적",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "userEvent vs fireEvent 차이",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React Testing Library의 쿼리 우선순위",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "MSW를 이용한 API 모킹",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Jest mock 함수 호출 횟수 검증",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "findBy 쿼리의 비동기 특성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "테스트 커버리지 100%와 버그",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "act() 래퍼 사용 시점",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "screen.getByRole로 disabled 버튼 찾기",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Jest spyOn과 mock의 차이",
+          "difficulty": 4,
+          "format": "true_false"
+        }
+      ],
+      "useCallback": [
+        {
+          "title": "useCallback은 React.memo 없이도 항상 성능을 향상시킨다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "useCallback과 useEffect의 무한 루프 방지",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback stale closure 문제",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "useCallback 의존성 배열의 올바른 구성",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback 없이 자식 컴포넌트에 함수 전달 시 문제",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback 의존성 배열과 함수 재생성",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "useCallback의 기본 동작",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback 의존성 배열의 올바른 사용",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback과 stale closure",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "useCallback은 항상 성능을 향상시킨다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "useCallback과 이벤트 핸들러 최적화",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback과 useEffect의 상호작용",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback과 함수형 업데이트를 이용한 최적화",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback으로 커스텀 훅의 함수 안정성 보장",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback과 함수형 setState로 의존성 최소화",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useCallback name 의존성에 따른 Child 리렌더링 분기",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "커스텀 훅에서 useCallback으로 함수 안정성 보장",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "useContext": [
+        {
+          "title": "중첩된 Provider에서의 useContext 값",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "Context와 useReducer를 결합한 전역 상태 관리 패턴",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Provider 없이 useContext 사용 시 에러 발생 여부",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "중첩된 Provider에서의 useContext 반환값",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "useContext의 기본 사용법",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Context Provider value 변경 시 리렌더링 범위",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "React.memo와 useContext의 리렌더링 관계",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "Context 성능 최적화를 위한 분리 전략",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Context Provider value를 useMemo로 최적화하기",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Provider 없이 useContext 사용 시 동작",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "Context와 useReducer를 결합한 전역 상태 관리",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Context에서 구독 최적화: useSyncExternalStore 대안 패턴",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "useMemo": [
+        {
+          "title": "useMemo와 useCallback의 핵심 차이",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo의 기본 목적과 반환값",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo로 Context value 최적화",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo는 항상 사용해야 성능이 좋아진다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "useMemo로 참조 동일성 유지하기",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo 의존성 배열이 비어있을 때",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "useMemo vs useCallback 차이점",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo의 기본 목적",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo의 계산 비용 측정 방법",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo의 계산 비용 측정",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo와 파생 상태 계산",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useMemo에서 count 의존성 누락 시 결과",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "useMemo 의존성 배열 누락 시 동작",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "useMemo로 Context value 최적화하기",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "모든 계산에 useMemo를 적용하면 항상 성능이 향상된다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "useMemo 빈 의존성 배열의 동작",
+          "difficulty": 3,
+          "format": "code_output"
+        }
+      ],
+      "useReducer": [
+        {
+          "title": "useReducer에서 비동기 처리 패턴",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useReducer에서 middleware 패턴",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "useReducer에서 비동기 처리 올바른 패턴",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useReducer에서 동일한 state 반환 시 동작",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "useReducer의 dispatch는 안정적인 참조를 가진다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "useReducer vs useState 선택 기준",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useReducer dispatch는 안정적인 참조를 가진다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "useReducer에서 불변성 위반 시 결과",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "useReducer의 초기화 함수(init) 실행 결과",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "useReducer 누적 dispatch 결과값",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "useReducer의 기본 구조와 반환값",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "TypeScript와 useReducer - 판별 유니온 액션 타입",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useReducer에서 같은 state 반환 시 리렌더링",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "useReducer에서 불변성 유지",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useReducer의 초기화 함수(init) 활용",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useReducer reducer 함수 반환값",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "useReducer의 기본 구조",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "useRef": [
+        {
+          "title": "useRef의 초기값과 타입",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "useRef와 렌더링 중 .current 변경 시 StrictMode 영향",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "useRef를 활용한 최신 콜백 저장 패턴",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "forwardRef와 useRef 조합으로 자식 DOM 접근",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useRef 초기값에 따른 .current 타입",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "useRef로 이전 값 저장하는 패턴",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useRef .current 변경 시 리렌더링 발생 여부",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "useRef를 통한 DOM 접근 방법",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useRef 값 변경 시 리렌더링",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "useRef와 함수 인스턴스 저장",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "useRef의 DOM 접근 방법",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useImperativeHandle과 useRef 조합",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useRef와 렌더링 중 .current 접근",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "forwardRef와 useRef 조합",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useRef로 타이머 ID 관리하기",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "useRef로 이전 값 저장하기 (previous value pattern)",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ]
+    },
+    "typescript": {
+      "advanced_types": [
+        {
+          "title": "Variadic Tuple과 함수 오버로드 결합 패턴",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "재귀 타입을 사용한 중첩 배열 타입 정의",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Variadic Tuple 타입의 스프레드 연산 결과",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "Template Literal 타입과 infer를 조합한 타입 추출",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "공변성과 반공변성: 함수 매개변수의 타입 관계",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "브랜드 타입(Branded Types)으로 명목적 타입 시스템 구현",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Higher-Kinded Types 시뮬레이션 패턴의 타입 결과",
+          "difficulty": 7,
+          "format": "code_output"
+        },
+        {
+          "title": "Template Literal 타입을 이용한 이벤트 이름 생성",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "명목적 타입 워크어라운드: 교차 타입과 유니크 심볼",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "재귀 타입을 이용한 JSON 타입 정의",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "공변 위치와 반공변 위치에서의 infer 동작 차이",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Opaque 타입과 라이브러리 경계에서의 타입 안전성",
+          "difficulty": 5,
+          "format": "true_false"
+        }
+      ],
+      "basic_types": [
+        {
+          "title": "TypeScript에서 'unknown'과 'any' 타입의 차이점으로 올바른 것은?",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "TypeScript에서 interface는 extends로 확장하고, type은 확장할 수 없다.",
+          "difficulty": 3,
+          "format": "true_false"
+        }
+      ],
+      "conditional_types": [
+        {
+          "title": "never 타입과 조건부 타입의 상호작용",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "infer를 사용한 Promise 언래핑",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "조건부 타입으로 구현한 Flatten 타입",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "조건부 타입과 제네릭 함수의 결합",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "조건부 타입 내 infer는 여러 위치에 사용 가능",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "다음 TypeScript 코드에서 타입 추론 결과로 올바른 것은?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "UnionToIntersection 조건부 타입 구현",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "조건부 타입의 기본 문법",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "분배적 조건부 타입의 동작",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "infer 키워드로 함수 파라미터 타입 추출",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "중첩 조건부 타입으로 타입 판별",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "declaration_merging": [
+        {
+          "title": "모듈 보강(Module Augmentation)으로 외부 타입 확장",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "외부 모듈 보강과 타입 안전성 확보",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "인터페이스 병합 시 충돌하는 프로퍼티 타입",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "인터페이스와 타입 별칭의 병합 차이",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "네임스페이스 병합과 열거형 확장",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "전역 보강(Global Augmentation)을 이용한 Window 타입 확장",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "네임스페이스와 클래스의 병합",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "함수 시그니처 병합 시 오버로드 순서",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "인터페이스 선언 병합(Interface Declaration Merging) 기본",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "decorators": [
+        {
+          "title": "데코레이터 실행 순서 출력",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "파라미터 데코레이터 인수",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "클래스 데코레이터로 생성자 교체",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "접근자 데코레이터와 get/set 동시 적용",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "클래스 데코레이터의 기본 구조",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "참/거짓: TypeScript의 레거시 데코레이터(experimentalDecorators)는 tsconfig 설정 없이 기본적으로 사용할 수 있습니다.",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "메서드 데코레이터의 매개변수",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "클래스 데코레이터 시그니처",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "데코레이터 팩토리란?",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "프로퍼티 데코레이터의 반환값",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "데코레이터 기본 개념",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "discriminated_unions": [
+        {
+          "title": "판별된 유니온으로 결과 타입 구현",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "판별된 유니온과 never를 이용한 완전성 검사",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "판별자 프로퍼티(Discriminant Property) 패턴",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "유니온 타입 좁히기와 공통 메서드",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "판별된 유니온의 판별자는 리터럴 타입이어야 한다",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "판별된 유니온에서 공통 프로퍼티 접근",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "판별된 유니온으로 상태 기계 표현",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        }
+      ],
+      "enums": [
+        {
+          "title": "이종 열거형(Heterogeneous Enums)",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "문자열 열거형의 특징",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "enum 기본 사용법",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "enum vs const enum 차이",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "switch 문에서 열거형 활용",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "열거형을 객체로 변환할 때의 구조",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "계산된 열거형 멤버",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "ambient enum이란?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "const enum과 일반 enum의 차이",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "열거형 역방향 매핑",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "숫자형 열거형의 기본값",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "generics": [
+        {
+          "title": "재귀 제네릭 타입 정의",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "제네릭 기본 문법",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "제네릭 제약 조건 (extends)",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "제네릭 타입 추론 코드 분석",
+          "difficulty": 2,
+          "format": "code_output"
+        },
+        {
+          "title": "제네릭 기본값(Default Type Parameter)",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "제네릭 조건부 타입과 infer를 활용한 함수 파라미터 타입 추출",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 TypeScript 코드에서 ReturnType<T>의 결과 타입은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "제네릭 타입 파라미터의 다중 제약 조건",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "제네릭 조건부 타입과 분배 법칙",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "제네릭 제약 조건(extends)의 기본 사용법",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "제네릭 함수의 타입 추론",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "제네릭 클래스의 스택 구현 출력",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "제네릭 제약 조건으로 객체 속성 접근",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "제네릭 타입 파라미터의 기본값 설정 가능 여부",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "제네릭 함수 오버로드 출력 결과",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "제네릭 인터페이스와 함수 타입",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "제네릭 유틸리티 함수의 타입 안전성",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "infer 키워드를 사용한 함수 반환 타입 추출",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "TypeScript에서 제네릭 타입 매개변수에 기본값을 지정할 수 있다.",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "다음 TypeScript 제네릭 함수에서 T의 역할로 올바른 설명은?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "infer": [
+        {
+          "title": "다음 TypeScript 코드에서 UnpackPromise<T>의 결과 타입은?",
+          "difficulty": 8,
+          "format": "code_output"
+        }
+      ],
+      "interfaces": [
+        {
+          "title": "interface vs type - 유니온과 교차 타입 정의",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "interface와 type alias의 확장 방법 차이",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        }
+      ],
+      "mapped_types": [
+        {
+          "title": "매핑된 타입에서 -? 수정자로 선택적 제거",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "매핑된 타입의 기본 문법",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "재귀 매핑된 타입으로 DeepReadonly 구현",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "keyof와 매핑된 타입의 결합",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "typeof와 keyof를 활용한 매핑된 타입",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "매핑된 타입에서 as never로 속성 필터링",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "매핑된 타입에서 +readonly와 -readonly 수정자",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "매핑된 타입과 키 재매핑(as 절)",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "다음 TypeScript mapped type 코드에서 Mutable<T> 타입의 역할은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "modules": [
+        {
+          "title": "타입 전용 import (import type)",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "export type과 타입 재내보내기",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "template_literal_types": [
+        {
+          "title": "템플릿 리터럴 타입 기본 구성",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Uppercase 내장 유틸리티 타입",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "템플릿 리터럴 타입으로 이벤트 핸들러 생성",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "템플릿 리터럴 타입에서 infer 사용",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Capitalize 유틸리티 타입 동작",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "매핑된 타입과 템플릿 리터럴 타입 결합",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "중첩 템플릿 리터럴 타입",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "템플릿 리터럴 타입과 숫자 타입",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "다음 TypeScript 코드에서 EventName 타입의 값으로 올바른 것은?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "유니온 타입과 템플릿 리터럴 타입 조합",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "type_guards": [
+        {
+          "title": "다음 중 TypeScript에서 사용자 정의 타입 가드(User-Defined Type Guard)의 올바른 구현은?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "instanceof 타입 가드",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "in 연산자를 사용한 타입 좁히기",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "assertion 함수를 이용한 타입 좁히기",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "동등성 좁히기(Equality Narrowing)",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "제어 흐름 분석과 타입 좁히기",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "never 타입을 이용한 완전성 검사",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "진실성 좁히기(Truthiness Narrowing)",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "typeof null의 타입 가드 주의사항",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "제네릭 타입 가드 함수",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "참/거짓: TypeScript에서 사용자 정의 타입 가드(user-defined type guard) 함수는 반환 타입을 'param is Type' 형태로 명시해야 합니다.",
+          "difficulty": 4,
+          "format": "true_false"
+        }
+      ],
+      "type_inference": [
+        {
+          "title": "함수 반환 타입 추론과 오버로드 시그니처",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "조건부 타입에서의 분배 법칙(Distributive Conditional Types)",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "infer를 사용한 함수 반환 타입 추출 유틸리티",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "as const 단언과 객체 리터럴 타입 추론",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "제어 흐름 분석을 통한 타입 좁히기",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "타입 단언(Type Assertion)과 타입 추론의 상호작용",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "타입 가드 함수와 is 키워드를 이용한 타입 좁히기",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "문맥적 타입 추론(Contextual Typing)의 동작 원리",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "타입 확장(Widening)과 const 단언의 차이",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "함수 반환 타입 추론과 재귀 함수",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "satisfies 연산자와 타입 추론의 차이",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "타입 좁히기와 in 연산자 사용",
+          "difficulty": 6,
+          "format": "code_output"
+        }
+      ],
+      "type_narrowing": [
+        {
+          "title": "참/거짓: TypeScript에서 typeof 연산자로 'null'을 검사하면 'null'이 반환됩니다.",
+          "difficulty": 2,
+          "format": "true_false"
+        }
+      ],
+      "type-guards": [
+        {
+          "title": "typeof 타입 가드",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "in 연산자 타입 가드",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "사용자 정의 타입 가드 (is 키워드)",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "types": [
+        {
+          "title": "Union 타입 기본 개념",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "타입 추론 - 함수 반환 타입",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "never 타입의 용도",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Discriminated Union (판별 유니온)",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "분산 조건부 타입 (Distributive Conditional Types)",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "TypeScript 기본 타입 - string과 number 구분",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "조건부 타입 기본 개념",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "TypeScript any vs unknown 기본 차이",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Intersection 타입 이해",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "typescript_config": [
+        {
+          "title": "strict 모드에서 strictPropertyInitialization의 동작",
+          "difficulty": 7,
+          "format": "code_output"
+        },
+        {
+          "title": "Project References와 composite 옵션",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "target 옵션에 따른 코드 변환 결과",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "strict 모드가 활성화하는 컴파일러 옵션들",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "strictNullChecks 옵션의 효과",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "target과 lib 옵션의 독립성",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "moduleResolution 옵션과 모듈 탐색 전략",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "paths 별칭 설정과 baseUrl의 관계",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "isolatedModules 옵션과 const enum 사용 제한",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "esModuleInterop과 CommonJS 모듈 import 방식",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "noImplicitAny 옵션의 영향",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "utility_types": [
+        {
+          "title": "Readonly<T>와 불변성",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "다음 TypeScript 코드에서 컴파일 에러가 발생하는 줄은?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "NonNullable<T>의 동작 방식",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Partial<T>의 동작 이해",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Pick<T, K>으로 타입 추출",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Required<T>는 Partial<T>의 반대",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "Record<K, V>에서 K는 string | number | symbol만 가능",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "ConstructorParameters<T>와 InstanceType<T>",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Omit<T, K>으로 타입 제외",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Extract와 Exclude 유틸리티 타입",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "ReturnType<T>와 Parameters<T>의 차이",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 TypeScript 코드에서 UpdateUser 타입의 결과로 올바른 것은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Record<K, V> 타입의 활용",
+          "difficulty": 3,
+          "format": "code_output"
+        }
+      ],
+      "utility-types": [
+        {
+          "title": "ReturnType 유틸리티 타입",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "infer 키워드와 조건부 타입",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Pick과 Omit 유틸리티 타입 비교",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Partial 유틸리티 타입",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Record 유틸리티 타입 활용",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ]
+    },
+    "web_fundamentals": {
+      "accessibility": [
+        {
+          "title": "다음 HTML에서 접근성 문제가 있는 부분은 무엇인가요?",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "ARIA role 속성 사용",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 HTML에서 스크린 리더가 읽어주는 버튼의 접근 가능한 이름은 무엇인가요?",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "이미지 alt 텍스트의 역할",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "웹 접근성(a11y)에서 ARIA 속성의 주된 목적은 무엇인가요?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "키보드 접근성 tabindex 속성",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "browser": [
+        {
+          "title": "브라우저 JavaScript 엔진과 이벤트 루프",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "브라우저 렌더링 Critical Rendering Path 순서",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Reflow vs Repaint 차이",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSSOM이 렌더링을 블로킹하는 이유",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "브라우저 레이어 합성(Compositing) 단계",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        }
+      ],
+      "browser_apis": [
+        {
+          "title": "localStorage에 저장된 데이터는 브라우저를 닫아도 유지된다.",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "IntersectionObserver API의 rootMargin 옵션의 역할은 무엇인가요?",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        }
+      ],
+      "browser_rendering": [
+        {
+          "title": "브라우저의 스크립트 로딩 방식 비교",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSS 파일이 JavaScript 실행을 차단하는 경우",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "브라우저 컴포지트 레이어 생성 조건",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "requestAnimationFrame을 사용해야 하는 이유",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "DOMContentLoaded와 load 이벤트의 발생 시점",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "Reflow와 Repaint의 차이점",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "브라우저 Critical Rendering Path의 단계 순서",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Layout Thrashing 발생 패턴 분석",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "CSS transform과 opacity의 Reflow 발생 여부",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "will-change CSS 속성의 올바른 사용법",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "cors": [
+        {
+          "title": "단순 요청(Simple Request) 조건",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS는 서버 보안 메커니즘이다",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "CORS Preflight 요청의 HTTP 메서드",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Access-Control-Allow-Origin 와일드카드 사용 제한",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS withCredentials 설정",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "CORS Preflight 캐싱",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "CORS 요청 시 노출되는 응답 헤더",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS와 쿠키 도메인 설정",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS 오류와 Opaque Response",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "CORS와 다른 HTTP 메서드별 Preflight",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS Preflight 요청의 HTTP 메서드",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Access-Control-Allow-Origin 와일드카드 사용 제한",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS withCredentials 설정 오류",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "CORS Preflight 캐싱 동작",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "CORS 요청 시 노출되는 응답 헤더",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS와 쿠키 도메인 설정 조건",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS no-cors 모드와 Opaque Response",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "DELETE 요청과 CORS Preflight",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "dom": [
+        {
+          "title": "이벤트 캡처링과 버블링 전파 단계",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "event.preventDefault()의 역할",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "이벤트 버블링 개념",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        }
+      ],
+      "html": [
+        {
+          "title": "HTML 시맨틱 태그 header와 div의 차이",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTML nav 태그 올바른 사용",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "article vs section 태그 사용 구분",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "http": [
+        {
+          "title": "HTTP 상태 코드 404가 의미하는 것은 무엇인가요?",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 fetch 요청의 결과로 콘솔에 출력되는 HTTP 메서드는 무엇인가요?",
+          "difficulty": 2,
+          "format": "code_output"
+        },
+        {
+          "title": "HTTP GET 요청은 멱등성(idempotent)을 가지며, 같은 요청을 여러 번 보내도 서버 상태가 변하지 않아야 한다.",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "HTTP GET vs POST 메서드 차이",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTP 상태 코드 404 의미",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTP 상태 코드 200 의미",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTP PUT vs PATCH 메서드 차이",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTP 상태 코드 301 vs 302 차이",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTP/2의 핵심 특징",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTP/3와 QUIC 프로토콜",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTP 상태 코드 401 vs 403 차이",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "http_https": [
+        {
+          "title": "HTTP 상태 코드 301과 302의 차이점",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTP/2의 핵심 성능 개선 기능",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "TLS 핸드셰이크 과정의 순서",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "fetch API의 HTTP 메서드별 동작 분석",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "Cache-Control 헤더의 no-cache와 no-store의 차이",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS preflight 요청이 발생하는 조건",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "XMLHttpRequest readyState 값의 순서",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "HTTP/2 서버 푸시(Server Push)의 동작 원리",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTP GET 요청의 요청 본문(body) 사용 가능 여부",
+          "difficulty": 2,
+          "format": "true_false"
+        },
+        {
+          "title": "HTTP 401과 403 상태 코드의 차이",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "performance": [
+        {
+          "title": "이미지 Lazy Loading 개념",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Cumulative Layout Shift(CLS) 발생 원인과 해결책",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "웹 워커(Web Worker)에서 DOM에 직접 접근할 수 있다.",
+          "difficulty": 8,
+          "format": "true_false"
+        },
+        {
+          "title": "번들 크기 최적화를 위한 Tree Shaking의 조건",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Service Worker의 Cache-First 전략 구현",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "LCP 개선을 위한 Largest Contentful Paint 최적화",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "이미지 최적화를 위한 lazy loading 구현",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 코드에서 리소스 로딩 최적화와 관련하여 올바른 설명은?",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "웹 성능 최적화에서 CLS(Cumulative Layout Shift)를 개선하기 위한 방법으로 올바르지 않은 것은?",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTP/2에서 도메인 샤딩(Domain Sharding)의 효과",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "CDN의 역할과 동작 원리",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "다음 코드에서 렌더링 성능 문제의 원인과 해결 방법은?",
+          "difficulty": 7,
+          "format": "code_output"
+        },
+        {
+          "title": "브라우저 캐싱 Cache-Control 헤더",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Web Worker를 이용한 메인 스레드 분리",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "Core Web Vitals의 세 가지 지표",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "preload와 prefetch 리소스 힌트의 차이",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "동적 import()를 사용한 코드 스플리팅",
+          "difficulty": 3,
+          "format": "code_output"
+        }
+      ],
+      "security": [
+        {
+          "title": "Content Security Policy 헤더 설정",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HttpOnly 쿠키와 JavaScript 접근",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "iframe sandbox 속성의 보안 효과",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTPS와 중간자 공격 방지",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "CSP nonce를 활용한 인라인 스크립트 허용",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "X-Frame-Options와 클릭재킹 방어",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "iframe sandbox 속성의 보안 효과",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSP(Content Security Policy) 역할",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSRF 공격과 방어 방법",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS란 무엇인가",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "XSS 공격의 정의와 방어",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CORS(Cross-Origin Resource Sharing)에서 preflight 요청은 항상 OPTIONS 메서드를 사용한다.",
+          "difficulty": 5,
+          "format": "true_false"
+        },
+        {
+          "title": "HTTPS와 TLS 핸드셰이크 과정",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "HTTPS와 중간자 공격 방지",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "서브리소스 무결성(Subresource Integrity, SRI)의 원리와 적용 방법은?",
+          "difficulty": 8,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Content Security Policy(CSP)의 'nonce' 기반 스크립트 허용 방식의 원리는 무엇인가요?",
+          "difficulty": 7,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSP nonce를 활용한 인라인 스크립트 허용",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Subresource Integrity(SRI) 동작 원리",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "X-Frame-Options와 클릭재킹",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "다음 코드에서 발생할 수 있는 보안 취약점은 무엇인가요?",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "XSS 공격의 기본 개념",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "CSRF 토큰의 역할",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "innerHTML XSS 취약점",
+          "difficulty": 4,
+          "format": "code_output"
+        }
+      ],
+      "service_workers": [
+        {
+          "title": "Stale-While-Revalidate 전략",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "서비스 워커 업데이트 시 활성화 제어",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서비스 워커와 DOM 접근",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "Background Sync의 목적",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서비스 워커 Scope의 의미",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서비스 워커 Push 알림 구현",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서비스 워커 Scope의 의미",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서비스 워커 생명주기 순서",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Cache First 전략 구현",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "서비스 워커 등록 방법",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서비스 워커 HTTPS 전용 실행",
+          "difficulty": 6,
+          "format": "true_false"
+        },
+        {
+          "title": "Background Sync의 목적",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서비스 워커 Push 알림 구현",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서비스 워커 업데이트 시 활성화 제어",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "서비스 워커와 DOM 접근",
+          "difficulty": 4,
+          "format": "true_false"
+        },
+        {
+          "title": "Stale-While-Revalidate 전략",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "서비스 워커 등록 방법",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Cache First 전략 구현",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "서비스 워커 생명주기 순서",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ],
+      "storage": [
+        {
+          "title": "IndexedDB의 특징과 사용 사례",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "localStorage vs sessionStorage 차이",
+          "difficulty": 1,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "Cookie와 localStorage 비교",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        }
+      ],
+      "web_storage": [
+        {
+          "title": "쿠키 Secure 속성과 HTTPS 연결의 관계",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "localStorage와 sessionStorage의 주요 차이점",
+          "difficulty": 2,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "localStorage에 객체 저장 시 주의사항",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "쿠키의 SameSite 속성 값별 동작 차이",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "localStorage의 저장 용량 제한",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "쿠키의 HttpOnly 속성의 역할",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "IndexedDB와 localStorage의 비동기 특성 비교",
+          "difficulty": 4,
+          "format": "code_output"
+        },
+        {
+          "title": "쿠키와 localStorage의 보안 비교",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "sessionStorage의 탭 간 격리 특성",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "IndexedDB가 localStorage보다 적합한 사용 사례",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "localStorage의 동기 접근이 메인 스레드를 차단하는지 여부",
+          "difficulty": 4,
+          "format": "true_false"
+        }
+      ],
+      "websockets_sse": [
+        {
+          "title": "WebSocket 연결 종료 코드",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "WebSocket 바이너리 데이터 전송",
+          "difficulty": 6,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "EventSource API 이벤트 타입 구별",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "WebSocket Heartbeat(핑퐁) 구현 이유",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "WebSocket readyState 값",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "SSE의 자동 재연결 기능",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "WebSocket Handshake 프로토콜 업그레이드",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "SSE vs WebSocket 선택 기준",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "WebSocket 연결 생성 및 이벤트",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "WebSocket과 HTTP의 차이점",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "WebSocket 연결 생성 및 이벤트",
+          "difficulty": 3,
+          "format": "code_output"
+        },
+        {
+          "title": "WebSocket과 HTTP의 차이점",
+          "difficulty": 3,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "SSE vs WebSocket 선택 기준",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "SSE 연결에서 Last-Event-ID 활용",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "WebSocket 연결 종료 코드",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "EventSource API 이벤트 타입 구별",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "WebSocket Heartbeat 구현 이유",
+          "difficulty": 5,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "WebSocket readyState 값",
+          "difficulty": 5,
+          "format": "code_output"
+        },
+        {
+          "title": "SSE의 자동 재연결 기능",
+          "difficulty": 3,
+          "format": "true_false"
+        },
+        {
+          "title": "WebSocket Handshake 프로토콜 업그레이드",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        },
+        {
+          "title": "SSE 연결에서 Last-Event-ID 활용",
+          "difficulty": 6,
+          "format": "code_output"
+        },
+        {
+          "title": "WebSocket과 HTTP/2 Server Push 비교",
+          "difficulty": 4,
+          "format": "multiple_choice"
+        }
+      ]
+    }
+  }
+}

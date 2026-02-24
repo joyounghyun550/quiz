@@ -1,0 +1,356 @@
+[
+  {
+    "title": "React Testing Library의 쿼리 우선순위",
+    "body": "React Testing Library 공식 가이드라인에서 권장하는 쿼리 우선순위로 올바른 것은 무엇인가요?",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 3,
+    "format": "multiple_choice",
+    "options": [
+      {
+        "id": "A",
+        "text": "getByTestId > getByRole > getByText > getByLabelText",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "getByRole > getByLabelText > getByText > getByTestId",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "getByText > getByRole > getByPlaceholderText > getByTestId",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "getByLabelText > getByTestId > getByRole > getByText",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "B",
+    "hint_1": "접근성(a11y)을 기반으로 한 쿼리가 가장 우선순위가 높습니다.",
+    "hint_2": "data-testid는 최후의 수단으로만 사용해야 합니다.",
+    "explanation": "React Testing Library는 사용자 경험과 접근성을 반영한 쿼리 우선순위를 권장합니다. getByRole이 가장 우선순위가 높으며(접근성 트리 기반), 이후 getByLabelText, getByPlaceholderText, getByText, getByDisplayValue 순입니다. getByTestId는 접근성 속성이 없을 때만 사용하는 최후의 수단입니다.",
+    "explanation_code": null,
+    "reference_url": "https://testing-library.com/docs/queries/about#priority"
+  },
+  {
+    "title": "userEvent vs fireEvent 차이",
+    "body": "@testing-library/user-event의 userEvent와 @testing-library/react의 fireEvent의 차이점으로 올바른 것은?",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 4,
+    "format": "multiple_choice",
+    "options": [
+      {
+        "id": "A",
+        "text": "fireEvent는 실제 브라우저 이벤트를 시뮬레이션하고 userEvent는 DOM 이벤트만 발생시킨다",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "userEvent는 실제 사용자 상호작용을 시뮬레이션하고 여러 이벤트를 순서대로 발생시키며, fireEvent는 단순히 DOM 이벤트를 발생시킨다",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "두 API는 기능적으로 동일하지만 userEvent가 더 느리다",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "userEvent는 비동기 이벤트를 처리할 수 없다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "B",
+    "hint_1": "userEvent.click()은 실제 클릭 시 발생하는 여러 이벤트를 순서대로 시뮬레이션합니다.",
+    "hint_2": "userEvent v14부터 기본적으로 비동기 API입니다.",
+    "explanation": "userEvent는 실제 사용자 행동을 정확히 시뮬레이션합니다. userEvent.click()은 pointerover, mouseenter, mousedown, mouseup, click 등을 순서대로 발생시키지만 fireEvent.click()은 click 이벤트 하나만 발생시킵니다.",
+    "explanation_code": null,
+    "reference_url": "https://testing-library.com/docs/user-event/intro"
+  },
+  {
+    "title": "waitFor 사용 목적",
+    "body": "React Testing Library에서 waitFor를 사용하는 이유는 무엇인가요?",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 3,
+    "format": "multiple_choice",
+    "options": [
+      {
+        "id": "A",
+        "text": "컴포넌트 렌더링을 강제로 지연시키기 위해",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "비동기 작업이 완료되어 DOM이 업데이트될 때까지 대기하기 위해",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Jest 타임아웃을 늘리기 위해",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "React 상태 업데이트를 배치 처리하기 위해",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "B",
+    "hint_1": "비동기 API 호출 후 DOM이 업데이트되는 시점을 알 수 없습니다.",
+    "hint_2": "waitFor는 내부 콜백이 에러 없이 통과할 때까지 반복 실행합니다.",
+    "explanation": "waitFor는 내부 콜백 함수를 일정 간격(기본 50ms)으로 반복 실행하며, 콜백이 에러 없이 통과하거나 타임아웃(기본 1000ms)에 도달할 때까지 기다립니다.",
+    "explanation_code": null,
+    "reference_url": "https://testing-library.com/docs/dom-testing-library/api-async#waitfor"
+  },
+  {
+    "title": "Jest mock 함수 호출 횟수 검증",
+    "body": "다음 코드의 출력 결과는?\n\n\\",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 3,
+    "format": "code_output",
+    "options": [
+      {
+        "id": "A",
+        "text": "2, 'a'",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "3, 'b'",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "3, 'a'",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "2, 'b'",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "B",
+    "hint_1": "mock.calls는 각 호출 시 전달된 인수 배열의 배열입니다.",
+    "hint_2": "배열 인덱스는 0부터 시작합니다.",
+    "explanation": "mockFn은 총 3번 호출되어 mock.calls.length는 3입니다. mock.calls[1]은 두 번째 호출([\"b\"])이고, mock.calls[1][0]은 \"b\"입니다.",
+    "explanation_code": null,
+    "reference_url": "https://jestjs.io/docs/mock-function-api#mockfnmockcalls"
+  },
+  {
+    "title": "act() 래퍼 사용 시점",
+    "body": "React Testing Library에서 act()를 명시적으로 사용해야 하는 상황은?",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 5,
+    "format": "multiple_choice",
+    "options": [
+      {
+        "id": "A",
+        "text": "모든 render() 호출 전후",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Testing Library 유틸리티 외부에서 상태를 변경하거나 컴포넌트에 영향을 주는 작업을 할 때",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "getBy 쿼리를 사용할 때마다",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "비동기 테스트에서는 항상 act()를 사용해야 한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "B",
+    "hint_1": "React Testing Library 내부 유틸리티는 이미 act()로 감싸져 있습니다.",
+    "hint_2": "커스텀 이벤트나 타이머 콜백을 직접 실행할 때 필요합니다.",
+    "explanation": "render, fireEvent, userEvent 등은 내부적으로 act()를 사용합니다. Testing Library 외부에서 상태 변경이 발생하는 경우(예: jest.runAllTimers())에만 명시적으로 act()가 필요합니다.",
+    "explanation_code": null,
+    "reference_url": "https://reactjs.org/docs/test-utils.html#act"
+  },
+  {
+    "title": "screen.getByRole로 disabled 버튼 찾기",
+    "body": "다음 버튼을 getByRole로 찾는 올바른 방법은?",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 4,
+    "format": "multiple_choice",
+    "options": [
+      {
+        "id": "A",
+        "text": "getByRole('button', { name: '제출' }) - disabled 버튼도 기본적으로 찾을 수 있다",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "getByRole('submit', { name: '제출' })",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "getByRole('button', { name: '제출', hidden: true })",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "getByRole('button', { disabled: true })",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "A",
+    "hint_1": "disabled 속성은 버튼의 ARIA role을 변경하지 않습니다.",
+    "hint_2": "getByRole의 hidden 옵션은 aria-hidden 요소를 찾을 때 사용합니다.",
+    "explanation": "disabled 버튼도 여전히 role='button'을 가집니다. getByRole('button', { name: '제출' })로 찾을 수 있습니다. disabled 상태를 검증하려면 expect(button).toBeDisabled()를 사용합니다.",
+    "explanation_code": null,
+    "reference_url": "https://testing-library.com/docs/queries/byrole"
+  },
+  {
+    "title": "Jest spyOn과 mock의 차이",
+    "body": "jest.spyOn()은 원래 함수의 구현을 유지하면서 호출을 추적할 수 있으며, jest.fn()은 항상 원래 구현을 완전히 대체한다. 이 설명은 옳은가?",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 4,
+    "format": "true_false",
+    "options": null,
+    "correct_answer": "true",
+    "hint_1": "spyOn은 스파이처럼 관찰만 할 수도 있습니다.",
+    "hint_2": "spyOn에 .mockImplementation()을 추가하면 구현을 변경할 수 있습니다.",
+    "explanation": "jest.spyOn()은 기본적으로 원래 구현을 유지하면서 호출만 추적합니다. jest.fn()은 아무것도 하지 않는 새 mock 함수를 생성합니다. 이 설명은 올바릅니다.",
+    "explanation_code": null,
+    "reference_url": "https://jestjs.io/docs/jest-object#jestspyonobject-methodname"
+  },
+  {
+    "title": "컴포넌트 모킹 with jest.mock()",
+    "body": "다음 패턴의 목적은?",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 4,
+    "format": "multiple_choice",
+    "options": [
+      {
+        "id": "A",
+        "text": "HeavyChart 컴포넌트의 내부 로직을 테스트한다",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "HeavyChart를 가벼운 대역으로 교체하여 부모 컴포넌트의 로직을 격리 테스트한다",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "HeavyChart가 렌더링되지 않도록 완전히 제거한다",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "HeavyChart의 props 타입을 검증한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "B",
+    "hint_1": "무거운 서드파티 라이브러리나 복잡한 자식 컴포넌트를 격리할 때 사용합니다.",
+    "hint_2": "__esModule: true는 ES 모듈의 default export를 올바르게 모킹하기 위해 필요합니다.",
+    "explanation": "jest.mock()으로 컴포넌트를 모킹하면 실제 컴포넌트 대신 단순한 대역을 사용하여 부모 컴포넌트의 로직만 격리 테스트할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": "https://jestjs.io/docs/jest-object#jestmockmodulename-factory-options"
+  },
+  {
+    "title": "MSW를 이용한 API 모킹",
+    "body": "MSW(Mock Service Worker)를 React 테스트에서 사용하는 주요 이점은?",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 5,
+    "format": "multiple_choice",
+    "options": [
+      {
+        "id": "A",
+        "text": "컴포넌트 내부의 fetch 호출 코드 수정 없이 네트워크 레벨에서 인터셉트하여 실제 API처럼 동작한다",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "실제 백엔드 서버를 자동으로 실행한다",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "jest.mock()보다 설정이 간단하다",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "테스트 실행 속도를 향상시킨다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "A",
+    "hint_1": "MSW는 Service Worker나 Node.js 인터셉터를 통해 실제 HTTP 요청을 가로챕니다.",
+    "hint_2": "fetch나 axios를 모킹할 필요 없이 요청 핸들러만 정의하면 됩니다.",
+    "explanation": "MSW는 네트워크 레벨에서 HTTP 요청을 인터셉트합니다. 컴포넌트 코드 수정 없이 요청 핸들러만 정의하면 되며, 브라우저/테스트/개발 환경 모두에서 동일한 핸들러를 재사용할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": "https://mswjs.io/docs/getting-started"
+  },
+  {
+    "title": "findBy 쿼리의 비동기 특성",
+    "body": "React Testing Library의 findBy 쿼리 시리즈의 특징으로 올바른 것은?",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 3,
+    "format": "multiple_choice",
+    "options": [
+      {
+        "id": "A",
+        "text": "요소를 즉시 반환하며 없으면 null을 반환한다",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "요소를 즉시 반환하며 없으면 에러를 던진다",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Promise를 반환하며 요소가 나타날 때까지 대기하고 타임아웃 내에 없으면 에러를 던진다",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "배열을 반환하며 여러 요소를 찾는다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "C",
+    "hint_1": "findBy = getBy + waitFor의 조합입니다.",
+    "hint_2": "비동기 렌더링 후 나타나는 요소를 테스트할 때 사용합니다.",
+    "explanation": "findBy는 Promise를 반환합니다. 기본 타임아웃 1000ms 내에 요소를 찾으면 resolve, 못 찾으면 reject합니다. getBy(즉시/에러), queryBy(즉시/null), findBy(비동기/에러)로 세 종류가 있습니다.",
+    "explanation_code": null,
+    "reference_url": "https://testing-library.com/docs/queries/about#types-of-queries"
+  },
+  {
+    "title": "테스트 커버리지 100%와 버그",
+    "body": "React 컴포넌트의 테스트 커버리지가 100%이면 버그가 없음이 보장된다. 이 설명은 옳은가?",
+    "category": "react",
+    "subcategory": "testing",
+    "difficulty": 3,
+    "format": "true_false",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "커버리지는 코드 실행 여부를 측정하지, 정확성을 보장하지 않습니다.",
+    "hint_2": "잘못된 assertion이나 누락된 엣지 케이스로 인한 버그는 100% 커버리지에서도 존재할 수 있습니다.",
+    "explanation": "테스트 커버리지 100%는 모든 코드가 실행되었음을 의미하지만 버그 없음을 보장하지 않습니다. 잘못된 assertion, 누락된 엣지 케이스, 비즈니스 로직 오류 등이 존재할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": "https://testing-library.com/docs/guiding-principles"
+  }
+]

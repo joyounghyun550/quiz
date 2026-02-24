@@ -14,11 +14,14 @@ import { useQuizStore } from "@/stores/use-quiz-store";
 export default function DailyQuizPage() {
   const router = useRouter();
   const supabase = createSupabaseBrowserClient();
-  const { startSession, questions } = useQuizStore();
+  const { startSession, questions, sessionType, isCompleted } = useQuizStore();
   const [isLoading, setIsLoading] = useState(true);
   const [userTier, setUserTier] = useState<TierName>("inline");
   const [userStreak, setUserStreak] = useState(0);
   const [error, setError] = useState<string | null>(null);
+
+  // 이어서 풀기: 기존 daily 세션이 있으면 API 호출 스킵
+  const hasActiveSession = sessionType === "daily" && questions.length > 0 && !isCompleted;
 
   useEffect(() => {
     const loadQuiz = async () => {
@@ -44,6 +47,12 @@ export default function DailyQuizPage() {
         setUserTier(profile.current_tier);
         setUserStreak(profile.current_streak);
 
+        // 기존 세션이 있으면 새 문제 불러오지 않음
+        if (hasActiveSession) {
+          setIsLoading(false);
+          return;
+        }
+
         const res = await fetch("/api/quiz/daily");
         const data = await res.json();
 
@@ -63,7 +72,7 @@ export default function DailyQuizPage() {
     };
 
     loadQuiz();
-  }, [router, supabase, startSession]);
+  }, [router, supabase, startSession, hasActiveSession]);
 
   if (isLoading) {
     return (
