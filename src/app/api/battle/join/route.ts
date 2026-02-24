@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import type { BattleRow, QuestionRow, UserRow } from "@/shared/types/database.type";
 
-import { createSupabaseServerClient } from "@/lib/supabase-server";
+import { createSupabaseAdminClient, createSupabaseServerClient } from "@/lib/supabase-server";
 
 type JoinRequest = {
   inviteCode: string;
@@ -10,6 +10,7 @@ type JoinRequest = {
 
 export async function POST(request: Request) {
   const supabase = createSupabaseServerClient();
+  const adminSupabase = createSupabaseAdminClient();
 
   const {
     data: { user },
@@ -26,8 +27,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "유효하지 않은 초대 코드입니다." }, { status: 400 });
   }
 
-  // 배틀 조회
-  const { data: battle } = (await supabase
+  // 배틀 조회 (RLS 우회: 참가 전이라 guest_id가 없어서 일반 클라이언트로 조회 불가)
+  const { data: battle } = (await adminSupabase
     .from("battles")
     .select("*")
     .eq("invite_code", inviteCode.toUpperCase())
@@ -40,7 +41,7 @@ export async function POST(request: Request) {
 
   // 만료 확인
   if (new Date(battle.expires_at) < new Date()) {
-    await supabase.from("battles").update({ status: "expired" }).eq("id", battle.id);
+    await adminSupabase.from("battles").update({ status: "expired" }).eq("id", battle.id);
     return NextResponse.json({ error: "만료된 대결입니다." }, { status: 400 });
   }
 
@@ -55,7 +56,7 @@ export async function POST(request: Request) {
   }
 
   // 게스트 참가 및 상태 업데이트
-  const { error: updateError } = await supabase
+  const { error: updateError } = await adminSupabase
     .from("battles")
     .update({
       guest_id: user.id,
@@ -68,7 +69,7 @@ export async function POST(request: Request) {
   }
 
   // 배틀 문제 조회
-  const { data: battleQuestions } = await supabase
+  const { data: battleQuestions } = await adminSupabase
     .from("battle_questions")
     .select("question_id, question_order")
     .eq("battle_id", battle.id)
@@ -76,7 +77,7 @@ export async function POST(request: Request) {
 
   const questionIds = (battleQuestions ?? []).map((bq) => bq.question_id);
 
-  const { data: questions } = (await supabase.from("questions").select("*").in("id", questionIds)) as {
+  const { data: questions } = (await adminSupabase.from("questions").select("*").in("id", questionIds)) as {
     data: QuestionRow[] | null;
   };
 
@@ -87,13 +88,13 @@ export async function POST(request: Request) {
     .filter(Boolean);
 
   // 호스트/게스트 정보
-  const { data: hostProfile } = (await supabase
+  const { data: hostProfile } = (await adminSupabase
     .from("users")
     .select("name, profile_image_url")
     .eq("id", battle.host_id)
     .single()) as { data: Pick<UserRow, "name" | "profile_image_url"> | null };
 
-  const { data: guestProfile } = (await supabase
+  const { data: guestProfile } = (await adminSupabase
     .from("users")
     .select("name, profile_image_url")
     .eq("id", user.id)
