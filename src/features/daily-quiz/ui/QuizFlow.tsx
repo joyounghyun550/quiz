@@ -107,13 +107,13 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
   }, [showCombo]);
 
   const handleNext = useCallback(() => {
-    setShowFeedback(false);
-    setCurrentResult(null);
-
     if (currentIndex >= questions.length - 1) {
+      // 마지막 문제: 상태 초기화 없이 바로 이동 (화면 깜빡임 방지)
       completeSession();
       router.push(`/quiz/result?session=${sessionId}`);
     } else {
+      setShowFeedback(false);
+      setCurrentResult(null);
       nextQuestion();
     }
   }, [currentIndex, questions.length, completeSession, nextQuestion, router, sessionId]);
@@ -152,6 +152,11 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
     if (!q.selectedAnswer) return null;
     // 현재 문제는 피드백 확인 전까지 색상 표시 안 함 (정답 노출 방지)
     if (i === currentIndex && !showFeedback) return null;
+    // options가 있으면 isCorrect 필드 사용 (배치 테스트는 correct_answer가 클라이언트에 없음)
+    if (q.options && q.options.length > 0) {
+      const selected = q.options.find((o) => o.id === q.selectedAnswer);
+      return selected?.isCorrect ?? false;
+    }
     return q.correct_answer === q.selectedAnswer;
   });
 

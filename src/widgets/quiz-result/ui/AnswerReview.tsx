@@ -23,6 +23,7 @@ type AnswerReviewItem = {
 
 type AnswerReviewProps = {
   items: AnswerReviewItem[];
+  isPlacement?: boolean;
 };
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -34,7 +35,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   web_fundamentals: "Web 기초",
 };
 
-const AnswerReview = ({ items }: AnswerReviewProps) => {
+const AnswerReview = ({ items, isPlacement = false }: AnswerReviewProps) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
@@ -67,15 +68,12 @@ const AnswerReview = ({ items }: AnswerReviewProps) => {
                 <p className="truncate text-sm text-white">{item.title}</p>
                 <p className="text-xs text-gray-500">{CATEGORY_LABELS[item.category] ?? item.category}</p>
               </div>
-              <span
-                className={cn(
-                  "text-xs font-semibold",
-                  item.lpChange >= 0 ? "text-emerald-400" : "text-red-400"
-                )}
-              >
-                {item.lpChange >= 0 ? "+" : ""}
-                {item.lpChange}
-              </span>
+              {!isPlacement && (
+                <span className={cn("text-xs font-semibold", item.lpChange >= 0 ? "text-emerald-400" : "text-red-400")}>
+                  {item.lpChange >= 0 ? "+" : ""}
+                  {item.lpChange}
+                </span>
+              )}
             </button>
 
             {expandedIndex === index && (

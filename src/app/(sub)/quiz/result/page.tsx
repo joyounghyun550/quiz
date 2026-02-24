@@ -4,12 +4,9 @@ import { useEffect, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-import type { TierName } from "@/shared/types/database.type";
-
 import AnswerReview from "@/widgets/quiz-result/ui/AnswerReview";
 import ResultSummary from "@/widgets/quiz-result/ui/ResultSummary";
 
-import { createSupabaseBrowserClient } from "@/lib/supabase-client";
 import { useQuizStore } from "@/stores/use-quiz-store";
 
 type SubmitResult = {
@@ -40,11 +37,17 @@ type SubmitResult = {
   };
 };
 
+const SESSION_TITLES: Record<string, string> = {
+  placement: "배치 테스트 결과",
+  retry: "오답 노트 결과",
+  practice: "티어 올리기 결과",
+  daily: "오늘의 퀴즈 결과",
+};
+
 export default function QuizResultPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session");
-  const supabase = createSupabaseBrowserClient();
   const { questions, sessionType, resetSession } = useQuizStore();
   const [result, setResult] = useState<SubmitResult | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -71,29 +74,13 @@ export default function QuizResultPage() {
           body: JSON.stringify({ sessionId, answers }),
         });
 
+        if (!res.ok) {
+          router.replace("/");
+          return;
+        }
+
         const data: SubmitResult = await res.json();
         setResult(data);
-
-        // 배치 테스트 완료 시 has_completed_placement 업데이트
-        if (sessionType === "placement") {
-          const {
-            data: { user },
-          } = await supabase.auth.getUser();
-
-          if (user) {
-            await supabase
-              .from("users")
-              .update({
-                has_completed_placement: true,
-                current_lp: data.summary.newTierInfo.lp,
-                current_tier: data.summary.newTierInfo.name as TierName,
-                current_tier_division: data.summary.newTierInfo.division,
-                highest_tier: data.summary.newTierInfo.name as TierName,
-                highest_lp: data.summary.newTierInfo.lp,
-              })
-              .eq("id", user.id);
-          }
-        }
       } catch {
         router.replace("/");
       } finally {
@@ -102,7 +89,8 @@ export default function QuizResultPage() {
     };
 
     submitAnswers();
-  }, [sessionId, questions, sessionType, router, supabase]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessionId]);
 
   const handleGoHome = () => {
     resetSession();
@@ -119,6 +107,8 @@ export default function QuizResultPage() {
       </div>
     );
   }
+
+  const isPlacement = sessionType === "placement";
 
   const reviewItems = result.answerResults.map((ar) => {
     const question = questions.find((q) => q.id === ar.questionId);
@@ -140,9 +130,7 @@ export default function QuizResultPage() {
 
   return (
     <div className="flex min-h-dvh flex-col bg-gray-950 px-5 pb-8 pt-6">
-      <h1 className="mb-6 text-center text-xl font-bold text-white">
-        {sessionType === "placement" ? "배치 테스트 결과" : "오늘의 퀴즈 결과"}
-      </h1>
+      <h1 className="mb-6 text-center text-xl font-bold text-white">{SESSION_TITLES[sessionType] ?? "퀴즈 결과"}</h1>
 
       <ResultSummary
         correctCount={result.summary.correctCount}
@@ -156,18 +144,19 @@ export default function QuizResultPage() {
         promoted={result.summary.promoted}
         newLp={result.summary.newTierInfo.lp}
         progressPercent={result.summary.newTierInfo.progressPercent}
+        isPlacement={isPlacement}
       />
 
       <div className="my-6 h-px bg-gray-800" />
 
-      <AnswerReview items={reviewItems} />
+      <AnswerReview items={reviewItems} isPlacement={isPlacement} />
 
       <button
         type="button"
         onClick={handleGoHome}
         className="mt-8 h-12 w-full rounded-xl bg-cyan-500 font-semibold text-white transition-colors hover:bg-cyan-600"
       >
-        {sessionType === "placement" ? "시작하기" : "홈으로"}
+        {isPlacement ? "시작하기" : "홈으로"}
       </button>
     </div>
   );

@@ -22,7 +22,11 @@
       "Bash(ls:*)",
       "Bash(python3:*)",
       "Bash(done)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git config user.name)",
+      "Bash(git config user.email)",
+      "Bash(git config --global user.name)",
+      "Bash(git config --global user.email)"
     ],
     "additionalDirectories": [
       "C:\\Users\\UserPC\\AppData\\Local\\Temp",

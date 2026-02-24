@@ -23,8 +23,9 @@ const QuizProgress = ({ current, total, answers }: QuizProgressProps) => {
               isCurrent && "ring-1 ring-cyan-400 ring-offset-1 ring-offset-gray-950",
               answer === true && "bg-emerald-500",
               answer === false && "bg-red-500",
-              answer === null && i < current && "bg-gray-600",
-              answer === null && i >= current && "bg-gray-800"
+              answer === null && isCurrent && "bg-gray-500",
+              answer === null && !isCurrent && i < current && "bg-gray-600",
+              answer === null && !isCurrent && i > current && "bg-gray-800"
             )}
           />
         );

@@ -70,19 +70,33 @@ export async function POST(request: Request) {
 
   const questionMap = new Map(questions.map((q) => [q.id, q]));
 
-  // 각 답안 처리
+  // 각 답안 처리 (계산만 먼저, DB 없이)
   let totalLpChange = 0;
   let correctCount = 0;
   const answerResults = [];
-
-  // 카테고리별 LP 변화 누적
   const categoryLpMap: Record<string, { lpDelta: number; answered: number; correct: number }> = {};
+
+  type ProcessedAnswer = {
+    answer: SubmitAnswer;
+    question: QuestionRow;
+    isCorrect: boolean;
+    lpChange: number;
+  };
+  const processedAnswers: ProcessedAnswer[] = [];
 
   for (const answer of answers) {
     const question = questionMap.get(answer.questionId);
     if (!question) continue;
 
-    const isCorrect = question.correct_answer === answer.userAnswer;
+    // options의 isCorrect 필드로 정답 판단 (correct_answer 문자열보다 신뢰성 높음)
+    let isCorrect: boolean;
+    if (question.options && Array.isArray(question.options) && question.options.length > 0) {
+      const opts = question.options as Array<{ id: string; isCorrect: boolean }>;
+      isCorrect = opts.find((o) => o.id === answer.userAnswer)?.isCorrect ?? false;
+    } else {
+      isCorrect = question.correct_answer === answer.userAnswer;
+    }
+
     if (isCorrect) correctCount++;
 
     const hintLevel = answer.hint2Used ? 2 : answer.hint1Used ? 1 : 0;
@@ -98,13 +112,11 @@ export async function POST(request: Request) {
             hintLevel: hintLevel as 0 | 1 | 2,
           });
 
-    // 일일 퀴즈는 LP 2배
     const lpChange =
       session.session_type === "daily" ? Math.round(baseLpChange * LP_CONFIG.DAILY_QUIZ_MULTIPLIER) : baseLpChange;
 
     totalLpChange += lpChange;
 
-    // 카테고리별 LP 누적
     const cat = question.category;
     if (!categoryLpMap[cat]) categoryLpMap[cat] = { lpDelta: 0, answered: 0, correct: 0 };
     categoryLpMap[cat].lpDelta += lpChange;
@@ -120,57 +132,10 @@ export async function POST(request: Request) {
       explanationCode: question.explanation_code,
     });
 
-    // answer_history에 기록
-    await supabase.from("answer_history").insert({
-      user_id: user.id,
-      question_id: answer.questionId,
-      session_id: sessionId,
-      user_answer: answer.userAnswer,
-      is_correct: isCorrect,
-      hint_1_used: answer.hint1Used,
-      hint_2_used: answer.hint2Used,
-      lp_change: lpChange,
-      time_spent_ms: answer.timeSpentMs,
-    });
-
-    // category_stats 업데이트
-    const { data: existingStat } = (await supabase
-      .from("category_stats")
-      .select("*")
-      .eq("user_id", user.id)
-      .eq("category", question.category)
-      .eq("subcategory", question.subcategory)
-      .single()) as { data: CategoryStatRow | null };
-
-    if (existingStat) {
-      await supabase
-        .from("category_stats")
-        .update({
-          total_answered: existingStat.total_answered + 1,
-          total_correct: existingStat.total_correct + (isCorrect ? 1 : 0),
-        })
-        .eq("id", existingStat.id);
-    } else {
-      await supabase.from("category_stats").insert({
-        user_id: user.id,
-        category: question.category,
-        subcategory: question.subcategory,
-        total_answered: 1,
-        total_correct: isCorrect ? 1 : 0,
-      });
-    }
-
-    // question 통계 업데이트
-    await supabase
-      .from("questions")
-      .update({
-        times_served: question.times_served + 1,
-        times_correct: question.times_correct + (isCorrect ? 1 : 0),
-      })
-      .eq("id", question.id);
+    processedAnswers.push({ answer, question, isCorrect, lpChange });
   }
 
-  // 4/5(80%) 이상 맞춰야 LP 증가 보장 — 스트릭·난이도 보너스로 역전되는 경우 방어
+  // 4/5(80%) 이상 맞춰야 LP 증가 보장
   if (session.session_type !== "placement") {
     const passMark = Math.ceil(answers.length * 0.8);
     if (correctCount < passMark && totalLpChange > 0) {
@@ -180,6 +145,64 @@ export async function POST(request: Request) {
         session.session_type === "daily" ? -Math.round(penalty * LP_CONFIG.DAILY_QUIZ_MULTIPLIER) : -penalty;
     }
   }
+
+  // DB 작업 병렬 실행 (answer_history + category_stats + question stats)
+  await Promise.all(
+    processedAnswers.map(async ({ answer, question, isCorrect, lpChange }) => {
+      await Promise.all([
+        // answer_history 기록
+        supabase.from("answer_history").insert({
+          user_id: user.id,
+          question_id: answer.questionId,
+          session_id: sessionId,
+          user_answer: answer.userAnswer,
+          is_correct: isCorrect,
+          hint_1_used: answer.hint1Used,
+          hint_2_used: answer.hint2Used,
+          lp_change: lpChange,
+          time_spent_ms: answer.timeSpentMs,
+        }),
+
+        // category_stats 업데이트
+        (async () => {
+          const { data: existingStat } = (await supabase
+            .from("category_stats")
+            .select("*")
+            .eq("user_id", user.id)
+            .eq("category", question.category)
+            .eq("subcategory", question.subcategory)
+            .single()) as { data: CategoryStatRow | null };
+
+          if (existingStat) {
+            await supabase
+              .from("category_stats")
+              .update({
+                total_answered: existingStat.total_answered + 1,
+                total_correct: existingStat.total_correct + (isCorrect ? 1 : 0),
+              })
+              .eq("id", existingStat.id);
+          } else {
+            await supabase.from("category_stats").insert({
+              user_id: user.id,
+              category: question.category,
+              subcategory: question.subcategory,
+              total_answered: 1,
+              total_correct: isCorrect ? 1 : 0,
+            });
+          }
+        })(),
+
+        // question 통계 업데이트
+        supabase
+          .from("questions")
+          .update({
+            times_served: question.times_served + 1,
+            times_correct: question.times_correct + (isCorrect ? 1 : 0),
+          })
+          .eq("id", question.id),
+      ]);
+    })
+  );
 
   // 세션 완료 처리
   await supabase
@@ -198,16 +221,14 @@ export async function POST(request: Request) {
   let promoted = false;
 
   if (session.session_type === "placement") {
-    // 배치 테스트: calculatePlacementLp로 시작 LP 결정
-    const placementResults = answers.map((a) => {
-      const q = questionMap.get(a.questionId);
-      return { correct: q?.correct_answer === a.userAnswer, difficulty: q?.difficulty ?? 3 };
-    });
+    const placementResults = processedAnswers.map(({ question, isCorrect }) => ({
+      correct: isCorrect,
+      difficulty: question?.difficulty ?? 3,
+    }));
     const placementLp = calculatePlacementLp(placementResults);
     newTierInfo = getTierInfo(placementLp);
     totalLpChange = placementLp;
 
-    // 서버에서 직접 유저 프로필 업데이트
     await supabase
       .from("users")
       .update({
@@ -260,7 +281,6 @@ export async function POST(request: Request) {
     const newHighestLp = Math.max(profile.highest_lp, result.newLp);
     const newHighestTier = result.newLp > profile.highest_lp ? result.newTier : (profile.highest_tier as TierName);
 
-    // 유저 프로필 업데이트
     await supabase
       .from("users")
       .update({
@@ -293,34 +313,36 @@ export async function POST(request: Request) {
     promoted = result.promoted;
 
     // 카테고리별 LP 업데이트
-    for (const [category, { lpDelta, answered, correct }] of Object.entries(categoryLpMap)) {
-      const { data: catLp } = await supabase
-        .from("category_lp")
-        .select("id, lp, total_answered, total_correct")
-        .eq("user_id", user.id)
-        .eq("category", category)
-        .single();
-
-      if (catLp) {
-        await supabase
+    await Promise.all(
+      Object.entries(categoryLpMap).map(async ([category, { lpDelta, answered, correct }]) => {
+        const { data: catLp } = await supabase
           .from("category_lp")
-          .update({
-            lp: Math.max(0, catLp.lp + lpDelta),
-            total_answered: catLp.total_answered + answered,
-            total_correct: catLp.total_correct + correct,
-            updated_at: new Date().toISOString(),
-          })
-          .eq("id", catLp.id);
-      } else {
-        await supabase.from("category_lp").insert({
-          user_id: user.id,
-          category,
-          lp: Math.max(0, lpDelta),
-          total_answered: answered,
-          total_correct: correct,
-        });
-      }
-    }
+          .select("id, lp, total_answered, total_correct")
+          .eq("user_id", user.id)
+          .eq("category", category)
+          .single();
+
+        if (catLp) {
+          await supabase
+            .from("category_lp")
+            .update({
+              lp: Math.max(0, catLp.lp + lpDelta),
+              total_answered: catLp.total_answered + answered,
+              total_correct: catLp.total_correct + correct,
+              updated_at: new Date().toISOString(),
+            })
+            .eq("id", catLp.id);
+        } else {
+          await supabase.from("category_lp").insert({
+            user_id: user.id,
+            category,
+            lp: Math.max(0, lpDelta),
+            total_answered: answered,
+            total_correct: correct,
+          });
+        }
+      })
+    );
   }
 
   return NextResponse.json({

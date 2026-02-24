@@ -16,6 +16,7 @@ type ResultSummaryProps = {
   promoted: boolean;
   newLp: number;
   progressPercent: number;
+  isPlacement?: boolean;
 };
 
 const ResultSummary = ({
@@ -30,6 +31,7 @@ const ResultSummary = ({
   promoted,
   newLp,
   progressPercent,
+  isPlacement = false,
 }: ResultSummaryProps) => {
   const accuracy = Math.round((correctCount / totalQuestions) * 100);
 
@@ -75,13 +77,17 @@ const ResultSummary = ({
         transition={{ delay: 0.5 }}
         className={cn(
           "flex items-center justify-center gap-2 rounded-xl p-4 text-center",
-          totalLpChange >= 0 ? "bg-emerald-500/10" : "bg-red-500/10"
+          isPlacement ? "bg-cyan-500/10" : totalLpChange >= 0 ? "bg-emerald-500/10" : "bg-red-500/10"
         )}
       >
-        <span className={cn("text-2xl font-bold", totalLpChange >= 0 ? "text-emerald-400" : "text-red-400")}>
-          {totalLpChange >= 0 ? "+" : ""}
-          {totalLpChange} LP
-        </span>
+        {isPlacement ? (
+          <span className="text-2xl font-bold text-cyan-400">시작 LP: {totalLpChange} LP</span>
+        ) : (
+          <span className={cn("text-2xl font-bold", totalLpChange >= 0 ? "text-emerald-400" : "text-red-400")}>
+            {totalLpChange >= 0 ? "+" : ""}
+            {totalLpChange} LP
+          </span>
+        )}
       </motion.div>
 
       {/* Tier Display */}
