@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
 import AnswerReview from "@/widgets/quiz-result/ui/AnswerReview";
 import ResultSummary from "@/widgets/quiz-result/ui/ResultSummary";
@@ -51,6 +52,7 @@ export default function QuizResultPage() {
   const { questions, sessionType, resetSession } = useQuizStore();
   const [result, setResult] = useState<SubmitResult | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const toastShownRef = useRef(false);
 
   useEffect(() => {
     const submitAnswers = async () => {
@@ -91,6 +93,21 @@ export default function QuizResultPage() {
     submitAnswers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionId]);
+
+  // 마일스톤 토스트
+  useEffect(() => {
+    if (!result || toastShownRef.current) return;
+    toastShownRef.current = true;
+
+    const { correctCount, totalQuestions, tierChanged, promoted } = result.summary;
+
+    if (tierChanged && promoted) {
+      const tierLabel = result.summary.newTierInfo.label;
+      toast.success(`🎉 티어 승급! ${tierLabel}에 오신 것을 환영합니다!`, { duration: 5000 });
+    } else if (correctCount === totalQuestions && totalQuestions > 0) {
+      toast.success("🌟 완벽한 점수! 모든 문제를 맞혔어요!", { duration: 4000 });
+    }
+  }, [result]);
 
   const handleGoHome = () => {
     resetSession();
@@ -151,13 +168,15 @@ export default function QuizResultPage() {
 
       <AnswerReview items={reviewItems} isPlacement={isPlacement} />
 
-      <button
-        type="button"
-        onClick={handleGoHome}
-        className="mt-8 h-12 w-full rounded-xl bg-cyan-500 font-semibold text-white transition-colors hover:bg-cyan-600"
-      >
-        {isPlacement ? "시작하기" : "홈으로"}
-      </button>
+      <div className="mt-8">
+        <button
+          type="button"
+          onClick={handleGoHome}
+          className="h-12 w-full rounded-xl bg-cyan-500 font-semibold text-white transition-colors hover:bg-cyan-600"
+        >
+          {isPlacement ? "시작하기" : "홈으로"}
+        </button>
+      </div>
     </div>
   );
 }

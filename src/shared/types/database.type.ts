@@ -53,6 +53,7 @@ export type Database = {
           notification_enabled: boolean;
           notification_time: string;
           fcm_token: string | null;
+          push_subscription: Json | null;
           created_at: string;
           updated_at: string;
         };
@@ -78,6 +79,7 @@ export type Database = {
           notification_enabled?: boolean;
           notification_time?: string;
           fcm_token?: string | null;
+          push_subscription?: Json | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -103,6 +105,7 @@ export type Database = {
           notification_enabled?: boolean;
           notification_time?: string;
           fcm_token?: string | null;
+          push_subscription?: Json | null;
           created_at?: string;
           updated_at?: string;
         };

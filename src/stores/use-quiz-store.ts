@@ -21,10 +21,8 @@ type QuizState = {
   selectAnswer: (questionId: string, answerId: string) => void;
   useHint: (questionId: string, level: 1 | 2) => void;
   nextQuestion: () => void;
-  prevQuestion: () => void;
   completeSession: () => void;
   resetSession: () => void;
-  recordTimeSpent: (questionId: string) => void;
 };
 
 export const useQuizStore = create<QuizState>()(
@@ -84,12 +82,6 @@ export const useQuizStore = create<QuizState>()(
         }
       },
 
-      prevQuestion: () =>
-        set((state) => ({
-          currentIndex: Math.max(0, state.currentIndex - 1),
-          questionStartTime: Date.now(),
-        })),
-
       completeSession: () => {
         const { questionStartTime, currentIndex, questions } = get();
 
@@ -120,17 +112,6 @@ export const useQuizStore = create<QuizState>()(
           startTime: null,
           questionStartTime: null,
         }),
-
-      recordTimeSpent: (questionId) => {
-        const { questionStartTime } = get();
-        if (!questionStartTime) return;
-
-        set((state) => ({
-          questions: state.questions.map((q) =>
-            q.id === questionId ? { ...q, timeSpentMs: Date.now() - questionStartTime } : q
-          ),
-        }));
-      },
     }),
     {
       name: "quiz-session",

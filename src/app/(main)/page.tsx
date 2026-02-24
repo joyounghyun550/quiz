@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import type { DailyQuizLogRow, QuizSessionRow, UserRow } from "@/shared/types/database.type";
+import KakaoShareButton from "@/shared/ui/KakaoShareButton";
 
 import { getTierInfo } from "@/entities/user/lib/tier.util";
 import type { TierInfo } from "@/entities/user/model/types";
@@ -27,12 +28,29 @@ type DashboardData = {
   todayTotalQuestions?: number;
 };
 
+const HomeSkeleton = () => (
+  <div className="mx-auto flex max-w-lg flex-col gap-5 px-5 pt-6">
+    <div className="flex items-center gap-4">
+      <div className="h-12 w-12 animate-pulse rounded-full bg-gray-800" />
+      <div className="flex flex-1 flex-col gap-2">
+        <div className="h-4 w-32 animate-pulse rounded bg-gray-800" />
+        <div className="h-3 w-48 animate-pulse rounded bg-gray-800" />
+      </div>
+    </div>
+    <div className="h-40 animate-pulse rounded-2xl bg-gray-800/50" />
+    <div className="grid grid-cols-3 gap-3">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="h-20 animate-pulse rounded-xl bg-gray-800/50" />
+      ))}
+    </div>
+  </div>
+);
+
 export default function HomePage() {
   const router = useRouter();
   const supabase = createSupabaseBrowserClient();
   const [data, setData] = useState<DashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const loadDashboard = async () => {
       try {
@@ -92,11 +110,7 @@ export default function HomePage() {
   }, [router, supabase]);
 
   if (isLoading || !data) {
-    return (
-      <div className="flex min-h-dvh items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-cyan-400 border-t-transparent" />
-      </div>
-    );
+    return <HomeSkeleton />;
   }
 
   return (
@@ -112,6 +126,18 @@ export default function HomePage() {
         totalCorrect={data.totalCorrect}
         longestStreak={data.longestStreak}
       />
+
+      {/* 친구 초대 섹션 */}
+      <div className="rounded-2xl border border-gray-800 bg-gray-900/50 p-4">
+        <div className="mb-3 flex items-center gap-2">
+          <span className="text-base">💬</span>
+          <div>
+            <p className="text-sm font-semibold text-white">친구에게 알려주기</p>
+            <p className="text-xs text-gray-500">DevRank를 친구에게 공유해 함께 성장하세요</p>
+          </div>
+        </div>
+        <KakaoShareButton className="h-11 w-full text-sm" />
+      </div>
     </div>
   );
 }
