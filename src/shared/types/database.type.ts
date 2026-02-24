@@ -9,6 +9,7 @@ export type CategoryStatRow = Database["public"]["Tables"]["category_stats"]["Ro
 export type CategoryLpRow = Database["public"]["Tables"]["category_lp"]["Row"];
 export type LpHistoryRow = Database["public"]["Tables"]["lp_history"]["Row"];
 export type DailyQuizLogRow = Database["public"]["Tables"]["daily_quiz_log"]["Row"];
+export type CommunityPostRow = Database["public"]["Tables"]["community_posts"]["Row"];
 
 export type QuestionFormat = "multiple_choice" | "code_output" | "true_false";
 
@@ -433,6 +434,64 @@ export type Database = {
             columns: ["user_id"];
             isOneToOne: false;
             referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      community_posts: {
+        Row: {
+          id: string;
+          user_id: string;
+          question_id: string | null;
+          parent_id: string | null;
+          type: "comment" | "question" | "discussion";
+          title: string | null;
+          content: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          question_id?: string | null;
+          parent_id?: string | null;
+          type: "comment" | "question" | "discussion";
+          title?: string | null;
+          content: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          question_id?: string | null;
+          parent_id?: string | null;
+          type?: "comment" | "question" | "discussion";
+          title?: string | null;
+          content?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "community_posts_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "community_posts_question_id_fkey";
+            columns: ["question_id"];
+            isOneToOne: false;
+            referencedRelation: "questions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "community_posts_parent_id_fkey";
+            columns: ["parent_id"];
+            isOneToOne: false;
+            referencedRelation: "community_posts";
             referencedColumns: ["id"];
           },
         ];

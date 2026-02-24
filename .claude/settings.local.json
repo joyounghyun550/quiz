@@ -20,8 +20,13 @@
       "Bash(node.exe:*)",
       "Bash(node:*)",
       "Bash(ls:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(done)"
     ],
-    "additionalDirectories": ["C:\\Users\\UserPC\\AppData\\Local\\Temp"]
+    "additionalDirectories": [
+      "C:\\Users\\UserPC\\AppData\\Local\\Temp",
+      "C:\\Users\\UserPC\\Desktop\\quiz\\src\\app\\(main)\\community",
+      "C:\\Users\\UserPC\\Desktop\\quiz\\src\\app\\api\\community"
+    ]
   }
 }

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { LP_CONFIG } from "@/shared/constants/tier.constant";
 import type { CategoryStatRow, QuestionRow, QuizSessionRow, TierName, UserRow } from "@/shared/types/database.type";
 
-import { applyLpChange, calculateLpChange } from "@/entities/user/lib/lp.util";
+import { applyLpChange, calculateLpChange, calculatePlacementLp } from "@/entities/user/lib/lp.util";
 import { getTierDifficulty, getTierInfo } from "@/entities/user/lib/tier.util";
 
 import { createSupabaseServerClient } from "@/lib/supabase-server";
@@ -192,12 +192,40 @@ export async function POST(request: Request) {
     })
     .eq("id", sessionId);
 
-  // LP 및 티어 업데이트 (배치 테스트가 아닌 경우)
+  // LP 및 티어 업데이트
   let newTierInfo = getTierInfo(profile.current_lp);
   let tierChanged = false;
   let promoted = false;
 
-  if (session.session_type !== "placement") {
+  if (session.session_type === "placement") {
+    // 배치 테스트: calculatePlacementLp로 시작 LP 결정
+    const placementResults = answers.map((a) => {
+      const q = questionMap.get(a.questionId);
+      return { correct: q?.correct_answer === a.userAnswer, difficulty: q?.difficulty ?? 3 };
+    });
+    const placementLp = calculatePlacementLp(placementResults);
+    newTierInfo = getTierInfo(placementLp);
+    totalLpChange = placementLp;
+
+    // 서버에서 직접 유저 프로필 업데이트
+    await supabase
+      .from("users")
+      .update({
+        has_completed_placement: true,
+        current_lp: placementLp,
+        current_tier: newTierInfo.name,
+        current_tier_division: newTierInfo.division,
+        highest_tier: newTierInfo.name,
+        highest_lp: placementLp,
+        total_correct: profile.total_correct + correctCount,
+        total_answered: profile.total_answered + answers.length,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("id", user.id);
+
+    tierChanged = newTierInfo.name !== profile.current_tier;
+    promoted = true;
+  } else {
     const result = applyLpChange(
       profile.current_lp,
       profile.current_tier as TierName,

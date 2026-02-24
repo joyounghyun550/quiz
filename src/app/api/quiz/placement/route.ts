@@ -19,19 +19,24 @@ export async function GET() {
 
   const difficulties = generatePlacementDifficulties();
 
-  // 각 난이도별로 랜덤 문제 선택
+  // 각 난이도별로 랜덤 문제 선택 (중복 방지)
   const questions: QuestionRow[] = [];
+  const usedIds: string[] = [];
+
   for (const difficulty of difficulties) {
-    const { data } = (await supabase
-      .from("questions")
-      .select("*")
-      .eq("difficulty", difficulty)
-      .eq("is_active", true)
-      .limit(10)) as { data: QuestionRow[] | null };
+    let query = supabase.from("questions").select("*").eq("difficulty", difficulty).eq("is_active", true);
+
+    if (usedIds.length > 0) {
+      query = query.not("id", "in", `(${usedIds.join(",")})`);
+    }
+
+    const { data } = (await query.limit(10)) as { data: QuestionRow[] | null };
 
     if (data && data.length > 0) {
       const randomIndex = Math.floor(Math.random() * data.length);
-      questions.push(data[randomIndex]);
+      const selected = data[randomIndex];
+      questions.push(selected);
+      usedIds.push(selected.id);
     }
   }
 
