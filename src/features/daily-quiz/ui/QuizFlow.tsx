@@ -138,8 +138,10 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
     );
   }
 
-  const answerStates = questions.map((q) => {
+  const answerStates = questions.map((q, i) => {
     if (!q.selectedAnswer) return null;
+    // 현재 문제는 피드백 확인 전까지 색상 표시 안 함 (정답 노출 방지)
+    if (i === currentIndex && !showFeedback) return null;
     return q.correct_answer === q.selectedAnswer;
   });
 
@@ -293,6 +295,7 @@ const QuizFlow = ({ userTier, userStreak }: QuizFlowProps) => {
               correctAnswer={currentResult.correctAnswer}
               onNext={handleNext}
               isLast={currentIndex >= questions.length - 1}
+              isPlacement={sessionType === "placement"}
             />
           </>
         )}

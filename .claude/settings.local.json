@@ -21,7 +21,8 @@
       "Bash(node:*)",
       "Bash(ls:*)",
       "Bash(python3:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(git push:*)"
     ],
     "additionalDirectories": [
       "C:\\Users\\UserPC\\AppData\\Local\\Temp",

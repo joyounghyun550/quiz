@@ -1,0 +1,928 @@
+[
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useContext",
+    "difficulty": 2,
+    "title": "useContext의 기본 사용법",
+    "body": "React에서 Context를 소비(consume)하는 올바른 훅은 무엇인가요?",
+    "code_snippet": "const ThemeContext = React.createContext('light');\n\nfunction MyComponent() {\n  // 어떻게 context 값을 가져오나요?\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "const theme = React.useContext(ThemeContext)", "isCorrect": true },
+      { "id": "b", "text": "const theme = React.getContext(ThemeContext)", "isCorrect": false },
+      { "id": "c", "text": "const theme = ThemeContext.use()", "isCorrect": false },
+      { "id": "d", "text": "const theme = React.consumeContext(ThemeContext)", "isCorrect": false }
+    ],
+    "correct_answer": "a",
+    "hint_1": "React 훅의 이름은 항상 'use'로 시작합니다.",
+    "hint_2": "Context 객체 자체를 인자로 받는 훅을 사용합니다.",
+    "explanation": "useContext(ThemeContext)는 가장 가까운 ThemeContext.Provider의 value를 반환합니다. Context 객체를 직접 인자로 전달해야 하며, Provider가 없으면 createContext에 전달한 기본값이 사용됩니다.",
+    "explanation_code": "const theme = useContext(ThemeContext);",
+    "reference_url": "https://react.dev/reference/react/useContext"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useContext",
+    "difficulty": 3,
+    "title": "Context Provider value 변경 시 리렌더링 범위",
+    "body": "Context Provider의 value가 변경될 때 어떤 컴포넌트가 리렌더링 되나요?",
+    "code_snippet": "const CountContext = React.createContext(0);\nfunction App() {\n  const [count, setCount] = useState(0);\n  return (\n    <CountContext.Provider value={count}>\n      <Parent />\n    </CountContext.Provider>\n  );\n}\nfunction Parent() { return <Child />; }\nfunction Child() {\n  const count = useContext(CountContext);\n  return <div>{count}</div>;\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "Child만 리렌더링된다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "App이 리렌더링되면 Parent와 Child도 리렌더링되고, Child는 context 변경만으로도 리렌더링된다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "Context를 사용하는 컴포넌트는 절대 리렌더링되지 않는다", "isCorrect": false },
+      { "id": "d", "text": "Provider 하위의 모든 컴포넌트가 context와 관계없이 항상 리렌더링된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "부모 컴포넌트가 리렌더링되면 자식도 리렌더링됩니다.",
+    "hint_2": "useContext를 사용하는 컴포넌트는 context 값이 변경될 때 추가로 리렌더링됩니다.",
+    "explanation": "App의 state가 변경되면 App이 리렌더링되고, 일반적인 React 동작에 따라 Parent와 Child도 리렌더링됩니다. 또한 Child는 useContext를 사용하기 때문에 context 값이 변경될 때마다 리렌더링됩니다. React.memo로 감싸도 context 변경에 의한 리렌더링은 막을 수 없습니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useContext"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "useContext",
+    "difficulty": 3,
+    "title": "React.memo와 useContext의 리렌더링 관계",
+    "body": "React.memo로 감싼 컴포넌트는 useContext를 사용할 경우, Context 값이 변경되어도 리렌더링되지 않는다.",
+    "code_snippet": "const MemoizedChild = React.memo(function Child() {\n  const theme = useContext(ThemeContext);\n  return <div>{theme}</div>;\n});",
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "React.memo는 props 변경에만 반응합니다.",
+    "hint_2": "useContext에 의한 리렌더링은 memo로 막을 수 없습니다.",
+    "explanation": "이 설명은 거짓입니다. React.memo는 props가 변경되지 않으면 리렌더링을 건너뛰지만, useContext를 사용하는 컴포넌트는 context 값이 변경되면 항상 리렌더링됩니다. context 구독은 memo와 독립적으로 동작합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useContext"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useContext",
+    "difficulty": 4,
+    "title": "Context 성능 최적화를 위한 분리 전략",
+    "body": "대규모 앱에서 Context로 인한 불필요한 리렌더링을 줄이는 가장 효과적인 방법은 무엇인가요?",
+    "code_snippet": "const AppContext = createContext();\nfunction App() {\n  const [user, setUser] = useState(null);\n  const [theme, setTheme] = useState('light');\n  const [cart, setCart] = useState([]);\n  return (\n    <AppContext.Provider value={{ user, theme, cart, setUser, setTheme, setCart }}>\n      <Router />\n    </AppContext.Provider>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "하나의 Context에 모든 값을 넣되, useMemo로 value를 메모이제이션한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "관심사별로 Context를 분리하여 각 Context를 소비하는 컴포넌트만 리렌더링되도록 한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "Context 대신 전역 변수를 사용한다", "isCorrect": false },
+      { "id": "d", "text": "Provider를 최대한 깊은 곳에 배치한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "하나의 큰 Context는 관련 없는 값이 변경되어도 모든 소비자를 리렌더링시킵니다.",
+    "hint_2": "UserContext, ThemeContext, CartContext로 분리하는 것을 고려해보세요.",
+    "explanation": "Context를 관심사별로 분리(UserContext, ThemeContext, CartContext)하면 각 컴포넌트가 필요한 Context만 구독하게 되어 불필요한 리렌더링이 줄어듭니다. useMemo로 value를 메모이제이션하는 것도 도움이 되지만, 근본적인 해결책은 Context를 분리하는 것입니다.",
+    "explanation_code": "const UserContext = createContext();\nconst ThemeContext = createContext();\nconst CartContext = createContext();",
+    "reference_url": "https://react.dev/reference/react/useContext"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useContext",
+    "difficulty": 3,
+    "title": "중첩된 Provider에서의 useContext 반환값",
+    "body": "중첩된 Context Provider가 있을 때 useContext는 어떤 값을 반환하나요?",
+    "code_snippet": "const ThemeContext = createContext('light');\nfunction App() {\n  return (\n    <ThemeContext.Provider value=\"dark\">\n      <ThemeContext.Provider value=\"blue\">\n        <Child />\n      </ThemeContext.Provider>\n    </ThemeContext.Provider>\n  );\n}\nfunction Child() {\n  const theme = useContext(ThemeContext);\n  console.log(theme);\n  return null;\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "light", "isCorrect": false },
+      { "id": "b", "text": "dark", "isCorrect": false },
+      { "id": "c", "text": "blue", "isCorrect": true },
+      { "id": "d", "text": "['dark', 'blue']", "isCorrect": false }
+    ],
+    "correct_answer": "c",
+    "hint_1": "useContext는 컴포넌트 트리에서 가장 가까운 Provider의 값을 반환합니다.",
+    "hint_2": "Child에서 가장 가까운 Provider는 무엇인가요?",
+    "explanation": "useContext는 항상 컴포넌트 트리에서 해당 컴포넌트와 가장 가까운 Provider의 value를 반환합니다. Child의 가장 가까운 ThemeContext.Provider는 value=\"blue\"를 가진 것이므로 'blue'가 출력됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useContext"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useContext",
+    "difficulty": 4,
+    "title": "Context Provider value를 useMemo로 최적화하기",
+    "body": "Context Provider의 value로 객체를 전달할 때 발생하는 문제와 해결책은 무엇인가요?",
+    "code_snippet": "function App() {\n  const [user, setUser] = useState(null);\n  return (\n    <UserContext.Provider value={{ user, setUser }}>\n      <Main />\n    </UserContext.Provider>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "문제없다. 객체를 value로 전달해도 된다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "App이 리렌더링될 때마다 새 객체가 생성되어 모든 Context 소비자가 리렌더링된다. useMemo로 해결한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "setUser를 Context에 넣으면 안 된다", "isCorrect": false },
+      { "id": "d", "text": "Context에는 원시값만 전달할 수 있다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "JavaScript에서 {} === {}는 false입니다.",
+    "hint_2": "React는 Object.is로 Context 값을 비교합니다.",
+    "explanation": "App이 리렌더링될 때마다 { user, setUser } 객체가 새로 생성되어 참조가 달라집니다. React는 Object.is로 이전 value와 비교하므로 매번 다른 값으로 인식하여 모든 소비자가 불필요하게 리렌더링됩니다. useMemo(() => ({ user, setUser }), [user])로 해결할 수 있습니다.",
+    "explanation_code": "const contextValue = useMemo(() => ({ user, setUser }), [user]);\n<UserContext.Provider value={contextValue}>",
+    "reference_url": "https://react.dev/reference/react/useContext"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "useContext",
+    "difficulty": 2,
+    "title": "Provider 없이 useContext 사용 시 에러 발생 여부",
+    "body": "Context에 대응하는 Provider가 컴포넌트 트리에 없을 때, useContext는 에러를 발생시킨다.",
+    "code_snippet": "const ThemeContext = createContext('light');\nfunction App() { return <Child />; }\nfunction Child() {\n  const theme = useContext(ThemeContext);\n  return <div>{theme}</div>;\n}",
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "createContext의 인자를 생각해보세요.",
+    "hint_2": "Provider가 없을 때는 기본값이 사용됩니다.",
+    "explanation": "이 설명은 거짓입니다. Provider가 없을 때 useContext는 에러를 발생시키지 않고, createContext에 전달한 기본값(여기서는 'light')을 반환합니다. 에러를 발생시키려면 커스텀 훅에서 null 체크를 직접 구현해야 합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useContext"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useContext",
+    "difficulty": 5,
+    "title": "Context와 useReducer를 결합한 전역 상태 관리 패턴",
+    "body": "Context와 useReducer를 함께 사용할 때 성능상 가장 올바른 패턴은 무엇인가요?",
+    "code_snippet": "// A안\nconst StateContext = createContext();\nconst DispatchContext = createContext();\n\n// B안\nconst AppContext = createContext();",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "B안: 하나의 Context에 state와 dispatch를 함께 전달한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "A안: state와 dispatch를 별도의 Context로 분리하여 dispatch만 필요한 컴포넌트의 불필요한 리렌더링을 방지한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "둘 다 동일한 성능을 가진다", "isCorrect": false },
+      { "id": "d", "text": "Context와 useReducer는 함께 사용하면 안 된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "dispatch 함수는 React에서 안정적(stable)이므로 항상 동일한 참조를 가집니다.",
+    "hint_2": "dispatch만 필요한 컴포넌트가 state 변경으로 리렌더링되는 것을 방지할 수 있습니다.",
+    "explanation": "StateContext와 DispatchContext를 분리하면, dispatch만 필요한 컴포넌트(예: 버튼)는 DispatchContext만 구독하여 state 변경으로 인한 불필요한 리렌더링을 방지할 수 있습니다. dispatch 함수는 useReducer가 반환하는 안정적인 함수이므로 DispatchContext의 값은 변경되지 않습니다.",
+    "explanation_code": "<StateContext.Provider value={state}>\n  <DispatchContext.Provider value={dispatch}>\n    <App />\n  </DispatchContext.Provider>\n</StateContext.Provider>",
+    "reference_url": "https://react.dev/reference/react/useContext"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useReducer",
+    "difficulty": 2,
+    "title": "useReducer의 기본 구조와 반환값",
+    "body": "useReducer 훅의 올바른 사용법은 무엇인가요?",
+    "code_snippet": "function reducer(state, action) {\n  switch (action.type) {\n    case 'increment':\n      return { count: state.count + 1 };\n    default:\n      return state;\n  }\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "const [state, dispatch] = useReducer(initialState, reducer)", "isCorrect": false },
+      { "id": "b", "text": "const [state, dispatch] = useReducer(reducer, initialState)", "isCorrect": true },
+      { "id": "c", "text": "const [dispatch, state] = useReducer(reducer, initialState)", "isCorrect": false },
+      { "id": "d", "text": "const state = useReducer(reducer, initialState)", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useReducer는 두 개의 값을 배열로 반환합니다.",
+    "hint_2": "첫 번째 인자는 reducer 함수, 두 번째는 초기 상태입니다.",
+    "explanation": "useReducer(reducer, initialState)는 [state, dispatch] 배열을 반환합니다. reducer가 첫 번째 인자, initialState가 두 번째 인자입니다. dispatch를 호출하면 reducer가 현재 state와 action을 받아 새로운 state를 반환합니다.",
+    "explanation_code": "const [state, dispatch] = useReducer(reducer, { count: 0 });\ndispatch({ type: 'increment' });",
+    "reference_url": "https://react.dev/reference/react/useReducer"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useReducer",
+    "difficulty": 3,
+    "title": "useReducer 누적 dispatch 결과값",
+    "body": "다음 코드에서 두 번의 dispatch 호출 후 state.count의 값은 무엇인가요?",
+    "code_snippet": "function reducer(state, action) {\n  switch (action.type) {\n    case 'add':\n      return { ...state, count: state.count + action.payload };\n    default:\n      return state;\n  }\n}\nconst [state, dispatch] = useReducer(reducer, { count: 5 });\ndispatch({ type: 'add', payload: 3 });\ndispatch({ type: 'add', payload: 2 });\n// state.count는?",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "5", "isCorrect": false },
+      { "id": "b", "text": "8", "isCorrect": false },
+      { "id": "c", "text": "10", "isCorrect": true },
+      { "id": "d", "text": "3", "isCorrect": false }
+    ],
+    "correct_answer": "c",
+    "hint_1": "각 dispatch 호출은 이전 state를 기반으로 새로운 state를 만듭니다.",
+    "hint_2": "5 + 3 = 8, 8 + 2 = 10",
+    "explanation": "초기값 5에서 add 3을 하면 8이 되고, 다시 add 2를 하면 10이 됩니다. 각 dispatch는 이전 렌더링의 state를 기반으로 reducer를 실행하므로 누적 계산이 가능합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useReducer"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useReducer",
+    "difficulty": 3,
+    "title": "useReducer의 초기화 함수(init) 실행 결과",
+    "body": "다음 코드에서 Counter가 마운트될 때 state의 초기값은 무엇인가요?",
+    "code_snippet": "function init(initialCount) {\n  return { count: initialCount, history: [] };\n}\n\nfunction reducer(state, action) {\n  if (action.type === 'reset') return init(action.payload);\n  return state;\n}\n\nfunction Counter() {\n  const [state, dispatch] = useReducer(reducer, 10, init);\n  console.log(state);\n  return null;\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "10", "isCorrect": false },
+      { "id": "b", "text": "{ count: 10, history: [] }", "isCorrect": true },
+      { "id": "c", "text": "{ count: 0, history: [] }", "isCorrect": false },
+      { "id": "d", "text": "undefined", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "세 번째 인자 init 함수는 두 번째 인자(10)를 받아 초기 state를 반환합니다.",
+    "hint_2": "init(10)의 반환값을 생각해보세요.",
+    "explanation": "useReducer(reducer, 10, init)에서 세 번째 인자 init이 제공되면 두 번째 인자(10)를 init 함수에 전달하여 초기 state를 생성합니다. init(10)은 { count: 10, history: [] }를 반환하므로 초기 state는 { count: 10, history: [] }입니다.",
+    "explanation_code": "// init(10) => { count: 10, history: [] }",
+    "reference_url": "https://react.dev/reference/react/useReducer"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useReducer",
+    "difficulty": 4,
+    "title": "useReducer에서 불변성 위반 시 결과",
+    "body": "다음 reducer에서 items에 새 아이템을 추가한 후 컴포넌트가 리렌더링되지 않는 이유는 무엇인가요?",
+    "code_snippet": "function badReducer(state, action) {\n  if (action.type === 'add') {\n    state.items.push(action.item); // 직접 변이!\n    return state; // 같은 참조 반환\n  }\n  return state;\n}\n\n// dispatch({ type: 'add', item: 'apple' }) 실행 후\n// 리렌더링이 발생하나요?",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "리렌더링이 발생한다. push가 배열을 변경했기 때문이다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "리렌더링이 발생하지 않는다. React가 Object.is로 비교할 때 동일한 참조이기 때문이다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "에러가 발생한다", "isCorrect": false },
+      { "id": "d", "text": "리렌더링 여부는 환경마다 다르다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "React는 Object.is로 이전 state와 새 state를 비교합니다.",
+    "hint_2": "같은 객체 참조를 반환하면 React는 변화가 없다고 판단합니다.",
+    "explanation": "reducer에서 기존 state를 직접 변이(mutate)하고 같은 참조를 반환하면, React는 Object.is 비교에서 이전 state와 동일한 것으로 판단하여 리렌더링을 건너뜁니다. 반드시 { ...state, items: [...state.items, action.item] }처럼 새로운 객체를 반환해야 합니다.",
+    "explanation_code": "function goodReducer(state, action) {\n  if (action.type === 'add') {\n    return { ...state, items: [...state.items, action.item] };\n  }\n  return state;\n}",
+    "reference_url": "https://react.dev/reference/react/useReducer"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "useReducer",
+    "difficulty": 3,
+    "title": "useReducer dispatch는 안정적인 참조를 가진다",
+    "body": "useReducer가 반환하는 dispatch 함수는 컴포넌트가 리렌더링되어도 항상 동일한 참조(reference)를 유지한다.",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "true",
+    "hint_1": "useState의 setter 함수도 동일한 특성을 가집니다.",
+    "hint_2": "이 특성이 useCallback 의존성 배열에 영향을 미칩니다.",
+    "explanation": "이 설명은 참입니다. useReducer의 dispatch 함수는 React가 보장하는 안정적인(stable) 함수로, 리렌더링 사이에 항상 동일한 참조를 유지합니다. 따라서 useCallback의 의존성 배열에 dispatch를 포함할 필요가 없으며, 자식 컴포넌트에 props로 전달해도 불필요한 리렌더링을 일으키지 않습니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useReducer"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useReducer",
+    "difficulty": 4,
+    "title": "useReducer에서 동일한 state 반환 시 동작",
+    "body": "다음 코드에서 버튼을 여러 번 클릭했을 때 'render'는 몇 번 출력될까요?",
+    "code_snippet": "function reducer(state, action) {\n  if (action.type === 'same') {\n    return state; // 동일한 state 반환\n  }\n  return { ...state, count: state.count + 1 };\n}\nfunction Counter() {\n  const [state, dispatch] = useReducer(reducer, { count: 0 });\n  console.log('render');\n  return (\n    <button onClick={() => dispatch({ type: 'same' })}>Click</button>\n  );\n}\n// 버튼을 5번 클릭하면?",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "5번 (클릭마다 항상 리렌더링)", "isCorrect": false },
+      { "id": "b", "text": "1번 또는 2번 (첫 번째 클릭 후 React가 bailout 적용)", "isCorrect": true },
+      { "id": "c", "text": "0번 (절대 리렌더링 안 됨)", "isCorrect": false },
+      { "id": "d", "text": "무한 루프 발생", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "React는 동일한 state를 반환하면 리렌더링을 최적화합니다.",
+    "hint_2": "단, React는 처음 한 번은 리렌더링한 후 최적화를 적용할 수 있습니다.",
+    "explanation": "동일한 state를 반환하면 React는 Object.is 비교를 통해 변경이 없음을 감지하고 리렌더링을 건너뜁니다(bailout). React는 내부 최적화를 위해 처음 한 번은 리렌더링을 수행할 수 있지만, 이후에는 리렌더링을 건너뜁니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useReducer"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useReducer",
+    "difficulty": 5,
+    "title": "TypeScript와 useReducer - 판별 유니온 액션 타입",
+    "body": "TypeScript에서 useReducer를 사용할 때 타입 안전성을 보장하는 올바른 패턴은 무엇인가요?",
+    "code_snippet": "type State = { count: number; text: string };\n\n// A안\ntype ActionA = { type: string; payload?: any };\n\n// B안\ntype ActionB =\n  | { type: 'increment'; payload: number }\n  | { type: 'setText'; payload: string }\n  | { type: 'reset' };",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "A안: 더 유연하고 간단하다", "isCorrect": false },
+      { "id": "b", "text": "B안: 판별 유니온으로 각 액션의 payload 타입이 정확히 추론된다", "isCorrect": true },
+      { "id": "c", "text": "둘 다 동일한 타입 안전성을 제공한다", "isCorrect": false },
+      { "id": "d", "text": "TypeScript에서는 useReducer를 사용하면 안 된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "TypeScript의 판별 유니온(discriminated union)은 type 필드로 타입을 좁힙니다.",
+    "hint_2": "switch(action.type)에서 각 case의 payload 타입이 자동으로 추론됩니다.",
+    "explanation": "판별 유니온 타입(B안)을 사용하면 switch(action.type) 내의 각 case에서 TypeScript가 해당 액션의 payload 타입을 정확히 추론합니다. 'increment' case에서 action.payload는 number, 'setText' case에서는 string으로 추론됩니다. A안의 any 타입은 타입 안전성을 해칩니다.",
+    "explanation_code": "function reducer(state: State, action: ActionB): State {\n  switch (action.type) {\n    case 'increment': return { ...state, count: state.count + action.payload };\n    case 'setText': return { ...state, text: action.payload };\n    case 'reset': return { count: 0, text: '' };\n  }\n}",
+    "reference_url": "https://react.dev/reference/react/useReducer"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useReducer",
+    "difficulty": 5,
+    "title": "useReducer에서 비동기 처리 올바른 패턴",
+    "body": "useReducer만 사용하여 비동기 작업(API 호출)의 로딩/성공/실패 상태를 관리하는 올바른 패턴은 무엇인가요?",
+    "code_snippet": "const initialState = { data: null, loading: false, error: null };",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "reducer 함수 내에서 직접 fetch를 호출한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "reducer는 순수하게 유지하고, 비동기 로직은 이벤트 핸들러나 useEffect에서 처리하며 로딩/성공/실패 액션을 dispatch한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "useReducer는 비동기 처리에 사용할 수 없다", "isCorrect": false },
+      { "id": "d", "text": "reducer에 async/await를 사용한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "reducer 함수는 순수 함수(pure function)여야 합니다.",
+    "hint_2": "dispatch({ type: 'FETCH_START' }), dispatch({ type: 'FETCH_SUCCESS' }) 패턴을 생각해보세요.",
+    "explanation": "reducer는 사이드 이펙트가 없는 순수 함수여야 하므로 내부에서 fetch를 호출하면 안 됩니다. 비동기 로직은 이벤트 핸들러나 useEffect에서 처리하고, 각 단계(시작/성공/실패)에서 적절한 액션을 dispatch하여 state를 업데이트합니다.",
+    "explanation_code": "async function fetchData() {\n  dispatch({ type: 'FETCH_START' });\n  try {\n    const data = await api.getData();\n    dispatch({ type: 'FETCH_SUCCESS', payload: data });\n  } catch (error) {\n    dispatch({ type: 'FETCH_ERROR', payload: error.message });\n  }\n}",
+    "reference_url": "https://react.dev/reference/react/useReducer"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useMemo",
+    "difficulty": 2,
+    "title": "useMemo의 기본 목적과 반환값",
+    "body": "useMemo 훅을 사용하는 주요 목적은 무엇인가요?",
+    "code_snippet": "const memoizedValue = useMemo(() => {\n  return expensiveCalculation(a, b);\n}, [a, b]);",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "함수를 메모이제이션하여 자식 컴포넌트에 전달하기 위해", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "비용이 큰 계산의 결과값을 메모이제이션하여 의존성이 변경될 때만 재계산한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "컴포넌트를 메모이제이션하기 위해", "isCorrect": false },
+      { "id": "d", "text": "비동기 작업의 결과를 캐시하기 위해", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useMemo는 값(value)을 메모이제이션합니다.",
+    "hint_2": "의존성 배열의 값이 변경될 때만 함수가 재실행됩니다.",
+    "explanation": "useMemo는 비용이 큰 계산(예: 대용량 배열 필터링, 복잡한 연산)의 결과를 메모이제이션합니다. 의존성 배열([a, b])의 값이 변경될 때만 계산을 재실행하고, 그렇지 않으면 이전에 캐시된 값을 반환합니다. 함수를 메모이제이션하려면 useCallback을 사용합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useMemo"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useMemo",
+    "difficulty": 3,
+    "title": "useMemo와 useCallback의 핵심 차이",
+    "body": "useMemo와 useCallback의 핵심적인 차이점은 무엇인가요?",
+    "code_snippet": "const memoValue = useMemo(() => compute(a), [a]);\nconst memoFn = useCallback(() => compute(a), [a]);",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "useMemo는 비동기, useCallback은 동기 함수에 사용한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "useMemo는 함수의 반환값을 메모이제이션하고, useCallback은 함수 자체를 메모이제이션한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "둘은 완전히 동일하다", "isCorrect": false },
+      { "id": "d", "text": "useMemo는 컴포넌트에, useCallback은 일반 함수에 사용한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useMemo는 값(value)을, useCallback은 함수(function)를 반환합니다.",
+    "hint_2": "useCallback(fn, deps)은 useMemo(() => fn, deps)와 동일합니다.",
+    "explanation": "useMemo는 팩토리 함수를 실행하고 그 반환값을 메모이제이션합니다(memoValue = compute(a)의 결과). useCallback은 함수 자체를 메모이제이션합니다(memoFn은 함수). 실제로 useCallback(fn, deps)은 useMemo(() => fn, deps)와 동일합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useMemo"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useMemo",
+    "difficulty": 3,
+    "title": "useMemo 빈 의존성 배열의 동작",
+    "body": "data prop이 바뀌어도 processed가 업데이트되지 않는 이유는 무엇인가요?",
+    "code_snippet": "function Component({ data }) {\n  const processed = useMemo(() => {\n    console.log('계산 실행');\n    return data.map(x => x * 2);\n  }, []); // 빈 배열\n\n  return <div>{processed.join(', ')}</div>;\n}\n// data가 [1,2,3]에서 [4,5,6]으로 바뀐 후 processed는?",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "[8, 10, 12] (새 data 기반 계산)", "isCorrect": false },
+      { "id": "b", "text": "[2, 4, 6] (초기 data [1,2,3] 기반, 재계산 없음)", "isCorrect": true },
+      { "id": "c", "text": "undefined", "isCorrect": false },
+      { "id": "d", "text": "에러가 발생한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "빈 배열은 의존성이 없다는 의미입니다.",
+    "hint_2": "data가 의존성에 없으면 data 변경 시 재계산하지 않습니다.",
+    "explanation": "빈 의존성 배열([])을 전달하면 useMemo는 컴포넌트 마운트 시 한 번만 계산을 실행하고 이후에는 캐시된 값을 반환합니다. data prop이 변경되어도 재계산하지 않아 초기 data([1,2,3])의 결과인 [2,4,6]이 그대로 반환됩니다.",
+    "explanation_code": "const processed = useMemo(() => data.map(x => x * 2), [data]);",
+    "reference_url": "https://react.dev/reference/react/useMemo"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useMemo",
+    "difficulty": 4,
+    "title": "useMemo로 참조 동일성 유지하기",
+    "body": "다음 코드에서 useMemo를 사용하는 이유는 무엇인가요?",
+    "code_snippet": "function Parent({ filter }) {\n  const filteredItems = useMemo(\n    () => allItems.filter(item => item.category === filter),\n    [filter]\n  );\n  return <Child items={filteredItems} />;\n}\nconst Child = React.memo(({ items }) => {\n  return <ul>{items.map(i => <li key={i.id}>{i.name}</li>)}</ul>;\n});",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "filter 함수 자체를 캐시하기 위해", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "filter가 변경되지 않으면 filteredItems의 참조를 동일하게 유지하여 React.memo로 감싼 Child의 불필요한 리렌더링을 방지하기 위해",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "필터링 로직의 버그를 방지하기 위해", "isCorrect": false },
+      { "id": "d", "text": "useMemo 없이도 동일하게 동작한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "filter() 메서드는 항상 새로운 배열을 반환합니다.",
+    "hint_2": "React.memo는 props의 참조 동일성을 비교합니다.",
+    "explanation": "useMemo 없이는 Parent가 리렌더링될 때마다 filter()가 새 배열을 생성하여 filteredItems의 참조가 달라집니다. React.memo로 감싼 Child는 props 비교 시 새로운 참조를 다른 값으로 인식하여 불필요하게 리렌더링됩니다. useMemo를 사용하면 filter가 변경되지 않는 한 동일한 배열 참조를 유지합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useMemo"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "useMemo",
+    "difficulty": 3,
+    "title": "모든 계산에 useMemo를 적용하면 항상 성능이 향상된다",
+    "body": "모든 계산에 useMemo를 적용하면 항상 성능이 향상된다.",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "메모이제이션 자체에도 비용이 있습니다.",
+    "hint_2": "간단한 계산에 useMemo를 사용하면 오히려 오버헤드가 생길 수 있습니다.",
+    "explanation": "이 설명은 거짓입니다. useMemo는 이전 값 저장과 의존성 비교에 메모리와 연산 비용이 발생합니다. 간단한 계산(덧셈, 문자열 연결 등)에 useMemo를 사용하면 메모이제이션 오버헤드가 실제 계산보다 클 수 있습니다. 배열 필터링, 정렬, 복잡한 데이터 변환 등 실제로 비용이 큰 계산에만 사용해야 합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useMemo"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useMemo",
+    "difficulty": 5,
+    "title": "useMemo로 Context value 최적화하기",
+    "body": "Context Provider의 value 객체를 useMemo로 최적화하는 올바른 방법은 무엇인가요?",
+    "code_snippet": "function ThemeProvider({ children }) {\n  const [theme, setTheme] = useState('light');\n  const [fontSize, setFontSize] = useState(16);\n\n  const value = useMemo(\n    () => ({ theme, setTheme, fontSize, setFontSize }),\n    [theme, fontSize]\n  );\n\n  return (\n    <ThemeContext.Provider value={value}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "잘못된 코드다. Context에 함수를 포함하면 안 된다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "올바른 패턴이다. theme이나 fontSize가 변경될 때만 새 객체를 생성하여 불필요한 Context 소비자 리렌더링을 방지한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "useMemo를 사용해도 Context 소비자는 항상 리렌더링된다", "isCorrect": false },
+      { "id": "d", "text": "setTheme, setFontSize를 의존성에 포함해야 한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "setTheme, setFontSize는 안정적인 참조를 가지므로 의존성에 포함할 필요가 없습니다.",
+    "hint_2": "useMemo는 theme 또는 fontSize가 변경될 때만 새 객체를 생성합니다.",
+    "explanation": "이 패턴은 올바릅니다. useState의 setter 함수(setTheme, setFontSize)는 안정적인 참조를 가지므로 의존성 배열에 포함할 필요가 없습니다. theme이나 fontSize가 변경될 때만 새 value 객체가 생성되어 Context 소비자가 리렌더링됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useMemo"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useMemo",
+    "difficulty": 4,
+    "title": "useMemo에서 count 의존성 누락 시 결과",
+    "body": "다음 코드에서 count를 3번 증가시킨 후 squared의 값은 무엇인가요?",
+    "code_snippet": "function App() {\n  const [count, setCount] = useState(1);\n  const [text, setText] = useState('');\n\n  const squared = useMemo(() => {\n    return count * count;\n  }, [text]); // count가 의존성에 없음!\n\n  return (\n    <div>\n      <p>squared: {squared}</p>\n      <button onClick={() => setCount(c => c + 1)}>+1</button>\n      <input value={text} onChange={e => setText(e.target.value)} />\n    </div>\n  );\n}\n// +1을 3번 눌렀을 때 squared는?",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "16 (count가 4이므로 4*4)", "isCorrect": false },
+      { "id": "b", "text": "1 (초기 count인 1*1, text가 변경되지 않아 재계산 안 됨)", "isCorrect": true },
+      { "id": "c", "text": "4 (count=4 최신값 반영)", "isCorrect": false },
+      { "id": "d", "text": "에러가 발생한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useMemo는 의존성 배열에 있는 값만 추적합니다.",
+    "hint_2": "text가 변경되지 않으면 useMemo는 재계산하지 않습니다.",
+    "explanation": "의존성 배열에 [text]만 있고 count가 없으므로, useMemo는 text가 변경될 때만 재계산합니다. count를 아무리 변경해도 text가 변경되지 않으면 squared는 초기값인 1(1*1)을 반환합니다. ESLint의 exhaustive-deps 규칙을 사용하면 이런 실수를 방지할 수 있습니다.",
+    "explanation_code": "const squared = useMemo(() => count * count, [count]);",
+    "reference_url": "https://react.dev/reference/react/useMemo"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useMemo",
+    "difficulty": 4,
+    "title": "useMemo의 계산 비용 측정 방법",
+    "body": "useMemo 사용이 실제로 성능 향상에 도움이 되는지 판단하는 올바른 방법은 무엇인가요?",
+    "code_snippet": "const result = useMemo(\n  () => items.find(item => item.id === selectedId),\n  [items, selectedId]\n);",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "배열 메서드를 사용하므로 항상 useMemo가 필요하다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "console.time으로 실제 실행 시간을 측정하거나, React DevTools Profiler로 렌더링 비용을 확인한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "코드가 복잡해 보이면 useMemo를 사용한다", "isCorrect": false },
+      { "id": "d", "text": "항상 useMemo를 사용하는 것이 안전하다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Array.find는 일반적으로 매우 빠른 연산입니다.",
+    "hint_2": "실제 측정 없이 최적화하는 것은 premature optimization입니다.",
+    "explanation": "useMemo가 필요한지 판단하려면 console.time/timeEnd로 실행 시간을 측정하거나 React DevTools Profiler로 렌더링 비용을 확인해야 합니다. Array.find는 일반적으로 매우 빠르므로 이 예시에서는 useMemo가 필요 없을 수 있습니다. 측정을 통해 실제로 비용이 큰 계산에만 useMemo를 적용하는 것이 좋습니다.",
+    "explanation_code": "console.time('find');\nconst result = items.find(item => item.id === selectedId);\nconsole.timeEnd('find');",
+    "reference_url": "https://react.dev/reference/react/useMemo"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useCallback",
+    "difficulty": 2,
+    "title": "useCallback 없이 자식 컴포넌트에 함수 전달 시 문제",
+    "body": "useCallback을 사용하지 않으면 어떤 문제가 발생할 수 있나요?",
+    "code_snippet": "function Parent() {\n  const [count, setCount] = useState(0);\n\n  const handleClick = () => {\n    console.log('clicked');\n  };\n\n  return <Child onClick={handleClick} />;\n}\n\nconst Child = React.memo(({ onClick }) => {\n  console.log('Child 렌더링');\n  return <button onClick={onClick}>Click</button>;\n});",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "에러가 발생한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "handleClick이 매 렌더링마다 새로 생성되어 React.memo로 감싼 Child가 불필요하게 리렌더링된다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "메모리 누수가 발생한다", "isCorrect": false },
+      { "id": "d", "text": "아무 문제없다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "함수도 객체이므로 매번 새로운 참조가 생성됩니다.",
+    "hint_2": "React.memo는 props의 참조 동일성을 비교합니다.",
+    "explanation": "Parent가 리렌더링될 때마다 handleClick 함수가 새로 생성되어 다른 참조를 가집니다. React.memo로 감싼 Child는 props를 얕은 비교하므로, 다른 참조의 onClick을 전달받으면 실제 로직이 동일해도 리렌더링됩니다. useCallback(handleClick, [])을 사용하면 함수 참조를 유지하여 이를 방지할 수 있습니다.",
+    "explanation_code": "const handleClick = useCallback(() => {\n  console.log('clicked');\n}, []);",
+    "reference_url": "https://react.dev/reference/react/useCallback"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useCallback",
+    "difficulty": 3,
+    "title": "useCallback 의존성 배열의 올바른 구성",
+    "body": "다음 코드에서 useCallback의 의존성 배열에 무엇을 포함해야 하나요?",
+    "code_snippet": "function SearchComponent({ query, onSearch }) {\n  const handleSearch = useCallback(() => {\n    const results = performSearch(query);\n    onSearch(results);\n  }, [/* 무엇이 들어가야 하나요? */]);\n\n  return <button onClick={handleSearch}>Search</button>;\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "[] (빈 배열)", "isCorrect": false },
+      { "id": "b", "text": "[query, onSearch]", "isCorrect": true },
+      { "id": "c", "text": "[query]만 포함", "isCorrect": false },
+      { "id": "d", "text": "의존성 배열 없음", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "함수 내부에서 사용하는 모든 외부 값을 의존성에 포함해야 합니다.",
+    "hint_2": "query와 onSearch 모두 함수 내부에서 사용되고 있습니다.",
+    "explanation": "handleSearch 내부에서 query와 onSearch를 사용하므로 둘 다 의존성 배열에 포함해야 합니다. query나 onSearch가 변경되면 새로운 함수가 생성되어야 올바른 클로저를 유지합니다. 의존성에서 누락하면 오래된 클로저(stale closure) 문제가 발생합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useCallback"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useCallback",
+    "difficulty": 4,
+    "title": "useCallback stale closure 문제",
+    "body": "다음 코드에서 +1을 3번 누른 후 Log 버튼을 클릭하면 콘솔에 무엇이 출력되나요?",
+    "code_snippet": "function Counter() {\n  const [count, setCount] = useState(0);\n\n  const logCount = useCallback(() => {\n    console.log(count);\n  }, []); // count가 의존성에 없음!\n\n  return (\n    <div>\n      <button onClick={() => setCount(c => c + 1)}>+1</button>\n      <button onClick={logCount}>Log</button>\n    </div>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "3", "isCorrect": false },
+      { "id": "b", "text": "0", "isCorrect": true },
+      { "id": "c", "text": "에러 발생", "isCorrect": false },
+      { "id": "d", "text": "undefined", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useCallback의 빈 의존성 배열은 함수가 마운트 시 한 번만 생성됨을 의미합니다.",
+    "hint_2": "클로저는 생성 당시의 변수를 캡처합니다.",
+    "explanation": "빈 의존성 배열([])로 인해 logCount는 컴포넌트 마운트 시 한 번만 생성됩니다. 이 시점에 count는 0이었으므로 클로저가 0을 캡처합니다. +1을 3번 눌러 count가 3이 되어도, logCount는 여전히 초기 count값인 0을 참조하는 stale closure입니다.",
+    "explanation_code": "const logCount = useCallback(() => {\n  console.log(count);\n}, [count]); // 해결: count를 의존성에 포함",
+    "reference_url": "https://react.dev/reference/react/useCallback"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useCallback",
+    "difficulty": 4,
+    "title": "useCallback과 useEffect의 무한 루프 방지",
+    "body": "다음 코드에서 무한 루프가 발생하는 이유와 해결 방법은 무엇인가요?",
+    "code_snippet": "function Component({ userId }) {\n  const fetchUser = () => {\n    fetch(`/api/users/${userId}`);\n  };\n\n  useEffect(() => {\n    fetchUser();\n  }, [fetchUser]); // 무한 루프!\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "useEffect의 의존성에서 fetchUser를 제거한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "fetchUser를 useCallback으로 감싸고 [userId]를 의존성으로 지정하여 userId가 변경될 때만 새 함수를 생성한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "fetchUser를 컴포넌트 밖으로 이동한다", "isCorrect": false },
+      { "id": "d", "text": "useState로 fetchUser를 관리한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "fetchUser는 매 렌더링마다 새로운 참조를 가집니다.",
+    "hint_2": "useEffect는 의존성이 변경될 때마다 실행됩니다.",
+    "explanation": "fetchUser가 매 렌더링마다 새 함수로 생성되고, useEffect의 의존성에 fetchUser가 있으므로 useEffect가 실행되어 리렌더링 → 새 fetchUser → useEffect 재실행의 무한 루프가 발생합니다. useCallback(fetchUser, [userId])로 감싸면 userId가 변경될 때만 새 함수가 생성되어 무한 루프를 방지합니다.",
+    "explanation_code": "const fetchUser = useCallback(() => {\n  fetch(`/api/users/${userId}`);\n}, [userId]);\n\nuseEffect(() => { fetchUser(); }, [fetchUser]);",
+    "reference_url": "https://react.dev/reference/react/useCallback"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "useCallback",
+    "difficulty": 3,
+    "title": "useCallback은 React.memo 없이도 항상 성능을 향상시킨다",
+    "body": "React.memo로 감싸지 않은 자식 컴포넌트에 useCallback으로 감싼 함수를 전달하면 성능이 항상 향상된다.",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "React.memo 없이는 함수 참조가 동일해도 자식이 리렌더링됩니다.",
+    "hint_2": "useCallback에도 메모이제이션 비용이 있습니다.",
+    "explanation": "이 설명은 거짓입니다. React.memo로 감싸지 않은 자식 컴포넌트는 부모가 리렌더링될 때 항상 리렌더링되므로, useCallback으로 함수 참조를 유지해도 자식의 리렌더링을 막을 수 없습니다. useCallback은 React.memo와 함께 사용하지 않으면 오히려 오버헤드만 증가합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useCallback"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useCallback",
+    "difficulty": 5,
+    "title": "커스텀 훅에서 useCallback으로 함수 안정성 보장",
+    "body": "커스텀 훅에서 반환하는 함수에 useCallback을 사용해야 하는 이유는 무엇인가요?",
+    "code_snippet": "function useApi(url) {\n  const [data, setData] = useState(null);\n\n  const fetchData = useCallback(async () => {\n    const result = await fetch(url);\n    setData(await result.json());\n  }, [url]);\n\n  return { data, fetchData };\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "커스텀 훅에서는 useCallback이 필요 없다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "훅을 사용하는 컴포넌트에서 fetchData를 useEffect 의존성으로 사용할 때 불필요한 재실행을 방지하기 위해",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "비동기 함수는 반드시 useCallback으로 감싸야 한다", "isCorrect": false },
+      { "id": "d", "text": "url이 변경될 때 fetchData를 자동으로 호출하기 위해", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "커스텀 훅의 소비자가 반환된 함수를 useEffect에서 사용할 수 있습니다.",
+    "hint_2": "url이 변경되지 않으면 fetchData는 동일한 참조를 유지해야 합니다.",
+    "explanation": "커스텀 훅을 사용하는 컴포넌트에서 useEffect(() => { fetchData(); }, [fetchData])처럼 의존성으로 사용할 수 있습니다. fetchData에 useCallback이 없으면 훅을 사용하는 컴포넌트가 리렌더링될 때마다 새 함수가 생성되어 useEffect가 불필요하게 재실행됩니다.",
+    "explanation_code": "const { data, fetchData } = useApi('/api/posts');\nuseEffect(() => { fetchData(); }, [fetchData]);",
+    "reference_url": "https://react.dev/reference/react/useCallback"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useCallback",
+    "difficulty": 3,
+    "title": "useCallback name 의존성에 따른 Child 리렌더링 분기",
+    "body": "다음 코드에서 name을 변경할 때와 age를 변경할 때 Child의 리렌더링 여부는 각각 어떻게 다른가요?",
+    "code_snippet": "const Child = React.memo(({ onSubmit }) => {\n  console.log('Child render');\n  return <button onClick={onSubmit}>Submit</button>;\n});\n\nfunction Parent() {\n  const [name, setName] = useState('');\n  const [age, setAge] = useState(0);\n\n  const handleSubmit = useCallback(() => {\n    console.log(name);\n  }, [name]);\n\n  return (\n    <>\n      <input value={name} onChange={e => setName(e.target.value)} />\n      <input value={age} onChange={e => setAge(Number(e.target.value))} />\n      <Child onSubmit={handleSubmit} />\n    </>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "name, age 변경 모두 Child를 리렌더링한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "name 변경 시에만 Child가 리렌더링되고, age 변경 시에는 리렌더링되지 않는다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "Child는 절대 리렌더링되지 않는다", "isCorrect": false },
+      { "id": "d", "text": "age 변경 시에만 리렌더링된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useCallback의 의존성이 [name]이므로 name이 변경될 때만 새 함수가 생성됩니다.",
+    "hint_2": "React.memo는 props 참조가 동일하면 리렌더링을 건너뜁니다.",
+    "explanation": "name이 변경되면 useCallback이 새로운 handleSubmit 함수를 생성하고, 새 참조를 받은 Child가 리렌더링됩니다. age가 변경되면 handleSubmit의 의존성([name])이 변경되지 않으므로 동일한 함수 참조가 유지되고, React.memo로 감싼 Child는 리렌더링되지 않습니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useCallback"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useCallback",
+    "difficulty": 5,
+    "title": "useCallback과 함수형 setState로 의존성 최소화",
+    "body": "useCallback의 의존성을 최소화하기 위해 setState 함수형 업데이트를 활용하는 올바른 방법은 무엇인가요?",
+    "code_snippet": "// A안\nconst increment = useCallback(() => {\n  setCount(count + 1);\n}, [count]);\n\n// B안\nconst increment = useCallback(() => {\n  setCount(prev => prev + 1);\n}, []);",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "A안이 더 명확하고 올바르다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "B안이 더 좋다. 함수형 업데이트로 최신 state를 참조하므로 count를 의존성에 포함할 필요가 없어 함수 참조가 안정적이다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "둘 다 동일하다", "isCorrect": false },
+      { "id": "d", "text": "B안은 잘못된 코드다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "setState(prev => prev + 1)은 현재 state 값에 의존하지 않습니다.",
+    "hint_2": "함수형 업데이트는 항상 최신 state를 인자로 받습니다.",
+    "explanation": "B안에서 setCount(prev => prev + 1)는 React가 제공하는 최신 state 값을 직접 받으므로 클로저에서 count를 캡처할 필요가 없습니다. 따라서 useCallback의 의존성 배열이 비어도 되고, 함수 참조가 안정적으로 유지됩니다. A안은 count가 변경될 때마다 새 함수가 생성됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useCallback"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useRef",
+    "difficulty": 2,
+    "title": "useRef를 통한 DOM 접근 방법",
+    "body": "useRef를 사용하여 input 요소에 포커스를 주는 올바른 코드는 무엇인가요?",
+    "code_snippet": "function TextInput() {\n  const inputRef = useRef(null);\n\n  function focusInput() {\n    // 어떻게 포커스를 주나요?\n  }\n\n  return <input ref={inputRef} />;\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "inputRef.focus()", "isCorrect": false },
+      { "id": "b", "text": "inputRef.current.focus()", "isCorrect": true },
+      { "id": "c", "text": "inputRef.value.focus()", "isCorrect": false },
+      { "id": "d", "text": "inputRef.get().focus()", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useRef는 .current 프로퍼티를 가진 객체를 반환합니다.",
+    "hint_2": "DOM 노드는 .current 안에 있습니다.",
+    "explanation": "useRef(null)은 { current: null } 객체를 반환합니다. ref={inputRef}로 DOM 요소에 연결하면 inputRef.current가 실제 DOM 노드를 가리키게 됩니다. 따라서 DOM 메서드를 호출하려면 inputRef.current.focus()처럼 .current를 통해 접근해야 합니다.",
+    "explanation_code": "function focusInput() {\n  inputRef.current.focus();\n}",
+    "reference_url": "https://react.dev/reference/react/useRef"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "useRef",
+    "difficulty": 3,
+    "title": "useRef .current 변경 시 리렌더링 발생 여부",
+    "body": "useRef의 .current 값을 변경하면 컴포넌트가 리렌더링된다.",
+    "code_snippet": "function Timer() {\n  const countRef = useRef(0);\n  const increment = () => {\n    countRef.current += 1;\n    console.log(countRef.current);\n  };\n  return <button onClick={increment}>{countRef.current}</button>;\n}",
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "useRef는 useState와 달리 React의 반응성 시스템과 연결되어 있지 않습니다.",
+    "hint_2": ".current 변경은 React에게 알려지지 않습니다.",
+    "explanation": "이 설명은 거짓입니다. useRef의 .current 값을 변경해도 컴포넌트가 리렌더링되지 않습니다. useRef는 React의 상태 관리 시스템과 독립적으로 동작하여, 값이 변경되어도 React에게 통보되지 않습니다. 렌더링 간에 값을 유지하되 리렌더링을 유발하지 않아야 할 때 사용합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useRef"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useRef",
+    "difficulty": 3,
+    "title": "useRef로 이전 값 저장하는 패턴",
+    "body": "useRef를 사용하여 이전 렌더링의 값을 추적하는 올바른 패턴은 무엇인가요?",
+    "code_snippet": "function usePrevious(value) {\n  const ref = useRef();\n\n  useEffect(() => {\n    ref.current = value;\n  });\n\n  return ref.current;\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "이 코드는 잘못되었다. useRef 대신 useState를 사용해야 한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "올바른 패턴이다. useEffect는 렌더링 후 실행되므로 반환값은 이전 렌더링의 value이고, ref 업데이트는 다음 렌더링을 위해 저장된다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "ref.current를 반환하기 전에 업데이트해야 한다", "isCorrect": false },
+      { "id": "d", "text": "의존성 배열 [value]를 추가해야 한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useEffect는 렌더링이 완료된 후 실행됩니다.",
+    "hint_2": "ref.current 반환은 useEffect 실행 전, 즉 현재 렌더링에서 이전 값을 반환합니다.",
+    "explanation": "이 패턴은 올바릅니다. 렌더링 중에 ref.current(이전 value)를 반환하고, 렌더링 완료 후 useEffect에서 ref.current를 현재 value로 업데이트합니다. 다음 렌더링 시 반환되는 ref.current는 방금 저장된 값, 즉 이전 렌더링의 value가 됩니다.",
+    "explanation_code": "const [count, setCount] = useState(0);\nconst prevCount = usePrevious(count);",
+    "reference_url": "https://react.dev/reference/react/useRef"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useRef",
+    "difficulty": 3,
+    "title": "useRef 초기값에 따른 .current 타입",
+    "body": "다음 코드에서 각 ref의 초기 .current 값을 순서대로 나열하면 무엇인가요?",
+    "code_snippet": "const ref1 = useRef();      // A\nconst ref2 = useRef(null);  // B\nconst ref3 = useRef(0);     // C\n\nconsole.log(ref1.current, ref2.current, ref3.current);",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "null, null, 0", "isCorrect": false },
+      { "id": "b", "text": "undefined, null, 0", "isCorrect": true },
+      { "id": "c", "text": "undefined, undefined, 0", "isCorrect": false },
+      { "id": "d", "text": "null, null, null", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "인자 없이 useRef()를 호출하면 초기값은 undefined입니다.",
+    "hint_2": "useRef(null)과 useRef()는 다릅니다.",
+    "explanation": "useRef() 인자 없이 호출하면 .current는 undefined입니다. useRef(null)은 .current가 null, useRef(0)은 .current가 0입니다. DOM 요소에 ref를 연결할 때는 null을 초기값으로 사용하는 것이 관례이며 TypeScript 타입 추론에도 도움이 됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useRef"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useRef",
+    "difficulty": 4,
+    "title": "useRef로 타이머 ID 관리하기",
+    "body": "컴포넌트에서 setInterval을 관리할 때 useState 대신 useRef를 사용하는 이유는 무엇인가요?",
+    "code_snippet": "function Timer() {\n  const [seconds, setSeconds] = useState(0);\n  const intervalRef = useRef(null);\n\n  const start = () => {\n    intervalRef.current = setInterval(() => {\n      setSeconds(s => s + 1);\n    }, 1000);\n  };\n\n  const stop = () => {\n    clearInterval(intervalRef.current);\n  };\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "setInterval ID는 useState에 저장하면 안 되는 규칙이 있다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "타이머 ID를 useState로 저장하면 ID 변경 시 불필요한 리렌더링이 발생하고, ref는 렌더링 간에 값을 유지하면서 리렌더링을 유발하지 않는다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "useRef만이 클린업 함수에서 접근 가능하다", "isCorrect": false },
+      { "id": "d", "text": "clearInterval은 ref와만 작동한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "타이머 ID 자체는 UI에 표시할 필요가 없습니다.",
+    "hint_2": "useState는 값이 변경될 때 리렌더링을 유발합니다.",
+    "explanation": "타이머 ID는 UI와 관계없는 내부 값이므로 useState에 저장하면 ID가 설정될 때 불필요한 리렌더링이 발생합니다. useRef는 렌더링 간에 값을 유지하면서 리렌더링을 유발하지 않으므로 타이머 ID, DOM 노드, 이전 값 등 React 렌더링 사이클 외부의 값을 저장하기에 적합합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useRef"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "useRef",
+    "difficulty": 5,
+    "title": "forwardRef와 useRef 조합으로 자식 DOM 접근",
+    "body": "부모 컴포넌트에서 자식 컴포넌트의 DOM 요소에 접근하려면 어떻게 해야 하나요?",
+    "code_snippet": "function Parent() {\n  const inputRef = useRef(null);\n  return (\n    <>\n      <CustomInput ref={inputRef} />\n      <button onClick={() => inputRef.current.focus()}>Focus</button>\n    </>\n  );\n}\n// 자식 - 어떻게 구현해야 하나요?",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "function CustomInput({ ref }) { return <input ref={ref} />; }", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "const CustomInput = React.forwardRef((props, ref) => { return <input ref={ref} />; });",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "function CustomInput(props) { return <input ref={props.ref} />; }", "isCorrect": false },
+      { "id": "d", "text": "ref를 부모에서 자식으로 전달하는 것은 불가능하다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "ref는 일반 props와 다르게 처리됩니다.",
+    "hint_2": "React.forwardRef는 ref를 두 번째 인자로 받습니다.",
+    "explanation": "ref는 React의 특수 속성으로 일반 props처럼 전달되지 않습니다. 자식 컴포넌트의 DOM에 부모가 접근하려면 React.forwardRef로 자식을 감싸야 합니다. forwardRef는 (props, ref) 두 인자를 받아 내부 DOM 요소에 ref를 연결할 수 있게 합니다.",
+    "explanation_code": "const CustomInput = React.forwardRef(function CustomInput(props, ref) {\n  return <input {...props} ref={ref} />;\n});",
+    "reference_url": "https://react.dev/reference/react/useRef"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useRef",
+    "difficulty": 5,
+    "title": "useRef를 활용한 최신 콜백 저장 패턴",
+    "body": "다음 코드에서 +1을 3번 누른 후 Log 버튼을 클릭하면 출력되는 값은 무엇인가요?",
+    "code_snippet": "function Component() {\n  const [count, setCount] = useState(0);\n  const callbackRef = useRef(null);\n\n  callbackRef.current = () => {\n    console.log(count);\n  };\n\n  const handleClick = useCallback(() => {\n    callbackRef.current();\n  }, []);\n\n  return (\n    <>\n      <button onClick={() => setCount(c => c + 1)}>+1</button>\n      <button onClick={handleClick}>Log</button>\n    </>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "0 (stale closure)", "isCorrect": false },
+      { "id": "b", "text": "3 (최신 count)", "isCorrect": true },
+      { "id": "c", "text": "에러 발생", "isCorrect": false },
+      { "id": "d", "text": "undefined", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "callbackRef.current는 매 렌더링마다 최신 함수로 업데이트됩니다.",
+    "hint_2": "handleClick은 callbackRef.current를 호출하므로 항상 최신 함수를 실행합니다.",
+    "explanation": "이 패턴은 'ref로 최신 콜백 저장하기' 패턴입니다. 매 렌더링마다 callbackRef.current에 최신 count를 캡처한 새 함수를 저장합니다. handleClick은 useCallback([])으로 안정적이지만, 실행 시 callbackRef.current()를 호출하므로 항상 가장 최근에 저장된 최신 콜백을 실행합니다. 따라서 count가 3이 된 후에는 3을 출력합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useRef"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "useRef",
+    "difficulty": 4,
+    "title": "useRef와 렌더링 중 .current 변경 시 StrictMode 영향",
+    "body": "React StrictMode에서 다음 코드를 실행하면 버튼 클릭 시 ref.current는 어떻게 변할까요?",
+    "code_snippet": "function Component() {\n  const ref = useRef(0);\n\n  // 렌더링 중에 ref를 수정 (잘못된 패턴)\n  ref.current = ref.current + 1;\n\n  return (\n    <button onClick={() => console.log(ref.current)}>\n      Click\n    </button>\n  );\n}\n// StrictMode에서 처음 마운트 시 ref.current는?",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "1 (한 번만 렌더링되므로)", "isCorrect": false },
+      { "id": "b", "text": "2 (StrictMode에서 두 번 렌더링되므로)", "isCorrect": true },
+      { "id": "c", "text": "0 (ref는 변경되지 않음)", "isCorrect": false },
+      { "id": "d", "text": "에러가 발생한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "React StrictMode는 개발 모드에서 컴포넌트를 두 번 렌더링합니다.",
+    "hint_2": "렌더링 함수는 순수(pure)해야 합니다.",
+    "explanation": "StrictMode는 개발 환경에서 컴포넌트를 두 번 렌더링합니다. 렌더링 중 ref.current를 수정하면 두 번의 렌더링에 걸쳐 각각 +1이 되어 최초 마운트 시 ref.current는 2가 됩니다. 이는 렌더링 중 ref 수정이 순수 함수 원칙을 위반함을 보여줍니다. ref 수정은 이벤트 핸들러나 useEffect 내에서 해야 합니다.",
+    "explanation_code": "// 올바른 방법: 이벤트 핸들러나 useEffect에서 수정\nuseEffect(() => { ref.current += 1; });",
+    "reference_url": "https://react.dev/reference/react/useRef"
+  }
+]

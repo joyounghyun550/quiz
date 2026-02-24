@@ -13,6 +13,7 @@ type AnswerFeedbackProps = {
   correctAnswer?: string;
   onNext: () => void;
   isLast: boolean;
+  isPlacement?: boolean;
 };
 
 const AnswerFeedback = ({
@@ -24,6 +25,7 @@ const AnswerFeedback = ({
   correctAnswer,
   onNext,
   isLast,
+  isPlacement = false,
 }: AnswerFeedbackProps) => {
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-4">
@@ -40,15 +42,19 @@ const AnswerFeedback = ({
             {isCorrect ? "정답입니다!" : "오답입니다"}
           </span>
         </div>
-        <span
-          className={cn(
-            "rounded-lg px-3 py-1 text-sm font-bold",
-            lpChange >= 0 ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"
-          )}
-        >
-          {lpChange >= 0 ? "+" : ""}
-          {lpChange} LP
-        </span>
+        {isPlacement ? (
+          <span className="rounded-lg bg-gray-700/50 px-3 py-1 text-sm font-bold text-gray-400">배치 중</span>
+        ) : (
+          <span
+            className={cn(
+              "rounded-lg px-3 py-1 text-sm font-bold",
+              lpChange >= 0 ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"
+            )}
+          >
+            {lpChange >= 0 ? "+" : ""}
+            {lpChange} LP
+          </span>
+        )}
       </div>
 
       {/* 오답 시 정답 표시 */}

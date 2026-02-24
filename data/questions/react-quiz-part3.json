@@ -1,0 +1,977 @@
+[
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "error_boundaries",
+    "difficulty": 3,
+    "title": "Error Boundary가 캐치할 수 있는 에러는?",
+    "body": "React Error Boundary는 특정 유형의 에러만 캐치할 수 있습니다. 다음 중 Error Boundary가 정상적으로 캐치할 수 있는 에러는 무엇인가요?",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "이벤트 핸들러 내부의 에러", "isCorrect": false },
+      { "id": "b", "text": "자식 컴포넌트의 render() 메서드에서 발생한 에러", "isCorrect": true },
+      { "id": "c", "text": "비동기 코드(setTimeout, fetch)에서 발생한 에러", "isCorrect": false },
+      { "id": "d", "text": "서버 사이드 렌더링 중 발생한 에러", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Error Boundary는 렌더링 단계에서 발생하는 에러를 처리합니다.",
+    "hint_2": "이벤트 핸들러와 비동기 코드는 React의 렌더링 사이클 바깥에서 실행됩니다.",
+    "explanation": "Error Boundary는 자식 컴포넌트 트리의 렌더링 중, 라이프사이클 메서드 내, 생성자에서 발생한 에러를 캐치할 수 있습니다. 이벤트 핸들러, 비동기 코드, 서버 사이드 렌더링, Error Boundary 자체에서 발생한 에러는 캐치하지 못합니다. 이벤트 핸들러의 에러는 try-catch를 직접 사용해야 합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "error_boundaries",
+    "difficulty": 4,
+    "title": "getDerivedStateFromError와 componentDidCatch의 차이점",
+    "body": "Error Boundary를 구현할 때 사용하는 두 메서드의 주요 차이점을 이해하는 것이 중요합니다. 다음 중 올바른 설명은 무엇인가요?",
+    "code_snippet": "class ErrorBoundary extends React.Component {\n  static getDerivedStateFromError(error) {\n    return { hasError: true };\n  }\n  componentDidCatch(error, info) {\n    logErrorToService(error, info.componentStack);\n  }\n}",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "getDerivedStateFromError는 사이드 이펙트를 실행하고, componentDidCatch는 상태를 업데이트한다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "getDerivedStateFromError는 렌더링 전에 호출되어 폴백 UI를 보여주고, componentDidCatch는 렌더링 후에 호출되어 에러 로깅에 사용된다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "두 메서드는 동일한 역할을 하며 둘 다 사용할 필요는 없다", "isCorrect": false },
+      { "id": "d", "text": "componentDidCatch만이 에러의 상태를 업데이트할 수 있다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "getDerivedStateFromError는 순수 함수여야 합니다.",
+    "hint_2": "componentDidCatch는 커밋 단계에서 호출됩니다.",
+    "explanation": "getDerivedStateFromError는 에러가 발생하면 렌더링 단계에서 호출되어 상태를 업데이트함으로써 폴백 UI를 보여줍니다. 이 메서드는 순수 함수여야 하므로 사이드 이펙트를 수행하면 안 됩니다. componentDidCatch는 커밋 단계에서 호출되어 에러 로깅과 같은 사이드 이펙트를 수행하기에 적합합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Component#componentdidcatch"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "error_boundaries",
+    "difficulty": 3,
+    "title": "Error Boundary는 이벤트 핸들러의 에러를 캐치한다",
+    "body": "React Error Boundary 컴포넌트는 onClick 같은 이벤트 핸들러 내부에서 발생한 JavaScript 에러를 자동으로 캐치할 수 있습니다.",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "이벤트 핸들러는 React 렌더링 사이클 바깥에서 실행됩니다.",
+    "hint_2": "React 공식 문서에는 Error Boundary가 캐치하지 못하는 경우가 명시되어 있습니다.",
+    "explanation": "Error Boundary는 이벤트 핸들러에서 발생한 에러를 캐치하지 못합니다. 이는 이벤트 핸들러가 렌더링 과정 중에 실행되지 않기 때문입니다. 이벤트 핸들러 내의 에러는 React 없이 일반 JavaScript의 try-catch 구문을 사용해 직접 처리해야 합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "error_boundaries",
+    "difficulty": 5,
+    "title": "중첩된 Error Boundary의 에러 처리 순서",
+    "body": "중첩된 Error Boundary 구조에서 에러가 발생했을 때 어떤 Error Boundary가 에러를 처리하는지 파악하는 문제입니다.",
+    "code_snippet": "function BuggyComponent() {\n  throw new Error('Oops!');\n}\n\nfunction App() {\n  return (\n    <OuterErrorBoundary>\n      <InnerErrorBoundary>\n        <BuggyComponent />\n      </InnerErrorBoundary>\n    </OuterErrorBoundary>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "OuterErrorBoundary가 에러를 처리한다", "isCorrect": false },
+      { "id": "b", "text": "InnerErrorBoundary가 에러를 처리한다", "isCorrect": true },
+      { "id": "c", "text": "두 ErrorBoundary 모두 에러를 처리한다", "isCorrect": false },
+      { "id": "d", "text": "에러가 처리되지 않고 앱이 크래시된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "에러는 컴포넌트 트리에서 가장 가까운 Error Boundary에 의해 처리됩니다.",
+    "hint_2": "에러가 처리되면 더 상위의 Error Boundary로 전파되지 않습니다.",
+    "explanation": "React에서 에러는 컴포넌트 트리를 따라 버블링되어 가장 가까운 Error Boundary에 의해 처리됩니다. BuggyComponent에서 발생한 에러는 바로 위의 InnerErrorBoundary에 의해 처리되므로, OuterErrorBoundary까지 전파되지 않습니다. 이를 통해 앱의 일부분만 격리하여 에러를 처리할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "error_boundaries",
+    "difficulty": 5,
+    "title": "Error Boundary 리셋 패턴 구현",
+    "body": "사용자가 '다시 시도' 버튼을 클릭하면 Error Boundary의 상태를 초기화하여 자식 컴포넌트를 다시 렌더링하고 싶습니다. 가장 올바른 구현 방법은 무엇인가요?",
+    "code_snippet": "class ErrorBoundary extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = { hasError: false };\n  }\n  static getDerivedStateFromError() {\n    return { hasError: true };\n  }\n  // 리셋 로직을 여기에 추가\n  render() {\n    if (this.state.hasError) {\n      return <button onClick={/* ? */}>다시 시도</button>;\n    }\n    return this.props.children;\n  }\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "onClick={() => this.setState({ hasError: false })}", "isCorrect": true },
+      { "id": "b", "text": "onClick={() => getDerivedStateFromError(null)}", "isCorrect": false },
+      { "id": "c", "text": "onClick={() => this.forceUpdate()}", "isCorrect": false },
+      { "id": "d", "text": "onClick={() => ReactDOM.unmountComponentAtNode(this)}", "isCorrect": false }
+    ],
+    "correct_answer": "a",
+    "hint_1": "Error Boundary를 리셋하려면 에러 상태를 초기화해야 합니다.",
+    "hint_2": "클래스 컴포넌트에서 상태를 변경하는 표준 방법을 사용하세요.",
+    "explanation": "Error Boundary를 리셋하려면 단순히 hasError 상태를 false로 되돌리면 됩니다. setState({ hasError: false })를 호출하면 컴포넌트가 다시 렌더링되고 자식 컴포넌트들을 다시 마운트합니다. react-error-boundary 라이브러리는 이를 더 편리하게 해주는 resetKeys 등의 prop을 제공합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "error_boundaries",
+    "difficulty": 6,
+    "title": "Error Boundary에서 비동기 에러 처리하기",
+    "body": "Error Boundary는 기본적으로 비동기 에러를 캐치하지 못합니다. 비동기 에러를 Error Boundary로 전달하기 위한 올바른 패턴은 무엇인가요?",
+    "code_snippet": "function AsyncComponent() {\n  const [error, setError] = React.useState(null);\n  \n  React.useEffect(() => {\n    fetchData()\n      .catch(err => {\n        // 비동기 에러를 Error Boundary에 전달하려면?\n      });\n  }, []);\n  \n  if (error) throw error; // ?\n  return <div>Data loaded</div>;\n}",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "catch 블록에서 setError(err)를 호출하고, 렌더링 중에 error가 있으면 throw한다",
+        "isCorrect": true
+      },
+      { "id": "b", "text": "catch 블록에서 직접 throw err를 호출한다", "isCorrect": false },
+      { "id": "c", "text": "Error Boundary의 componentDidCatch를 Promise로 감싼다", "isCorrect": false },
+      { "id": "d", "text": "비동기 에러는 Error Boundary로 전달할 방법이 없다", "isCorrect": false }
+    ],
+    "correct_answer": "a",
+    "hint_1": "비동기 에러를 동기 렌더링 사이클로 '가져오는' 방법이 필요합니다.",
+    "hint_2": "상태를 통해 에러를 저장하고 렌더링 시 throw하는 방법을 생각해보세요.",
+    "explanation": "비동기 에러를 Error Boundary로 전달하려면 상태를 중간 다리로 활용합니다. 비동기 작업의 catch 블록에서 setError(err)를 호출하여 에러를 상태에 저장한 다음, 컴포넌트의 렌더링 단계에서 if (error) throw error를 실행합니다. 이렇게 하면 비동기 에러가 동기 렌더링 사이클로 전달되어 Error Boundary가 캐치할 수 있게 됩니다.",
+    "explanation_code": "function AsyncComponent() {\n  const [error, setError] = React.useState(null);\n  if (error) throw error; // Error Boundary가 캐치\n  \n  React.useEffect(() => {\n    fetchData().catch(err => setError(err));\n  }, []);\n  \n  return <div>Data loaded</div>;\n}",
+    "reference_url": "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "error_boundaries",
+    "difficulty": 4,
+    "title": "함수형 컴포넌트로 Error Boundary 직접 구현 가능 여부",
+    "body": "React 18에서는 useState와 useEffect 훅을 활용하여 함수형 컴포넌트만으로도 완전한 Error Boundary를 구현할 수 있습니다.",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "Error Boundary는 특정 라이프사이클 메서드를 필요로 합니다.",
+    "hint_2": "getDerivedStateFromError와 componentDidCatch는 어디서 사용 가능한지 생각해보세요.",
+    "explanation": "현재 React에서 Error Boundary는 반드시 클래스 컴포넌트로 구현해야 합니다. getDerivedStateFromError와 componentDidCatch는 클래스 컴포넌트의 라이프사이클 메서드이며, 이에 상응하는 훅이 아직 존재하지 않습니다. 함수형 컴포넌트에서 Error Boundary 기능을 사용하려면 react-error-boundary 같은 라이브러리를 활용하거나, 클래스 기반 Error Boundary로 감싸야 합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "error_boundaries",
+    "difficulty": 6,
+    "title": "Error Boundary의 key prop을 이용한 강제 리마운트",
+    "body": "Error Boundary에 key prop을 변경하면 어떤 일이 발생하는지 이해하는 문제입니다.",
+    "code_snippet": "function App() {\n  const [key, setKey] = React.useState(0);\n  return (\n    <>\n      <ErrorBoundary key={key}>\n        <BuggyComponent />\n      </ErrorBoundary>\n      <button onClick={() => setKey(k => k + 1)}>Reset</button>\n    </>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "버튼을 클릭해도 아무 일도 일어나지 않는다", "isCorrect": false },
+      { "id": "b", "text": "ErrorBoundary 컴포넌트만 언마운트되고 다시 마운트된다", "isCorrect": false },
+      {
+        "id": "c",
+        "text": "ErrorBoundary와 BuggyComponent가 언마운트되고 초기 상태로 다시 마운트된다",
+        "isCorrect": true
+      },
+      { "id": "d", "text": "BuggyComponent만 언마운트되고 ErrorBoundary는 유지된다", "isCorrect": false }
+    ],
+    "correct_answer": "c",
+    "hint_1": "React에서 key가 변경되면 컴포넌트 트리는 어떻게 되나요?",
+    "hint_2": "key 변경은 컴포넌트의 완전한 언마운트와 새 마운트를 트리거합니다.",
+    "explanation": "React에서 컴포넌트의 key가 변경되면 React는 해당 컴포넌트를 완전히 새로운 컴포넌트로 취급합니다. 따라서 ErrorBoundary의 key를 변경하면 ErrorBoundary와 그 자식인 BuggyComponent 모두 언마운트되었다가 초기 상태로 새로 마운트됩니다. 이 패턴은 Error Boundary를 리셋하는 효과적인 방법 중 하나입니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "suspense",
+    "difficulty": 3,
+    "title": "React.Suspense의 fallback prop 동작",
+    "body": "React.Suspense 컴포넌트를 사용할 때 fallback prop이 언제 표시되는지 이해해야 합니다. 다음 중 올바른 설명은 무엇인가요?",
+    "code_snippet": "function App() {\n  return (\n    <Suspense fallback={<LoadingSpinner />}>\n      <LazyComponent />\n    </Suspense>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "항상 LazyComponent가 렌더링되기 전에 잠깐 표시된다", "isCorrect": false },
+      { "id": "b", "text": "자식 컴포넌트가 렌더링 준비가 될 때까지 suspend 상태일 때 표시된다", "isCorrect": true },
+      { "id": "c", "text": "네트워크 에러가 발생했을 때만 표시된다", "isCorrect": false },
+      { "id": "d", "text": "LazyComponent가 null을 반환할 때 표시된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Suspense는 자식 컴포넌트가 '준비되지 않은' 상태일 때 동작합니다.",
+    "hint_2": "컴포넌트가 Promise를 throw하면 Suspense가 이를 감지합니다.",
+    "explanation": "Suspense의 fallback은 자식 컴포넌트 트리 중 하나라도 suspend 상태(Promise를 throw)인 경우에 표시됩니다. React.lazy로 코드 스플리팅된 컴포넌트가 로딩 중이거나, 데이터 페칭 라이브러리가 데이터를 불러오는 중일 때 fallback이 렌더링됩니다. 모든 자식 컴포넌트가 준비되면 fallback 대신 실제 콘텐츠가 표시됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Suspense"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "suspense",
+    "difficulty": 4,
+    "title": "React.lazy와 Suspense를 이용한 코드 스플리팅",
+    "body": "React.lazy를 사용하여 컴포넌트를 동적으로 임포트할 때의 올바른 사용법을 파악하는 문제입니다.",
+    "code_snippet": "// 다음 중 올바른 React.lazy 사용법은?\nconst LazyA = React.lazy(import('./ComponentA'));\nconst LazyB = React.lazy(() => import('./ComponentB'));\nconst LazyC = React.lazy(async () => {\n  const module = await import('./ComponentC');\n  return module;\n});\nconst LazyD = React.lazy(() => Promise.resolve(ComponentD));",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "LazyA가 올바른 방법이다", "isCorrect": false },
+      { "id": "b", "text": "LazyB가 올바른 방법이다", "isCorrect": true },
+      { "id": "c", "text": "LazyC가 올바른 방법이다", "isCorrect": false },
+      { "id": "d", "text": "LazyD가 올바른 방법이다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "React.lazy는 함수를 인자로 받아야 합니다.",
+    "hint_2": "그 함수는 default export가 있는 React 컴포넌트를 resolve하는 Promise를 반환해야 합니다.",
+    "explanation": "React.lazy는 동적 import()를 반환하는 함수를 인자로 받아야 합니다. LazyA는 함수가 아니라 Promise를 직접 전달했고, LazyC는 module 객체 전체를 반환하므로 올바르지 않습니다(default export가 있는 객체 형태여야 함). LazyD는 컴포넌트를 직접 전달하여 동적 로딩이 되지 않습니다. LazyB만이 () => import()의 올바른 패턴을 따릅니다.",
+    "explanation_code": "// 올바른 사용법\nconst LazyComponent = React.lazy(() => import('./MyComponent'));\n// MyComponent는 default export여야 함\nexport default function MyComponent() { return <div>...</div>; }",
+    "reference_url": "https://react.dev/reference/react/lazy"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "suspense",
+    "difficulty": 5,
+    "title": "중첩된 Suspense 경계의 렌더링 순서",
+    "body": "중첩된 Suspense 경계에서 내부 컴포넌트가 suspend될 때 어떤 fallback이 먼저 표시되는지 파악하는 문제입니다.",
+    "code_snippet": "function App() {\n  return (\n    <Suspense fallback={<p>외부 로딩중...</p>}>\n      <ComponentA />\n      <Suspense fallback={<p>내부 로딩중...</p>}>\n        <ComponentB /> {/* suspend됨 */}\n      </Suspense>\n    </Suspense>\n  );\n}\n// ComponentA는 즉시 렌더링, ComponentB는 suspend 상태",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "외부 로딩중... 이 표시된다", "isCorrect": false },
+      { "id": "b", "text": "내부 로딩중... 이 표시된다", "isCorrect": true },
+      { "id": "c", "text": "외부 로딩중...과 내부 로딩중... 모두 표시된다", "isCorrect": false },
+      { "id": "d", "text": "ComponentA와 내부 로딩중... 이 함께 표시된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "에러 버블링처럼 Suspense도 가장 가까운 경계를 사용합니다.",
+    "hint_2": "ComponentA는 suspend 상태가 아니므로 렌더링에 영향을 주지 않습니다.",
+    "explanation": "ComponentB가 suspend될 때 가장 가까운 Suspense 경계인 내부 Suspense의 fallback인 '내부 로딩중...'이 표시됩니다. ComponentA는 suspend 상태가 아니므로 정상적으로 렌더링되지만, 실제로는 내부 Suspense의 fallback만 표시됩니다. 외부 Suspense는 ComponentB의 suspend에 영향을 받지 않습니다. 따라서 'ComponentA 렌더링 + 내부 로딩중...'이 올바른 답이지만, 선택지 b가 핵심 동작을 나타냅니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Suspense"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "suspense",
+    "difficulty": 5,
+    "title": "startTransition과 Suspense의 관계",
+    "body": "startTransition을 사용하여 상태를 업데이트할 때 Suspense의 동작이 어떻게 달라지는지 이해하는 문제입니다.",
+    "code_snippet": "function App() {\n  const [tab, setTab] = React.useState('home');\n  \n  return (\n    <>\n      <button onClick={() => {\n        React.startTransition(() => setTab('profile'));\n      }}>프로필로 이동</button>\n      <Suspense fallback={<Spinner />}>\n        {tab === 'profile' ? <ProfilePage /> : <HomePage />}\n      </Suspense>\n    </>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "ProfilePage 로딩 중 즉시 Spinner를 보여준다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "ProfilePage가 준비될 때까지 이전 HomePage를 유지하고, 준비되면 ProfilePage로 전환한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "startTransition은 Suspense와 함께 사용할 수 없다", "isCorrect": false },
+      { "id": "d", "text": "ProfilePage 로딩 중 빈 화면을 보여준다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "startTransition은 상태 업데이트를 낮은 우선순위로 표시합니다.",
+    "hint_2": "Suspense와 함께 사용하면 기존 UI를 유지하는 동작을 제공합니다.",
+    "explanation": "startTransition 내에서 상태를 업데이트하면 React는 해당 업데이트를 전환(transition)으로 표시합니다. Suspense와 함께 사용하면 새 콘텐츠가 suspend 상태일 때 fallback으로 대체하는 대신 이전 UI를 유지합니다. 이를 통해 사용자는 ProfilePage가 완전히 준비될 때까지 HomePage를 계속 볼 수 있어 더 나은 UX를 제공합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/startTransition"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "suspense",
+    "difficulty": 4,
+    "title": "Suspense는 데이터 페칭을 직접 처리한다",
+    "body": "React의 Suspense 컴포넌트는 fetch API나 axios 같은 일반 비동기 함수를 자동으로 감지하여 데이터 로딩 상태를 관리합니다.",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "Suspense는 특정 방식으로 작동하는 데이터 소스와 통합됩니다.",
+    "hint_2": "Suspense가 동작하려면 데이터 소스가 Promise를 throw하는 특정 프로토콜을 따라야 합니다.",
+    "explanation": "Suspense 자체는 데이터 페칭을 직접 처리하지 않습니다. Suspense는 자식 컴포넌트가 렌더링 중에 Promise를 throw하는 특정 프로토콜을 따를 때 동작합니다. 일반 fetch나 axios 호출은 이 프로토콜을 따르지 않습니다. Relay, SWR, React Query 같은 라이브러리나 React의 use() 훅을 통해 Suspense와 통합할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Suspense"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "suspense",
+    "difficulty": 6,
+    "title": "use() 훅과 Suspense 통합",
+    "body": "React 18의 use() 훅을 사용하여 Promise를 읽을 때 Suspense와의 동작을 파악하는 문제입니다.",
+    "code_snippet": "const dataPromise = fetchUserData(); // Promise 반환\n\nfunction UserProfile() {\n  const user = React.use(dataPromise);\n  return <div>{user.name}</div>;\n}\n\nfunction App() {\n  return (\n    <Suspense fallback={<div>사용자 정보 로딩중...</div>}>\n      <UserProfile />\n    </Suspense>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "use()는 훅이 아니므로 컴파일 에러가 발생한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "데이터 로딩 중에는 '사용자 정보 로딩중...'이 표시되고, 완료 후 사용자 이름이 표시된다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "use()는 항상 undefined를 반환하므로 오류가 발생한다", "isCorrect": false },
+      { "id": "d", "text": "Suspense 없이도 동작한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "use() 훅은 Promise를 읽을 수 있으며 Suspense와 통합됩니다.",
+    "hint_2": "Promise가 pending 상태일 때 컴포넌트는 suspend됩니다.",
+    "explanation": "React 18의 use() 훅은 Promise를 인자로 받아 해당 Promise가 resolve될 때까지 컴포넌트를 suspend시킵니다. 데이터가 로딩 중일 때 Suspense의 fallback인 '사용자 정보 로딩중...'이 표시되고, Promise가 resolve되면 user 데이터를 사용하여 실제 컴포넌트가 렌더링됩니다. use()는 일반 훅과 달리 조건문 내에서도 사용할 수 있는 특별한 함수입니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/use"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "suspense",
+    "difficulty": 6,
+    "title": "Suspense와 Error Boundary의 협업",
+    "body": "Suspense로 감싸진 컴포넌트에서 데이터 페칭 중 에러가 발생했을 때의 동작을 이해하는 문제입니다.",
+    "code_snippet": "function App() {\n  return (\n    <ErrorBoundary fallback={<ErrorUI />}>\n      <Suspense fallback={<Loading />}>\n        <DataComponent /> {/* 에러 발생 가능 */}\n      </Suspense>\n    </ErrorBoundary>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "Suspense의 fallback이 에러 UI를 표시한다", "isCorrect": false },
+      { "id": "b", "text": "Suspense가 에러를 처리하므로 ErrorBoundary는 필요 없다", "isCorrect": false },
+      { "id": "c", "text": "에러가 발생하면 Suspense를 통과하여 ErrorBoundary가 에러를 처리한다", "isCorrect": true },
+      { "id": "d", "text": "에러가 발생하면 앱이 크래시된다", "isCorrect": false }
+    ],
+    "correct_answer": "c",
+    "hint_1": "Suspense는 로딩 상태만 처리합니다.",
+    "hint_2": "에러 처리는 Error Boundary의 역할입니다.",
+    "explanation": "Suspense는 컴포넌트의 로딩 상태(pending)만 처리하며 에러를 처리하지 않습니다. 데이터 페칭 중 에러가 발생하면 해당 에러는 Suspense를 통과하여 상위의 Error Boundary로 전파됩니다. 따라서 완전한 데이터 페칭 처리를 위해서는 Suspense와 Error Boundary를 함께 사용하는 것이 권장됩니다. 이 패턴은 로딩, 에러, 성공 세 가지 상태를 모두 처리합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Suspense"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "suspense",
+    "difficulty": 5,
+    "title": "Suspense fallback의 최소 표시 시간",
+    "body": "Suspense의 fallback이 매우 짧은 시간만 표시될 때 발생할 수 있는 시각적 문제와 이를 해결하는 방법을 이해하는 문제입니다.",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "React는 자동으로 fallback을 최소 500ms 동안 표시한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "매우 짧은 로딩은 UI 깜박임(flash)을 유발할 수 있으며, startTransition을 사용하면 이를 방지할 수 있다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "Suspense는 항상 fallback을 렌더링하지 않는다", "isCorrect": false },
+      { "id": "d", "text": "fallback의 최소 표시 시간은 minDuration prop으로 설정할 수 있다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "매우 빠른 로딩에서 fallback이 순간적으로 나타났다 사라지는 현상을 생각해보세요.",
+    "hint_2": "startTransition은 전환을 낮은 우선순위로 표시하여 이전 UI를 유지합니다.",
+    "explanation": "데이터 로딩이 매우 빠를 때 Suspense의 fallback이 짧은 시간만 표시되어 UI 깜박임이 발생할 수 있습니다. 이를 해결하기 위해 startTransition을 사용하면 상태 전환 중 이전 UI를 유지하여 깜박임을 방지합니다. React는 자동으로 최소 표시 시간을 설정하지 않으며, minDuration prop도 존재하지 않습니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Suspense#preventing-unwanted-loading-indicators"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 3,
+    "title": "React.memo의 기본 동작 원리",
+    "body": "React.memo를 사용하면 컴포넌트의 불필요한 리렌더링을 방지할 수 있습니다. 기본적으로 React.memo는 어떤 비교 방식을 사용하나요?",
+    "code_snippet": "const MyComponent = React.memo(function MyComponent({ name, age }) {\n  console.log('렌더링됨');\n  return <div>{name}: {age}</div>;\n});",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "props의 깊은 비교(deep comparison)를 수행한다", "isCorrect": false },
+      { "id": "b", "text": "props의 얕은 비교(shallow comparison)를 수행한다", "isCorrect": true },
+      { "id": "c", "text": "props의 JSON 직렬화를 비교한다", "isCorrect": false },
+      { "id": "d", "text": "참조 동등성(referential equality)만 비교한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "memo는 기본적으로 props의 각 값을 Object.is로 비교합니다.",
+    "hint_2": "객체나 배열 props는 매 렌더링마다 새로운 참조를 가질 수 있습니다.",
+    "explanation": "React.memo는 기본적으로 이전 props와 새로운 props를 얕은 비교(shallow comparison)로 비교합니다. 각 prop 값에 대해 Object.is를 사용하여 비교하며, 모든 props가 동일하다면 리렌더링을 건너뜁니다. 객체나 배열 같은 참조 타입의 경우 내용이 같더라도 새로운 참조가 생성되면 다른 것으로 간주하므로 주의가 필요합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/memo"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 4,
+    "title": "React.memo와 객체 props의 리렌더링",
+    "body": "React.memo로 감싸진 컴포넌트에 객체 prop을 전달할 때의 리렌더링 동작을 파악하는 문제입니다.",
+    "code_snippet": "const Child = React.memo(({ config }) => {\n  console.log('Child 렌더링');\n  return <div>{config.theme}</div>;\n});\n\nfunction Parent() {\n  const [count, setCount] = React.useState(0);\n  return (\n    <>\n      <Child config={{ theme: 'dark' }} />\n      <button onClick={() => setCount(c => c + 1)}>+</button>\n    </>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "버튼 클릭 시 Child는 리렌더링되지 않는다", "isCorrect": false },
+      { "id": "b", "text": "버튼 클릭 시 Child는 매번 리렌더링된다", "isCorrect": true },
+      { "id": "c", "text": "버튼을 두 번 클릭해야 Child가 리렌더링된다", "isCorrect": false },
+      { "id": "d", "text": "React.memo가 없는 것과 동일하게 동작한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "인라인 객체 리터럴은 렌더링마다 새로운 참조를 생성합니다.",
+    "hint_2": "React.memo의 얕은 비교는 참조를 비교합니다.",
+    "explanation": "{ theme: 'dark' }는 인라인 객체 리터럴로, Parent가 렌더링될 때마다 새로운 객체 참조가 생성됩니다. React.memo는 얕은 비교를 사용하므로 config prop의 참조가 달라졌음을 감지하고 Child를 리렌더링합니다. 이를 방지하려면 useMemo를 사용하여 객체를 메모이제이션하거나 useMemo(() => ({ theme: 'dark' }), [])처럼 사용해야 합니다.",
+    "explanation_code": "// 해결 방법\nfunction Parent() {\n  const config = React.useMemo(() => ({ theme: 'dark' }), []);\n  return <Child config={config} />;\n}",
+    "reference_url": "https://react.dev/reference/react/memo"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 5,
+    "title": "React.memo의 커스텀 비교 함수 사용",
+    "body": "React.memo에 두 번째 인자로 커스텀 비교 함수를 제공할 때의 동작을 이해하는 문제입니다.",
+    "code_snippet": "const MyComponent = React.memo(\n  function MyComponent({ user }) {\n    return <div>{user.name}</div>;\n  },\n  (prevProps, nextProps) => {\n    return prevProps.user.id === nextProps.user.id;\n  }\n);",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "비교 함수가 true를 반환하면 컴포넌트가 리렌더링된다", "isCorrect": false },
+      { "id": "b", "text": "비교 함수가 false를 반환하면 컴포넌트가 리렌더링된다", "isCorrect": true },
+      { "id": "c", "text": "비교 함수의 반환값은 무관하며 항상 얕은 비교를 한다", "isCorrect": false },
+      { "id": "d", "text": "비교 함수가 true를 반환하면 컴포넌트가 언마운트된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "shouldComponentUpdate와 반대 시맨틱을 가집니다.",
+    "hint_2": "비교 함수는 '이전 props와 새 props가 동일한가?'를 반환합니다.",
+    "explanation": "React.memo의 커스텀 비교 함수는 '이전 props와 새 props가 같은지'를 나타내는 boolean을 반환합니다. true를 반환하면 props가 같다고 판단하여 리렌더링을 건너뛰고, false를 반환하면 props가 달라졌다고 판단하여 리렌더링합니다. 이는 shouldComponentUpdate와 반대 방향의 시맨틱을 가집니다. 위 코드에서 user.id가 같으면 리렌더링하지 않습니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/memo#minimizing-props-changes"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 4,
+    "title": "useMemo와 useCallback의 차이점",
+    "body": "useMemo와 useCallback은 모두 메모이제이션을 위한 훅이지만 용도가 다릅니다. 다음 중 올바른 설명은 무엇인가요?",
+    "code_snippet": "const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);\nconst memoizedCallback = useCallback(() => doSomething(a, b), [a, b]);",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "useMemo는 함수를 메모이제이션하고, useCallback은 값을 메모이제이션한다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "useMemo는 계산 결과값을 메모이제이션하고, useCallback은 함수 자체를 메모이제이션한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "두 훅은 완전히 동일하며 서로 대체 가능하다", "isCorrect": false },
+      { "id": "d", "text": "useMemo는 렌더링 후, useCallback은 렌더링 전에 실행된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useMemo는 팩토리 함수의 반환값을 캐싱합니다.",
+    "hint_2": "useCallback(fn, deps)는 useMemo(() => fn, deps)와 동일합니다.",
+    "explanation": "useMemo는 팩토리 함수를 실행하고 그 결과값을 메모이제이션합니다. 의존성이 변경될 때만 팩토리 함수를 다시 실행합니다. useCallback은 함수 자체를 메모이제이션하여 동일한 함수 참조를 유지합니다. 실제로 useCallback(fn, deps)는 useMemo(() => fn, deps)와 동일합니다. useCallback은 주로 자식 컴포넌트에 콜백 함수를 props로 전달할 때 불필요한 리렌더링을 방지하기 위해 사용됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useMemo"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 5,
+    "title": "startTransition을 사용한 긴급하지 않은 업데이트",
+    "body": "startTransition을 사용하여 사용자 입력과 무거운 렌더링 작업의 우선순위를 분리하는 코드의 동작을 파악하는 문제입니다.",
+    "code_snippet": "function SearchPage() {\n  const [query, setQuery] = React.useState('');\n  const [results, setResults] = React.useState([]);\n\n  function handleInput(e) {\n    setQuery(e.target.value); // 긴급\n    React.startTransition(() => {\n      setResults(searchHeavyData(e.target.value)); // 전환\n    });\n  }\n  return (\n    <>\n      <input value={query} onChange={handleInput} />\n      <ResultList results={results} />\n    </>\n  )\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "input과 ResultList가 항상 동시에 업데이트된다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "input 업데이트가 먼저 처리되고, ResultList 업데이트는 낮은 우선순위로 처리된다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "startTransition 내의 업데이트는 무시된다", "isCorrect": false },
+      { "id": "d", "text": "ResultList가 먼저 업데이트되고 input이 나중에 업데이트된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "startTransition은 업데이트를 낮은 우선순위로 표시합니다.",
+    "hint_2": "긴급한 업데이트(사용자 입력)는 전환 업데이트보다 먼저 처리됩니다.",
+    "explanation": "startTransition을 사용하면 해당 업데이트를 '전환'으로 표시하여 낮은 우선순위를 가지게 합니다. query 업데이트는 즉시 처리되어 input 필드가 빠르게 반응하고, results 업데이트는 낮은 우선순위로 처리되어 무거운 렌더링이 사용자 입력을 블록하지 않습니다. 이를 통해 타이핑이 끊기지 않으면서 검색 결과도 업데이트됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/startTransition"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 5,
+    "title": "useDeferredValue의 활용",
+    "body": "useDeferredValue 훅을 사용하는 올바른 시나리오와 그 동작을 이해하는 문제입니다.",
+    "code_snippet": "function SearchResults({ query }) {\n  const deferredQuery = React.useDeferredValue(query);\n  const isStale = query !== deferredQuery;\n  \n  return (\n    <div style={{ opacity: isStale ? 0.5 : 1 }}>\n      <SlowList filter={deferredQuery} />\n    </div>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "deferredQuery는 항상 query와 동일한 값을 가진다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "새 query가 들어오면 이전 deferredQuery로 먼저 렌더링하고, 준비되면 새 값으로 업데이트한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "useDeferredValue는 query를 500ms 지연시킨다", "isCorrect": false },
+      { "id": "d", "text": "isStale은 항상 false이다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useDeferredValue는 startTransition과 유사하지만 값에 적용됩니다.",
+    "hint_2": "무거운 컴포넌트를 업데이트할 때 이전 값을 잠시 유지합니다.",
+    "explanation": "useDeferredValue는 값의 업데이트를 지연시키는 훅입니다. query가 변경되면 deferredQuery는 즉시 업데이트되지 않고 이전 값을 유지합니다. React는 백그라운드에서 새로운 deferredQuery로 SlowList를 렌더링하고, 준비되면 화면을 업데이트합니다. isStale은 새 query와 deferredQuery가 다른 동안 true가 되어 로딩 상태를 시각적으로 표시할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useDeferredValue"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 4,
+    "title": "key prop이 리스트 렌더링 성능에 미치는 영향",
+    "body": "React에서 key prop은 리스트 렌더링 성능 최적화에 중요한 역할을 합니다. 다음 중 key prop에 관한 올바른 설명은?",
+    "code_snippet": "// 방법 A: 인덱스를 key로 사용\nlist.map((item, index) => <Item key={index} data={item} />)\n\n// 방법 B: 고유 ID를 key로 사용\nlist.map(item => <Item key={item.id} data={item} />)",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "두 방법은 동일한 성능을 제공한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "방법 A는 리스트 중간에 항목이 삽입/삭제될 때 불필요한 리렌더링이 발생할 수 있다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "방법 B는 더 많은 메모리를 사용하므로 성능이 나쁘다", "isCorrect": false },
+      { "id": "d", "text": "key prop은 성능이 아닌 단순히 경고를 제거하기 위한 것이다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "인덱스를 key로 사용하면 리스트 순서가 변경될 때 문제가 생깁니다.",
+    "hint_2": "React는 key를 사용하여 어떤 컴포넌트를 재사용할 수 있는지 판단합니다.",
+    "explanation": "인덱스를 key로 사용하면 리스트 중간에 항목이 삽입되거나 삭제될 때 문제가 발생합니다. 예를 들어 첫 번째 항목이 삭제되면 모든 항목의 인덱스가 변경되어 React는 모든 컴포넌트를 다시 렌더링해야 합니다. 고유 ID를 key로 사용하면 React가 어떤 컴포넌트가 이동했는지 정확히 파악하여 최소한의 DOM 조작만 수행합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 3,
+    "title": "useMemo는 항상 성능을 향상시킨다",
+    "body": "React에서 useMemo를 사용하면 메모이제이션으로 인해 항상 컴포넌트의 렌더링 성능이 향상됩니다.",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "메모이제이션 자체에도 비용이 발생합니다.",
+    "hint_2": "단순한 계산이나 값에는 useMemo가 오히려 오버헤드가 될 수 있습니다.",
+    "explanation": "useMemo를 사용하면 의존성 배열을 비교하고, 메모이제이션된 값을 저장하는 비용이 발생합니다. 단순한 계산이나 값에 useMemo를 사용하면 메모이제이션 비용이 계산 비용보다 커져서 오히려 성능이 저하될 수 있습니다. useMemo는 비용이 많이 드는 계산이나 참조 안정성이 중요한 경우에만 사용하는 것이 권장됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useMemo#should-you-add-usememo-everywhere"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 6,
+    "title": "가상 DOM 재조정 알고리즘의 동작",
+    "body": "React의 재조정 알고리즘이 컴포넌트 타입 변경을 어떻게 처리하는지 파악하는 문제입니다.",
+    "code_snippet": "function App({ isLoggedIn }) {\n  return (\n    <div>\n      {isLoggedIn ? (\n        <UserDashboard />\n      ) : (\n        <GuestDashboard />\n      )}\n    </div>\n  );\n}\n// isLoggedIn이 false에서 true로 변경될 때",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "GuestDashboard가 업데이트되어 UserDashboard의 UI를 표시한다", "isCorrect": false },
+      { "id": "b", "text": "GuestDashboard가 언마운트되고 UserDashboard가 새로 마운트된다", "isCorrect": true },
+      { "id": "c", "text": "두 컴포넌트가 동시에 마운트된다", "isCorrect": false },
+      { "id": "d", "text": "React는 타입 변경을 감지하지 못하고 GuestDashboard를 유지한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "React의 재조정 알고리즘은 같은 위치의 컴포넌트 타입을 비교합니다.",
+    "hint_2": "컴포넌트 타입이 변경되면 React는 서브트리를 완전히 교체합니다.",
+    "explanation": "React의 재조정 알고리즘은 두 트리를 비교할 때 먼저 컴포넌트 타입을 비교합니다. isLoggedIn이 변경되어 같은 위치에서 GuestDashboard에서 UserDashboard로 타입이 변경되면, React는 GuestDashboard와 그 하위 트리 전체를 언마운트하고 UserDashboard를 새로 마운트합니다. 이는 이전 컴포넌트의 상태가 완전히 사라짐을 의미합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/learn/preserving-and-resetting-state"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 6,
+    "title": "React Profiler를 이용한 성능 측정",
+    "body": "React DevTools Profiler나 React.Profiler API를 사용하여 컴포넌트의 렌더링 성능을 측정하는 방법을 이해하는 문제입니다.",
+    "code_snippet": "function App() {\n  return (\n    <React.Profiler\n      id=\"Navigation\"\n      onRender={(id, phase, actualDuration) => {\n        console.log(`${id} ${phase}: ${actualDuration}ms`);\n      }}\n    >\n      <Navigation />\n    </React.Profiler>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "onRender는 컴포넌트가 마운트될 때만 호출된다", "isCorrect": false },
+      { "id": "b", "text": "onRender는 컴포넌트가 마운트되거나 업데이트될 때마다 호출된다", "isCorrect": true },
+      { "id": "c", "text": "React.Profiler는 production 빌드에서만 동작한다", "isCorrect": false },
+      { "id": "d", "text": "actualDuration은 실제 렌더링 시간이 아닌 예상 시간이다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "phase 파라미터의 값을 통해 마운트와 업데이트를 구분할 수 있습니다.",
+    "hint_2": "Profiler는 렌더링이 발생할 때마다 측정값을 수집합니다.",
+    "explanation": "React.Profiler의 onRender 콜백은 프로파일링된 트리 내의 컴포넌트가 마운트되거나 업데이트될 때마다 호출됩니다. phase 파라미터로 'mount'와 'update'를 구분할 수 있습니다. actualDuration은 실제 렌더링에 소요된 시간을 밀리초 단위로 나타냅니다. React.Profiler는 development 빌드에서 주로 사용되며, production 빌드에서는 성능 오버헤드를 최소화하기 위해 비활성화될 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/Profiler"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 5,
+    "title": "컴포넌트 구성으로 리렌더링 최소화",
+    "body": "상태 변경으로 인한 불필요한 리렌더링을 컴포넌트 구성(composition)을 통해 방지하는 패턴을 이해하는 문제입니다.",
+    "code_snippet": "// 패턴 A\nfunction App() {\n  const [count, setCount] = React.useState(0);\n  return (\n    <div>\n      <ExpensiveTree /> {/* count와 무관 */}\n      <button onClick={() => setCount(c => c + 1)}>{count}</button>\n    </div>\n  );\n}\n\n// 패턴 B\nfunction Counter() {\n  const [count, setCount] = React.useState(0);\n  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;\n}\nfunction App() {\n  return (\n    <div>\n      <ExpensiveTree />\n      <Counter />\n    </div>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "두 패턴 모두 동일한 수의 리렌더링이 발생한다", "isCorrect": false },
+      { "id": "b", "text": "패턴 B에서는 count가 변경될 때 ExpensiveTree가 리렌더링되지 않는다", "isCorrect": true },
+      { "id": "c", "text": "패턴 A에서는 ExpensiveTree가 리렌더링되지 않는다", "isCorrect": false },
+      { "id": "d", "text": "React.memo 없이는 두 패턴 모두 ExpensiveTree가 항상 리렌더링된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "상태는 해당 상태를 소유한 컴포넌트와 그 자식들만 리렌더링시킵니다.",
+    "hint_2": "상태를 하위 컴포넌트로 내리면 리렌더링 범위를 좁힐 수 있습니다.",
+    "explanation": "패턴 A에서 count가 변경되면 App 컴포넌트 전체가 리렌더링되어 ExpensiveTree도 리렌더링됩니다. 패턴 B에서는 count 상태를 Counter 컴포넌트 내부로 이동시켰으므로, count 변경 시 Counter만 리렌더링되고 App과 ExpensiveTree는 영향을 받지 않습니다. 이는 React.memo 없이도 성능을 최적화할 수 있는 '상태 내리기(pushing state down)' 패턴입니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/learn/you-might-not-need-an-effect#sharing-logic-between-event-handlers"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 4,
+    "title": "useCallback을 사용한 함수 메모이제이션",
+    "body": "useCallback을 사용하여 이벤트 핸들러를 메모이제이션할 때 의존성 배열의 중요성을 파악하는 문제입니다.",
+    "code_snippet": "function Counter() {\n  const [count, setCount] = React.useState(0);\n  const [step, setStep] = React.useState(1);\n\n  const increment = React.useCallback(() => {\n    setCount(c => c + step);\n  }, [step]);\n\n  return (\n    <>\n      <ChildButton onClick={increment} />\n      <input value={step} onChange={e => setStep(Number(e.target.value))} />\n    </>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "step이 변경되어도 increment 함수는 동일한 참조를 유지한다", "isCorrect": false },
+      { "id": "b", "text": "step이 변경될 때만 increment 함수의 참조가 변경된다", "isCorrect": true },
+      { "id": "c", "text": "count가 변경될 때마다 increment 함수의 참조가 변경된다", "isCorrect": false },
+      { "id": "d", "text": "useCallback 없이도 동일하게 동작한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useCallback은 의존성 배열의 값이 변경될 때만 새 함수를 생성합니다.",
+    "hint_2": "step은 의존성 배열에 포함되어 있지만 count는 포함되지 않았습니다.",
+    "explanation": "useCallback은 의존성 배열([step])의 값이 변경될 때만 새로운 함수 참조를 생성합니다. step이 변경되면 increment의 참조가 바뀌고, step이 같으면 동일한 참조를 유지합니다. setCount(c => c + step)은 함수형 업데이트를 사용하므로 count 자체는 의존성에 포함할 필요가 없습니다. 따라서 count가 변경되어도 increment 함수의 참조는 유지됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useCallback"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "performance_optimization",
+    "difficulty": 6,
+    "title": "React Concurrent 렌더링의 인터럽트 가능성",
+    "body": "React 18의 Concurrent 렌더링에서 렌더링이 중단될 수 있음을 이해하는 문제입니다.",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "Concurrent 렌더링에서는 렌더링이 절대 중단되지 않는다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "startTransition으로 시작된 렌더링은 더 긴급한 업데이트에 의해 중단될 수 있다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "Concurrent 모드에서는 모든 렌더링이 동시에 실행된다", "isCorrect": false },
+      { "id": "d", "text": "Concurrent 렌더링은 멀티스레드 환경에서만 동작한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Concurrent 렌더링의 핵심은 '인터럽트 가능한' 렌더링입니다.",
+    "hint_2": "긴급한 업데이트(사용자 입력)는 진행 중인 전환 업데이트를 중단시킬 수 있습니다.",
+    "explanation": "React 18의 Concurrent 렌더링은 렌더링 작업을 중단하고 재개할 수 있습니다. startTransition으로 시작된 전환 렌더링은 사용자 입력 같은 긴급한 업데이트가 들어오면 중단됩니다. React는 중단된 렌더링을 나중에 재개하거나 처음부터 다시 시작할 수 있습니다. 이는 JavaScript의 단일 스레드 특성을 유지하면서 협력적 멀티태스킹을 구현하는 방식입니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/blog/2022/03/29/react-v18#what-is-concurrent-react"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 3,
+    "title": "Render Props 패턴의 기본 개념",
+    "body": "Render Props 패턴은 컴포넌트 간에 코드를 재사용하는 방법입니다. 다음 중 Render Props 패턴을 올바르게 구현한 것은?",
+    "code_snippet": "// A\n<Mouse render={(mouse) => <Cat mouse={mouse} />} />\n\n// B\n<Mouse>{(mouse) => <Cat mouse={mouse} />}</Mouse>\n\n// C\n<Mouse component={Cat} />\n\n// D\n<Mouse><Cat /></Mouse>",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "A만 Render Props 패턴이다", "isCorrect": false },
+      { "id": "b", "text": "A와 B 모두 Render Props 패턴이다", "isCorrect": true },
+      { "id": "c", "text": "C만 Render Props 패턴이다", "isCorrect": false },
+      { "id": "d", "text": "D만 Render Props 패턴이다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Render Props는 함수를 prop으로 전달하는 패턴입니다.",
+    "hint_2": "children을 함수로 사용하는 것도 Render Props 패턴의 한 형태입니다.",
+    "explanation": "Render Props 패턴은 컴포넌트에 함수를 prop으로 전달하여 해당 컴포넌트가 무엇을 렌더링할지 동적으로 결정하는 패턴입니다. A는 render prop으로 명시적으로 이름을 지정했고, B는 children을 함수로 사용하는 Function as Children(또는 Function as Child Component) 패턴입니다. 두 방식 모두 Render Props 패턴의 변형입니다.",
+    "explanation_code": "// Mouse 컴포넌트 구현\nclass Mouse extends React.Component {\n  state = { x: 0, y: 0 };\n  render() {\n    return <div>{this.props.render(this.state)}</div>;\n  }\n}",
+    "reference_url": "https://react.dev/reference/react/cloneElement"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 4,
+    "title": "Compound Components 패턴 구현",
+    "body": "Compound Components 패턴을 사용하여 Select 컴포넌트를 구현하려 합니다. 다음 중 이 패턴의 핵심 특징을 올바르게 설명한 것은?",
+    "code_snippet": "<Select>\n  <Select.Option value=\"apple\">Apple</Select.Option>\n  <Select.Option value=\"banana\">Banana</Select.Option>\n  <Select.Trigger>선택하세요</Select.Trigger>\n</Select>",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "모든 상태를 각 자식 컴포넌트가 독립적으로 관리한다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "부모 컴포넌트가 공유 상태를 관리하고 Context를 통해 자식과 암묵적으로 공유한다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "자식 컴포넌트들은 부모 컴포넌트 없이도 독립적으로 동작할 수 있어야 한다",
+        "isCorrect": false
+      },
+      { "id": "d", "text": "Compound Components는 반드시 클래스 컴포넌트로 구현해야 한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "부모와 자식 컴포넌트가 암묵적으로 상태를 공유하는 방법을 생각해보세요.",
+    "hint_2": "Context API가 컴포넌트 간 상태 공유에 어떻게 활용되는지 생각해보세요.",
+    "explanation": "Compound Components 패턴에서 부모 컴포넌트(Select)는 공유 상태를 소유하고, Context를 통해 자식 컴포넌트들(Select.Option, Select.Trigger)과 암묵적으로 상태를 공유합니다. 자식 컴포넌트들은 Context를 구독하여 부모의 상태에 접근하고 업데이트할 수 있습니다. 이 패턴은 복잡한 UI 컴포넌트를 유연하게 구성할 수 있도록 해줍니다.",
+    "explanation_code": "const SelectContext = React.createContext();\nfunction Select({ children }) {\n  const [value, setValue] = React.useState(null);\n  return (\n    <SelectContext.Provider value={{ value, setValue }}>\n      {children}\n    </SelectContext.Provider>\n  );\n}",
+    "reference_url": "https://react.dev/reference/react/createContext"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 4,
+    "title": "Higher-Order Component(HOC) 패턴",
+    "body": "HOC는 컴포넌트를 인자로 받아 새로운 컴포넌트를 반환하는 함수입니다. 다음 HOC 구현에서 주의해야 할 점은 무엇인가요?",
+    "code_snippet": "function withLogger(WrappedComponent) {\n  function WithLogger(props) {\n    console.log('Props:', props);\n    return <WrappedComponent {...props} />;\n  }\n  return WithLogger;\n}\n\nconst EnhancedButton = withLogger(Button);",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "HOC는 항상 클래스 컴포넌트를 반환해야 한다", "isCorrect": false },
+      { "id": "b", "text": "반환된 컴포넌트의 displayName을 설정하여 디버깅을 용이하게 해야 한다", "isCorrect": true },
+      { "id": "c", "text": "HOC는 원본 컴포넌트를 직접 수정해야 한다", "isCorrect": false },
+      { "id": "d", "text": "HOC에서는 props를 절대 수정하면 안 된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "React DevTools에서 컴포넌트를 쉽게 식별하기 위한 방법을 생각해보세요.",
+    "hint_2": "HOC로 감싼 컴포넌트는 기본적으로 'WithLogger'로 표시되는 문제가 있습니다.",
+    "explanation": "HOC를 사용할 때 반환된 컴포넌트의 displayName을 설정하면 React DevTools에서 디버깅이 용이해집니다. 예를 들어 WithLogger.displayName = `withLogger(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`로 설정할 수 있습니다. 또한 HOC는 원본 컴포넌트를 수정하지 않고 새로운 컴포넌트를 반환해야 하며, 모든 props를 {...props}로 전달하는 것이 중요합니다.",
+    "explanation_code": "function withLogger(WrappedComponent) {\n  function WithLogger(props) {\n    console.log('Props:', props);\n    return <WrappedComponent {...props} />;\n  }\n  WithLogger.displayName = `withLogger(${WrappedComponent.displayName || WrappedComponent.name})`;\n  return WithLogger;\n}",
+    "reference_url": "https://react.dev/reference/react/Component"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 5,
+    "title": "Custom Hook을 이용한 로직 재사용",
+    "body": "Custom Hook이 일반 함수와 다른 점과 컴포넌트 간 상태 공유 여부를 파악하는 문제입니다.",
+    "code_snippet": "function useCounter(initialValue = 0) {\n  const [count, setCount] = React.useState(initialValue);\n  const increment = () => setCount(c => c + 1);\n  const decrement = () => setCount(c => c - 1);\n  return { count, increment, decrement };\n}\n\nfunction ComponentA() {\n  const { count, increment } = useCounter();\n  return <button onClick={increment}>A: {count}</button>;\n}\n\nfunction ComponentB() {\n  const { count, increment } = useCounter();\n  return <button onClick={increment}>B: {count}</button>;\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "ComponentA와 ComponentB는 동일한 count 상태를 공유한다", "isCorrect": false },
+      { "id": "b", "text": "각 컴포넌트는 독립적인 count 상태를 가진다", "isCorrect": true },
+      { "id": "c", "text": "useCounter를 두 번 호출하면 에러가 발생한다", "isCorrect": false },
+      { "id": "d", "text": "한 컴포넌트의 count가 변경되면 다른 컴포넌트도 자동으로 업데이트된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Custom Hook은 로직을 공유하지만 상태는 공유하지 않습니다.",
+    "hint_2": "각 컴포넌트가 useCounter를 호출하면 독립적인 상태 인스턴스가 생성됩니다.",
+    "explanation": "Custom Hook은 로직(코드)을 재사용하는 방법이지만 상태를 공유하지는 않습니다. ComponentA와 ComponentB가 각각 useCounter()를 호출하면 각각 독립적인 count 상태가 생성됩니다. 즉, ComponentA에서 increment를 호출해도 ComponentB의 count에는 영향을 주지 않습니다. 컴포넌트 간 상태를 공유하려면 상태를 공통 부모 컴포넌트로 올리거나 Context를 사용해야 합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/learn/reusing-logic-with-custom-hooks"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 5,
+    "title": "Context + Reducer 패턴으로 전역 상태 관리",
+    "body": "Context와 useReducer를 조합하여 전역 상태를 관리하는 패턴에서 최적의 구조는 무엇인가요?",
+    "code_snippet": "const StateContext = React.createContext();\nconst DispatchContext = React.createContext();\n\nfunction AppProvider({ children }) {\n  const [state, dispatch] = React.useReducer(reducer, initialState);\n  return (\n    <StateContext.Provider value={state}>\n      <DispatchContext.Provider value={dispatch}>\n        {children}\n      </DispatchContext.Provider>\n    </StateContext.Provider>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "state와 dispatch를 하나의 Context로 합쳐서 전달하는 것이 더 좋다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "state와 dispatch를 분리된 Context로 제공하면 dispatch만 사용하는 컴포넌트의 불필요한 리렌더링을 방지한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "이 패턴에서 모든 Context 소비자는 state가 변경될 때마다 리렌더링된다", "isCorrect": false },
+      { "id": "d", "text": "DispatchContext는 필요 없으며 직접 dispatch를 props로 전달해야 한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "dispatch 함수는 리렌더링 사이에서 안정적인 참조를 가집니다.",
+    "hint_2": "Context가 분리되어 있으면 각 Context의 소비자만 리렌더링됩니다.",
+    "explanation": "state와 dispatch를 별도의 Context로 분리하면 성능 최적화에 도움이 됩니다. dispatch만 필요한 컴포넌트(버튼 등)는 StateContext를 구독하지 않으므로 state가 변경되어도 리렌더링되지 않습니다. useReducer의 dispatch 함수는 컴포넌트 생명주기 동안 안정적인 참조를 유지하므로, DispatchContext만 구독하는 컴포넌트는 불필요한 리렌더링을 피할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/learn/scaling-up-with-reducer-and-context"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 4,
+    "title": "제어 컴포넌트 vs 비제어 컴포넌트",
+    "body": "폼을 구현할 때 제어 컴포넌트(Controlled Component)와 비제어 컴포넌트(Uncontrolled Component)를 선택해야 합니다. 다음 중 올바른 설명은?",
+    "code_snippet": "// 제어 컴포넌트\n<input value={value} onChange={e => setValue(e.target.value)} />\n\n// 비제어 컴포넌트\n<input ref={inputRef} defaultValue=\"initial\" />",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "비제어 컴포넌트가 항상 더 성능이 좋다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "제어 컴포넌트는 React 상태가 단일 진실의 원천(single source of truth)이 된다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "비제어 컴포넌트는 React와 전혀 관련이 없다", "isCorrect": false },
+      { "id": "d", "text": "제어 컴포넌트는 defaultValue를 사용한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "제어 컴포넌트에서 input의 값은 React 상태에 의해 완전히 제어됩니다.",
+    "hint_2": "단일 진실의 원천이란 하나의 소스에서 데이터를 관리한다는 원칙입니다.",
+    "explanation": "제어 컴포넌트에서는 React 상태가 입력 값의 단일 진실의 원천이 됩니다. 즉, 입력 값은 항상 React 상태와 동기화됩니다. 비제어 컴포넌트는 DOM이 입력 값을 직접 관리하며, ref를 통해 필요할 때 값을 읽습니다. 제어 컴포넌트는 실시간 유효성 검사나 조건부 렌더링에 유리하고, 비제어 컴포넌트는 간단한 폼이나 파일 입력에 유용합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 5,
+    "title": "React Portal을 이용한 모달 렌더링",
+    "body": "ReactDOM.createPortal을 사용하여 모달을 렌더링할 때 이벤트 버블링 동작을 파악하는 문제입니다.",
+    "code_snippet": "function Modal({ children }) {\n  return ReactDOM.createPortal(\n    <div className=\"modal\">{children}</div>,\n    document.body\n  );\n}\n\nfunction App() {\n  const handleClick = () => console.log('App clicked');\n  return (\n    <div onClick={handleClick}>\n      <Modal>\n        <button onClick={() => console.log('Button clicked')}>클릭</button>\n      </Modal>\n    </div>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "버튼 클릭 시 'Button clicked'만 출력된다", "isCorrect": false },
+      { "id": "b", "text": "버튼 클릭 시 'Button clicked'와 'App clicked' 모두 출력된다", "isCorrect": true },
+      { "id": "c", "text": "Portal을 사용하면 이벤트 버블링이 발생하지 않는다", "isCorrect": false },
+      { "id": "d", "text": "'App clicked'만 출력된다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Portal은 DOM 위치와 관계없이 React 컴포넌트 트리의 이벤트 버블링을 따릅니다.",
+    "hint_2": "Portal은 DOM 트리가 아닌 React 컴포넌트 트리에서의 부모-자식 관계를 유지합니다.",
+    "explanation": "ReactDOM.createPortal을 사용하면 컴포넌트가 실제 DOM에서는 document.body에 렌더링되지만, React 컴포넌트 트리에서는 여전히 App의 자식으로 유지됩니다. 이벤트 버블링은 React 컴포넌트 트리를 따르므로, Modal 내의 버튼 클릭 이벤트가 App의 onClick 핸들러까지 버블링됩니다. 따라서 'Button clicked'와 'App clicked' 모두 출력됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react-dom/createPortal"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 6,
+    "title": "Provider 패턴과 Context 최적화",
+    "body": "Context를 사용할 때 불필요한 리렌더링을 방지하기 위한 최적화 전략을 이해하는 문제입니다.",
+    "code_snippet": "const ThemeContext = React.createContext();\n\nfunction ThemeProvider({ children }) {\n  const [theme, setTheme] = React.useState('light');\n  \n  // 최적화 필요\n  const value = { theme, setTheme };\n  \n  return (\n    <ThemeContext.Provider value={value}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "최적화가 필요 없다. 이미 완벽한 코드이다", "isCorrect": false },
+      {
+        "id": "b",
+        "text": "value 객체를 useMemo로 감싸야 ThemeProvider가 리렌더링될 때 Context 소비자의 불필요한 리렌더링을 방지한다",
+        "isCorrect": true
+      },
+      { "id": "c", "text": "React.memo로 ThemeProvider를 감싸야 한다", "isCorrect": false },
+      { "id": "d", "text": "useCallback으로 setTheme을 감싸야 한다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "인라인 객체 리터럴은 매 렌더링마다 새로운 참조를 생성합니다.",
+    "hint_2": "Context의 value가 변경되면 모든 소비자가 리렌더링됩니다.",
+    "explanation": "{ theme, setTheme }는 인라인 객체로, ThemeProvider가 리렌더링될 때마다 새로운 참조가 생성됩니다. Context의 value 참조가 변경되면 모든 Context 소비자 컴포넌트가 리렌더링됩니다. useMemo를 사용하여 value = React.useMemo(() => ({ theme, setTheme }), [theme, setTheme])로 감싸면 theme이 실제로 변경될 때만 새로운 value가 생성되어 불필요한 리렌더링을 방지할 수 있습니다.",
+    "explanation_code": "function ThemeProvider({ children }) {\n  const [theme, setTheme] = React.useState('light');\n  const value = React.useMemo(\n    () => ({ theme, setTheme }),\n    [theme]\n  );\n  return (\n    <ThemeContext.Provider value={value}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}",
+    "reference_url": "https://react.dev/reference/react/createContext"
+  },
+  {
+    "format": "true_false",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 4,
+    "title": "HOC와 Custom Hook 중 항상 HOC가 더 선호된다",
+    "body": "React에서 로직을 재사용할 때, Higher-Order Component(HOC) 패턴은 커스텀 훅보다 항상 더 좋은 선택입니다.",
+    "code_snippet": null,
+    "code_language": "javascript",
+    "options": null,
+    "correct_answer": "false",
+    "hint_1": "커스텀 훅은 훅의 도입과 함께 많은 경우에서 HOC를 대체했습니다.",
+    "hint_2": "HOC는 wrapper 지옥(wrapper hell)을 유발할 수 있습니다.",
+    "explanation": "HOC는 함수형 컴포넌트와 훅이 도입되기 전에 로직 재사용의 주요 패턴이었습니다. 커스텀 훅은 HOC의 많은 단점(래퍼 지옥, 명명 충돌, 불명확한 props 출처 등)을 해결하며 더 직관적인 방식으로 로직을 재사용할 수 있게 해줍니다. HOC는 여전히 유용한 경우가 있지만, 일반적으로 로직 재사용에는 커스텀 훅이 권장됩니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/learn/reusing-logic-with-custom-hooks"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 6,
+    "title": "Forwarding Ref를 이용한 DOM 접근",
+    "body": "React.forwardRef를 사용하여 부모 컴포넌트에서 자식 컴포넌트의 DOM 요소에 접근하는 코드의 동작을 파악하는 문제입니다.",
+    "code_snippet": "const FancyInput = React.forwardRef((props, ref) => (\n  <input ref={ref} className=\"fancy\" {...props} />\n));\n\nfunction App() {\n  const inputRef = React.useRef(null);\n  \n  function handleFocus() {\n    inputRef.current.focus();\n  }\n  \n  return (\n    <>\n      <FancyInput ref={inputRef} placeholder=\"입력...\" />\n      <button onClick={handleFocus}>포커스</button>\n    </>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "inputRef.current는 FancyInput 컴포넌트 인스턴스를 참조한다", "isCorrect": false },
+      { "id": "b", "text": "inputRef.current는 실제 <input> DOM 요소를 참조한다", "isCorrect": true },
+      { "id": "c", "text": "함수형 컴포넌트에서는 ref 전달이 불가능하므로 에러가 발생한다", "isCorrect": false },
+      { "id": "d", "text": "inputRef.current는 null이다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "forwardRef를 사용하면 ref를 컴포넌트 내부의 DOM 요소로 전달할 수 있습니다.",
+    "hint_2": "함수형 컴포넌트는 인스턴스가 없으므로 ref는 DOM 요소나 useImperativeHandle로 노출된 값을 참조합니다.",
+    "explanation": "React.forwardRef를 사용하면 부모가 전달한 ref를 자식 컴포넌트 내부의 특정 DOM 요소에 연결할 수 있습니다. FancyInput에서 ref를 input 요소에 연결했으므로 inputRef.current는 실제 <input> DOM 요소를 가리킵니다. 따라서 handleFocus에서 inputRef.current.focus()를 호출하면 입력 필드에 포커스가 이동합니다. 함수형 컴포넌트는 인스턴스가 없으므로 직접 ref를 받을 수 없고 forwardRef가 필요합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/forwardRef"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 5,
+    "title": "useImperativeHandle로 ref 인터페이스 커스터마이징",
+    "body": "useImperativeHandle을 사용하여 부모 컴포넌트에 노출되는 ref 인터페이스를 제한하는 방법을 이해하는 문제입니다.",
+    "code_snippet": "const VideoPlayer = React.forwardRef((props, ref) => {\n  const videoRef = React.useRef(null);\n  \n  React.useImperativeHandle(ref, () => ({\n    play: () => videoRef.current.play(),\n    pause: () => videoRef.current.pause(),\n  }));\n  \n  return <video ref={videoRef} src={props.src} />;\n});",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "부모는 videoRef.current를 통해 video DOM 요소의 모든 메서드에 접근할 수 있다",
+        "isCorrect": false
+      },
+      { "id": "b", "text": "부모는 ref.current.play()와 ref.current.pause()만 호출할 수 있다", "isCorrect": true },
+      { "id": "c", "text": "useImperativeHandle은 forwardRef 없이도 사용 가능하다", "isCorrect": false },
+      { "id": "d", "text": "부모에서 ref.current.volume 등 다른 속성도 접근 가능하다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "useImperativeHandle은 노출할 인터페이스를 명시적으로 정의합니다.",
+    "hint_2": "부모는 useImperativeHandle에서 반환한 객체의 속성만 사용할 수 있습니다.",
+    "explanation": "useImperativeHandle은 부모 컴포넌트에 노출할 ref 핸들의 인터페이스를 명시적으로 정의합니다. 이 코드에서는 play와 pause 메서드만 노출하므로, 부모는 ref.current.play()와 ref.current.pause()만 호출할 수 있습니다. video DOM 요소의 volume, muted 등 다른 속성이나 메서드에는 접근할 수 없어 캡슐화가 강화됩니다. useImperativeHandle은 forwardRef와 함께 사용해야 합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/reference/react/useImperativeHandle"
+  },
+  {
+    "format": "multiple_choice",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 6,
+    "title": "State Initializer 패턴으로 컴포넌트 유연성 향상",
+    "body": "컴포넌트의 초기 상태를 외부에서 제어할 수 있게 하는 State Initializer 패턴의 올바른 구현을 이해하는 문제입니다.",
+    "code_snippet": "function useToggle({ initialOn = false } = {}) {\n  const [on, setOn] = React.useState(initialOn);\n  const toggle = () => setOn(prev => !prev);\n  const reset = () => setOn(initialOn);\n  return { on, toggle, reset };\n}\n\nfunction Switch() {\n  const { on, toggle, reset } = useToggle({ initialOn: true });\n  return (\n    <>\n      <button onClick={toggle}>{on ? 'ON' : 'OFF'}</button>\n      <button onClick={reset}>초기화</button>\n    </>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "reset 함수는 항상 false로 초기화한다", "isCorrect": false },
+      { "id": "b", "text": "reset 함수는 initialOn(true)으로 초기화한다", "isCorrect": true },
+      { "id": "c", "text": "initialOn prop은 런타임에 변경될 때 자동으로 상태에 반영된다", "isCorrect": false },
+      { "id": "d", "text": "이 패턴은 State Initializer가 아닌 Controlled Component 패턴이다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "reset 함수는 현재 상태가 아닌 초기값으로 돌아갑니다.",
+    "hint_2": "useState의 초기값은 컴포넌트가 처음 마운트될 때만 사용됩니다.",
+    "explanation": "State Initializer 패턴에서 reset 함수는 현재 상태를 초기화 시점의 값으로 되돌립니다. useToggle({ initialOn: true })로 사용했으므로 reset()은 on을 true로 되돌립니다. useState(initialOn)에서 initialOn은 컴포넌트 마운트 시 단 한 번만 사용되므로 이후 initialOn이 변경되어도 자동으로 반영되지 않습니다. 이 패턴은 컴포넌트에 초기 상태를 주입할 수 있게 하여 테스트와 재사용성을 향상시킵니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/learn/reusing-logic-with-custom-hooks"
+  },
+  {
+    "format": "code_output",
+    "category": "react",
+    "subcategory": "react_patterns",
+    "difficulty": 4,
+    "title": "children prop을 이용한 슬롯 패턴",
+    "body": "children prop을 활용한 슬롯 패턴에서 컴포넌트의 렌더링 동작을 파악하는 문제입니다.",
+    "code_snippet": "function Card({ header, footer, children }) {\n  return (\n    <div className=\"card\">\n      <div className=\"header\">{header}</div>\n      <div className=\"body\">{children}</div>\n      <div className=\"footer\">{footer}</div>\n    </div>\n  );\n}\n\nfunction App() {\n  return (\n    <Card\n      header={<h1>제목</h1>}\n      footer={<button>확인</button>}\n    >\n      <p>카드 내용입니다.</p>\n    </Card>\n  );\n}",
+    "code_language": "javascript",
+    "options": [
+      { "id": "a", "text": "header, footer, children은 같은 div 안에 렌더링된다", "isCorrect": false },
+      { "id": "b", "text": "h1은 header div에, p는 body div에, button은 footer div에 렌더링된다", "isCorrect": true },
+      { "id": "c", "text": "children만 렌더링되고 header와 footer는 무시된다", "isCorrect": false },
+      { "id": "d", "text": "이 코드는 에러를 발생시킨다", "isCorrect": false }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Card 컴포넌트는 named slot 패턴을 사용합니다.",
+    "hint_2": "각 prop은 해당하는 div 영역에 렌더링됩니다.",
+    "explanation": "이 코드는 named slot 패턴을 구현합니다. header prop으로 전달된 <h1>제목</h1>은 header div에, children으로 전달된 <p>카드 내용입니다.</p>는 body div에, footer prop으로 전달된 <button>확인</button>은 footer div에 각각 렌더링됩니다. 이 패턴은 컴포넌트의 여러 영역에 다른 콘텐츠를 주입할 수 있어 유연한 레이아웃 컴포넌트를 만드는 데 유용합니다.",
+    "explanation_code": null,
+    "reference_url": "https://react.dev/learn/passing-props-to-a-component#passing-jsx-as-children"
+  }
+]
