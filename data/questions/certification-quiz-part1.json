@@ -1,0 +1,1802 @@
+[
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "software_engineering",
+    "difficulty": 2,
+    "title": "소프트웨어 개발 생명주기",
+    "body": "소프트웨어 개발 생명주기(SDLC) 모델 중 각 단계를 순차적으로 진행하며, 이전 단계가 완료되어야 다음 단계로 넘어가는 모델은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "나선형 모델",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "프로토타입 모델",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "폭포수 모델",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "애자일 모델",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "가장 전통적인 개발 방법론으로, 물이 떨어지는 것처럼 단계가 흐릅니다.",
+    "hint_2": "Waterfall이라는 영어 이름을 가진 모델입니다.",
+    "explanation": "폭포수(Waterfall) 모델은 소프트웨어 개발 단계를 요구사항 분석 → 설계 → 구현 → 테스트 → 유지보수 순으로 순차적으로 진행하는 가장 전통적인 SDLC 모델입니다. 각 단계가 완료되어야 다음 단계로 진행할 수 있습니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "software_engineering",
+    "difficulty": 3,
+    "title": "애자일 방법론",
+    "body": "다음 중 애자일(Agile) 방법론의 핵심 가치로 올바르지 않은 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "프로세스와 도구보다 개인과 상호작용을 중시",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "포괄적인 문서보다 동작하는 소프트웨어를 중시",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "계약 협상보다 고객과의 협력을 중시",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "변화에 대응보다 계획 수행을 중시",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "opt_d",
+    "hint_1": "애자일 선언문(Agile Manifesto)의 4가지 핵심 가치를 떠올려 보세요.",
+    "hint_2": "애자일은 변화에 유연하게 대응하는 것을 중요하게 여깁니다.",
+    "explanation": "애자일 선언문에서는 '계획을 따르기보다 변화에 대응하기를' 중시합니다. 따라서 '변화에 대응보다 계획 수행을 중시'는 애자일의 가치와 반대되는 설명입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "software_engineering",
+    "difficulty": 4,
+    "title": "디자인 패턴 - 싱글톤",
+    "body": "디자인 패턴 중 클래스의 인스턴스가 오직 하나만 생성되도록 보장하고, 전역적인 접근점을 제공하는 패턴은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "팩토리 메서드 패턴",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "싱글톤 패턴",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "옵서버 패턴",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "전략 패턴",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "이 패턴의 이름은 '하나'라는 의미를 담고 있습니다.",
+    "hint_2": "데이터베이스 커넥션 풀이나 로그 객체 등에 자주 사용됩니다.",
+    "explanation": "싱글톤(Singleton) 패턴은 생성(Creational) 패턴의 하나로, 클래스의 인스턴스를 하나만 생성하고 어디서든 그 인스턴스에 접근할 수 있는 전역 접근점을 제공합니다. 생성자를 private으로 선언하고 getInstance() 메서드를 통해 유일한 인스턴스를 반환합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "software_engineering",
+    "difficulty": 5,
+    "title": "UML 다이어그램 분류",
+    "body": "UML 다이어그램 중 구조 다이어그램(Structure Diagram)에 해당하지 않는 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "클래스 다이어그램",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "컴포넌트 다이어그램",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "시퀀스 다이어그램",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "배치 다이어그램",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "UML 다이어그램은 크게 구조 다이어그램과 행위 다이어그램으로 나뉩니다.",
+    "hint_2": "시간 순서에 따른 객체 간 메시지 교환을 나타내는 다이어그램은 행위에 해당합니다.",
+    "explanation": "시퀀스 다이어그램은 행위 다이어그램(Behavioral Diagram)에 속하며, 객체 간의 메시지 교환을 시간 순서에 따라 표현합니다. 클래스, 컴포넌트, 배치(Deployment) 다이어그램은 모두 구조 다이어그램에 해당합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "software_engineering",
+    "difficulty": 2,
+    "title": "테스트 커버리지",
+    "body": "다음 중 화이트박스 테스트의 커버리지 기준에서 모든 조건식의 개별 조건이 참/거짓을 각각 한 번 이상 만족하도록 하는 커버리지는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "문장 커버리지(Statement Coverage)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "결정 커버리지(Decision Coverage)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "조건 커버리지(Condition Coverage)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "경로 커버리지(Path Coverage)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "복합 조건식 내부의 개별 조건에 초점을 맞추는 커버리지입니다.",
+    "hint_2": "결정 커버리지는 전체 조건식의 참/거짓을 다루고, 이 커버리지는 개별 조건의 참/거짓을 다룹니다.",
+    "explanation": "조건 커버리지(Condition Coverage)는 복합 조건식에서 각 개별 조건이 참과 거짓을 최소 한 번씩 갖도록 테스트 케이스를 설계하는 기준입니다. 결정 커버리지는 전체 조건식의 결과가 참/거짓이 되도록 하며, 조건 커버리지와는 다른 개념입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "software_engineering",
+    "difficulty": 7,
+    "title": "결합도 수준",
+    "body": "모듈 간 결합도(Coupling)를 낮은 것부터 높은 순서로 올바르게 나열한 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "자료 → 스탬프 → 제어 → 외부 → 공통 → 내용",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_b",
+        "text": "내용 → 공통 → 외부 → 제어 → 스탬프 → 자료",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "자료 → 제어 → 스탬프 → 공통 → 외부 → 내용",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "스탬프 → 자료 → 제어 → 외부 → 내용 → 공통",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_a",
+    "hint_1": "결합도는 낮을수록 좋은 설계이며, 자료 결합도가 가장 낮습니다.",
+    "hint_2": "내용 결합도가 가장 높으며, '자스제외공내'로 외울 수 있습니다.",
+    "explanation": "모듈 간 결합도는 낮은 것부터: 자료(Data) → 스탬프(Stamp) → 제어(Control) → 외부(External) → 공통(Common) → 내용(Content) 결합도 순서입니다. 좋은 소프트웨어 설계는 낮은 결합도(Low Coupling)를 지향합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "database",
+    "difficulty": 1,
+    "title": "데이터베이스 기본 개념",
+    "body": "데이터베이스에서 행(Row)과 열(Column)로 구성된 2차원 테이블 형태의 데이터 모델은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "네트워크 데이터 모델",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "계층형 데이터 모델",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "관계형 데이터 모델",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "객체지향 데이터 모델",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "현재 가장 널리 사용되는 데이터 모델입니다.",
+    "hint_2": "Relational이라는 영어 이름을 가지며, RDBMS가 이 모델을 기반으로 합니다.",
+    "explanation": "관계형(Relational) 데이터 모델은 데이터를 2차원 테이블(릴레이션) 형태로 표현하며, 행(튜플)과 열(속성)로 구성됩니다. Oracle, MySQL, PostgreSQL 등이 관계형 데이터베이스입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "database",
+    "difficulty": 3,
+    "title": "정규화 - 제1정규형",
+    "body": "제1정규형(1NF)의 조건으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "모든 속성이 원자값(Atomic Value)을 가져야 한다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_b",
+        "text": "부분 함수 종속을 제거해야 한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "이행적 함수 종속을 제거해야 한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "다치 종속을 제거해야 한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_a",
+    "hint_1": "가장 기본적인 정규형으로, 반복 그룹을 제거하는 것이 핵심입니다.",
+    "hint_2": "하나의 속성에 여러 값이 들어가면 안 됩니다.",
+    "explanation": "제1정규형(1NF)은 릴레이션의 모든 속성이 원자값(더 이상 분해할 수 없는 값)을 가져야 한다는 조건입니다. 부분 함수 종속 제거는 2NF, 이행적 함수 종속 제거는 3NF, 다치 종속 제거는 4NF의 조건입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "database",
+    "difficulty": 4,
+    "title": "SQL - JOIN",
+    "body": "다음 SQL 문의 실행 결과로 올바른 설명은?",
+    "code_snippet": "SELECT A.이름, B.과목명\nFROM 학생 A LEFT OUTER JOIN 수강 B\nON A.학번 = B.학번;",
+    "code_language": "sql",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "수강 테이블의 모든 행이 포함되고, 매칭되지 않는 학생 정보는 NULL로 표시된다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "학생 테이블의 모든 행이 포함되고, 매칭되지 않는 수강 정보는 NULL로 표시된다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "두 테이블 모두 매칭되는 행만 출력된다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "두 테이블의 모든 행이 출력되고, 매칭되지 않는 부분은 NULL로 표시된다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "LEFT OUTER JOIN에서 LEFT는 왼쪽 테이블을 기준으로 한다는 의미입니다.",
+    "hint_2": "기준 테이블(왼쪽)의 모든 행은 반드시 결과에 포함됩니다.",
+    "explanation": "LEFT OUTER JOIN은 왼쪽 테이블(학생)의 모든 행을 결과에 포함시키고, 오른쪽 테이블(수강)에서 매칭되는 행이 없으면 NULL로 표시합니다. 따라서 수강 기록이 없는 학생도 결과에 나타납니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "database",
+    "difficulty": 2,
+    "title": "트랜잭션 격리 수준",
+    "body": "트랜잭션 격리 수준(Isolation Level) 중 다른 트랜잭션이 커밋하지 않은 데이터를 읽을 수 있는 수준은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "READ UNCOMMITTED",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_b",
+        "text": "READ COMMITTED",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "REPEATABLE READ",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "SERIALIZABLE",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_a",
+    "hint_1": "격리 수준이 가장 낮은 수준에서 발생하는 현상입니다.",
+    "hint_2": "이 수준에서는 Dirty Read가 발생할 수 있습니다.",
+    "explanation": "READ UNCOMMITTED는 가장 낮은 격리 수준으로, 다른 트랜잭션이 커밋하지 않은 데이터도 읽을 수 있습니다. 이로 인해 Dirty Read, Non-Repeatable Read, Phantom Read가 모두 발생할 수 있습니다. 격리 수준은 READ UNCOMMITTED < READ COMMITTED < REPEATABLE READ < SERIALIZABLE 순으로 높아집니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "database",
+    "difficulty": 5,
+    "title": "SQL - GROUP BY와 HAVING",
+    "body": "다음 SQL 문의 의미로 올바른 것은?",
+    "code_snippet": "SELECT 부서코드, COUNT(*) AS 인원수\nFROM 사원\nGROUP BY 부서코드\nHAVING COUNT(*) >= 5;",
+    "code_language": "sql",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "모든 부서의 사원 수를 조회한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "사원이 5명 이상인 부서의 부서코드와 인원수를 조회한다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "상위 5개 부서의 인원수를 조회한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "각 부서에서 5번째 사원까지의 정보를 조회한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "HAVING절은 GROUP BY로 그룹화된 결과에 조건을 적용합니다.",
+    "hint_2": "WHERE는 그룹화 전, HAVING은 그룹화 후 조건을 필터링합니다.",
+    "explanation": "이 SQL문은 사원 테이블을 부서코드별로 그룹화한 후, HAVING절을 통해 사원 수(COUNT(*))가 5명 이상인 부서만 필터링하여 부서코드와 인원수를 조회합니다. HAVING은 집계 함수에 대한 조건을 지정할 때 사용합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "database",
+    "difficulty": 7,
+    "title": "이상(Anomaly) 현상",
+    "body": "데이터베이스에서 정규화가 제대로 이루어지지 않았을 때 발생하는 이상(Anomaly) 현상이 아닌 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "삽입 이상(Insertion Anomaly)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "삭제 이상(Deletion Anomaly)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "갱신 이상(Update Anomaly)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "참조 이상(Reference Anomaly)",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "opt_d",
+    "hint_1": "정규화와 관련된 이상 현상은 3가지가 있습니다.",
+    "hint_2": "데이터의 삽입, 삭제, 수정 시 발생하는 문제를 생각해 보세요.",
+    "explanation": "정규화가 부족할 때 발생하는 이상 현상은 삽입 이상, 삭제 이상, 갱신 이상 3가지입니다. 삽입 이상은 데이터 삽입 시 불필요한 데이터도 함께 입력해야 하는 문제, 삭제 이상은 삭제 시 필요한 데이터까지 함께 삭제되는 문제, 갱신 이상은 일부만 수정되어 데이터 불일치가 발생하는 문제입니다. 참조 이상은 존재하지 않는 용어입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "network",
+    "difficulty": 2,
+    "title": "OSI 7계층",
+    "body": "OSI 7계층 모델에서 데이터 링크 계층(Data Link Layer)은 몇 번째 계층인가?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "1계층",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "2계층",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "3계층",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "4계층",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "물리 계층 바로 위에 위치하는 계층입니다.",
+    "hint_2": "MAC 주소를 사용하고, 프레임 단위로 데이터를 처리합니다.",
+    "explanation": "OSI 7계층은 아래부터 1.물리 → 2.데이터링크 → 3.네트워크 → 4.전송 → 5.세션 → 6.표현 → 7.응용 계층 순서입니다. 데이터 링크 계층(2계층)은 MAC 주소를 이용하여 프레임 단위의 데이터를 전송하며, 오류 검출과 흐름 제어를 담당합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "network",
+    "difficulty": 3,
+    "title": "TCP와 UDP 비교",
+    "body": "다음 중 TCP 프로토콜의 특징으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "비연결형 프로토콜로 빠른 전송이 가능하다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "3-Way Handshake를 통해 연결을 설정한다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "데이터의 순서를 보장하지 않는다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "실시간 스트리밍에 주로 사용된다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "TCP는 신뢰성 있는 데이터 전송을 보장하는 연결 지향형 프로토콜입니다.",
+    "hint_2": "SYN → SYN+ACK → ACK 과정을 거칩니다.",
+    "explanation": "TCP는 연결 지향형(Connection-oriented) 프로토콜로, 3-Way Handshake(SYN → SYN+ACK → ACK)를 통해 연결을 설정합니다. 데이터의 순서 보장, 오류 제어, 흐름 제어 등을 통해 신뢰성 있는 데이터 전송을 보장합니다. 비연결형이고 빠른 전송이 필요한 경우에는 UDP를 사용합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "network",
+    "difficulty": 4,
+    "title": "서브넷 마스크",
+    "body": "IP 주소 192.168.1.0에 서브넷 마스크 255.255.255.192를 적용했을 때, 생성되는 서브넷의 수는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "2개",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "4개",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "8개",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "16개",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "255.255.255.192를 2진수로 변환하면 호스트 부분에서 빌린 비트 수를 알 수 있습니다.",
+    "hint_2": "192는 2진수로 11000000이므로 2비트를 서브넷에 사용합니다.",
+    "explanation": "서브넷 마스크 255.255.255.192에서 마지막 옥텟 192는 이진수로 11000000입니다. 호스트 부분에서 2비트를 서브넷으로 사용하므로 2^2 = 4개의 서브넷이 생성됩니다. 각 서브넷에는 2^6 - 2 = 62개의 호스트를 사용할 수 있습니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "network",
+    "difficulty": 5,
+    "title": "HTTP 상태 코드",
+    "body": "HTTP 상태 코드 중 클라이언트 오류를 나타내는 코드 범위는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "1xx",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "3xx",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "4xx",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "5xx",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "404 Not Found는 대표적인 클라이언트 오류 코드입니다.",
+    "hint_2": "5xx는 서버 오류, 3xx는 리다이렉션을 의미합니다.",
+    "explanation": "HTTP 상태 코드는 1xx(정보), 2xx(성공), 3xx(리다이렉션), 4xx(클라이언트 오류), 5xx(서버 오류)로 분류됩니다. 4xx 코드는 클라이언트 측 오류를 나타내며, 400(Bad Request), 401(Unauthorized), 403(Forbidden), 404(Not Found) 등이 있습니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "network",
+    "difficulty": 6,
+    "title": "라우팅 프로토콜",
+    "body": "다음 중 거리 벡터(Distance Vector) 라우팅 프로토콜에 해당하는 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "OSPF",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "RIP",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "IS-IS",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "BGP",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "홉 수(Hop Count)를 메트릭으로 사용하는 프로토콜입니다.",
+    "hint_2": "최대 홉 수가 15로 제한되어 소규모 네트워크에 적합합니다.",
+    "explanation": "RIP(Routing Information Protocol)은 대표적인 거리 벡터 라우팅 프로토콜로, 홉 수를 메트릭으로 사용합니다. 최대 홉 수는 15로 제한되어 있어 대규모 네트워크에는 적합하지 않습니다. OSPF와 IS-IS는 링크 상태(Link State) 프로토콜이고, BGP는 경로 벡터(Path Vector) 프로토콜입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "network",
+    "difficulty": 7,
+    "title": "DNS 레코드 타입",
+    "body": "DNS 레코드 타입 중 도메인에 대한 메일 서버 정보를 지정하는 레코드는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "A 레코드",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "CNAME 레코드",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "MX 레코드",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "NS 레코드",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "Mail과 관련된 레코드 타입입니다.",
+    "hint_2": "MX는 Mail Exchange의 약자입니다.",
+    "explanation": "MX(Mail Exchange) 레코드는 해당 도메인으로 전송되는 메일을 처리할 메일 서버를 지정합니다. A 레코드는 도메인을 IPv4 주소에 매핑하고, CNAME은 별칭(Alias)을 설정하며, NS 레코드는 네임서버를 지정합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "operating_system",
+    "difficulty": 1,
+    "title": "운영체제 기본 개념",
+    "body": "운영체제의 주요 기능이 아닌 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "프로세스 관리",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "메모리 관리",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "데이터베이스 쿼리 최적화",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "파일 시스템 관리",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "운영체제는 하드웨어와 소프트웨어 자원을 관리하는 시스템입니다.",
+    "hint_2": "데이터베이스 관련 기능은 DBMS에서 담당합니다.",
+    "explanation": "운영체제의 주요 기능에는 프로세스 관리, 메모리 관리, 파일 시스템 관리, 입출력 관리, 네트워크 관리 등이 있습니다. 데이터베이스 쿼리 최적화는 DBMS(데이터베이스 관리 시스템)의 기능이며, 운영체제의 기능에 해당하지 않습니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "operating_system",
+    "difficulty": 3,
+    "title": "프로세스 상태 전이",
+    "body": "프로세스 상태 전이에서 실행(Running) 상태의 프로세스가 입출력 요청 등으로 인해 CPU를 반납하고 전이되는 상태는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "준비(Ready) 상태",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "대기(Waiting/Blocked) 상태",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "종료(Terminated) 상태",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "생성(New) 상태",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "I/O 작업이 완료될 때까지 프로세스가 기다려야 하는 상태입니다.",
+    "hint_2": "Block이라고도 불리는 이 상태에서는 CPU를 사용할 수 없습니다.",
+    "explanation": "실행 중인 프로세스가 입출력(I/O) 요청을 하면 대기(Waiting/Blocked) 상태로 전이됩니다. I/O 작업이 완료되면 준비(Ready) 상태로 전이되고, 스케줄러에 의해 다시 CPU를 할당받으면 실행 상태가 됩니다. 타임아웃에 의한 전이는 실행→준비 상태입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "operating_system",
+    "difficulty": 4,
+    "title": "CPU 스케줄링 - SJF",
+    "body": "SJF(Shortest Job First) 스케줄링 알고리즘에 대한 설명으로 올바르지 않은 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "실행 시간이 가장 짧은 프로세스에게 먼저 CPU를 할당한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "평균 대기 시간을 최소화할 수 있다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "기아(Starvation) 현상이 발생할 수 있다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "모든 프로세스의 실행 시간을 정확히 예측할 수 있다",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "opt_d",
+    "hint_1": "SJF의 가장 큰 단점 중 하나는 실행 시간 예측의 어려움입니다.",
+    "hint_2": "실제 환경에서 프로세스의 정확한 실행 시간을 미리 알 수 없습니다.",
+    "explanation": "SJF 스케줄링은 실행 시간이 가장 짧은 프로세스를 먼저 실행하여 평균 대기 시간을 최소화합니다. 그러나 실행 시간이 긴 프로세스는 계속 밀리는 기아 현상이 발생할 수 있고, 실제로 프로세스의 실행 시간을 정확히 예측하기 어려운 것이 가장 큰 단점입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "operating_system",
+    "difficulty": 6,
+    "title": "교착상태 필요 조건",
+    "body": "교착상태(Deadlock)의 발생 필요 조건 4가지에 해당하지 않는 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "상호 배제(Mutual Exclusion)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "점유와 대기(Hold and Wait)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "선점(Preemption)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "환형 대기(Circular Wait)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "교착상태의 4가지 필요 조건 중 하나는 '비선점'입니다.",
+    "hint_2": "선점이 가능하면 교착상태가 해소될 수 있습니다.",
+    "explanation": "교착상태의 4가지 필요 조건은 상호 배제, 점유와 대기, 비선점(Non-preemption), 환형 대기입니다. '비선점'이 조건이므로 '선점(Preemption)'은 교착상태의 필요 조건이 아닙니다. 오히려 선점이 가능하면 교착상태를 해결할 수 있습니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "operating_system",
+    "difficulty": 5,
+    "title": "페이지 교체 알고리즘",
+    "body": "페이지 교체 알고리즘 중 가장 오랫동안 사용되지 않은 페이지를 교체하는 알고리즘은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "FIFO(First In First Out)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "LRU(Least Recently Used)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "LFU(Least Frequently Used)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "OPT(Optimal)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "최근에 사용되지 않은 페이지에 초점을 맞추는 알고리즘입니다.",
+    "hint_2": "시간적 지역성(Temporal Locality)을 활용한 알고리즘입니다.",
+    "explanation": "LRU(Least Recently Used)는 가장 오랫동안 사용되지 않은 페이지를 교체 대상으로 선택합니다. FIFO는 가장 먼저 적재된 페이지를, LFU는 사용 빈도가 가장 낮은 페이지를, OPT는 앞으로 가장 오래 사용되지 않을 페이지를 교체합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "operating_system",
+    "difficulty": 8,
+    "title": "세마포어와 뮤텍스",
+    "body": "세마포어(Semaphore)와 뮤텍스(Mutex)에 대한 설명으로 올바르지 않은 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "뮤텍스는 이진 세마포어의 특수한 형태로 볼 수 있다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "세마포어는 카운팅 세마포어와 이진 세마포어로 나뉜다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "뮤텍스는 잠금을 획득한 스레드만 해제할 수 있다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "세마포어는 반드시 잠금을 획득한 스레드만 해제할 수 있다",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "opt_d",
+    "hint_1": "세마포어와 뮤텍스의 소유권(Ownership) 개념 차이를 생각해 보세요.",
+    "hint_2": "세마포어는 signal 연산을 다른 프로세스가 수행할 수 있습니다.",
+    "explanation": "세마포어는 소유권 개념이 없어서 잠금을 획득하지 않은 스레드도 signal(V) 연산을 수행하여 세마포어 값을 증가시킬 수 있습니다. 반면 뮤텍스는 소유권이 있어서 잠금을 획득한 스레드만 해제(unlock)할 수 있습니다. 이것이 세마포어와 뮤텍스의 핵심적인 차이입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "data_structure",
+    "difficulty": 1,
+    "title": "스택의 특성",
+    "body": "스택(Stack) 자료구조의 데이터 입출력 방식은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "FIFO(First In First Out)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "LIFO(Last In First Out)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "LILO(Last In Last Out)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "Random Access",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "접시를 쌓는 것처럼 가장 마지막에 넣은 것을 먼저 꺼냅니다.",
+    "hint_2": "후입선출이라는 뜻의 영어 약어입니다.",
+    "explanation": "스택은 LIFO(Last In First Out, 후입선출) 방식의 자료구조입니다. 가장 마지막에 삽입(push)된 데이터가 가장 먼저 삭제(pop)됩니다. FIFO는 큐(Queue)의 특성입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "data_structure",
+    "difficulty": 3,
+    "title": "이진 트리 순회",
+    "body": "이진 트리의 중위 순회(In-order Traversal) 방문 순서로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "루트 → 왼쪽 서브트리 → 오른쪽 서브트리",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "왼쪽 서브트리 → 루트 → 오른쪽 서브트리",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "왼쪽 서브트리 → 오른쪽 서브트리 → 루트",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "오른쪽 서브트리 → 루트 → 왼쪽 서브트리",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "'중위'라는 이름에서 루트 노드의 방문 위치를 유추할 수 있습니다.",
+    "hint_2": "루트가 가운데(중간)에 위치하는 순회 방식입니다.",
+    "explanation": "이진 트리의 순회 방식에서 중위(In-order) 순회는 왼쪽 서브트리 → 루트 → 오른쪽 서브트리 순서로 방문합니다. 전위(Pre-order)는 루트→왼→오, 후위(Post-order)는 왼→오→루트 순서입니다. 이진 탐색 트리를 중위 순회하면 오름차순 정렬된 결과를 얻습니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "data_structure",
+    "difficulty": 4,
+    "title": "해시 충돌 해결",
+    "body": "해시 테이블에서 충돌(Collision)이 발생했을 때 해결 방법 중 '개방 주소법(Open Addressing)'에 해당하지 않는 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "선형 탐사(Linear Probing)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "이차 탐사(Quadratic Probing)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "체이닝(Chaining)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "이중 해싱(Double Hashing)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "체이닝은 연결 리스트를 이용하는 방법입니다.",
+    "hint_2": "개방 주소법은 해시 테이블 내에서 빈 공간을 찾는 방법입니다.",
+    "explanation": "체이닝(Chaining)은 개방 주소법이 아닌 분리 연결법(Separate Chaining)에 해당합니다. 같은 해시값을 가진 데이터들을 연결 리스트로 연결합니다. 개방 주소법에는 선형 탐사, 이차 탐사, 이중 해싱 등이 있으며, 해시 테이블 내의 다른 빈 공간을 찾아 저장합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "data_structure",
+    "difficulty": 5,
+    "title": "그래프 탐색",
+    "body": "다음 중 그래프 탐색 알고리즘에서 너비 우선 탐색(BFS)에 사용되는 자료구조는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "스택(Stack)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "큐(Queue)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "힙(Heap)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "이진 탐색 트리(BST)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "BFS는 같은 레벨의 노드를 먼저 방문하는 방식입니다.",
+    "hint_2": "먼저 발견한 노드를 먼저 처리하는 FIFO 방식의 자료구조가 필요합니다.",
+    "explanation": "너비 우선 탐색(BFS)은 큐(Queue)를 사용하여 구현합니다. 시작 노드의 인접 노드를 모두 큐에 넣고, 큐에서 꺼낸 노드의 인접 노드를 다시 큐에 넣는 방식으로 레벨 순서대로 탐색합니다. 반면 깊이 우선 탐색(DFS)은 스택이나 재귀를 사용합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "data_structure",
+    "difficulty": 7,
+    "title": "힙 자료구조",
+    "body": "최대 힙(Max Heap)에서 루트 노드를 삭제한 후 힙을 재정렬하는 과정으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "마지막 노드를 루트로 이동 후 자식 노드와 비교하며 아래로 이동(Heapify Down)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_b",
+        "text": "왼쪽 자식 노드를 루트로 이동 후 형제 노드와 비교하며 정렬",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "오른쪽 자식 노드를 루트로 이동 후 전체 트리를 재구성",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "두 번째로 큰 값을 루트로 이동 후 트리를 재정렬",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_a",
+    "hint_1": "힙의 마지막 노드를 활용하여 완전 이진 트리 구조를 유지합니다.",
+    "hint_2": "루트에 올라간 노드가 자식보다 작으면 더 큰 자식과 교환합니다.",
+    "explanation": "최대 힙에서 루트를 삭제하면, 마지막 노드(가장 마지막에 삽입된 노드)를 루트 위치로 이동시킵니다. 그 후 Heapify Down 과정을 통해 자식 노드와 비교하며, 자식보다 작으면 더 큰 자식과 교환하는 작업을 반복하여 힙 속성을 복원합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "algorithm",
+    "difficulty": 2,
+    "title": "시간 복잡도 기본",
+    "body": "다음 코드의 시간 복잡도는?",
+    "code_snippet": "for (int i = 0; i < n; i++) {\n    for (int j = 0; j < n; j++) {\n        printf(\"%d\", arr[i][j]);\n    }\n}",
+    "code_language": "c",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "O(1)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "O(n)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "O(n^2)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "O(n log n)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "이중 반복문의 각 반복 횟수를 곱하면 됩니다.",
+    "hint_2": "바깥 반복문 n번 × 안쪽 반복문 n번 = n × n",
+    "explanation": "이중 for문에서 바깥 반복문이 n번, 안쪽 반복문도 n번 실행되므로 총 n × n = n^2번 실행됩니다. 따라서 시간 복잡도는 O(n^2)입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "algorithm",
+    "difficulty": 3,
+    "title": "정렬 알고리즘 특성",
+    "body": "다음 정렬 알고리즘 중 평균 시간 복잡도가 O(n log n)이 아닌 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "퀵 정렬(Quick Sort)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "병합 정렬(Merge Sort)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "버블 정렬(Bubble Sort)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "힙 정렬(Heap Sort)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "가장 단순한 정렬 알고리즘 중 하나로, 인접한 요소를 비교하여 교환합니다.",
+    "hint_2": "이 알고리즘의 평균과 최악 시간 복잡도는 모두 O(n^2)입니다.",
+    "explanation": "버블 정렬은 인접한 두 요소를 비교하여 교환하는 방식으로, 평균과 최악의 시간 복잡도가 모두 O(n^2)입니다. 퀵 정렬, 병합 정렬, 힙 정렬은 모두 평균 시간 복잡도가 O(n log n)입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "algorithm",
+    "difficulty": 5,
+    "title": "이진 탐색",
+    "body": "다음 이진 탐색 코드에서 빈칸에 들어갈 내용으로 올바른 것은?",
+    "code_snippet": "int binarySearch(int arr[], int n, int key) {\n    int low = 0, high = n - 1;\n    while (low <= high) {\n        int mid = (low + high) / 2;\n        if (arr[mid] == key) return mid;\n        else if (arr[mid] < key) __________;\n        else high = mid - 1;\n    }\n    return -1;\n}",
+    "code_language": "c",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "low = mid",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "low = mid + 1",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "high = mid",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "low = mid - 1",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "arr[mid]가 key보다 작다면 key는 mid보다 오른쪽에 있습니다.",
+    "hint_2": "탐색 범위를 오른쪽 절반으로 좁히려면 low 값을 조정해야 합니다.",
+    "explanation": "이진 탐색에서 arr[mid] < key이면 찾고자 하는 값이 mid의 오른쪽에 있으므로 low = mid + 1로 설정하여 탐색 범위를 오른쪽 절반으로 좁힙니다. low = mid로 하면 무한 루프에 빠질 수 있습니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "algorithm",
+    "difficulty": 6,
+    "title": "동적 프로그래밍",
+    "body": "동적 프로그래밍(Dynamic Programming)의 적용 조건이 아닌 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "최적 부분 구조(Optimal Substructure)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "중복 부분 문제(Overlapping Subproblems)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "탐욕적 선택 속성(Greedy Choice Property)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "메모이제이션(Memoization) 활용 가능성",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "탐욕적 선택 속성은 다른 알고리즘 기법의 조건입니다.",
+    "hint_2": "그리디(Greedy) 알고리즘에서 필요한 조건입니다.",
+    "explanation": "동적 프로그래밍의 적용 조건은 최적 부분 구조와 중복 부분 문제입니다. 탐욕적 선택 속성(Greedy Choice Property)은 그리디 알고리즘의 적용 조건입니다. 동적 프로그래밍은 하위 문제의 결과를 메모이제이션하여 중복 계산을 피하는 방식으로 효율성을 확보합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "algorithm",
+    "difficulty": 7,
+    "title": "퀵 정렬 최악의 경우",
+    "body": "퀵 정렬(Quick Sort)의 최악의 시간 복잡도가 O(n^2)이 되는 경우는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "배열이 완전히 랜덤한 경우",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "배열이 이미 정렬되어 있고 첫 번째 원소를 피벗으로 선택하는 경우",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "배열의 중앙값을 피벗으로 선택하는 경우",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "배열의 크기가 2의 제곱수인 경우",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "피벗의 선택이 불균형한 분할을 초래하면 최악의 경우가 됩니다.",
+    "hint_2": "정렬된 배열에서 첫 번째 원소를 피벗으로 선택하면 한쪽이 항상 비게 됩니다.",
+    "explanation": "퀵 정렬에서 이미 정렬된 배열의 첫 번째(또는 마지막) 원소를 피벗으로 선택하면, 매 분할에서 한쪽은 n-1개, 다른 쪽은 0개가 되어 불균형한 분할이 반복됩니다. 이 경우 n번의 분할이 각각 O(n) 비교를 하므로 O(n^2)이 됩니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "security",
+    "difficulty": 2,
+    "title": "대칭키와 비대칭키 암호화",
+    "body": "다음 중 대칭키 암호화 방식의 특징으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "암호화와 복호화에 서로 다른 키를 사용한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "암호화와 복호화에 같은 키를 사용한다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "공개키와 개인키 쌍을 사용한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "디지털 서명에 주로 사용된다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "'대칭'이라는 이름에서 키의 사용 방식을 유추할 수 있습니다.",
+    "hint_2": "AES, DES 등이 대표적인 대칭키 알고리즘입니다.",
+    "explanation": "대칭키 암호화는 암호화와 복호화에 동일한 키(비밀키)를 사용하는 방식입니다. 속도가 빠르지만 키 분배 문제가 있습니다. 비대칭키(공개키) 암호화는 공개키와 개인키 쌍을 사용하며, RSA가 대표적입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "security",
+    "difficulty": 4,
+    "title": "SQL 인젝션",
+    "body": "SQL 인젝션(SQL Injection) 공격에 대한 방어 방법으로 가장 효과적인 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "사용자 입력값의 길이만 제한한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "매개변수화된 쿼리(Prepared Statement)를 사용한다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "HTTPS를 적용한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "데이터베이스 포트를 변경한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "사용자 입력을 SQL 쿼리에 직접 삽입하지 않는 방법입니다.",
+    "hint_2": "Prepared Statement는 SQL 구조와 데이터를 분리합니다.",
+    "explanation": "SQL 인젝션 방어의 가장 효과적인 방법은 매개변수화된 쿼리(Prepared Statement)를 사용하는 것입니다. 이 방법은 SQL 쿼리의 구조와 데이터를 분리하여, 사용자 입력이 SQL 명령으로 해석되는 것을 방지합니다. 입력값 길이 제한만으로는 SQL 인젝션을 완전히 방어할 수 없습니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "security",
+    "difficulty": 5,
+    "title": "접근 제어 모델",
+    "body": "접근 제어 모델 중 주체의 보안 등급과 객체의 보안 레이블을 기반으로 접근을 제어하는 방식은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "DAC(임의적 접근 제어)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "MAC(강제적 접근 제어)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "RBAC(역할 기반 접근 제어)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "ABAC(속성 기반 접근 제어)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "군사/정부 기관에서 주로 사용하는 엄격한 접근 제어 방식입니다.",
+    "hint_2": "관리자가 보안 등급을 설정하고, 시스템이 강제로 접근을 제어합니다.",
+    "explanation": "MAC(Mandatory Access Control, 강제적 접근 제어)는 시스템 관리자가 설정한 보안 등급과 보안 레이블을 기반으로 접근을 강제적으로 제어합니다. DAC는 자원의 소유자가 접근 권한을 설정하고, RBAC는 사용자의 역할에 따라 권한을 부여합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "security",
+    "difficulty": 6,
+    "title": "공개키 기반 구조",
+    "body": "PKI(Public Key Infrastructure)의 구성요소가 아닌 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "인증기관(CA: Certificate Authority)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "등록기관(RA: Registration Authority)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "디렉토리 서비스(Directory Service)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "침입탐지시스템(IDS: Intrusion Detection System)",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "opt_d",
+    "hint_1": "PKI는 공개키 인증서를 발급하고 관리하기 위한 체계입니다.",
+    "hint_2": "IDS는 네트워크 보안 장비로 PKI와는 다른 영역입니다.",
+    "explanation": "PKI의 구성요소에는 인증기관(CA), 등록기관(RA), 디렉토리 서비스, CRL(인증서 폐기 목록) 등이 있습니다. 침입탐지시스템(IDS)은 네트워크 침입을 탐지하는 보안 시스템으로, PKI의 구성요소가 아닙니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "security",
+    "difficulty": 8,
+    "title": "암호화 해시 함수",
+    "body": "암호화 해시 함수의 특성으로 올바르지 않은 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "동일한 입력에 대해 항상 동일한 해시값을 출력한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "해시값으로부터 원래 입력을 역산할 수 없어야 한다(일방향성)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "서로 다른 입력이 같은 해시값을 가질 수 없다(충돌 불가능)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "입력의 작은 변화에도 해시값이 크게 달라져야 한다(쇄도 효과)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "해시 함수의 출력 크기는 고정되어 있지만, 입력은 무한합니다.",
+    "hint_2": "비둘기집 원리에 의해 충돌은 이론적으로 반드시 존재합니다.",
+    "explanation": "해시 함수는 고정 길이 출력을 생성하므로 비둘기집 원리에 의해 충돌은 반드시 존재합니다. '충돌 불가능'이 아니라 '충돌 저항성(Collision Resistance)'이 올바른 표현으로, 충돌을 찾는 것이 계산적으로 어려워야 한다는 의미입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "system_integration",
+    "difficulty": 2,
+    "title": "미들웨어 개념",
+    "body": "미들웨어(Middleware)에 대한 설명으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "하드웨어의 물리적 연결을 담당하는 장치이다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "운영체제와 응용 프로그램 사이에서 다양한 서비스를 제공하는 소프트웨어이다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "데이터베이스의 물리적 저장 구조를 관리하는 소프트웨어이다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "네트워크의 물리 계층 프로토콜이다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "'미들'이라는 이름에서 알 수 있듯이 중간에서 매개 역할을 합니다.",
+    "hint_2": "WAS(Web Application Server)가 대표적인 미들웨어입니다.",
+    "explanation": "미들웨어는 운영체제와 응용 프로그램 사이에 위치하여 분산 환경에서 다양한 서비스를 제공하는 소프트웨어입니다. RPC, MOM, ORB, WAS, DB 미들웨어 등이 있으며, 서로 다른 시스템 간의 통신과 데이터 교환을 지원합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "system_integration",
+    "difficulty": 3,
+    "title": "REST API 특징",
+    "body": "REST(Representational State Transfer) API의 특징으로 올바르지 않은 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "HTTP 프로토콜을 기반으로 동작한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "무상태(Stateless) 통신을 원칙으로 한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "서버가 클라이언트의 세션 상태를 항상 유지해야 한다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "URI를 통해 자원을 식별한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "REST의 핵심 원칙 중 하나가 상태를 유지하지 않는 것입니다.",
+    "hint_2": "Stateless 원칙에 따라 각 요청은 독립적으로 처리됩니다.",
+    "explanation": "REST API는 무상태(Stateless)를 원칙으로 하므로 서버가 클라이언트의 세션 상태를 유지하지 않습니다. 각 요청은 필요한 모든 정보를 포함해야 하며, 서버는 각 요청을 독립적으로 처리합니다. HTTP 기반, URI를 통한 자원 식별, 표준 HTTP 메서드 사용 등이 REST의 특징입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "system_integration",
+    "difficulty": 4,
+    "title": "EAI 연계 방식",
+    "body": "EAI(Enterprise Application Integration) 구축 유형 중 중앙의 허브 시스템을 통해 모든 시스템이 연결되는 방식은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "Point-to-Point",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "Hub & Spoke",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "Message Bus",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "Hybrid",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "자전거 바퀴처럼 중심축과 살 구조를 떠올려 보세요.",
+    "hint_2": "중앙 집중형 방식으로 허브가 메시지를 라우팅합니다.",
+    "explanation": "Hub & Spoke 방식은 중앙의 허브 시스템이 모든 연결을 관리하는 중앙 집중형 구조입니다. Point-to-Point는 시스템 간 직접 연결, Message Bus는 공통 버스를 통한 연결, Hybrid는 여러 방식을 혼합한 구조입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "system_integration",
+    "difficulty": 5,
+    "title": "인터페이스 보안",
+    "body": "시스템 인터페이스 구현 시 전송 데이터의 보안을 위해 사용하는 기술이 아닌 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "IPSec",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "SSL/TLS",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "S-HTTP",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "NAT",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "opt_d",
+    "hint_1": "NAT는 보안이 아닌 다른 목적의 네트워크 기술입니다.",
+    "hint_2": "NAT는 IP 주소를 변환하는 기술입니다.",
+    "explanation": "NAT(Network Address Translation)는 사설 IP 주소를 공인 IP 주소로 변환하는 기술로, 데이터 보안을 위한 기술이 아닙니다. IPSec은 네트워크 계층 보안, SSL/TLS는 전송 계층 보안, S-HTTP는 HTTP 보안을 위한 프로토콜입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "system_integration",
+    "difficulty": 7,
+    "title": "SOA 아키텍처",
+    "body": "SOA(Service-Oriented Architecture)에서 서비스를 등록하고 검색할 수 있는 저장소 역할을 하는 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "SOAP",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "WSDL",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "UDDI",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "ESB",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "웹 서비스를 등록하고 검색하는 디렉토리 서비스입니다.",
+    "hint_2": "Universal Description, Discovery and Integration의 약자입니다.",
+    "explanation": "UDDI(Universal Description, Discovery and Integration)는 웹 서비스를 등록하고 검색할 수 있는 디렉토리 서비스(저장소)입니다. SOAP은 메시지 전송 프로토콜, WSDL은 서비스 기술 언어, ESB는 서비스 간 통신을 중재하는 버스 역할을 합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "software_engineering",
+    "difficulty": 3,
+    "title": "요구사항 분류",
+    "body": "다음 중 비기능적 요구사항(Non-Functional Requirement)에 해당하는 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "사용자는 로그인 기능을 통해 인증을 수행할 수 있어야 한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "시스템은 동시 접속자 1만 명을 처리할 수 있어야 한다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "관리자는 사용자 계정을 생성/삭제할 수 있어야 한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "사용자는 게시판에 글을 작성할 수 있어야 한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "기능적 요구사항은 시스템이 '무엇을' 하는지, 비기능적 요구사항은 '어떻게' 하는지를 다룹니다.",
+    "hint_2": "성능, 보안, 확장성, 가용성 등이 비기능적 요구사항에 해당합니다.",
+    "explanation": "비기능적 요구사항은 시스템의 품질 속성에 관한 것으로, 성능, 보안, 신뢰성, 사용성 등을 포함합니다. '동시 접속자 1만 명 처리'는 성능에 관한 비기능적 요구사항입니다. 나머지 선택지는 시스템이 수행해야 할 기능을 설명하는 기능적 요구사항입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "database",
+    "difficulty": 4,
+    "title": "SQL - 서브쿼리",
+    "body": "다음 SQL 문에서 서브쿼리의 유형으로 올바른 것은?",
+    "code_snippet": "SELECT 이름, 급여\nFROM 사원\nWHERE 급여 > (SELECT AVG(급여) FROM 사원);",
+    "code_language": "sql",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "상관 서브쿼리(Correlated Subquery)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "스칼라 서브쿼리(Scalar Subquery)",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "인라인 뷰(Inline View)",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "다중 행 서브쿼리(Multi-Row Subquery)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "이 서브쿼리는 단일 값(하나의 행, 하나의 열)을 반환합니다.",
+    "hint_2": "AVG 함수는 하나의 값을 반환하는 집계 함수입니다.",
+    "explanation": "스칼라 서브쿼리는 하나의 행에서 하나의 열 값만 반환하는 서브쿼리입니다. SELECT AVG(급여) FROM 사원은 하나의 평균값만 반환하므로 스칼라 서브쿼리에 해당합니다. 상관 서브쿼리는 외부 쿼리의 컬럼을 참조하는 서브쿼리, 인라인 뷰는 FROM절에 사용되는 서브쿼리입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "network",
+    "difficulty": 8,
+    "title": "VLAN과 네트워크 분리",
+    "body": "VLAN(Virtual Local Area Network)에 대한 설명으로 올바르지 않은 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "물리적 위치와 관계없이 논리적으로 네트워크를 분리할 수 있다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "브로드캐스트 도메인을 분리하여 네트워크 성능을 향상시킨다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "서로 다른 VLAN 간 통신은 라우터 없이 직접 가능하다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "IEEE 802.1Q 표준을 사용하여 태그 기반으로 VLAN을 구분한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "VLAN은 논리적으로 분리된 네트워크이므로 통신에 제약이 있습니다.",
+    "hint_2": "서로 다른 네트워크 간 통신에는 3계층 장비가 필요합니다.",
+    "explanation": "서로 다른 VLAN 간 통신은 라우터(또는 L3 스위치)를 통해서만 가능합니다. VLAN은 논리적으로 분리된 네트워크이므로 직접 통신이 불가능합니다. VLAN은 브로드캐스트 도메인을 분리하여 보안과 성능을 향상시키며, IEEE 802.1Q 표준의 태그를 사용합니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "operating_system",
+    "difficulty": 4,
+    "title": "가상 메모리",
+    "body": "가상 메모리(Virtual Memory)에 대한 설명으로 올바르지 않은 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "물리적 메모리보다 큰 프로그램을 실행할 수 있다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "페이지 단위로 메모리를 관리하는 방식이 있다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "보조기억장치(디스크)를 활용하여 메모리를 확장한다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "가상 메모리를 사용하면 페이지 폴트가 절대 발생하지 않는다",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "opt_d",
+    "hint_1": "가상 메모리의 핵심은 필요한 페이지만 물리 메모리에 적재하는 것입니다.",
+    "hint_2": "필요한 페이지가 물리 메모리에 없으면 디스크에서 가져와야 합니다.",
+    "explanation": "가상 메모리를 사용하면 필요한 페이지가 물리 메모리에 없을 때 페이지 폴트(Page Fault)가 발생합니다. 이때 디스크에서 해당 페이지를 물리 메모리로 적재합니다. 페이지 폴트는 가상 메모리 시스템에서 정상적으로 발생하는 현상입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "data_structure",
+    "difficulty": 6,
+    "title": "AVL 트리",
+    "body": "AVL 트리에 대한 설명으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "모든 노드의 왼쪽과 오른쪽 서브트리 높이 차이가 최대 2이다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "모든 노드의 왼쪽과 오른쪽 서브트리 높이 차이가 최대 1이다",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_c",
+        "text": "삽입 시 회전(Rotation) 연산이 필요하지 않다",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_d",
+        "text": "검색 시간 복잡도가 O(n)이다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_b",
+    "hint_1": "자가 균형(Self-balancing) 이진 탐색 트리입니다.",
+    "hint_2": "Balance Factor(균형 인수)가 -1, 0, 1 중 하나여야 합니다.",
+    "explanation": "AVL 트리는 모든 노드에서 왼쪽과 오른쪽 서브트리의 높이 차이(Balance Factor)가 최대 1인 자가 균형 이진 탐색 트리입니다. 삽입이나 삭제 후 균형이 깨지면 회전(LL, RR, LR, RL) 연산을 통해 균형을 복원합니다. 검색 시간 복잡도는 O(log n)입니다."
+  },
+  {
+    "format": "multiple_choice",
+    "category": "certification",
+    "subcategory": "algorithm",
+    "difficulty": 4,
+    "title": "재귀 함수 결과",
+    "body": "다음 재귀 함수 f(5)의 실행 결과는?",
+    "code_snippet": "int f(int n) {\n    if (n <= 1) return 1;\n    return n * f(n - 1);\n}",
+    "code_language": "c",
+    "options": [
+      {
+        "id": "opt_a",
+        "text": "15",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_b",
+        "text": "24",
+        "isCorrect": false
+      },
+      {
+        "id": "opt_c",
+        "text": "120",
+        "isCorrect": true
+      },
+      {
+        "id": "opt_d",
+        "text": "720",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "opt_c",
+    "hint_1": "이 함수는 n부터 1까지의 곱을 계산합니다.",
+    "hint_2": "5 × 4 × 3 × 2 × 1을 계산하세요.",
+    "explanation": "이 함수는 팩토리얼(n!)을 재귀적으로 계산합니다. f(5) = 5 × f(4) = 5 × 4 × f(3) = 5 × 4 × 3 × f(2) = 5 × 4 × 3 × 2 × f(1) = 5 × 4 × 3 × 2 × 1 = 120입니다."
+  }
+]

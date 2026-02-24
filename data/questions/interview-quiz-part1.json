@@ -1,0 +1,1902 @@
+[
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "closures",
+    "difficulty": 2,
+    "title": "클로저의 기본 개념",
+    "body": "다음 중 클로저(Closure)에 대한 설명으로 가장 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "함수가 실행될 때 새로운 스코프를 생성하는 것",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "함수가 선언될 당시의 렉시컬 환경을 기억하여 외부 변수에 접근할 수 있는 함수",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "전역 변수를 함수 내부에서 사용하는 패턴",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "즉시 실행 함수(IIFE)의 다른 이름",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "함수가 정의된 위치의 스코프 체인을 떠올려 보세요.",
+    "hint_2": "내부 함수가 외부 함수의 변수에 접근할 수 있는 메커니즘입니다.",
+    "explanation": "클로저는 함수와 그 함수가 선언된 렉시컬 환경(Lexical Environment)의 조합입니다. 내부 함수가 외부 함수의 변수를 참조하면, 외부 함수의 실행이 끝나더라도 해당 변수가 메모리에 유지되어 접근할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "closures",
+    "difficulty": 4,
+    "title": "클로저와 반복문",
+    "body": "다음 코드의 실행 결과는 무엇인가요?",
+    "code_snippet": "for (var i = 0; i < 3; i++) {\n  setTimeout(function() {\n    console.log(i);\n  }, 1000);\n}",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "0, 1, 2가 순서대로 출력된다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "3, 3, 3이 출력된다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "undefined가 3번 출력된다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "에러가 발생한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "var는 블록 스코프가 아닌 함수 스코프를 가집니다.",
+    "hint_2": "setTimeout 콜백이 실행될 때 이미 반복문이 완료되었습니다.",
+    "explanation": "var로 선언된 i는 함수 스코프를 가지므로 반복문이 끝난 후 i의 값은 3입니다. setTimeout의 콜백이 실행될 때 클로저를 통해 참조하는 i는 이미 3이 된 상태이므로 3이 세 번 출력됩니다. let을 사용하면 블록 스코프로 인해 0, 1, 2가 출력됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "closures",
+    "difficulty": 5,
+    "title": "클로저를 활용한 프라이빗 변수",
+    "body": "다음 코드에서 counter.getCount()를 호출하면 어떤 값이 반환되나요?",
+    "code_snippet": "function createCounter() {\n  let count = 0;\n  return {\n    increment() { count++; },\n    decrement() { count--; },\n    getCount() { return count; }\n  };\n}\n\nconst counter = createCounter();\ncounter.increment();\ncounter.increment();\ncounter.increment();\ncounter.decrement();",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "0",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "3",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "2",
+        "isCorrect": true
+      },
+      {
+        "id": "d",
+        "text": "undefined",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "c",
+    "hint_1": "increment가 3번, decrement가 1번 호출되었습니다.",
+    "hint_2": "클로저를 통해 count 변수가 공유됩니다.",
+    "explanation": "createCounter 함수는 클로저를 활용하여 count 변수를 프라이빗하게 유지합니다. increment()가 3번 호출되어 count는 3이 되고, decrement()가 1번 호출되어 count는 2가 됩니다. getCount()는 클로저를 통해 이 값을 반환합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "this_binding",
+    "difficulty": 2,
+    "title": "this 바인딩 규칙",
+    "body": "JavaScript에서 일반 함수 호출 시 this가 바인딩되는 대상으로 올바른 것은? (strict mode가 아닌 경우)",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "호출한 객체",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "전역 객체 (window 또는 global)",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "undefined",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "함수 자기 자신",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "함수를 메서드가 아닌 독립적으로 호출할 때를 생각해 보세요.",
+    "hint_2": "non-strict mode에서는 전역 컨텍스트가 기본값입니다.",
+    "explanation": "JavaScript에서 일반 함수 호출(단순 호출) 시 this는 전역 객체에 바인딩됩니다. 브라우저에서는 window, Node.js에서는 global입니다. strict mode에서는 undefined가 됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "this_binding",
+    "difficulty": 5,
+    "title": "화살표 함수의 this",
+    "body": "다음 코드의 실행 결과로 올바른 것은?",
+    "code_snippet": "const obj = {\n  name: 'DevRank',\n  greet: function() {\n    const inner = () => {\n      return this.name;\n    };\n    return inner();\n  }\n};\n\nconsole.log(obj.greet());",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "undefined",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "DevRank",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "빈 문자열",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "TypeError가 발생한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "화살표 함수는 자체적인 this를 가지지 않습니다.",
+    "hint_2": "화살표 함수의 this는 상위 스코프의 this를 따릅니다.",
+    "explanation": "화살표 함수는 자체 this를 가지지 않고, 정의된 위치의 상위 스코프에서 this를 상속받습니다. inner 화살표 함수가 정의된 greet 메서드의 this는 obj를 가리키므로 this.name은 'DevRank'를 반환합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "this_binding",
+    "difficulty": 6,
+    "title": "call, apply, bind의 차이",
+    "body": "다음 중 Function.prototype.bind()에 대한 설명으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "함수를 즉시 실행하며 this를 바인딩한다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "인자를 배열로 전달하며 즉시 실행한다",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "this가 바인딩된 새로운 함수를 반환하며 즉시 실행하지 않는다",
+        "isCorrect": true
+      },
+      {
+        "id": "d",
+        "text": "프로토타입 체인의 this를 변경한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "c",
+    "hint_1": "call과 apply는 즉시 실행하지만, bind는 다릅니다.",
+    "hint_2": "bind는 새로운 함수를 만들어 반환합니다.",
+    "explanation": "bind()는 this가 영구적으로 바인딩된 새로운 함수를 반환합니다. call()과 apply()는 즉시 실행하지만, bind()는 즉시 실행하지 않습니다. call()은 인자를 개별적으로, apply()는 배열로 전달합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "event_loop",
+    "difficulty": 4,
+    "title": "이벤트 루프 실행 순서",
+    "body": "다음 코드의 콘솔 출력 순서로 올바른 것은?",
+    "code_snippet": "console.log('1');\n\nsetTimeout(() => {\n  console.log('2');\n}, 0);\n\nPromise.resolve().then(() => {\n  console.log('3');\n});\n\nconsole.log('4');",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "1, 2, 3, 4",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "1, 4, 2, 3",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "1, 4, 3, 2",
+        "isCorrect": true
+      },
+      {
+        "id": "d",
+        "text": "1, 3, 4, 2",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "c",
+    "hint_1": "마이크로태스크와 매크로태스크의 우선순위를 생각해 보세요.",
+    "hint_2": "Promise의 then은 마이크로태스크, setTimeout은 매크로태스크입니다.",
+    "explanation": "동기 코드가 먼저 실행되어 1, 4가 출력됩니다. 그 후 마이크로태스크 큐(Promise.then)가 매크로태스크 큐(setTimeout)보다 먼저 처리되므로 3이 출력된 후 2가 출력됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "event_loop",
+    "difficulty": 6,
+    "title": "마이크로태스크와 매크로태스크",
+    "body": "다음 중 마이크로태스크(Microtask)에 해당하는 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "setTimeout 콜백",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "setInterval 콜백",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "Promise.then 콜백과 MutationObserver",
+        "isCorrect": true
+      },
+      {
+        "id": "d",
+        "text": "requestAnimationFrame 콜백",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "c",
+    "hint_1": "이벤트 루프에서 두 종류의 태스크 큐가 존재합니다.",
+    "hint_2": "마이크로태스크는 매크로태스크보다 높은 우선순위를 가집니다.",
+    "explanation": "마이크로태스크에는 Promise.then/catch/finally 콜백, MutationObserver, queueMicrotask()가 포함됩니다. 매크로태스크에는 setTimeout, setInterval, setImmediate, I/O 콜백 등이 포함됩니다. requestAnimationFrame은 별도의 렌더링 관련 큐에 속합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "prototype",
+    "difficulty": 4,
+    "title": "프로토타입 체인의 이해",
+    "body": "다음 코드에서 obj.toString()을 호출할 수 있는 이유는?",
+    "code_snippet": "const obj = { name: 'test' };\nconsole.log(obj.toString());",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "모든 객체에 toString 메서드가 자동으로 복사되기 때문",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "프로토타입 체인을 통해 Object.prototype.toString에 접근하기 때문",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "JavaScript 엔진이 런타임에 toString 메서드를 생성하기 때문",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "객체 리터럴이 자동으로 toString 속성을 포함하기 때문",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "객체가 직접 가지고 있지 않은 속성을 어디서 찾는지 생각해 보세요.",
+    "hint_2": "모든 객체는 Object.prototype을 프로토타입 체인의 끝에 가지고 있습니다.",
+    "explanation": "JavaScript에서 객체의 속성에 접근할 때, 해당 객체에 속성이 없으면 프로토타입 체인을 따라 상위 프로토타입에서 찾습니다. 모든 일반 객체는 Object.prototype을 상속받으므로 toString(), hasOwnProperty() 등의 메서드를 사용할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "prototype",
+    "difficulty": 7,
+    "title": "프로토타입 상속과 __proto__",
+    "body": "다음 코드의 실행 결과는 무엇인가요?",
+    "code_snippet": "function Animal(name) {\n  this.name = name;\n}\nAnimal.prototype.speak = function() {\n  return this.name + ' makes a sound';\n};\n\nfunction Dog(name) {\n  Animal.call(this, name);\n}\nDog.prototype = Object.create(Animal.prototype);\nDog.prototype.constructor = Dog;\n\nconst dog = new Dog('Rex');\nconsole.log(dog.speak());\nconsole.log(dog instanceof Animal);",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "'Rex makes a sound'와 true",
+        "isCorrect": true
+      },
+      {
+        "id": "b",
+        "text": "TypeError와 false",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "'undefined makes a sound'와 true",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "'Rex makes a sound'와 false",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "a",
+    "hint_1": "Animal.call(this, name)은 부모 생성자를 호출하여 this.name을 설정합니다.",
+    "hint_2": "Object.create(Animal.prototype)은 프로토타입 체인을 설정합니다.",
+    "explanation": "Dog 생성자에서 Animal.call(this, name)으로 부모의 속성을 초기화하고, Dog.prototype = Object.create(Animal.prototype)으로 프로토타입 체인을 설정합니다. 따라서 dog.speak()는 'Rex makes a sound'를 반환하고, dog instanceof Animal은 true입니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "hoisting",
+    "difficulty": 2,
+    "title": "변수 호이스팅의 이해",
+    "body": "다음 코드의 실행 결과는 무엇인가요?",
+    "code_snippet": "console.log(x);\nvar x = 10;",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "10",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "undefined",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "ReferenceError가 발생한다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "null",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "var 선언은 호이스팅되지만 초기화는 호이스팅되지 않습니다.",
+    "hint_2": "호이스팅 후 변수는 undefined로 초기화됩니다.",
+    "explanation": "var로 선언된 변수는 호이스팅되어 스코프 최상단으로 끌어올려지지만, 할당은 원래 위치에서 이루어집니다. 따라서 console.log 시점에서 x는 선언되었지만 아직 값이 할당되지 않아 undefined가 출력됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "hoisting",
+    "difficulty": 4,
+    "title": "TDZ(Temporal Dead Zone)",
+    "body": "다음 코드에서 에러가 발생하는 이유로 올바른 것은?",
+    "code_snippet": "console.log(name);\nlet name = 'DevRank';",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "let은 호이스팅되지 않기 때문",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "TDZ(일시적 사각지대)에 의해 초기화 전 접근이 불가능하기 때문",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "let은 블록 스코프이므로 전역에서 접근할 수 없기 때문",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "name이 예약어이기 때문",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "let과 const도 호이스팅은 됩니다.",
+    "hint_2": "선언과 초기화 사이의 구간을 TDZ라고 합니다.",
+    "explanation": "let과 const는 호이스팅되지만, var와 달리 TDZ(Temporal Dead Zone)에 의해 선언문에 도달하기 전까지 접근할 수 없습니다. 이 구간에서 접근하면 ReferenceError가 발생합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "scope",
+    "difficulty": 2,
+    "title": "블록 스코프와 함수 스코프",
+    "body": "다음 중 블록 스코프(Block Scope)를 생성하는 키워드는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "var",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "let과 const",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "function",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "var와 let",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "ES6에서 도입된 변수 선언 키워드를 생각해 보세요.",
+    "hint_2": "if문이나 for문의 중괄호 안에서만 유효한 변수를 만드는 키워드입니다.",
+    "explanation": "let과 const는 블록 스코프를 가지며, 해당 변수가 선언된 블록(중괄호 {}) 내에서만 접근할 수 있습니다. var는 함수 스코프를 가지므로 블록에 상관없이 함수 전체에서 접근할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "virtual_dom",
+    "difficulty": 2,
+    "title": "Virtual DOM의 개념",
+    "body": "React의 Virtual DOM에 대한 설명으로 가장 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "브라우저에서 제공하는 경량화된 DOM API이다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "실제 DOM의 메모리 상 가상 복사본으로, 변경사항을 효율적으로 비교하기 위해 사용된다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "서버에서 렌더링된 HTML을 캐싱하는 기술이다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "Shadow DOM과 동일한 웹 표준 기술이다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "실제 DOM을 직접 조작하는 것은 비용이 큰 작업입니다.",
+    "hint_2": "변경 전후를 비교하여 최소한의 DOM 업데이트만 수행합니다.",
+    "explanation": "Virtual DOM은 실제 DOM의 가벼운 JavaScript 객체 표현입니다. 상태 변경 시 새로운 Virtual DOM을 생성하고, 이전 Virtual DOM과 비교(diffing)하여 변경된 부분만 실제 DOM에 반영합니다. 이를 통해 불필요한 DOM 조작을 줄이고 성능을 최적화합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "reconciliation",
+    "difficulty": 5,
+    "title": "React 재조정(Reconciliation) 알고리즘",
+    "body": "React의 재조정(Reconciliation) 과정에서 리스트 렌더링 시 key prop이 중요한 이유는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "CSS 스타일링을 위한 고유 식별자로 사용되기 때문",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "React DevTools에서 컴포넌트를 구분하기 위해 필요하기 때문",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "엘리먼트의 변경, 추가, 삭제를 효율적으로 식별하여 최소한의 DOM 업데이트를 수행하기 위해",
+        "isCorrect": true
+      },
+      {
+        "id": "d",
+        "text": "서버 사이드 렌더링에서 하이드레이션을 위해 필요하기 때문",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "c",
+    "hint_1": "리스트의 항목이 추가되거나 순서가 바뀔 때를 생각해 보세요.",
+    "hint_2": "key가 없으면 React는 모든 항목을 새로 렌더링해야 할 수 있습니다.",
+    "explanation": "key는 React가 리스트의 각 엘리먼트를 고유하게 식별하도록 합니다. 재조정 과정에서 key를 통해 어떤 항목이 변경, 추가, 삭제되었는지 효율적으로 판단하여 최소한의 DOM 조작만 수행합니다. index를 key로 사용하면 항목의 순서 변경 시 비효율적인 재렌더링이 발생할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "ssr_csr",
+    "difficulty": 2,
+    "title": "SSR과 CSR의 차이",
+    "body": "서버 사이드 렌더링(SSR)의 장점으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "클라이언트 측 자바스크립트 번들 크기가 줄어든다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "초기 페이지 로드 속도가 빠르고 SEO에 유리하다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "서버 부하가 CSR보다 항상 적다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "페이지 전환 시 깜박임이 없다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "검색 엔진 크롤러가 페이지를 읽을 때를 생각해 보세요.",
+    "hint_2": "서버에서 완성된 HTML을 보내는 것의 장점을 생각해 보세요.",
+    "explanation": "SSR은 서버에서 완성된 HTML을 클라이언트에 전달하므로 초기 페이지 로드가 빠르고, 검색 엔진 크롤러가 완성된 콘텐츠를 읽을 수 있어 SEO에 유리합니다. 다만 서버 부하가 증가하고 페이지 전환 시 새로운 요청이 필요할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "hydration",
+    "difficulty": 5,
+    "title": "하이드레이션의 개념",
+    "body": "React의 하이드레이션(Hydration)에 대한 설명으로 가장 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "서버에서 데이터를 페칭하여 캐시에 저장하는 과정",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "서버에서 렌더링된 정적 HTML에 이벤트 핸들러와 인터랙티브 기능을 연결하는 과정",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "CSR 앱을 SSR로 변환하는 빌드 과정",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "브라우저가 CSS를 파싱하여 스타일을 적용하는 과정",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "SSR로 전달된 HTML은 처음에 정적인 상태입니다.",
+    "hint_2": "클라이언트에서 JavaScript가 실행되어 인터랙티브하게 만드는 과정입니다.",
+    "explanation": "하이드레이션은 서버에서 렌더링된 정적 HTML에 클라이언트 측 JavaScript를 연결하여 인터랙티브하게 만드는 과정입니다. React는 기존 DOM을 재사용하면서 이벤트 리스너를 연결하고 상태를 초기화합니다. 이를 통해 빠른 초기 로딩과 풍부한 인터랙션을 동시에 달성합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "state_management",
+    "difficulty": 4,
+    "title": "상태 관리 라이브러리 비교",
+    "body": "Redux의 핵심 원칙이 아닌 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "단일 진실의 원천 (Single Source of Truth)",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "상태는 읽기 전용이다 (State is Read-only)",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "변경은 순수 함수로 이루어져야 한다 (Changes with Pure Functions)",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "양방향 데이터 바인딩 (Two-way Data Binding)",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "d",
+    "hint_1": "Redux는 Flux 아키텍처를 기반으로 합니다.",
+    "hint_2": "Redux는 단방향 데이터 흐름을 따릅니다.",
+    "explanation": "Redux의 세 가지 핵심 원칙은 1) 단일 진실의 원천(전체 앱 상태를 하나의 스토어에 저장), 2) 상태 읽기 전용(액션을 통해서만 변경), 3) 순수 함수를 통한 변경(리듀서)입니다. 양방향 데이터 바인딩은 Redux가 아닌 Angular의 특징입니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "react_lifecycle",
+    "difficulty": 3,
+    "title": "React 생명주기 메서드",
+    "body": "클래스형 컴포넌트에서 API 호출과 같은 부수 효과를 수행하기에 가장 적절한 생명주기 메서드는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "constructor()",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "render()",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "componentDidMount()",
+        "isCorrect": true
+      },
+      {
+        "id": "d",
+        "text": "shouldComponentUpdate()",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "c",
+    "hint_1": "컴포넌트가 DOM에 마운트된 후 실행되는 메서드를 생각해 보세요.",
+    "hint_2": "render()에서 부수 효과를 실행하면 무한 루프가 발생할 수 있습니다.",
+    "explanation": "componentDidMount()는 컴포넌트가 DOM에 마운트된 직후 호출되므로 API 호출, 구독 설정, 타이머 설정 등의 부수 효과를 수행하기에 적절합니다. constructor()는 초기 상태 설정에, render()는 UI 반환에, shouldComponentUpdate()는 성능 최적화에 사용됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "hooks_internals",
+    "difficulty": 5,
+    "title": "useEffect와 useLayoutEffect 차이",
+    "body": "useLayoutEffect가 useEffect와 다른 점으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "useLayoutEffect는 비동기적으로 실행된다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "useLayoutEffect는 브라우저가 화면을 그리기 전에 동기적으로 실행된다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "useLayoutEffect는 서버 사이드에서만 실행된다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "useLayoutEffect는 의존성 배열을 받지 않는다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Layout이라는 이름이 힌트입니다.",
+    "hint_2": "DOM 변경 후 브라우저가 페인트하기 전에 실행되어야 하는 작업을 생각해 보세요.",
+    "explanation": "useLayoutEffect는 DOM 업데이트 후 브라우저가 화면을 페인트하기 전에 동기적으로 실행됩니다. 반면 useEffect는 브라우저가 화면을 그린 후 비동기적으로 실행됩니다. DOM 측정이나 깜박임 방지가 필요할 때 useLayoutEffect를 사용합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "hooks_internals",
+    "difficulty": 6,
+    "title": "커스텀 훅의 규칙",
+    "body": "React 훅의 규칙(Rules of Hooks)으로 올바르지 않은 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "훅은 최상위 레벨에서만 호출해야 한다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "훅은 React 함수 컴포넌트 또는 커스텀 훅 내에서만 호출해야 한다",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "커스텀 훅의 이름은 반드시 use로 시작해야 한다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "조건문이나 반복문 안에서 훅을 호출할 수 있다",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "d",
+    "hint_1": "훅의 호출 순서가 매 렌더링마다 동일해야 합니다.",
+    "hint_2": "조건문 안에서 훅을 호출하면 호출 순서가 변할 수 있습니다.",
+    "explanation": "React 훅의 핵심 규칙 중 하나는 조건문, 반복문, 중첩 함수 안에서 훅을 호출하면 안 된다는 것입니다. 이는 React가 훅의 호출 순서에 의존하여 상태를 관리하기 때문입니다. 매 렌더링마다 동일한 순서로 훅이 호출되어야 올바르게 동작합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "performance_optimization",
+    "difficulty": 4,
+    "title": "React 렌더링 최적화",
+    "body": "React에서 불필요한 리렌더링을 방지하기 위한 방법으로 적절하지 않은 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "React.memo로 컴포넌트를 감싸기",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "useCallback으로 콜백 함수 메모이제이션",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "useMemo로 계산 비용이 큰 값 메모이제이션",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "모든 상태를 전역 Context에 저장하기",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "d",
+    "hint_1": "Context의 값이 변경되면 구독하는 모든 컴포넌트가 리렌더링됩니다.",
+    "hint_2": "상태를 필요한 곳에 가깝게 두는 것이 좋은 패턴입니다.",
+    "explanation": "React.memo, useCallback, useMemo는 불필요한 리렌더링을 방지하는 효과적인 방법입니다. 반면, 모든 상태를 전역 Context에 저장하면 Context 값이 변경될 때 이를 구독하는 모든 하위 컴포넌트가 리렌더링되어 오히려 성능이 저하될 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "memoization",
+    "difficulty": 4,
+    "title": "useMemo와 useCallback의 차이",
+    "body": "useMemo와 useCallback의 차이점으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "useMemo는 값을 메모이제이션하고, useCallback은 함수를 메모이제이션한다",
+        "isCorrect": true
+      },
+      {
+        "id": "b",
+        "text": "useMemo는 동기적이고, useCallback은 비동기적이다",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "useMemo는 클래스 컴포넌트에서, useCallback은 함수 컴포넌트에서 사용한다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "둘 다 동일한 기능이며 이름만 다르다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "a",
+    "hint_1": "Memo는 '기억하다'라는 의미를 가지고 있습니다.",
+    "hint_2": "useCallback(fn, deps)은 useMemo(() => fn, deps)와 동일합니다.",
+    "explanation": "useMemo는 계산 결과 값을 메모이제이션하여 의존성이 변경될 때만 재계산합니다. useCallback은 함수 자체를 메모이제이션하여 의존성이 변경될 때만 새로운 함수를 생성합니다. useCallback(fn, deps)는 useMemo(() => fn, deps)의 축약형입니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "code_splitting",
+    "difficulty": 4,
+    "title": "코드 스플리팅 방법",
+    "body": "React에서 코드 스플리팅을 구현하는 방법으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "React.lazy()와 Suspense를 사용한 동적 임포트",
+        "isCorrect": true
+      },
+      {
+        "id": "b",
+        "text": "모든 컴포넌트를 별도의 HTML 파일로 분리",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "require()를 사용하여 동기적으로 모듈 로드",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "CSS-in-JS 라이브러리를 사용하여 스타일 분리",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "a",
+    "hint_1": "동적 import()를 통해 번들을 분할할 수 있습니다.",
+    "hint_2": "로딩 중에는 fallback UI를 보여줄 수 있습니다.",
+    "explanation": "React.lazy()는 동적 import()를 사용하여 컴포넌트를 지연 로딩할 수 있게 합니다. Suspense 컴포넌트로 감싸면 로딩 중 fallback UI를 표시할 수 있습니다. 이를 통해 초기 번들 크기를 줄이고 필요한 시점에 코드를 로드할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "web_security",
+    "difficulty": 3,
+    "title": "웹 보안의 기본 개념",
+    "body": "다음 중 HTTPS의 주요 보안 기능이 아닌 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "데이터 암호화 (Encryption)",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "데이터 무결성 (Integrity)",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "인증 (Authentication)",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "SQL 인젝션 방지 (SQL Injection Prevention)",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "d",
+    "hint_1": "HTTPS는 통신 계층의 보안을 담당합니다.",
+    "hint_2": "SQL 인젝션은 애플리케이션 레벨의 취약점입니다.",
+    "explanation": "HTTPS는 TLS/SSL을 통해 데이터 암호화, 데이터 무결성, 서버 인증을 제공합니다. SQL 인젝션은 HTTPS와 무관한 애플리케이션 레벨의 보안 취약점으로, 입력값 검증이나 파라미터화된 쿼리로 방지해야 합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "cors",
+    "difficulty": 5,
+    "title": "CORS의 동작 원리",
+    "body": "CORS 프리플라이트(Preflight) 요청에 대한 설명으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "모든 HTTP 요청에 대해 프리플라이트가 전송된다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "OPTIONS 메서드로 서버에 실제 요청이 안전한지 미리 확인하는 요청이다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "GET 요청에서만 프리플라이트가 발생한다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "프리플라이트는 서버가 클라이언트에 보내는 요청이다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "단순 요청(Simple Request)에는 프리플라이트가 발생하지 않습니다.",
+    "hint_2": "커스텀 헤더나 PUT/DELETE 같은 메서드 사용 시 프리플라이트가 발생합니다.",
+    "explanation": "CORS 프리플라이트는 실제 요청 전에 OPTIONS 메서드로 서버에 보내는 사전 요청입니다. 서버가 해당 출처, 메서드, 헤더를 허용하는지 확인합니다. Content-Type이 특정 값이 아니거나 커스텀 헤더가 있을 때 등 단순 요청 조건을 만족하지 않으면 프리플라이트가 발생합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "xss_csrf",
+    "difficulty": 5,
+    "title": "XSS 공격 유형",
+    "body": "Stored XSS(저장형 XSS) 공격에 대한 설명으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "URL 파라미터에 악성 스크립트를 삽입하여 서버에서 반사되는 공격",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "악성 스크립트가 서버 데이터베이스에 저장되어 다른 사용자가 해당 데이터를 조회할 때 실행되는 공격",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "클라이언트 측 DOM을 조작하여 스크립트를 실행하는 공격",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "사용자의 세션 쿠키를 직접 탈취하는 공격",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Stored는 '저장된'이라는 의미입니다.",
+    "hint_2": "게시판이나 댓글에 악성 코드를 저장하는 경우를 생각해 보세요.",
+    "explanation": "Stored XSS는 공격자가 악성 스크립트를 서버에 저장(예: 게시글, 댓글)하고, 다른 사용자가 해당 콘텐츠를 조회할 때 스크립트가 실행되는 공격입니다. Reflected XSS는 URL을 통한 공격, DOM-based XSS는 클라이언트 측 DOM 조작을 통한 공격입니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "rest_api",
+    "difficulty": 2,
+    "title": "REST API의 HTTP 메서드",
+    "body": "REST API에서 리소스를 생성할 때 사용하는 HTTP 메서드는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "GET",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "POST",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "PUT",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "DELETE",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "CRUD 중 Create에 해당하는 메서드입니다.",
+    "hint_2": "서버에 새로운 데이터를 전송할 때 사용합니다.",
+    "explanation": "REST API에서 POST는 새 리소스를 생성하는 데 사용됩니다. GET은 조회, PUT은 전체 수정, PATCH는 부분 수정, DELETE는 삭제에 사용됩니다. POST 요청은 멱등성(idempotent)을 보장하지 않습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "graphql",
+    "difficulty": 4,
+    "title": "GraphQL의 특징",
+    "body": "GraphQL이 REST API와 비교하여 가지는 장점으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "서버 구현이 REST보다 항상 간단하다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "클라이언트가 필요한 데이터만 정확히 요청할 수 있어 오버페칭을 방지한다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "캐싱이 REST보다 쉽다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "HTTP/2를 반드시 사용해야 한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "REST API에서는 엔드포인트마다 고정된 응답 형태가 있습니다.",
+    "hint_2": "GraphQL에서는 쿼리로 필요한 필드만 지정할 수 있습니다.",
+    "explanation": "GraphQL의 가장 큰 장점은 클라이언트가 정확히 필요한 데이터만 요청할 수 있어 오버페칭(필요 이상의 데이터 수신)과 언더페칭(필요한 데이터를 위한 추가 요청)을 방지할 수 있다는 것입니다. 단, 캐싱은 REST에 비해 복잡할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "http_protocol",
+    "difficulty": 3,
+    "title": "HTTP 상태 코드",
+    "body": "HTTP 상태 코드 304의 의미로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "요청이 성공적으로 처리되었다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "리소스가 영구적으로 이동했다",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "리소스가 수정되지 않아 캐시된 버전을 사용해야 한다",
+        "isCorrect": true
+      },
+      {
+        "id": "d",
+        "text": "서버 내부 오류가 발생했다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "c",
+    "hint_1": "304는 3xx(리다이렉션) 계열의 상태 코드입니다.",
+    "hint_2": "Not Modified라는 이름을 가지고 있습니다.",
+    "explanation": "HTTP 304 Not Modified는 클라이언트의 캐시된 리소스가 여전히 유효하다는 의미입니다. 서버는 응답 본문을 보내지 않고, 클라이언트는 캐시된 버전을 사용합니다. If-Modified-Since나 If-None-Match 헤더와 함께 사용됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "design_patterns",
+    "difficulty": 5,
+    "title": "싱글톤 패턴",
+    "body": "JavaScript에서 싱글톤(Singleton) 패턴의 특징으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "여러 인스턴스를 생성하여 부하를 분산하는 패턴",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "클래스의 인스턴스가 하나만 생성되고, 전역적으로 접근 가능한 패턴",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "객체를 복제하여 새 객체를 생성하는 패턴",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "기존 객체에 새로운 기능을 동적으로 추가하는 패턴",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Single은 '하나'라는 의미입니다.",
+    "hint_2": "데이터베이스 연결, 설정 관리 등에서 주로 사용됩니다.",
+    "explanation": "싱글톤 패턴은 클래스의 인스턴스를 하나만 생성하고, 어디서든 그 인스턴스에 접근할 수 있게 하는 디자인 패턴입니다. JavaScript에서는 모듈 시스템이나 클로저를 활용하여 구현할 수 있으며, 전역 상태 관리나 설정 객체에 유용합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "design_patterns",
+    "difficulty": 6,
+    "title": "옵저버 패턴과 이벤트",
+    "body": "옵저버(Observer) 패턴에 대한 설명으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "하나의 객체가 모든 상태 변경을 중앙에서 관리하는 패턴",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "주체(Subject)의 상태 변화를 관찰하는 옵저버들에게 자동으로 알림을 보내는 패턴",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "객체 간의 요청을 큐에 저장하여 순차적으로 처리하는 패턴",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "복잡한 시스템의 인터페이스를 단순화하는 패턴",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "이벤트 리스너와 비슷한 개념입니다.",
+    "hint_2": "구독(subscribe)과 발행(publish) 메커니즘을 생각해 보세요.",
+    "explanation": "옵저버 패턴은 일대다 의존 관계를 정의하며, 주체(Subject)의 상태가 변경되면 등록된 모든 옵저버에게 자동으로 알림을 보냅니다. JavaScript의 이벤트 시스템, RxJS, React의 상태 관리 등에서 이 패턴이 활용됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "solid_principles",
+    "difficulty": 5,
+    "title": "SOLID 원칙 - 단일 책임",
+    "body": "SOLID 원칙 중 단일 책임 원칙(SRP)의 의미로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "하나의 클래스는 하나의 인스턴스만 가져야 한다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "하나의 모듈은 하나의 변경 이유만 가져야 한다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "하나의 함수는 하나의 매개변수만 받아야 한다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "하나의 파일에는 하나의 export만 있어야 한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "책임(Responsibility)은 '변경의 이유'로 해석할 수 있습니다.",
+    "hint_2": "Robert C. Martin이 정의한 원칙입니다.",
+    "explanation": "단일 책임 원칙(SRP)은 모듈이나 클래스가 변경되어야 하는 이유가 오직 하나뿐이어야 한다는 원칙입니다. 즉, 하나의 클래스는 하나의 책임만 가져야 하며, 이를 통해 코드의 유지보수성과 재사용성이 향상됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "clean_code",
+    "difficulty": 2,
+    "title": "클린 코드 원칙",
+    "body": "클린 코드 작성 시 변수 명명 규칙으로 가장 적절한 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "짧을수록 좋으므로 한 글자 변수명을 사용한다 (예: x, y, d)",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "의미를 명확히 전달하는 이름을 사용한다 (예: userAge, isLoggedIn)",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "타입 접두사를 항상 붙인다 (예: strName, intAge)",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "밑줄과 숫자를 조합하여 구분한다 (예: data_1, data_2)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "코드를 읽는 사람이 변수의 의도를 파악할 수 있어야 합니다.",
+    "hint_2": "자기 문서화(Self-documenting) 코드를 생각해 보세요.",
+    "explanation": "클린 코드에서는 의미를 명확히 전달하는 변수명을 사용하는 것이 중요합니다. isLoggedIn, userAge처럼 목적이 드러나는 이름을 사용하면 코드의 가독성이 향상되고 불필요한 주석을 줄일 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "browser_rendering",
+    "difficulty": 4,
+    "title": "브라우저 렌더링 과정",
+    "body": "브라우저의 렌더링 과정 순서로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "HTML 파싱 → CSSOM 생성 → DOM 생성 → 레이아웃 → 페인트",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "DOM 생성 → CSSOM 생성 → 렌더 트리 구축 → 레이아웃 → 페인트",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "CSSOM 생성 → DOM 생성 → 페인트 → 레이아웃 → 합성",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "DOM 생성 → 렌더 트리 구축 → CSSOM 생성 → 합성 → 페인트",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "HTML과 CSS는 각각 DOM과 CSSOM으로 변환됩니다.",
+    "hint_2": "렌더 트리는 DOM과 CSSOM이 결합된 것입니다.",
+    "explanation": "브라우저 렌더링 과정: 1) HTML 파싱하여 DOM 트리 생성, 2) CSS 파싱하여 CSSOM 트리 생성, 3) DOM과 CSSOM을 결합하여 렌더 트리 구축, 4) 레이아웃(각 요소의 위치와 크기 계산), 5) 페인트(픽셀 단위로 화면에 그리기), 6) 합성(레이어 합치기).",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "critical_rendering_path",
+    "difficulty": 6,
+    "title": "리플로우와 리페인트",
+    "body": "다음 CSS 속성 변경 중 리플로우(Reflow)를 발생시키지 않는 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "width 변경",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "margin 변경",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "transform 변경",
+        "isCorrect": true
+      },
+      {
+        "id": "d",
+        "text": "font-size 변경",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "c",
+    "hint_1": "리플로우는 요소의 기하학적 속성이 변경될 때 발생합니다.",
+    "hint_2": "GPU 가속을 활용하는 속성은 별도의 레이어에서 처리됩니다.",
+    "explanation": "transform과 opacity는 합성(Composite) 단계에서 처리되어 리플로우와 리페인트를 발생시키지 않습니다. width, margin, font-size 등의 변경은 레이아웃을 재계산해야 하므로 리플로우가 발생합니다. 애니메이션에는 transform을 사용하는 것이 성능상 유리합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "typescript_advanced",
+    "difficulty": 5,
+    "title": "TypeScript의 유틸리티 타입",
+    "body": "다음 TypeScript 코드에서 PartialUser 타입의 올바른 설명은?",
+    "code_snippet": "interface User {\n  name: string;\n  age: number;\n  email: string;\n}\n\ntype PartialUser = Partial<User>;",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "a",
+        "text": "User의 모든 속성이 필수가 된다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "User의 모든 속성이 선택적(optional)이 된다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "User의 모든 속성이 읽기 전용이 된다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "User에서 일부 속성만 선택한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Partial이라는 이름의 의미를 생각해 보세요.",
+    "hint_2": "모든 속성에 ?가 붙는 것과 같습니다.",
+    "explanation": "Partial<T>는 TypeScript 내장 유틸리티 타입으로, T의 모든 속성을 선택적(optional)으로 만듭니다. 즉, { name?: string; age?: number; email?: string; }과 동일합니다. 부분 업데이트 등에 유용합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "generics",
+    "difficulty": 6,
+    "title": "TypeScript 제네릭의 활용",
+    "body": "다음 제네릭 함수의 반환 타입은 무엇인가요?",
+    "code_snippet": "function getFirst<T>(arr: T[]): T | undefined {\n  return arr[0];\n}\n\nconst result = getFirst([1, 2, 3]);",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "a",
+        "text": "any",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "number | undefined",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "number[]",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "unknown",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "T는 전달된 인자의 타입으로 추론됩니다.",
+    "hint_2": "[1, 2, 3]은 number[] 타입이므로 T는 number가 됩니다.",
+    "explanation": "getFirst 함수에 [1, 2, 3]을 전달하면 TypeScript가 T를 number로 추론합니다. 따라서 반환 타입은 T | undefined, 즉 number | undefined가 됩니다. 제네릭을 사용하면 타입 안전성을 유지하면서 재사용 가능한 함수를 작성할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "type_guards",
+    "difficulty": 5,
+    "title": "타입 가드(Type Guard)",
+    "body": "다음 TypeScript 코드에서 타입 가드로 올바르게 동작하는 것은?",
+    "code_snippet": "function process(value: string | number) {\n  // 여기서 value를 string으로 좁히려면?\n}",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "a",
+        "text": "if (value as string)",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "if (typeof value === 'string')",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "if (value.type === 'string')",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "if (String(value))",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "JavaScript의 typeof 연산자를 활용할 수 있습니다.",
+    "hint_2": "TypeScript는 typeof 체크를 타입 좁히기(narrowing)로 인식합니다.",
+    "explanation": "typeof value === 'string'은 TypeScript가 인식하는 타입 가드입니다. 이 조건문 안에서 value의 타입이 자동으로 string으로 좁혀집니다. 'as'는 타입 단언(assertion)으로 런타임 체크가 아니며, 타입 가드로 동작하지 않습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "testing",
+    "difficulty": 3,
+    "title": "단위 테스트의 개념",
+    "body": "단위 테스트(Unit Test)에 대한 설명으로 가장 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "전체 애플리케이션을 한 번에 테스트한다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "개별 함수나 모듈을 독립적으로 격리하여 테스트한다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "사용자의 실제 사용 시나리오를 테스트한다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "여러 시스템 간의 통합을 테스트한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Unit은 '단위'라는 의미입니다.",
+    "hint_2": "가장 작은 단위의 코드를 독립적으로 검증합니다.",
+    "explanation": "단위 테스트는 코드의 가장 작은 단위(함수, 메서드, 클래스 등)를 독립적으로 격리하여 테스트합니다. 외부 의존성은 모킹(mocking)하여 테스트 대상만 검증합니다. 통합 테스트는 시스템 간 연동을, E2E 테스트는 전체 사용자 시나리오를 테스트합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "tdd",
+    "difficulty": 4,
+    "title": "TDD의 사이클",
+    "body": "TDD(Test-Driven Development)의 기본 사이클로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "코드 작성 → 테스트 작성 → 리팩토링",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "실패하는 테스트 작성(Red) → 테스트를 통과하는 최소 코드 작성(Green) → 리팩토링(Refactor)",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "설계 → 구현 → 테스트 → 배포",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "리팩토링 → 테스트 작성 → 코드 작성",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Red-Green-Refactor라는 별명이 있습니다.",
+    "hint_2": "먼저 실패하는 테스트를 작성하는 것이 핵심입니다.",
+    "explanation": "TDD의 기본 사이클은 Red-Green-Refactor입니다. 1) Red: 실패하는 테스트를 먼저 작성, 2) Green: 테스트를 통과하는 최소한의 코드 작성, 3) Refactor: 코드를 정리하고 개선. 이 사이클을 반복하며 점진적으로 기능을 구현합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "jest_patterns",
+    "difficulty": 3,
+    "title": "Jest 기본 문법",
+    "body": "Jest에서 특정 값이 기대한 값과 같은지 확인하는 올바른 문법은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "expect(value).equals(expected)",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "expect(value).toBe(expected)",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "assert(value === expected)",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "test(value).toBe(expected)",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "Jest에서는 expect() 함수를 사용합니다.",
+    "hint_2": "matcher 함수 중 하나인 toBe를 사용합니다.",
+    "explanation": "Jest에서 값을 검증할 때는 expect(값).toBe(기대값) 패턴을 사용합니다. toBe는 Object.is()를 사용하여 엄격한 동등성을 검사합니다. 객체 비교에는 toEqual()을 사용하고, 참/거짓에는 toBeTruthy()/toBeFalsy()를 사용합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "event_loop",
+    "difficulty": 7,
+    "title": "async/await와 이벤트 루프",
+    "body": "다음 코드의 실행 순서로 올바른 것은?",
+    "code_snippet": "async function foo() {\n  console.log('A');\n  await Promise.resolve();\n  console.log('B');\n}\n\nconsole.log('C');\nfoo();\nconsole.log('D');",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "C, A, B, D",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "C, A, D, B",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "A, B, C, D",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "C, D, A, B",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "await 이후의 코드는 마이크로태스크로 처리됩니다.",
+    "hint_2": "await 이전의 동기 코드는 즉시 실행됩니다.",
+    "explanation": "1) 'C' 출력(동기), 2) foo() 호출 → 'A' 출력(동기), 3) await에서 일시 중단, 제어권이 호출자에게 반환, 4) 'D' 출력(동기), 5) 콜스택이 비면 마이크로태스크 실행 → 'B' 출력. 따라서 C, A, D, B 순서입니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "scope",
+    "difficulty": 6,
+    "title": "렉시컬 스코프와 동적 스코프",
+    "body": "JavaScript의 스코프 결정 방식으로 올바른 것은?",
+    "code_snippet": "function outer() {\n  const x = 10;\n  function inner() {\n    console.log(x);\n  }\n  return inner;\n}\n\nconst fn = outer();\nfn();",
+    "code_language": "javascript",
+    "options": [
+      {
+        "id": "a",
+        "text": "동적 스코프를 사용하며, fn()이 호출된 위치의 변수를 참조한다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "렉시컬 스코프를 사용하며, 함수가 정의된 위치의 변수를 참조한다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "전역 스코프만 참조하며, x는 접근할 수 없다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "실행 컨텍스트에 따라 스코프가 동적으로 결정된다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "JavaScript는 함수가 어디서 호출되는지가 아닌 어디서 정의되는지가 중요합니다.",
+    "hint_2": "Lexical은 '어휘적'이라는 의미로, 코드가 작성된 위치를 기준으로 합니다.",
+    "explanation": "JavaScript는 렉시컬 스코프(정적 스코프)를 사용합니다. 변수의 스코프는 함수가 호출된 위치가 아닌 정의된 위치에 의해 결정됩니다. 따라서 inner 함수는 outer 함수의 x 변수에 접근할 수 있으며, fn()이 어디서 호출되든 10이 출력됩니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "virtual_dom",
+    "difficulty": 7,
+    "title": "Virtual DOM의 Diffing 알고리즘",
+    "body": "React의 Virtual DOM diffing에서 사용되는 휴리스틱(heuristic) 가정으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "같은 레벨의 노드만 비교하며, 다른 타입의 엘리먼트는 다른 트리를 생성한다",
+        "isCorrect": true
+      },
+      {
+        "id": "b",
+        "text": "모든 노드를 깊이 우선 탐색으로 비교하여 최적의 변경을 찾는다",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "변경된 노드의 부모까지 모두 재렌더링한다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "텍스트 노드만 비교하고 속성 변경은 무시한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "a",
+    "hint_1": "O(n^3)의 일반적인 트리 비교 대신 O(n)의 알고리즘을 사용합니다.",
+    "hint_2": "두 가지 주요 가정을 기반으로 합니다.",
+    "explanation": "React의 diffing 알고리즘은 두 가지 휴리스틱 가정을 사용합니다: 1) 서로 다른 타입의 두 엘리먼트는 서로 다른 트리를 생성한다, 2) key prop으로 자식 엘리먼트의 변경을 효율적으로 추적한다. 같은 레벨에서만 비교하여 O(n) 시간복잡도를 달성합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "performance_optimization",
+    "difficulty": 7,
+    "title": "웹 성능 지표 Core Web Vitals",
+    "body": "Core Web Vitals에 포함되지 않는 지표는?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "LCP (Largest Contentful Paint)",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "INP (Interaction to Next Paint)",
+        "isCorrect": false
+      },
+      {
+        "id": "c",
+        "text": "CLS (Cumulative Layout Shift)",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "TTFB (Time to First Byte)",
+        "isCorrect": true
+      }
+    ],
+    "correct_answer": "d",
+    "hint_1": "Core Web Vitals는 3가지 주요 지표로 구성됩니다.",
+    "hint_2": "TTFB는 중요한 성능 지표이지만 Core Web Vitals에는 포함되지 않습니다.",
+    "explanation": "Core Web Vitals는 LCP(최대 콘텐츠 표시 시간), INP(다음 페인트까지의 상호작용 지연 시간), CLS(누적 레이아웃 이동)의 3가지 지표로 구성됩니다. TTFB(첫 번째 바이트까지의 시간)는 중요한 서버 성능 지표이지만 Core Web Vitals에는 포함되지 않습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "web_security",
+    "difficulty": 6,
+    "title": "Content Security Policy",
+    "body": "CSP(Content Security Policy)의 주요 목적으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "HTTPS 연결을 강제하는 것",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "허용된 콘텐츠 소스를 지정하여 XSS 등의 공격을 완화하는 것",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "사용자 인증을 관리하는 것",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "쿠키의 만료 시간을 설정하는 것",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "HTTP 응답 헤더를 통해 설정됩니다.",
+    "hint_2": "어떤 소스의 스크립트, 스타일, 이미지를 허용할지 정의합니다.",
+    "explanation": "CSP는 HTTP 응답 헤더를 통해 브라우저에게 어떤 소스의 콘텐츠(스크립트, 스타일, 이미지 등)를 허용할지 지정하는 보안 메커니즘입니다. 이를 통해 XSS 공격, 데이터 인젝션 등을 효과적으로 완화할 수 있습니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "xss_csrf",
+    "difficulty": 4,
+    "title": "CSRF 공격 방어",
+    "body": "CSRF(Cross-Site Request Forgery) 공격을 방어하는 방법으로 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "입력값에 HTML 태그를 이스케이프 처리한다",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "CSRF 토큰을 사용하여 요청의 정당성을 검증한다",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "모든 요청을 HTTPS로 보낸다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "JavaScript를 비활성화한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "서버가 각 요청이 정당한 사용자로부터 온 것인지 확인해야 합니다.",
+    "hint_2": "서버가 생성한 고유한 토큰을 요청에 포함시킵니다.",
+    "explanation": "CSRF 공격은 인증된 사용자의 권한으로 의도하지 않은 요청을 보내는 공격입니다. 방어 방법으로는 CSRF 토큰 사용, SameSite 쿠키 속성 설정, Origin/Referer 헤더 검증 등이 있습니다. HTML 이스케이프는 XSS 방어에 해당합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "rest_api",
+    "difficulty": 5,
+    "title": "RESTful API 설계 원칙",
+    "body": "RESTful API 설계에서 올바른 것은?",
+    "code_snippet": null,
+    "code_language": null,
+    "options": [
+      {
+        "id": "a",
+        "text": "동사를 URL에 포함한다 (예: /api/getUsers)",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "명사를 사용하고 HTTP 메서드로 행위를 구분한다 (예: GET /api/users)",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "모든 요청에 POST 메서드만 사용한다",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "상태를 서버 세션에 저장하여 관리한다",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "REST에서 URL은 리소스를 나타냅니다.",
+    "hint_2": "행위는 HTTP 메서드(GET, POST, PUT, DELETE)로 표현합니다.",
+    "explanation": "RESTful API 설계에서 URL은 리소스를 명사로 표현하고(예: /api/users), 행위는 HTTP 메서드로 구분합니다. GET은 조회, POST는 생성, PUT/PATCH는 수정, DELETE는 삭제에 사용합니다. 또한 REST는 무상태(Stateless) 원칙을 따릅니다.",
+    "explanation_code": null,
+    "reference_url": null
+  },
+  {
+    "format": "multiple_choice",
+    "category": "interview",
+    "subcategory": "typescript_advanced",
+    "difficulty": 7,
+    "title": "TypeScript 조건부 타입",
+    "body": "다음 TypeScript 코드에서 Result 타입은 무엇인가요?",
+    "code_snippet": "type IsString<T> = T extends string ? 'yes' : 'no';\n\ntype Result = IsString<number>;",
+    "code_language": "typescript",
+    "options": [
+      {
+        "id": "a",
+        "text": "'yes'",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "'no'",
+        "isCorrect": true
+      },
+      {
+        "id": "c",
+        "text": "string",
+        "isCorrect": false
+      },
+      {
+        "id": "d",
+        "text": "boolean",
+        "isCorrect": false
+      }
+    ],
+    "correct_answer": "b",
+    "hint_1": "extends 키워드는 조건부 타입에서 타입 검사에 사용됩니다.",
+    "hint_2": "number는 string을 extends하지 않습니다.",
+    "explanation": "조건부 타입 T extends U ? X : Y는 T가 U에 할당 가능하면 X, 아니면 Y입니다. IsString<number>에서 number는 string에 할당 가능하지 않으므로 'no' 리터럴 타입이 됩니다. 조건부 타입은 타입 수준의 조건 분기를 가능하게 합니다.",
+    "explanation_code": null,
+    "reference_url": null
+  }
+]

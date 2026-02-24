@@ -44,10 +44,9 @@ const TimeAttackFlow = ({ userTier: _userTier }: TimeAttackFlowProps) => {
 
   const currentQuestion = questions[currentIndex];
 
-  // 타이머 로직
+  // 타이머 로직 - isPaused만 의존성으로 사용 (remainingMs 제거로 매 프레임 리셋 방지)
   useEffect(() => {
     if (isPaused) {
-      pausedRemainingRef.current = remainingMs;
       cancelAnimationFrame(rafRef.current);
       return;
     }
@@ -58,6 +57,7 @@ const TimeAttackFlow = ({ userTier: _userTier }: TimeAttackFlowProps) => {
     const tick = () => {
       const elapsed = Date.now() - startTimeRef.current;
       const newRemaining = Math.max(0, savedRemaining - elapsed);
+      pausedRemainingRef.current = newRemaining;
       setRemainingMs(newRemaining);
 
       if (newRemaining <= 0) {
@@ -69,7 +69,8 @@ const TimeAttackFlow = ({ userTier: _userTier }: TimeAttackFlowProps) => {
 
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [isPaused, remainingMs]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPaused]);
 
   // 타임업 시 자동 완료
   useEffect(() => {

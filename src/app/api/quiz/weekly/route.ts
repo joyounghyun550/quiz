@@ -82,6 +82,24 @@ export async function GET() {
     return NextResponse.json({ error: "문제를 찾을 수 없습니다" }, { status: 500 });
   }
 
+  // 문제 가공을 먼저 수행 (참가자 등록 전에 검증)
+  const clientQuestions = questions.map((q) => {
+    const opts = q.options as { id: string; text: string; isCorrect: boolean }[] | null;
+    return {
+      id: q.id,
+      title: q.title,
+      options: opts ? opts.map(({ id, text }: { id: string; text: string }) => ({ id, text })) : null,
+      category: q.category,
+      difficulty: q.difficulty,
+      code_snippet: q.code_snippet,
+      code_language: q.code_language,
+      hint_1: q.hint_1,
+      hint_2: q.hint_2,
+      format: q.format,
+      correct_answer: q.format === "true_false" ? undefined : undefined,
+    };
+  });
+
   // 세션 생성
   const { data: session } = await supabase
     .from("quiz_sessions")
@@ -98,7 +116,7 @@ export async function GET() {
     return NextResponse.json({ error: "세션 생성 실패" }, { status: 500 });
   }
 
-  // 참여자 등록
+  // 참여자 등록 (문제 가공 + 세션 생성 성공 후)
   await supabase.from("weekly_challenge_participants").insert({
     challenge_id: challenge.id,
     user_id: user.id,
@@ -112,20 +130,6 @@ export async function GET() {
       .update({ times_served: (q.times_served ?? 0) + 1 })
       .eq("id", q.id);
   }
-
-  const clientQuestions = questions.map((q) => ({
-    id: q.id,
-    title: q.title,
-    options: (q.options as { id: string; text: string; isCorrect: boolean }[]).map(
-      ({ id, text }: { id: string; text: string }) => ({ id, text })
-    ),
-    category: q.category,
-    difficulty: q.difficulty,
-    code_snippet: q.code_snippet,
-    code_language: q.code_language,
-    hint_1: q.hint_1,
-    hint_2: q.hint_2,
-  }));
 
   return NextResponse.json({
     questions: clientQuestions,

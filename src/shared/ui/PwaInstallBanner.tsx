@@ -14,7 +14,7 @@ const PwaInstallBanner = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY)) return;
+    if (sessionStorage.getItem(STORAGE_KEY)) return;
 
     const handler = (e: Event) => {
       e.preventDefault();
@@ -37,7 +37,7 @@ const PwaInstallBanner = () => {
   };
 
   const handleDismiss = () => {
-    localStorage.setItem(STORAGE_KEY, "1");
+    sessionStorage.setItem(STORAGE_KEY, "1");
     setShow(false);
   };
 

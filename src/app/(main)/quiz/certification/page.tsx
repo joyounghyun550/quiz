@@ -11,17 +11,19 @@ import QuizFlow from "@/features/daily-quiz/ui/QuizFlow";
 import { createSupabaseBrowserClient } from "@/lib/supabase-client";
 import { useQuizStore } from "@/stores/use-quiz-store";
 
-export default function WeeklyChallengePage() {
+export default function CertificationQuizPage() {
   const router = useRouter();
   const supabase = createSupabaseBrowserClient();
-  const { startSession, questions, sessionType, isCompleted, resetSession } = useQuizStore();
+  const { startSession, questions, sessionType, isCompleted } = useQuizStore();
   const [isLoading, setIsLoading] = useState(true);
   const [userTier, setUserTier] = useState<TierName>("inline");
   const [userStreak, setUserStreak] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
+  const hasActiveSession = sessionType === "practice" && questions.length > 0 && !isCompleted;
+
   useEffect(() => {
-    const loadQuiz = async () => {
+    const init = async () => {
       try {
         const {
           data: { user },
@@ -44,41 +46,28 @@ export default function WeeklyChallengePage() {
         setUserTier(profile.current_tier);
         setUserStreak(profile.current_streak);
 
-        // 위클리는 1회만 참여 가능
-        if (sessionType === "weekly" && !isCompleted) {
-          resetSession();
-        }
-
-        const res = await fetch("/api/quiz/weekly");
-
-        if (!res.ok) {
-          const data = await res.json().catch(() => null);
-          if (data?.alreadyParticipated) {
-            setError("이미 이번 주 챌린지에 참여했습니다");
-          } else {
-            setError(data?.error ?? "위클리 챌린지를 불러올 수 없습니다.");
-          }
+        if (hasActiveSession) {
+          setIsLoading(false);
           return;
         }
 
+        // 정보처리기사 퀴즈 문제 로드
+        const res = await fetch("/api/quiz/certification");
         const data = await res.json();
 
-        if (data.error) {
-          setError(data.alreadyParticipated ? "이미 이번 주 챌린지에 참여했습니다" : data.error);
-          return;
-        }
-
-        if (data.questions && data.sessionId) {
-          startSession(data.questions, data.sessionId, "weekly");
+        if (data.questions?.length > 0 && data.sessionId) {
+          startSession(data.questions, data.sessionId, "practice");
+        } else {
+          setError("정보처리기사 퀴즈 문제가 없습니다. 문제를 추가해주세요.");
         }
       } catch {
-        setError("위클리 챌린지를 시작할 수 없습니다.");
+        setError("퀴즈를 불러올 수 없습니다.");
       } finally {
         setIsLoading(false);
       }
     };
 
-    loadQuiz();
+    init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -86,8 +75,8 @@ export default function WeeklyChallengePage() {
     return (
       <div className="flex min-h-dvh items-center justify-center bg-gray-950">
         <div className="flex flex-col items-center gap-4">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-purple-400 border-t-transparent" />
-          <p className="text-sm text-gray-400">위클리 챌린지 준비 중...</p>
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-violet-400 border-t-transparent" />
+          <p className="text-sm text-gray-400">정보처리기사 퀴즈 준비 중...</p>
         </div>
       </div>
     );
@@ -96,6 +85,7 @@ export default function WeeklyChallengePage() {
   if (error) {
     return (
       <div className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-gray-950 px-6">
+        <span className="text-4xl">📜</span>
         <p className="text-gray-400">{error}</p>
         <button
           type="button"
@@ -104,14 +94,6 @@ export default function WeeklyChallengePage() {
         >
           돌아가기
         </button>
-      </div>
-    );
-  }
-
-  if (questions.length === 0) {
-    return (
-      <div className="flex min-h-dvh items-center justify-center bg-gray-950">
-        <p className="text-gray-400">문제를 불러오는 중...</p>
       </div>
     );
   }

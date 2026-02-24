@@ -67,39 +67,39 @@ const NAV_ITEMS = [
     ),
   },
   {
-    label: "통계",
-    href: "/stats",
+    label: "스킬",
+    href: "/skill-tree",
     icon: (active: boolean) => (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <rect
-          x="3"
-          y="12"
-          width="4"
-          height="9"
-          rx="1"
+        <circle
+          cx="12"
+          cy="5"
+          r="3"
           stroke={active ? "#06b6d4" : "#6b7280"}
           strokeWidth="2"
           fill={active ? "#06b6d410" : "none"}
         />
-        <rect
-          x="10"
-          y="8"
-          width="4"
-          height="13"
-          rx="1"
+        <circle
+          cx="6"
+          cy="17"
+          r="3"
           stroke={active ? "#06b6d4" : "#6b7280"}
           strokeWidth="2"
           fill={active ? "#06b6d410" : "none"}
         />
-        <rect
-          x="17"
-          y="3"
-          width="4"
-          height="18"
-          rx="1"
+        <circle
+          cx="18"
+          cy="17"
+          r="3"
           stroke={active ? "#06b6d4" : "#6b7280"}
           strokeWidth="2"
           fill={active ? "#06b6d410" : "none"}
+        />
+        <path
+          d="M12 8v3M9 13l-2 2M15 13l2 2"
+          stroke={active ? "#06b6d4" : "#6b7280"}
+          strokeWidth="2"
+          strokeLinecap="round"
         />
       </svg>
     ),

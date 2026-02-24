@@ -202,6 +202,36 @@ export default function QuizHubPage() {
         </div>
       </div>
 
+      {/* 1v1 친구 대결 */}
+      <div className="overflow-hidden rounded-2xl border border-gray-800 bg-gradient-to-br from-pink-500/10 via-transparent to-rose-500/10">
+        <div className="p-5">
+          <div className="mb-1 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-pink-500/15">
+              <span className="text-sm">⚔️</span>
+            </div>
+            <div>
+              <h3 className="text-base font-semibold text-white">1v1 대결</h3>
+              <p className="text-[10px] text-gray-500">친구와 실력 겨루기</p>
+            </div>
+            <span className="ml-auto rounded-full bg-pink-500/15 px-2.5 py-1 text-xs font-semibold text-pink-400">
+              VS
+            </span>
+          </div>
+
+          <div className="my-4 h-px bg-gray-800" />
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm text-gray-400">같은 문제를 풀고 점수를 비교하세요</p>
+            <Link
+              href="/quiz/battle"
+              className="flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              대결하기
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* 코드 챌린지 */}
       <div className="overflow-hidden rounded-2xl border border-gray-800 bg-gradient-to-br from-emerald-500/10 via-transparent to-teal-500/10">
         <div className="p-5">
@@ -235,6 +265,66 @@ export default function QuizHubPage() {
               className="flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 font-semibold text-white transition-opacity hover:opacity-90"
             >
               챌린지 목록
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* 면접 대비 */}
+      <div className="overflow-hidden rounded-2xl border border-gray-800 bg-gradient-to-br from-amber-500/10 via-transparent to-yellow-500/10">
+        <div className="p-5">
+          <div className="mb-1 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/15">
+              <span className="text-sm">💼</span>
+            </div>
+            <div>
+              <h3 className="text-base font-semibold text-white">면접 대비</h3>
+              <p className="text-[10px] text-gray-500">기술 면접 핵심 질문</p>
+            </div>
+            <span className="ml-auto rounded-full bg-amber-500/15 px-2.5 py-1 text-xs font-semibold text-amber-400">
+              면접
+            </span>
+          </div>
+
+          <div className="my-4 h-px bg-gray-800" />
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm text-gray-400">클로저, 이벤트루프, Virtual DOM 등 핵심 개념</p>
+            <Link
+              href="/quiz/interview"
+              className="flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-amber-600 to-yellow-600 font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              면접 퀴즈 시작
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* 자격증 대비 */}
+      <div className="overflow-hidden rounded-2xl border border-gray-800 bg-gradient-to-br from-violet-500/10 via-transparent to-purple-500/10">
+        <div className="p-5">
+          <div className="mb-1 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/15">
+              <span className="text-sm">📜</span>
+            </div>
+            <div>
+              <h3 className="text-base font-semibold text-white">자격증 대비</h3>
+              <p className="text-[10px] text-gray-500">정보처리기사 기출</p>
+            </div>
+            <span className="ml-auto rounded-full bg-violet-500/15 px-2.5 py-1 text-xs font-semibold text-violet-400">
+              자격증
+            </span>
+          </div>
+
+          <div className="my-4 h-px bg-gray-800" />
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm text-gray-400">SW공학, DB, 네트워크, OS 등 자격증 범위</p>
+            <Link
+              href="/quiz/certification"
+              className="flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              자격증 퀴즈 시작
             </Link>
           </div>
         </div>

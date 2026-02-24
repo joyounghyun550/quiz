@@ -47,7 +47,15 @@ type TimeattackUser = {
   played_at: string;
 };
 
-type CategoryKey = "javascript" | "typescript" | "react" | "nextjs" | "css" | "web_fundamentals";
+type CategoryKey =
+  | "javascript"
+  | "typescript"
+  | "react"
+  | "nextjs"
+  | "css"
+  | "web_fundamentals"
+  | "interview"
+  | "certification";
 
 const CATEGORIES: { key: CategoryKey; label: string; icon: string; color: string }[] = [
   { key: "javascript", label: "JavaScript", icon: "JS", color: "#F7DF1E" },
@@ -56,6 +64,8 @@ const CATEGORIES: { key: CategoryKey; label: string; icon: string; color: string
   { key: "nextjs", label: "Next.js", icon: "N", color: "#ffffff" },
   { key: "css", label: "CSS", icon: "🎨", color: "#38BDF8" },
   { key: "web_fundamentals", label: "Web", icon: "🌐", color: "#34D399" },
+  { key: "interview", label: "면접", icon: "💼", color: "#F59E0B" },
+  { key: "certification", label: "자격증", icon: "📜", color: "#8B5CF6" },
 ];
 
 const RANK_STYLES = [

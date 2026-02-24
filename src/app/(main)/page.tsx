@@ -7,9 +7,13 @@ import { useRouter } from "next/navigation";
 import type { DailyQuizLogRow, QuizSessionRow, UserRow } from "@/shared/types/database.type";
 import KakaoShareButton from "@/shared/ui/KakaoShareButton";
 
+import type { SeasonInfo } from "@/entities/season/model/types";
+import type { DailyTipWithBookmark } from "@/entities/tip/model/types";
 import { getTierInfo } from "@/entities/user/lib/tier.util";
 import type { TierInfo } from "@/entities/user/model/types";
 
+import DailyTipCard from "@/features/daily-tip/ui/DailyTipCard";
+import SeasonBanner from "@/features/season/ui/SeasonBanner";
 import WeeklyChallengeCard from "@/features/weekly-challenge/ui/WeeklyChallengeCard";
 
 import DailyQuizCard from "@/widgets/home-dashboard/ui/DailyQuizCard";
@@ -39,6 +43,8 @@ type DashboardData = {
   todayCorrectCount?: number;
   todayTotalQuestions?: number;
   weeklyChallenge: WeeklyChallengeInfo;
+  season: SeasonInfo | null;
+  dailyTip: DailyTipWithBookmark | null;
 };
 
 const HomeSkeleton = () => (
@@ -113,6 +119,30 @@ export default function HomePage() {
           // 위클리 로드 실패 무시
         }
 
+        // 시즌 정보
+        let season: SeasonInfo | null = null;
+        try {
+          const seasonRes = await fetch("/api/season/current");
+          if (seasonRes.ok) {
+            const seasonData = await seasonRes.json();
+            season = seasonData.season ?? null;
+          }
+        } catch {
+          // 시즌 로드 실패 무시
+        }
+
+        // 오늘의 팁
+        let dailyTip: DailyTipWithBookmark | null = null;
+        try {
+          const tipRes = await fetch("/api/tips/today");
+          if (tipRes.ok) {
+            const tipData = await tipRes.json();
+            dailyTip = tipData.tip ?? null;
+          }
+        } catch {
+          // 팁 로드 실패 무시
+        }
+
         setData({
           name: profile.name,
           tierInfo,
@@ -124,6 +154,8 @@ export default function HomePage() {
           todayCorrectCount: todayLog?.quiz_sessions?.correct_count,
           todayTotalQuestions: todayLog?.quiz_sessions?.total_questions,
           weeklyChallenge,
+          season,
+          dailyTip,
         });
       } catch {
         // 에러 시 로그인으로
@@ -142,12 +174,32 @@ export default function HomePage() {
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-5 px-5 pt-6">
       <DashboardHeader name={data.name} tierInfo={data.tierInfo} streak={data.streak} />
+      <SeasonBanner season={data.season} />
       <DailyQuizCard
         isCompleted={data.todayCompleted}
         correctCount={data.todayCorrectCount}
         totalQuestions={data.todayTotalQuestions}
       />
       {data.weeklyChallenge && <WeeklyChallengeCard challenge={data.weeklyChallenge} />}
+      <DailyTipCard
+        tip={data.dailyTip}
+        onToggleBookmark={async (tipId) => {
+          try {
+            await fetch("/api/tips/bookmarks", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ tipId }),
+            });
+            setData((prev) =>
+              prev && prev.dailyTip
+                ? { ...prev, dailyTip: { ...prev.dailyTip, isBookmarked: !prev.dailyTip.isBookmarked } }
+                : prev
+            );
+          } catch {
+            // 무시
+          }
+        }}
+      />
       <QuickStats
         totalAnswered={data.totalAnswered}
         totalCorrect={data.totalCorrect}

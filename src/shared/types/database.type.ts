@@ -13,7 +13,15 @@ export type CommunityPostRow = Database["public"]["Tables"]["community_posts"]["
 
 export type QuestionFormat = "multiple_choice" | "code_output" | "true_false";
 
-export type QuestionCategory = "javascript" | "typescript" | "react" | "nextjs" | "css" | "web_fundamentals";
+export type QuestionCategory =
+  | "javascript"
+  | "typescript"
+  | "react"
+  | "nextjs"
+  | "css"
+  | "web_fundamentals"
+  | "interview"
+  | "certification";
 
 export type SessionType = "daily" | "placement" | "practice" | "timeattack" | "weekly";
 
@@ -821,6 +829,362 @@ export type Database = {
           },
         ];
       };
+      seasons: {
+        Row: {
+          id: string;
+          name: string;
+          season_number: number;
+          start_date: string;
+          end_date: string;
+          is_active: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          season_number: number;
+          start_date: string;
+          end_date: string;
+          is_active?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          season_number?: number;
+          start_date?: string;
+          end_date?: string;
+          is_active?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      season_records: {
+        Row: {
+          id: string;
+          season_id: string;
+          user_id: string;
+          final_lp: number;
+          final_tier: string;
+          final_rank: number | null;
+          total_quizzes: number;
+          total_correct: number;
+          reward_claimed: boolean;
+        };
+        Insert: {
+          id?: string;
+          season_id: string;
+          user_id: string;
+          final_lp?: number;
+          final_tier?: string;
+          final_rank?: number | null;
+          total_quizzes?: number;
+          total_correct?: number;
+          reward_claimed?: boolean;
+        };
+        Update: {
+          id?: string;
+          season_id?: string;
+          user_id?: string;
+          final_lp?: number;
+          final_tier?: string;
+          final_rank?: number | null;
+          total_quizzes?: number;
+          total_correct?: number;
+          reward_claimed?: boolean;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "season_records_season_id_fkey";
+            columns: ["season_id"];
+            isOneToOne: false;
+            referencedRelation: "seasons";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "season_records_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      daily_tips: {
+        Row: {
+          id: string;
+          category: string;
+          title: string;
+          content: string;
+          code_snippet: string | null;
+          reference_url: string | null;
+          tip_date: string;
+          is_active: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          category: string;
+          title: string;
+          content: string;
+          code_snippet?: string | null;
+          reference_url?: string | null;
+          tip_date: string;
+          is_active?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          category?: string;
+          title?: string;
+          content?: string;
+          code_snippet?: string | null;
+          reference_url?: string | null;
+          tip_date?: string;
+          is_active?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      tip_bookmarks: {
+        Row: {
+          id: string;
+          user_id: string;
+          tip_id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          tip_id: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          tip_id?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "tip_bookmarks_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "tip_bookmarks_tip_id_fkey";
+            columns: ["tip_id"];
+            isOneToOne: false;
+            referencedRelation: "daily_tips";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      battles: {
+        Row: {
+          id: string;
+          invite_code: string;
+          host_id: string;
+          guest_id: string | null;
+          session_id: string | null;
+          status: string;
+          question_count: number;
+          category: string | null;
+          host_score: number;
+          host_correct: number;
+          host_time_ms: number;
+          guest_score: number;
+          guest_correct: number;
+          guest_time_ms: number;
+          winner_id: string | null;
+          created_at: string;
+          expires_at: string;
+        };
+        Insert: {
+          id?: string;
+          invite_code: string;
+          host_id: string;
+          guest_id?: string | null;
+          session_id?: string | null;
+          status?: string;
+          question_count?: number;
+          category?: string | null;
+          host_score?: number;
+          host_correct?: number;
+          host_time_ms?: number;
+          guest_score?: number;
+          guest_correct?: number;
+          guest_time_ms?: number;
+          winner_id?: string | null;
+          created_at?: string;
+          expires_at?: string;
+        };
+        Update: {
+          id?: string;
+          invite_code?: string;
+          host_id?: string;
+          guest_id?: string | null;
+          session_id?: string | null;
+          status?: string;
+          question_count?: number;
+          category?: string | null;
+          host_score?: number;
+          host_correct?: number;
+          host_time_ms?: number;
+          guest_score?: number;
+          guest_correct?: number;
+          guest_time_ms?: number;
+          winner_id?: string | null;
+          created_at?: string;
+          expires_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "battles_host_id_fkey";
+            columns: ["host_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "battles_guest_id_fkey";
+            columns: ["guest_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      battle_questions: {
+        Row: {
+          id: string;
+          battle_id: string;
+          question_id: string;
+          question_order: number;
+        };
+        Insert: {
+          id?: string;
+          battle_id: string;
+          question_id: string;
+          question_order: number;
+        };
+        Update: {
+          id?: string;
+          battle_id?: string;
+          question_id?: string;
+          question_order?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "battle_questions_battle_id_fkey";
+            columns: ["battle_id"];
+            isOneToOne: false;
+            referencedRelation: "battles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "battle_questions_question_id_fkey";
+            columns: ["question_id"];
+            isOneToOne: false;
+            referencedRelation: "questions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      skill_nodes: {
+        Row: {
+          id: string;
+          category: string;
+          subcategory: string;
+          name: string;
+          description: string;
+          icon: string;
+          parent_id: string | null;
+          required_correct: number;
+          sort_order: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          category: string;
+          subcategory: string;
+          name: string;
+          description: string;
+          icon: string;
+          parent_id?: string | null;
+          required_correct?: number;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          category?: string;
+          subcategory?: string;
+          name?: string;
+          description?: string;
+          icon?: string;
+          parent_id?: string | null;
+          required_correct?: number;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "skill_nodes_parent_id_fkey";
+            columns: ["parent_id"];
+            isOneToOne: false;
+            referencedRelation: "skill_nodes";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      user_skill_progress: {
+        Row: {
+          id: string;
+          user_id: string;
+          node_id: string;
+          correct_count: number;
+          total_answered: number;
+          is_unlocked: boolean;
+          unlocked_at: string | null;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          node_id: string;
+          correct_count?: number;
+          total_answered?: number;
+          is_unlocked?: boolean;
+          unlocked_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          node_id?: string;
+          correct_count?: number;
+          total_answered?: number;
+          is_unlocked?: boolean;
+          unlocked_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "user_skill_progress_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "user_skill_progress_node_id_fkey";
+            columns: ["node_id"];
+            isOneToOne: false;
+            referencedRelation: "skill_nodes";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
@@ -852,3 +1216,23 @@ export type TestCase = {
   expectedOutput: string;
   description: string;
 };
+
+// ============ 시즌 관련 타입 ============
+export type SeasonRow = Database["public"]["Tables"]["seasons"]["Row"];
+
+export type SeasonRecordRow = Database["public"]["Tables"]["season_records"]["Row"];
+
+// ============ 팁 관련 타입 ============
+export type DailyTipRow = Database["public"]["Tables"]["daily_tips"]["Row"];
+
+export type TipBookmarkRow = Database["public"]["Tables"]["tip_bookmarks"]["Row"];
+
+// ============ 대결 관련 타입 ============
+export type BattleRow = Database["public"]["Tables"]["battles"]["Row"];
+
+export type BattleQuestionRow = Database["public"]["Tables"]["battle_questions"]["Row"];
+
+// ============ 스킬 트리 관련 타입 ============
+export type SkillNodeRow = Database["public"]["Tables"]["skill_nodes"]["Row"];
+
+export type UserSkillProgressRow = Database["public"]["Tables"]["user_skill_progress"]["Row"];
