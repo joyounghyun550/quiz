@@ -10,13 +10,26 @@ import type { DailyQuizLogRow, UserRow } from "@/shared/types/database.type";
 import { getTierInfo } from "@/entities/user/lib/tier.util";
 import TierBadge from "@/entities/user/ui/TierBadge";
 
+import WeeklyChallengeCard from "@/features/weekly-challenge/ui/WeeklyChallengeCard";
+
 import { createSupabaseBrowserClient } from "@/lib/supabase-client";
+
+type WeeklyChallengeInfo = {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  endDate: string;
+  participantCount: number;
+  hasParticipated: boolean;
+} | null;
 
 type QuizHubData = {
   tierInfo: ReturnType<typeof getTierInfo>;
   dailyCompleted: boolean;
   dailyCorrect?: number;
   dailyTotal?: number;
+  weeklyChallenge: WeeklyChallengeInfo;
 };
 
 export default function QuizHubPage() {
@@ -59,11 +72,24 @@ export default function QuizHubPage() {
           .eq("quiz_date", today)
           .single()) as { data: DailyQuizLogRow | null };
 
+        // 위클리 챌린지 정보
+        let weeklyChallenge: WeeklyChallengeInfo = null;
+        try {
+          const weeklyRes = await fetch("/api/quiz/weekly/current");
+          if (weeklyRes.ok) {
+            const weeklyData = await weeklyRes.json();
+            weeklyChallenge = weeklyData.challenge ?? null;
+          }
+        } catch {
+          // 위클리 로드 실패 무시
+        }
+
         setData({
           tierInfo: getTierInfo(profile.current_lp),
           dailyCompleted: todayLog?.is_completed ?? false,
           dailyCorrect: undefined,
           dailyTotal: undefined,
+          weeklyChallenge,
         });
       } catch {
         // 에러 시 무시
@@ -138,6 +164,79 @@ export default function QuizHubPage() {
               </Link>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* 위클리 챌린지 */}
+      {data.weeklyChallenge && <WeeklyChallengeCard challenge={data.weeklyChallenge} />}
+
+      {/* 타임어택 */}
+      <div className="overflow-hidden rounded-2xl border border-gray-800 bg-gradient-to-br from-red-500/10 via-transparent to-amber-500/10">
+        <div className="p-5">
+          <div className="mb-1 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-500/15">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="13" r="8" stroke="#ef4444" strokeWidth="2" />
+                <path d="M12 9v4l2 2" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" />
+                <path d="M9 2h6" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-base font-semibold text-white">타임어택</h3>
+              <p className="text-[10px] text-gray-500">60초 · 10문제 · 속도 랭킹</p>
+            </div>
+            <span className="ml-auto rounded-full bg-red-500/15 px-2.5 py-1 text-xs font-bold text-red-400">60초</span>
+          </div>
+
+          <div className="my-4 h-px bg-gray-800" />
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm text-gray-400">제한시간 안에 최대한 빠르고 정확하게!</p>
+            <Link
+              href="/quiz/timeattack"
+              className="flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-red-600 to-amber-600 font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              타임어택 시작
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* 코드 챌린지 */}
+      <div className="overflow-hidden rounded-2xl border border-gray-800 bg-gradient-to-br from-emerald-500/10 via-transparent to-teal-500/10">
+        <div className="p-5">
+          <div className="mb-1 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M16 18l6-6-6-6M8 6l-6 6 6 6"
+                  stroke="#10b981"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-base font-semibold text-white">코드 챌린지</h3>
+              <p className="text-[10px] text-gray-500">직접 코드를 작성하세요</p>
+            </div>
+            <span className="ml-auto rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-semibold text-emerald-400">
+              NEW
+            </span>
+          </div>
+
+          <div className="my-4 h-px bg-gray-800" />
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm text-gray-400">함수를 구현하고 테스트를 통과하세요</p>
+            <Link
+              href="/quiz/code-challenge"
+              className="flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              챌린지 목록
+            </Link>
+          </div>
         </div>
       </div>
 

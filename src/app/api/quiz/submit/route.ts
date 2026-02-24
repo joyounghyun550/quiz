@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { LP_CONFIG } from "@/shared/constants/tier.constant";
+import { LP_CONFIG, WEEKLY_CHALLENGE_CONFIG } from "@/shared/constants/tier.constant";
 import type { CategoryStatRow, QuestionRow, QuizSessionRow, TierName, UserRow } from "@/shared/types/database.type";
 
 import { applyLpChange, calculateLpChange, calculatePlacementLp } from "@/entities/user/lib/lp.util";
@@ -19,6 +19,11 @@ type SubmitAnswer = {
 type SubmitRequest = {
   sessionId: string;
   answers: SubmitAnswer[];
+  timeattackData?: {
+    totalScore: number;
+    totalTimeMs: number;
+    comboMax: number;
+  };
 };
 
 export async function POST(request: Request) {
@@ -33,7 +38,7 @@ export async function POST(request: Request) {
   }
 
   const body: SubmitRequest = await request.json();
-  const { sessionId, answers } = body;
+  const { sessionId, answers, timeattackData } = body;
 
   // 세션 확인
   const { data: session } = (await supabase
@@ -113,7 +118,11 @@ export async function POST(request: Request) {
           });
 
     const lpChange =
-      session.session_type === "daily" ? Math.round(baseLpChange * LP_CONFIG.DAILY_QUIZ_MULTIPLIER) : baseLpChange;
+      session.session_type === "daily"
+        ? Math.round(baseLpChange * LP_CONFIG.DAILY_QUIZ_MULTIPLIER)
+        : session.session_type === "weekly"
+          ? Math.round(baseLpChange * WEEKLY_CHALLENGE_CONFIG.DEFAULT_LP_MULTIPLIER)
+          : baseLpChange;
 
     totalLpChange += lpChange;
 
@@ -255,13 +264,47 @@ export async function POST(request: Request) {
     );
 
     // LP 이력 기록
+    const lpReason =
+      session.session_type === "daily"
+        ? "daily_quiz"
+        : session.session_type === "timeattack"
+          ? "timeattack"
+          : session.session_type === "weekly"
+            ? "weekly_challenge"
+            : "practice";
     await supabase.from("lp_history").insert({
       user_id: user.id,
       lp_before: profile.current_lp,
       lp_after: result.newLp,
       lp_change: totalLpChange,
-      reason: "daily_quiz",
+      reason: lpReason,
     });
+
+    // 타임어택 점수 기록
+    if (session.session_type === "timeattack" && timeattackData) {
+      await supabase.from("timeattack_scores").insert({
+        user_id: user.id,
+        session_id: sessionId,
+        score: timeattackData.totalScore,
+        total_time_ms: timeattackData.totalTimeMs,
+        correct_count: correctCount,
+        combo_max: timeattackData.comboMax,
+      });
+    }
+
+    // 위클리 챌린지 참여 기록 업데이트
+    if (session.session_type === "weekly") {
+      await supabase
+        .from("weekly_challenge_participants")
+        .update({
+          score: correctCount,
+          correct_count: correctCount,
+          total_time_ms: answers.reduce((sum, a) => sum + a.timeSpentMs, 0),
+          completed_at: new Date().toISOString(),
+        })
+        .eq("session_id", sessionId)
+        .eq("user_id", user.id);
+    }
 
     // 스트릭 업데이트
     const today = new Date().toISOString().split("T")[0];

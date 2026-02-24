@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 
 import type { UserRow } from "@/shared/types/database.type";
 
+import type { AchievementWithStatus } from "@/entities/achievement/model/types";
+import AchievementBadge from "@/entities/achievement/ui/AchievementBadge";
 import { getTierInfo } from "@/entities/user/lib/tier.util";
 import type { TierInfo } from "@/entities/user/model/types";
 import LpBar from "@/entities/user/ui/LpBar";
@@ -30,6 +32,7 @@ export default function ProfilePage() {
   const router = useRouter();
   const supabase = createSupabaseBrowserClient();
   const [data, setData] = useState<ProfileData | null>(null);
+  const [recentBadges, setRecentBadges] = useState<AchievementWithStatus[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -60,6 +63,24 @@ export default function ProfilePage() {
           totalAnswered: profile.total_answered,
           totalCorrect: profile.total_correct,
         });
+
+        // 업적 로드
+        try {
+          const achRes = await fetch("/api/achievements");
+          if (achRes.ok) {
+            const achData = await achRes.json();
+            const earned = (achData.achievements ?? [])
+              .filter((a: AchievementWithStatus) => a.earned)
+              .sort(
+                (a: AchievementWithStatus, b: AchievementWithStatus) =>
+                  new Date(b.earnedAt ?? 0).getTime() - new Date(a.earnedAt ?? 0).getTime()
+              )
+              .slice(0, 6);
+            setRecentBadges(earned);
+          }
+        } catch {
+          // 업적 로드 실패 무시
+        }
       } catch {
         // 에러
       } finally {
@@ -126,6 +147,25 @@ export default function ProfilePage() {
           <span className="text-2xl font-bold text-white">{data.longestStreak}</span>
           <span className="text-xs text-gray-500">최장 스트릭</span>
         </div>
+      </div>
+
+      {/* Achievements Preview */}
+      <div className="rounded-2xl border border-gray-800 bg-gray-900/50 p-4">
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="text-sm font-semibold text-white">업적</h3>
+          <Link href="/profile/achievements" className="text-xs text-cyan-400 hover:text-cyan-300">
+            전체 보기 →
+          </Link>
+        </div>
+        {recentBadges.length > 0 ? (
+          <div className="flex gap-2 overflow-x-auto">
+            {recentBadges.map((badge) => (
+              <AchievementBadge key={badge.id} achievement={badge} size="sm" />
+            ))}
+          </div>
+        ) : (
+          <p className="py-4 text-center text-xs text-gray-600">아직 획득한 업적이 없습니다</p>
+        )}
       </div>
 
       {/* Settings Link */}

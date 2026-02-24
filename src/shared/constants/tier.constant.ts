@@ -147,3 +147,17 @@ export const DAILY_QUIZ_CONFIG = {
 } as const;
 
 export const DIVISION_LABELS = ["IV", "III", "II", "I"] as const;
+
+export const TIMEATTACK_CONFIG = {
+  TOTAL_QUESTIONS: 10,
+  TIME_LIMIT_MS: 60_000,
+  BASE_SCORE_PER_QUESTION: 100,
+  TIME_BONUS_MULTIPLIER: 2,
+  COMBO_BONUS: 10,
+} as const;
+
+export const WEEKLY_CHALLENGE_CONFIG = {
+  QUESTIONS_PER_CHALLENGE: 10,
+  DEFAULT_LP_MULTIPLIER: 1.5,
+  DIFFICULTY_BONUS: 1,
+} as const;

@@ -15,7 +15,7 @@ export type QuestionFormat = "multiple_choice" | "code_output" | "true_false";
 
 export type QuestionCategory = "javascript" | "typescript" | "react" | "nextjs" | "css" | "web_fundamentals";
 
-export type SessionType = "daily" | "placement" | "practice";
+export type SessionType = "daily" | "placement" | "practice" | "timeattack" | "weekly";
 
 export type SessionStatus = "in_progress" | "completed" | "abandoned";
 
@@ -499,10 +499,356 @@ export type Database = {
           },
         ];
       };
+      timeattack_scores: {
+        Row: {
+          id: string;
+          user_id: string;
+          session_id: string;
+          score: number;
+          total_time_ms: number;
+          correct_count: number;
+          combo_max: number;
+          played_at: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          session_id: string;
+          score: number;
+          total_time_ms: number;
+          correct_count?: number;
+          combo_max?: number;
+          played_at?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          session_id?: string;
+          score?: number;
+          total_time_ms?: number;
+          correct_count?: number;
+          combo_max?: number;
+          played_at?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "timeattack_scores_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "timeattack_scores_session_id_fkey";
+            columns: ["session_id"];
+            isOneToOne: false;
+            referencedRelation: "quiz_sessions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      achievements: {
+        Row: {
+          id: string;
+          key: string;
+          category: string;
+          title: string;
+          description: string;
+          icon: string;
+          sort_order: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          key: string;
+          category: string;
+          title: string;
+          description: string;
+          icon: string;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          key?: string;
+          category?: string;
+          title?: string;
+          description?: string;
+          icon?: string;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      user_achievements: {
+        Row: {
+          id: string;
+          user_id: string;
+          achievement_id: string;
+          earned_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          achievement_id: string;
+          earned_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          achievement_id?: string;
+          earned_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "user_achievements_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "user_achievements_achievement_id_fkey";
+            columns: ["achievement_id"];
+            isOneToOne: false;
+            referencedRelation: "achievements";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      weekly_challenges: {
+        Row: {
+          id: string;
+          title: string;
+          description: string;
+          category: string;
+          difficulty_bonus: number;
+          lp_multiplier: number;
+          start_date: string;
+          end_date: string;
+          question_count: number;
+          is_active: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          description: string;
+          category: string;
+          difficulty_bonus?: number;
+          lp_multiplier?: number;
+          start_date: string;
+          end_date: string;
+          question_count?: number;
+          is_active?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          description?: string;
+          category?: string;
+          difficulty_bonus?: number;
+          lp_multiplier?: number;
+          start_date?: string;
+          end_date?: string;
+          question_count?: number;
+          is_active?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      weekly_challenge_participants: {
+        Row: {
+          id: string;
+          challenge_id: string;
+          user_id: string;
+          session_id: string | null;
+          score: number;
+          correct_count: number;
+          total_time_ms: number;
+          completed_at: string | null;
+        };
+        Insert: {
+          id?: string;
+          challenge_id: string;
+          user_id: string;
+          session_id?: string | null;
+          score?: number;
+          correct_count?: number;
+          total_time_ms?: number;
+          completed_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          challenge_id?: string;
+          user_id?: string;
+          session_id?: string | null;
+          score?: number;
+          correct_count?: number;
+          total_time_ms?: number;
+          completed_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "weekly_challenge_participants_challenge_id_fkey";
+            columns: ["challenge_id"];
+            isOneToOne: false;
+            referencedRelation: "weekly_challenges";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "weekly_challenge_participants_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "weekly_challenge_participants_session_id_fkey";
+            columns: ["session_id"];
+            isOneToOne: false;
+            referencedRelation: "quiz_sessions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      code_challenges: {
+        Row: {
+          id: string;
+          title: string;
+          description: string;
+          category: string;
+          difficulty: number;
+          initial_code: string;
+          solution_code: string;
+          test_cases: Json;
+          hints: Json | null;
+          time_limit_ms: number;
+          is_active: boolean;
+          times_served: number;
+          times_solved: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          description: string;
+          category: string;
+          difficulty: number;
+          initial_code: string;
+          solution_code: string;
+          test_cases: Json;
+          hints?: Json | null;
+          time_limit_ms?: number;
+          is_active?: boolean;
+          times_served?: number;
+          times_solved?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          description?: string;
+          category?: string;
+          difficulty?: number;
+          initial_code?: string;
+          solution_code?: string;
+          test_cases?: Json;
+          hints?: Json | null;
+          time_limit_ms?: number;
+          is_active?: boolean;
+          times_served?: number;
+          times_solved?: number;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      code_challenge_submissions: {
+        Row: {
+          id: string;
+          user_id: string;
+          challenge_id: string;
+          code: string;
+          passed_count: number;
+          total_tests: number;
+          is_solved: boolean;
+          lp_change: number;
+          time_spent_ms: number | null;
+          submitted_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          challenge_id: string;
+          code: string;
+          passed_count?: number;
+          total_tests?: number;
+          is_solved?: boolean;
+          lp_change?: number;
+          time_spent_ms?: number | null;
+          submitted_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          challenge_id?: string;
+          code?: string;
+          passed_count?: number;
+          total_tests?: number;
+          is_solved?: boolean;
+          lp_change?: number;
+          time_spent_ms?: number | null;
+          submitted_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "code_challenge_submissions_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "code_challenge_submissions_challenge_id_fkey";
+            columns: ["challenge_id"];
+            isOneToOne: false;
+            referencedRelation: "code_challenges";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
     Enums: Record<string, never>;
     CompositeTypes: Record<string, never>;
   };
+};
+
+// ============ 타임어택 관련 타입 ============
+export type TimeattackScoreRow = Database["public"]["Tables"]["timeattack_scores"]["Row"];
+
+// ============ 업적 관련 타입 ============
+export type AchievementRow = Database["public"]["Tables"]["achievements"]["Row"];
+
+export type UserAchievementRow = Database["public"]["Tables"]["user_achievements"]["Row"];
+
+// ============ 위클리 챌린지 관련 타입 ============
+export type WeeklyChallengeRow = Database["public"]["Tables"]["weekly_challenges"]["Row"];
+
+export type WeeklyChallengeParticipantRow = Database["public"]["Tables"]["weekly_challenge_participants"]["Row"];
+
+// ============ 코드 챌린지 관련 타입 ============
+export type CodeChallengeRow = Database["public"]["Tables"]["code_challenges"]["Row"];
+
+export type CodeChallengeSubmissionRow = Database["public"]["Tables"]["code_challenge_submissions"]["Row"];
+
+export type TestCase = {
+  input: string;
+  expectedOutput: string;
+  description: string;
 };

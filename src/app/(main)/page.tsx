@@ -10,11 +10,23 @@ import KakaoShareButton from "@/shared/ui/KakaoShareButton";
 import { getTierInfo } from "@/entities/user/lib/tier.util";
 import type { TierInfo } from "@/entities/user/model/types";
 
+import WeeklyChallengeCard from "@/features/weekly-challenge/ui/WeeklyChallengeCard";
+
 import DailyQuizCard from "@/widgets/home-dashboard/ui/DailyQuizCard";
 import DashboardHeader from "@/widgets/home-dashboard/ui/DashboardHeader";
 import QuickStats from "@/widgets/home-dashboard/ui/QuickStats";
 
 import { createSupabaseBrowserClient } from "@/lib/supabase-client";
+
+type WeeklyChallengeInfo = {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  endDate: string;
+  participantCount: number;
+  hasParticipated: boolean;
+} | null;
 
 type DashboardData = {
   name: string;
@@ -26,6 +38,7 @@ type DashboardData = {
   todayCompleted: boolean;
   todayCorrectCount?: number;
   todayTotalQuestions?: number;
+  weeklyChallenge: WeeklyChallengeInfo;
 };
 
 const HomeSkeleton = () => (
@@ -88,6 +101,18 @@ export default function HomePage() {
           .eq("quiz_date", today)
           .single()) as { data: (DailyQuizLogRow & { quiz_sessions: QuizSessionRow | null }) | null };
 
+        // 위클리 챌린지 정보
+        let weeklyChallenge: WeeklyChallengeInfo = null;
+        try {
+          const weeklyRes = await fetch("/api/quiz/weekly/current");
+          if (weeklyRes.ok) {
+            const weeklyData = await weeklyRes.json();
+            weeklyChallenge = weeklyData.challenge ?? null;
+          }
+        } catch {
+          // 위클리 로드 실패 무시
+        }
+
         setData({
           name: profile.name,
           tierInfo,
@@ -98,6 +123,7 @@ export default function HomePage() {
           todayCompleted: todayLog?.is_completed ?? false,
           todayCorrectCount: todayLog?.quiz_sessions?.correct_count,
           todayTotalQuestions: todayLog?.quiz_sessions?.total_questions,
+          weeklyChallenge,
         });
       } catch {
         // 에러 시 로그인으로
@@ -121,6 +147,7 @@ export default function HomePage() {
         correctCount={data.todayCorrectCount}
         totalQuestions={data.todayTotalQuestions}
       />
+      {data.weeklyChallenge && <WeeklyChallengeCard challenge={data.weeklyChallenge} />}
       <QuickStats
         totalAnswered={data.totalAnswered}
         totalCorrect={data.totalCorrect}

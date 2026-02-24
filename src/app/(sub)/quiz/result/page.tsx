@@ -43,6 +43,8 @@ const SESSION_TITLES: Record<string, string> = {
   retry: "오답 노트 결과",
   practice: "티어 올리기 결과",
   daily: "오늘의 퀴즈 결과",
+  timeattack: "타임어택 결과",
+  weekly: "위클리 챌린지 결과",
 };
 
 export default function QuizResultPage() {
@@ -70,10 +72,21 @@ export default function QuizResultPage() {
           timeSpentMs: q.timeSpentMs ?? 0,
         }));
 
+        const body: Record<string, unknown> = { sessionId, answers };
+
+        // 타임어택 데이터 전달
+        if (searchParams.get("timeattack") === "true") {
+          body.timeattackData = {
+            totalScore: Number(searchParams.get("score") ?? 0),
+            totalTimeMs: Number(searchParams.get("timeMs") ?? 0),
+            comboMax: Number(searchParams.get("comboMax") ?? 0),
+          };
+        }
+
         const res = await fetch("/api/quiz/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sessionId, answers }),
+          body: JSON.stringify(body),
         });
 
         if (!res.ok) {
@@ -83,6 +96,21 @@ export default function QuizResultPage() {
 
         const data: SubmitResult = await res.json();
         setResult(data);
+
+        // 업적 체크
+        try {
+          const achRes = await fetch("/api/achievements/check", { method: "POST" });
+          if (achRes.ok) {
+            const achData = await achRes.json();
+            if (achData.newAchievements?.length > 0) {
+              for (const ach of achData.newAchievements) {
+                toast.success(`${ach.icon} 업적 달성! ${ach.title}`, { duration: 4000 });
+              }
+            }
+          }
+        } catch {
+          // 업적 체크 실패는 무시
+        }
       } catch {
         router.replace("/");
       } finally {

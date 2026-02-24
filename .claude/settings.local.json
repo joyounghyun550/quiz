@@ -31,7 +31,9 @@
       "Bash(grep -n \"import\\\\|export\\\\|^//\" /c/Users/jky34/project/quiz/src/app/loading.tsx)",
       "Bash(find /c/Users/jky34/project/quiz/src -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" \\\\\\) -exec wc -l {} +)",
       "Bash(grep -r \"//.*TODO\\\\|/\\\\*.*TODO\" /c/Users/jky34/project/quiz/src --include=\"*.tsx\" --include=\"*.ts\")",
-      "Bash(grep -n \"^[[:space:]]*//\" /c/Users/jky34/project/quiz/src/lib/axios.ts)"
+      "Bash(grep -n \"^[[:space:]]*//\" /c/Users/jky34/project/quiz/src/lib/axios.ts)",
+      "Bash(npx next lint --quiet)",
+      "Bash(npx next build)"
     ],
     "additionalDirectories": [
       "C:\\Users\\UserPC\\AppData\\Local\\Temp",

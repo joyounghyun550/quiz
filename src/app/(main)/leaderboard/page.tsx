@@ -33,6 +33,20 @@ type CategoryUser = {
   total_correct: number;
 };
 
+type TimeattackUser = {
+  id: string;
+  name: string;
+  profile_image_url: string | null;
+  current_lp: number;
+  current_tier: string;
+  current_tier_division: number;
+  score: number;
+  correct_count: number;
+  combo_max: number;
+  total_time_ms: number;
+  played_at: string;
+};
+
 type CategoryKey = "javascript" | "typescript" | "react" | "nextjs" | "css" | "web_fundamentals";
 
 const CATEGORIES: { key: CategoryKey; label: string; icon: string; color: string }[] = [
@@ -52,9 +66,11 @@ const RANK_STYLES = [
 
 export default function LeaderboardPage() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<"overall" | CategoryKey>("overall");
+  const [activeTab, setActiveTab] = useState<"overall" | "timeattack" | CategoryKey>("overall");
   const [overallUsers, setOverallUsers] = useState<OverallUser[]>([]);
   const [categoryUsers, setCategoryUsers] = useState<CategoryUser[]>([]);
+  const [timeattackUsers, setTimeattackUsers] = useState<TimeattackUser[]>([]);
+  const [timeattackPeriod, setTimeattackPeriod] = useState<"all" | "weekly" | "daily">("weekly");
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -81,7 +97,7 @@ export default function LeaderboardPage() {
 
   // 카테고리 탭 전환 시 로드
   useEffect(() => {
-    if (activeTab === "overall") return;
+    if (activeTab === "overall" || activeTab === "timeattack") return;
     setIsLoading(true);
     fetch(`/api/leaderboard/category?category=${activeTab}`)
       .then((r) => r.json())
@@ -90,9 +106,23 @@ export default function LeaderboardPage() {
       .finally(() => setIsLoading(false));
   }, [activeTab]);
 
+  // 타임어택 탭 로드
+  useEffect(() => {
+    if (activeTab !== "timeattack") return;
+    setIsLoading(true);
+    fetch(`/api/leaderboard/timeattack?period=${timeattackPeriod}`)
+      .then((r) => r.json())
+      .then((data) => setTimeattackUsers(data.users ?? []))
+      .catch(() => setTimeattackUsers([]))
+      .finally(() => setIsLoading(false));
+  }, [activeTab, timeattackPeriod]);
+
   const isOverall = activeTab === "overall";
-  const users = isOverall ? overallUsers : categoryUsers;
-  const currentUserRank = users.findIndex((u) => u.id === currentUserId) + 1;
+  const isTimeattack = activeTab === "timeattack";
+  const users = isOverall ? overallUsers : isTimeattack ? [] : categoryUsers;
+  const currentUserRank = isTimeattack
+    ? timeattackUsers.findIndex((u) => u.id === currentUserId) + 1
+    : users.findIndex((u) => u.id === currentUserId) + 1;
   const activeCategoryInfo = CATEGORIES.find((c) => c.key === activeTab);
 
   if (isLoading) {
@@ -122,19 +152,31 @@ export default function LeaderboardPage() {
 
       {/* Category Tabs */}
       <div className="flex flex-col gap-2">
-        {/* 전체 탭 */}
-        <button
-          onClick={() => setActiveTab("overall")}
-          className={`rounded-xl border px-4 py-2 text-sm font-semibold transition-colors ${
-            activeTab === "overall"
-              ? "border-cyan-500/50 bg-cyan-500/10 text-cyan-400"
-              : "border-gray-800 bg-gray-900/30 text-gray-400 hover:border-gray-700 hover:text-gray-300"
-          }`}
-        >
-          🏆 전체 랭킹
-        </button>
+        {/* 전체 / 타임어택 탭 */}
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            onClick={() => setActiveTab("overall")}
+            className={`rounded-xl border px-4 py-2 text-sm font-semibold transition-colors ${
+              activeTab === "overall"
+                ? "border-cyan-500/50 bg-cyan-500/10 text-cyan-400"
+                : "border-gray-800 bg-gray-900/30 text-gray-400 hover:border-gray-700 hover:text-gray-300"
+            }`}
+          >
+            🏆 전체 랭킹
+          </button>
+          <button
+            onClick={() => setActiveTab("timeattack")}
+            className={`rounded-xl border px-4 py-2 text-sm font-semibold transition-colors ${
+              activeTab === "timeattack"
+                ? "border-red-500/50 bg-red-500/10 text-red-400"
+                : "border-gray-800 bg-gray-900/30 text-gray-400 hover:border-gray-700 hover:text-gray-300"
+            }`}
+          >
+            ⏱️ 타임어택
+          </button>
+        </div>
 
-        {/* 카테고리 탭 2열 그리드 */}
+        {/* 카테고리 탭 3열 그리드 */}
         <div className="grid grid-cols-3 gap-2">
           {CATEGORIES.map((cat) => (
             <button
@@ -158,8 +200,118 @@ export default function LeaderboardPage() {
         </div>
       </div>
 
+      {/* 타임어택 랭킹 */}
+      {isTimeattack && (
+        <>
+          {/* 기간 필터 */}
+          <div className="flex gap-2">
+            {(["daily", "weekly", "all"] as const).map((period) => (
+              <button
+                key={period}
+                onClick={() => setTimeattackPeriod(period)}
+                className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
+                  timeattackPeriod === period
+                    ? "bg-red-500/20 text-red-400"
+                    : "bg-gray-900/30 text-gray-500 hover:text-gray-400"
+                }`}
+              >
+                {period === "daily" ? "오늘" : period === "weekly" ? "이번 주" : "전체"}
+              </button>
+            ))}
+          </div>
+
+          {/* 타임어택 랭킹 목록 */}
+          <div className="flex flex-col gap-2">
+            {timeattackUsers.map((user, index) => {
+              const rank = index + 1;
+              const isMe = user.id === currentUserId;
+              const tierInfo = getTierInfo(user.current_lp);
+              const style = RANK_STYLES[index] ?? null;
+
+              return (
+                <div
+                  key={`${user.id}-${index}`}
+                  className={`flex items-center gap-3 rounded-xl border p-3 transition-colors ${
+                    isMe
+                      ? "border-red-500/40 bg-red-500/5"
+                      : style
+                        ? `${style.bg} ${style.border}`
+                        : "border-gray-800 bg-gray-900/30"
+                  }`}
+                >
+                  {/* Rank */}
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center">
+                    {rank <= 3 ? (
+                      <span className="text-lg font-bold">{rank === 1 ? "🥇" : rank === 2 ? "🥈" : "🥉"}</span>
+                    ) : (
+                      <span className={`text-sm font-bold ${isMe ? "text-red-400" : "text-gray-500"}`}>#{rank}</span>
+                    )}
+                  </div>
+
+                  {/* Avatar */}
+                  <div className="h-9 w-9 flex-shrink-0 overflow-hidden rounded-full bg-gray-800">
+                    {user.profile_image_url ? (
+                      <Image
+                        src={user.profile_image_url}
+                        alt={user.name}
+                        width={36}
+                        height={36}
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div
+                        className="flex h-full w-full items-center justify-center text-sm font-bold"
+                        style={{ color: tierInfo.color, backgroundColor: tierInfo.bgColor }}
+                      >
+                        {user.name.charAt(0)}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Info */}
+                  <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+                    <span className={`truncate text-sm font-semibold ${isMe ? "text-red-300" : "text-white"}`}>
+                      {user.name}
+                      {isMe && <span className="ml-1 text-xs text-red-500">(나)</span>}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <TierBadge tierInfo={tierInfo} size="sm" />
+                      {user.combo_max > 1 && (
+                        <span className="text-[10px] text-orange-400">🔥 {user.combo_max}콤보</span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Score */}
+                  <div className="flex flex-col items-end gap-0.5">
+                    <span className="text-base font-bold text-red-400">{user.score.toLocaleString()}</span>
+                    <span className="text-[10px] text-gray-500">점</span>
+                    <span className="text-xs text-gray-500">
+                      {user.correct_count}문제 · {(user.total_time_ms / 1000).toFixed(1)}초
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {timeattackUsers.length === 0 && (
+            <div className="flex flex-col items-center gap-3 py-16 text-gray-500">
+              <span className="text-4xl">⏱️</span>
+              <p className="text-sm">
+                {timeattackPeriod === "daily"
+                  ? "오늘 타임어택 기록이 없습니다"
+                  : timeattackPeriod === "weekly"
+                    ? "이번 주 타임어택 기록이 없습니다"
+                    : "아직 타임어택 기록이 없습니다"}
+              </p>
+            </div>
+          )}
+        </>
+      )}
+
       {/* Top 3 podium */}
-      {users.length >= 3 && (
+      {!isTimeattack && users.length >= 3 && (
         <div className="flex items-end justify-center gap-2 rounded-2xl border border-gray-800 bg-gray-900/30 p-4">
           <PodiumCard user={users[1]} rank={2} isCurrentUser={users[1].id === currentUserId} isOverall={isOverall} />
           <PodiumCard
@@ -174,92 +326,100 @@ export default function LeaderboardPage() {
       )}
 
       {/* Full list */}
-      <div className="flex flex-col gap-2">
-        {users.map((user, index) => {
-          const rank = index + 1;
-          const isMe = user.id === currentUserId;
-          const tierInfo = getTierInfo((user as OverallUser | CategoryUser).current_lp);
-          const style = RANK_STYLES[index] ?? null;
-          const accuracy = user.total_answered > 0 ? Math.round((user.total_correct / user.total_answered) * 100) : 0;
-          const lp = isOverall ? (user as OverallUser).current_lp : (user as CategoryUser).category_lp;
+      {!isTimeattack && (
+        <div className="flex flex-col gap-2">
+          {users.map((user, index) => {
+            const rank = index + 1;
+            const isMe = user.id === currentUserId;
+            const tierInfo = getTierInfo((user as OverallUser | CategoryUser).current_lp);
+            const style = RANK_STYLES[index] ?? null;
+            const accuracy = user.total_answered > 0 ? Math.round((user.total_correct / user.total_answered) * 100) : 0;
+            const lp = isOverall ? (user as OverallUser).current_lp : (user as CategoryUser).category_lp;
 
-          return (
-            <div
-              key={user.id}
-              className={`flex items-center gap-3 rounded-xl border p-3 transition-colors ${
-                isMe
-                  ? "border-cyan-500/40 bg-cyan-500/5"
-                  : style
-                    ? `${style.bg} ${style.border}`
-                    : "border-gray-800 bg-gray-900/30"
-              }`}
-            >
-              {/* Rank */}
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center">
-                {rank <= 3 ? (
-                  <span className="text-lg font-bold">{rank === 1 ? "🥇" : rank === 2 ? "🥈" : "🥉"}</span>
-                ) : (
-                  <span className={`text-sm font-bold ${isMe ? "text-cyan-400" : "text-gray-500"}`}>#{rank}</span>
-                )}
-              </div>
-
-              {/* Avatar */}
-              <div className="h-9 w-9 flex-shrink-0 overflow-hidden rounded-full bg-gray-800">
-                {user.profile_image_url ? (
-                  <Image src={user.profile_image_url} alt={user.name} width={36} height={36} className="object-cover" />
-                ) : (
-                  <div
-                    className="flex h-full w-full items-center justify-center text-sm font-bold"
-                    style={{ color: tierInfo.color, backgroundColor: tierInfo.bgColor }}
-                  >
-                    {user.name.charAt(0)}
-                  </div>
-                )}
-              </div>
-
-              {/* Info */}
-              <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-                <span className={`truncate text-sm font-semibold ${isMe ? "text-cyan-300" : "text-white"}`}>
-                  {user.name}
-                  {isMe && <span className="ml-1 text-xs text-cyan-500">(나)</span>}
-                </span>
-                <div className="flex items-center gap-2">
-                  <TierBadge tierInfo={getTierInfo((user as OverallUser | CategoryUser).current_lp)} size="sm" />
-                  {user.current_streak > 0 && (
-                    <span className="text-[10px] text-orange-400">🔥 {user.current_streak}일</span>
+            return (
+              <div
+                key={user.id}
+                className={`flex items-center gap-3 rounded-xl border p-3 transition-colors ${
+                  isMe
+                    ? "border-cyan-500/40 bg-cyan-500/5"
+                    : style
+                      ? `${style.bg} ${style.border}`
+                      : "border-gray-800 bg-gray-900/30"
+                }`}
+              >
+                {/* Rank */}
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center">
+                  {rank <= 3 ? (
+                    <span className="text-lg font-bold">{rank === 1 ? "🥇" : rank === 2 ? "🥈" : "🥉"}</span>
+                  ) : (
+                    <span className={`text-sm font-bold ${isMe ? "text-cyan-400" : "text-gray-500"}`}>#{rank}</span>
                   )}
                 </div>
-              </div>
 
-              {/* LP + 정답률 */}
-              <div className="flex flex-col items-end gap-0.5">
-                <span
-                  className="text-base font-bold"
-                  style={{ color: isOverall ? tierInfo.color : (activeCategoryInfo?.color ?? "#fff") }}
-                >
-                  {lp.toLocaleString()}
-                </span>
-                <span className="text-[10px] text-gray-500">LP</span>
-                <span
-                  className={`text-xs font-semibold ${
-                    user.total_answered === 0
-                      ? "text-gray-600"
-                      : accuracy >= 80
-                        ? "text-emerald-400"
-                        : accuracy >= 50
-                          ? "text-amber-400"
-                          : "text-red-400"
-                  }`}
-                >
-                  {user.total_answered > 0 ? `${accuracy}%` : "-"}
-                </span>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+                {/* Avatar */}
+                <div className="h-9 w-9 flex-shrink-0 overflow-hidden rounded-full bg-gray-800">
+                  {user.profile_image_url ? (
+                    <Image
+                      src={user.profile_image_url}
+                      alt={user.name}
+                      width={36}
+                      height={36}
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div
+                      className="flex h-full w-full items-center justify-center text-sm font-bold"
+                      style={{ color: tierInfo.color, backgroundColor: tierInfo.bgColor }}
+                    >
+                      {user.name.charAt(0)}
+                    </div>
+                  )}
+                </div>
 
-      {users.length === 0 && (
+                {/* Info */}
+                <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+                  <span className={`truncate text-sm font-semibold ${isMe ? "text-cyan-300" : "text-white"}`}>
+                    {user.name}
+                    {isMe && <span className="ml-1 text-xs text-cyan-500">(나)</span>}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <TierBadge tierInfo={getTierInfo((user as OverallUser | CategoryUser).current_lp)} size="sm" />
+                    {user.current_streak > 0 && (
+                      <span className="text-[10px] text-orange-400">🔥 {user.current_streak}일</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* LP + 정답률 */}
+                <div className="flex flex-col items-end gap-0.5">
+                  <span
+                    className="text-base font-bold"
+                    style={{ color: isOverall ? tierInfo.color : (activeCategoryInfo?.color ?? "#fff") }}
+                  >
+                    {lp.toLocaleString()}
+                  </span>
+                  <span className="text-[10px] text-gray-500">LP</span>
+                  <span
+                    className={`text-xs font-semibold ${
+                      user.total_answered === 0
+                        ? "text-gray-600"
+                        : accuracy >= 80
+                          ? "text-emerald-400"
+                          : accuracy >= 50
+                            ? "text-amber-400"
+                            : "text-red-400"
+                    }`}
+                  >
+                    {user.total_answered > 0 ? `${accuracy}%` : "-"}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {!isTimeattack && users.length === 0 && (
         <div className="flex flex-col items-center gap-3 py-16 text-gray-500">
           <span className="text-4xl">🏆</span>
           <p className="text-sm">
